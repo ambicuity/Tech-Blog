@@ -1088,3 +1088,576 @@ html {
 .dark img:hover {
     opacity: 1;
 }
+
+/* ==============================================
+   MODERN SHADCN-INSPIRED UI COMPONENTS
+   ============================================== */
+
+/* Enhanced Card Styles with Shadcn aesthetics */
+.modern-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.dark .modern-card {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+}
+
+.modern-card:hover {
+    border-color: var(--primary-500);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+/* Modern Button Variants (Shadcn-style) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-default {
+    background: white;
+    color: var(--gray-900);
+    border: 1px solid var(--gray-300);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .btn-default {
+    background: var(--gray-800);
+    color: var(--gray-100);
+    border-color: var(--gray-700);
+}
+
+.btn-default:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-400);
+}
+
+.dark .btn-default:hover {
+    background: var(--gray-700);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border: none;
+}
+
+.dark .btn-ghost {
+    color: var(--gray-300);
+}
+
+.btn-ghost:hover {
+    background: var(--gray-100);
+    color: var(--gray-900);
+}
+
+.dark .btn-ghost:hover {
+    background: var(--gray-800);
+    color: var(--gray-100);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-600);
+    border: 1px solid var(--primary-600);
+}
+
+.dark .btn-outline {
+    color: var(--primary-400);
+    border-color: var(--primary-400);
+}
+
+.btn-outline:hover {
+    background: var(--primary-600);
+    color: white;
+}
+
+.dark .btn-outline:hover {
+    background: var(--primary-500);
+}
+
+/* Modern Badge Component */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.badge-default {
+    background: var(--gray-100);
+    color: var(--gray-900);
+    border-color: var(--gray-200);
+}
+
+.dark .badge-default {
+    background: var(--gray-800);
+    color: var(--gray-100);
+    border-color: var(--gray-700);
+}
+
+.badge-primary {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    border-color: var(--primary-200);
+}
+
+.dark .badge-primary {
+    background: rgba(14, 165, 233, 0.2);
+    color: var(--primary-300);
+    border-color: rgba(14, 165, 233, 0.3);
+}
+
+.badge-outline {
+    background: transparent;
+    color: var(--gray-700);
+    border-color: var(--gray-300);
+}
+
+.dark .badge-outline {
+    color: var(--gray-300);
+    border-color: var(--gray-700);
+}
+
+/* Input Field Styling (Shadcn-inspired) */
+.input {
+    display: flex;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--gray-900);
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.dark .input {
+    background: var(--gray-800);
+    color: var(--gray-100);
+    border-color: var(--gray-700);
+}
+
+.input:focus {
+    border-color: var(--primary-500);
+    ring: 2px;
+    ring-color: var(--primary-200);
+}
+
+.dark .input:focus {
+    ring-color: rgba(14, 165, 233, 0.3);
+}
+
+.input::placeholder {
+    color: var(--gray-400);
+}
+
+/* Textarea Styling */
+.textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Separator/Divider Component */
+.separator {
+    height: 1px;
+    background: var(--gray-200);
+    margin: 1.5rem 0;
+}
+
+.dark .separator {
+    background: var(--gray-800);
+}
+
+/* Modern Alert/Notification Component */
+.alert {
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    margin-bottom: 1rem;
+}
+
+.alert-info {
+    background: var(--primary-50);
+    border-color: var(--primary-200);
+    color: var(--primary-800);
+}
+
+.dark .alert-info {
+    background: rgba(14, 165, 233, 0.1);
+    border-color: rgba(14, 165, 233, 0.3);
+    color: var(--primary-300);
+}
+
+/* Enhanced Glassmorphism Effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.dark .glass-card {
+    background: rgba(31, 41, 55, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Accordion/Collapsible Component */
+.accordion-item {
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.dark .accordion-item {
+    border-color: var(--gray-800);
+}
+
+.accordion-trigger {
+    width: 100%;
+    padding: 1rem;
+    background: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.dark .accordion-trigger {
+    background: var(--gray-900);
+    color: var(--gray-100);
+}
+
+.accordion-trigger:hover {
+    background: var(--gray-50);
+}
+
+.dark .accordion-trigger:hover {
+    background: var(--gray-800);
+}
+
+.accordion-content {
+    padding: 1rem;
+    background: var(--gray-50);
+}
+
+.dark .accordion-content {
+    background: var(--gray-800);
+}
+
+/* Skeleton Loading Component */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-300) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 0.25rem;
+}
+
+.dark .skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--gray-800) 25%,
+        var(--gray-700) 50%,
+        var(--gray-800) 75%
+    );
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Tooltip Component */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-content {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    padding: 0.5rem 0.75rem;
+    background: var(--gray-900);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 0.375rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 50;
+}
+
+.tooltip:hover .tooltip-content {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+/* Progress Bar Component */
+.progress {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--gray-200);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.dark .progress {
+    background: var(--gray-800);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-500), var(--primary-600));
+    border-radius: 9999px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Hover Ring Effect */
+.ring-hover {
+    transition: all 0.2s;
+}
+
+.ring-hover:hover {
+    box-shadow: 0 0 0 3px var(--primary-200);
+}
+
+.dark .ring-hover:hover {
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3);
+}
+
+/* Modern Checkbox Styling */
+.checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--gray-300);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkbox:checked {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+}
+
+.dark .checkbox {
+    border-color: var(--gray-700);
+    background: var(--gray-800);
+}
+
+.dark .checkbox:checked {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+}
+
+/* Switch/Toggle Component */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--gray-300);
+    transition: 0.3s;
+    border-radius: 34px;
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .switch-slider {
+    background-color: var(--primary-600);
+}
+
+.switch input:checked + .switch-slider:before {
+    transform: translateX(20px);
+}
+
+.dark .switch-slider {
+    background-color: var(--gray-700);
+}
+
+/* Enhanced Project Cards with Modern UI */
+.project-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    border: 1px solid var(--gray-200);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dark .project-card {
+    background-color: var(--gray-800);
+    border-color: var(--gray-700);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-500), var(--blue-600));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card:hover {
+    border-color: var(--primary-300);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+}
+
+/* Enhanced Skill Cards */
+.skill-category {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border: 1px solid var(--gray-200);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .skill-category {
+    background-color: var(--gray-800);
+    border-color: var(--gray-700);
+}
+
+.skill-category:hover {
+    border-color: var(--primary-400);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Modern Contact Cards */
+.contact-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid var(--gray-200);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.dark .contact-card {
+    background-color: var(--gray-800);
+    border-color: var(--gray-700);
+}
+
+.contact-card:hover {
+    border-color: var(--primary-400);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Ripple Effect for Interactive Elements */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:active::after {
+    width: 200px;
+    height: 200px;
+    animation: ripple 0.6s ease-out;
+}
