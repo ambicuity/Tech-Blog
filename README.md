@@ -62,6 +62,19 @@ This site is ready for GitHub Pages deployment:
 
 Your site will be available at: `https://yourusername.github.io/Tech-Blog/`
 
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+### Updating Your Site
+
+Once deployed, you can easily update your site content regularly. Any changes pushed to your deployed branch will automatically update your live site within 1-2 minutes.
+
+See [UPDATING.md](UPDATING.md) for a complete guide on:
+- Making content updates (bio, projects, skills, contact info)
+- Changing colors and themes
+- Adding images
+- Best practices for regular updates
+- Quick reference guide for common changes
+
 ## 🎨 Customization
 
 ### Colors
