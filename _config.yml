@@ -1,0 +1,69 @@
+# The Site Configuration
+
+# Import the theme
+theme: jekyll-theme-chirpy
+
+# Site settings
+title: Tech Blog
+tagline: Automated technical blog post generator
+description: Automated technical blog post generator using Google Gemini API
+url: http://blog.riteshrana.engineer
+baseurl: ""
+
+github:
+  username: ambicuity
+
+social:
+  name: Ritesh Rana
+  links:
+    - https://github.com/ambicuity
+    - https://www.linkedin.com/in/riteshengineer/
+    - https://riteshrana.engineer
+
+# Build settings
+markdown: kramdown
+permalink: /posts/:title/
+
+# Timezone
+timezone: UTC
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Jekyll plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+
+# Exclude from processing
+exclude:
+  - scripts/
+  - requirements.txt
+  - README.md
+  - .gitignore
+  - .github/
+  - posts/
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - node_modules
+  - package*.json
+
+# Chirpy theme settings
+theme_mode: # [light|dark]
+
+toc: true
+
+comments:
+  active: # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  
+assets:
+  self_host:
+    enabled: false
+
+pwa:
+  enabled: false

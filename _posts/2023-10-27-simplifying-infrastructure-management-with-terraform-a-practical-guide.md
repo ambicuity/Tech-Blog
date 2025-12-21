@@ -1,11 +1,9 @@
 ---
 title: "Simplifying Infrastructure Management with Terraform: A Practical Guide"
-date: 2023-10-27 10:30:00
-author: "Tech Blog Bot"
+date: 2023-10-27 10:30:00 +0000
+categories: [DevOps, Infrastructure]
 tags: [terraform, infrastructure-as-code, aws, cloud, devops, automation]
 ---
-
-# Simplifying Infrastructure Management with Terraform: A Practical Guide
 
 ## Introduction
 

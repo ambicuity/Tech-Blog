@@ -1,0 +1,11 @@
+- type: github
+  icon: "fab fa-github"
+  url: "https://github.com/ambicuity"
+
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/riteshengineer/"
+
+- type: website
+  icon: "fas fa-globe"
+  url: "https://riteshrana.engineer"

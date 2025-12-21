@@ -38,3 +38,8 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Jekyll
+_site/
+.jekyll-cache/
+.jekyll-metadata

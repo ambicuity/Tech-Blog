@@ -6,6 +6,8 @@ Generates technical blog posts and saves them to posts/YYYY/MM/DD/ directory
 
 import os
 import sys
+import re
+import shutil
 from datetime import datetime
 from pathlib import Path
 from google import genai
@@ -23,12 +25,10 @@ The blog post MUST follow this exact structure in Markdown format with Jekyll fr
 
 ---
 title: "[Your Creative Title Here]"
-date: [Current Date in YYYY-MM-DD HH:MM:SS format]
-author: "Tech Blog Bot"
+date: [Current Date in UTC format: 2023-10-27 14:30:00 +0000]
+categories: [Category1, Category2]
 tags: [relevant, tags, here]
 ---
-
-# [Title]
 
 ## Introduction
 [Brief introduction to the topic - what and why]
@@ -58,6 +58,9 @@ Requirements:
 - Must be SEO optimized
 - Choose topics like: Kubernetes, Docker, CI/CD, Python, Go, React, PostgreSQL, Redis, AWS, System Design patterns, Microservices, etc.
 - Make it unique - avoid generic content
+- Categories should be 2 broad categories (e.g., [DevOps, Kubernetes] or [Programming, Python])
+- Tags should be lowercase and use hyphens instead of spaces
+- DO NOT include the title as H1 (# Title) in the content - only in the front matter
 
 Generate the complete blog post now:"""
 
@@ -118,6 +121,7 @@ def save_blog_post(content):
     """
     Saves the blog post to the appropriate directory structure.
     Creates directories if they don't exist.
+    Also copies to _posts directory for Jekyll.
     
     Args:
         content (str): Blog post content in Markdown
@@ -151,6 +155,35 @@ def save_blog_post(content):
     # Write the blog post
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
+    
+    # Copy to _posts directory with Jekyll naming convention
+    try:
+        # Extract date and title from front matter
+        # Match date format: YYYY-MM-DD HH:MM:SS +ZZZZ or just YYYY-MM-DD
+        date_match = re.search(r'^date:\s*(\d{4}-\d{2}-\d{2})', content, re.MULTILINE)
+        title_match = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE)
+        
+        if date_match and title_match:
+            post_date = date_match.group(1)
+            post_title = title_match.group(1)
+            
+            # Create slug from title
+            slug = post_title.lower()
+            slug = re.sub(r'[^\w\s-]', '', slug)  # Remove special chars
+            slug = re.sub(r'[\s_]+', '-', slug)   # Replace spaces with hyphens
+            slug = re.sub(r'-+', '-', slug)       # Remove duplicate hyphens
+            slug = slug.strip('-')                # Remove leading/trailing hyphens
+            
+            # Create Jekyll post filename: YYYY-MM-DD-title.md
+            jekyll_filename = f"{post_date}-{slug}.md"
+            jekyll_posts_dir = Path("_posts")
+            jekyll_posts_dir.mkdir(exist_ok=True)
+            
+            jekyll_file_path = jekyll_posts_dir / jekyll_filename
+            shutil.copy2(file_path, jekyll_file_path)
+            print(f"Also copied to Jekyll posts: {jekyll_file_path}")
+    except Exception as e:
+        print(f"Warning: Could not copy to _posts directory: {e}")
     
     return str(file_path)
 
