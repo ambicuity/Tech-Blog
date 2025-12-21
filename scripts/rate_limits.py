@@ -3,21 +3,13 @@
 Rate Limits Information for Google Gemini Models
 Provides information about rate limits for various Gemini models including
 RPM (Requests Per Minute), TPM (Tokens Per Minute), and RPD (Requests Per Day).
+
+Rate limits are tier-based (Free, Tier 1, Tier 2, Tier 3).
+For actual usage, visit: https://aistudio.google.com/usage
 """
 
 from dataclasses import dataclass
-from typing import List, Optional
-
-
-@dataclass
-class RateLimit:
-    """Represents rate limit information for a specific metric"""
-    current: int
-    limit: int | str  # Can be int or "Unlimited"
-    
-    def __str__(self):
-        limit_str = self.limit if isinstance(self.limit, str) else f"{self.limit:,}"
-        return f"{self.current:,} / {limit_str}"
+from typing import List, Optional, Dict
 
 
 @dataclass
@@ -25,101 +17,102 @@ class ModelRateLimits:
     """Represents complete rate limit information for a Gemini model"""
     model: str
     category: str
-    rpm: RateLimit  # Requests Per Minute
-    tpm: RateLimit  # Tokens Per Minute
-    rpd: RateLimit  # Requests Per Day
+    rpm: int | str  # Requests Per Minute (can be "Unlimited")
+    tpm: int | str  # Tokens Per Minute (can be "Unlimited")
+    rpd: int | str  # Requests Per Day (can be "Unlimited")
     
     def to_dict(self):
         """Convert to dictionary for easy access"""
         return {
             'model': self.model,
             'category': self.category,
-            'rpm': str(self.rpm),
-            'tpm': str(self.tpm),
-            'rpd': str(self.rpd)
+            'rpm': self._format_limit(self.rpm),
+            'tpm': self._format_limit(self.tpm),
+            'rpd': self._format_limit(self.rpd)
         }
+    
+    def _format_limit(self, limit):
+        """Format a limit value for display"""
+        if isinstance(limit, str):
+            return limit
+        return f"{limit:,}"
+    
+    def get_rpm_str(self):
+        return self._format_limit(self.rpm)
+    
+    def get_tpm_str(self):
+        return self._format_limit(self.tpm)
+    
+    def get_rpd_str(self):
+        return self._format_limit(self.rpd)
 
 
-# Rate limits data based on peak usage over the last 28 days
-GEMINI_RATE_LIMITS: List[ModelRateLimits] = [
+# Free Tier Rate Limits for Gemini Models
+# These are the default limits for users in eligible countries
+# For paid tiers, see: https://ai.google.dev/gemini-api/docs/rate-limits
+FREE_TIER_RATE_LIMITS: List[ModelRateLimits] = [
+    # Text-out models
+    ModelRateLimits(
+        model='gemini-2.0-flash-exp',
+        category='Text-out models',
+        rpm=10,
+        tpm=1000000,
+        rpd=1500
+    ),
+    ModelRateLimits(
+        model='gemini-2.0-flash',
+        category='Text-out models',
+        rpm=10,
+        tpm=1000000,
+        rpd=1500
+    ),
+    ModelRateLimits(
+        model='gemini-2.0-flash-thinking-exp',
+        category='Text-out models',
+        rpm=10,
+        tpm=1000000,
+        rpd=1500
+    ),
+    ModelRateLimits(
+        model='gemini-1.5-flash',
+        category='Text-out models',
+        rpm=15,
+        tpm=1000000,
+        rpd=1500
+    ),
+    ModelRateLimits(
+        model='gemini-1.5-flash-8b',
+        category='Text-out models',
+        rpm=15,
+        tpm=1000000,
+        rpd=1500
+    ),
+    ModelRateLimits(
+        model='gemini-1.5-pro',
+        category='Text-out models',
+        rpm=2,
+        tpm=32000,
+        rpd=50
+    ),
+    # Experimental/Preview models have more restricted limits
     ModelRateLimits(
         model='gemini-2.5-flash',
         category='Text-out models',
-        rpm=RateLimit(current=5, limit=5),
-        tpm=RateLimit(current=5600, limit=250000),
-        rpd=RateLimit(current=16, limit=20)
+        rpm=2,
+        tpm=10000,
+        rpd=50
     ),
     ModelRateLimits(
         model='gemini-3-flash',
         category='Text-out models',
-        rpm=RateLimit(current=1, limit=5),
-        tpm=RateLimit(current=4440, limit=250000),
-        rpd=RateLimit(current=11, limit=20)
-    ),
-    ModelRateLimits(
-        model='gemini-2.5-flash-lite',
-        category='Text-out models',
-        rpm=RateLimit(current=0, limit=10),
-        tpm=RateLimit(current=0, limit=250000),
-        rpd=RateLimit(current=0, limit=20)
-    ),
-    ModelRateLimits(
-        model='gemini-2.5-flash-tts',
-        category='Multi-modal generative models',
-        rpm=RateLimit(current=0, limit=3),
-        tpm=RateLimit(current=0, limit=10000),
-        rpd=RateLimit(current=0, limit=10)
-    ),
-    ModelRateLimits(
-        model='gemini-robotics-er-1.5-preview',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=10),
-        tpm=RateLimit(current=0, limit=250000),
-        rpd=RateLimit(current=0, limit=20)
-    ),
-    ModelRateLimits(
-        model='gemma-3-12b',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=30),
-        tpm=RateLimit(current=0, limit=15000),
-        rpd=RateLimit(current=0, limit=14400)
-    ),
-    ModelRateLimits(
-        model='gemma-3-1b',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=30),
-        tpm=RateLimit(current=0, limit=15000),
-        rpd=RateLimit(current=0, limit=14400)
-    ),
-    ModelRateLimits(
-        model='gemma-3-27b',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=30),
-        tpm=RateLimit(current=0, limit=15000),
-        rpd=RateLimit(current=0, limit=14400)
-    ),
-    ModelRateLimits(
-        model='gemma-3-2b',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=30),
-        tpm=RateLimit(current=0, limit=15000),
-        rpd=RateLimit(current=0, limit=14400)
-    ),
-    ModelRateLimits(
-        model='gemma-3-4b',
-        category='Other models',
-        rpm=RateLimit(current=0, limit=30),
-        tpm=RateLimit(current=0, limit=15000),
-        rpd=RateLimit(current=0, limit=14400)
-    ),
-    ModelRateLimits(
-        model='gemini-2.5-flash-native-audio-dialog',
-        category='Live API',
-        rpm=RateLimit(current=0, limit='Unlimited'),
-        tpm=RateLimit(current=0, limit=1000000),
-        rpd=RateLimit(current=0, limit='Unlimited')
+        rpm=2,
+        tpm=10000,
+        rpd=50
     ),
 ]
+
+# Default to Free Tier
+GEMINI_RATE_LIMITS = FREE_TIER_RATE_LIMITS
 
 
 def get_rate_limits(model_name: Optional[str] = None) -> List[ModelRateLimits] | ModelRateLimits | None:
@@ -177,15 +170,15 @@ def format_rate_limits_table() -> str:
         Formatted table string
     """
     # Header
-    table = "Rate limits by model\n"
+    table = "Rate limits by model (Free Tier)\n"
     table += "=" * 100 + "\n"
-    table += "Peak usage per model compared to its limit over the last 28 days\n\n"
-    table += f"{'Model':<40} {'Category':<35} {'RPM':<20} {'TPM':<20} {'RPD':<20}\n"
+    table += "For actual usage and paid tier limits, visit: https://aistudio.google.com/usage\n\n"
+    table += f"{'Model':<40} {'Category':<35} {'RPM':<15} {'TPM':<15} {'RPD':<15}\n"
     table += "-" * 100 + "\n"
     
     # Rows
     for limit in GEMINI_RATE_LIMITS:
-        table += f"{limit.model:<40} {limit.category:<35} {str(limit.rpm):<20} {str(limit.tpm):<20} {str(limit.rpd):<20}\n"
+        table += f"{limit.model:<40} {limit.category:<35} {limit.get_rpm_str():<15} {limit.get_tpm_str():<15} {limit.get_rpd_str():<15}\n"
     
     return table
 
@@ -198,14 +191,15 @@ def format_rate_limits_markdown() -> str:
         Formatted Markdown table string
     """
     # Header
-    md = "# Rate limits by model\n\n"
-    md += "**Info**: Peak usage per model compared to its limit over the last 28 days\n\n"
+    md = "# Rate limits by model (Free Tier)\n\n"
+    md += "**Note**: These are the default rate limits for Free tier users in eligible countries.\n\n"
+    md += "For actual usage and paid tier limits, visit: [AI Studio Usage](https://aistudio.google.com/usage)\n\n"
     md += "| Model | Category | RPM | TPM | RPD |\n"
     md += "|-------|----------|-----|-----|-----|\n"
     
     # Rows
     for limit in GEMINI_RATE_LIMITS:
-        md += f"| {limit.model} | {limit.category} | {str(limit.rpm)} | {str(limit.tpm)} | {str(limit.rpd)} |\n"
+        md += f"| {limit.model} | {limit.category} | {limit.get_rpm_str()} | {limit.get_tpm_str()} | {limit.get_rpd_str()} |\n"
     
     return md
 

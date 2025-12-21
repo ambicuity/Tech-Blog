@@ -69,19 +69,19 @@ def main():
             sys.exit(1)
         
         if args.format == 'markdown':
-            output = f"# Rate limits for {args.model}\n\n"
+            output = f"# Rate limits for {args.model} (Free Tier)\n\n"
             output += f"**Category**: {limit.category}\n\n"
-            output += f"| Metric | Current / Limit |\n"
-            output += f"|--------|----------------|\n"
-            output += f"| RPM (Requests Per Minute) | {str(limit.rpm)} |\n"
-            output += f"| TPM (Tokens Per Minute) | {str(limit.tpm)} |\n"
-            output += f"| RPD (Requests Per Day) | {str(limit.rpd)} |\n"
+            output += f"| Metric | Limit |\n"
+            output += f"|--------|-------|\n"
+            output += f"| RPM (Requests Per Minute) | {limit.get_rpm_str()} |\n"
+            output += f"| TPM (Tokens Per Minute) | {limit.get_tpm_str()} |\n"
+            output += f"| RPD (Requests Per Day) | {limit.get_rpd_str()} |\n"
         else:
-            output = f"Rate limits for {args.model}\n"
+            output = f"Rate limits for {args.model} (Free Tier)\n"
             output += f"Category: {limit.category}\n"
-            output += f"  RPM (Requests Per Minute): {str(limit.rpm)}\n"
-            output += f"  TPM (Tokens Per Minute): {str(limit.tpm)}\n"
-            output += f"  RPD (Requests Per Day): {str(limit.rpd)}\n"
+            output += f"  RPM (Requests Per Minute): {limit.get_rpm_str()}\n"
+            output += f"  TPM (Tokens Per Minute): {limit.get_tpm_str()}\n"
+            output += f"  RPD (Requests Per Day): {limit.get_rpd_str()}\n"
     
     elif args.category:
         # Show models in category
@@ -91,19 +91,19 @@ def main():
             sys.exit(1)
         
         if args.format == 'markdown':
-            output = f"# Rate limits for category: {args.category}\n\n"
+            output = f"# Rate limits for category: {args.category} (Free Tier)\n\n"
             output += "| Model | RPM | TPM | RPD |\n"
             output += "|-------|-----|-----|-----|\n"
             for limit in limits:
-                output += f"| {limit.model} | {str(limit.rpm)} | {str(limit.tpm)} | {str(limit.rpd)} |\n"
+                output += f"| {limit.model} | {limit.get_rpm_str()} | {limit.get_tpm_str()} | {limit.get_rpd_str()} |\n"
         else:
-            output = f"Rate limits for category: {args.category}\n"
+            output = f"Rate limits for category: {args.category} (Free Tier)\n"
             output += "=" * 80 + "\n"
             for limit in limits:
                 output += f"\n{limit.model}:\n"
-                output += f"  RPM: {str(limit.rpm)}\n"
-                output += f"  TPM: {str(limit.tpm)}\n"
-                output += f"  RPD: {str(limit.rpd)}\n"
+                output += f"  RPM: {limit.get_rpm_str()}\n"
+                output += f"  TPM: {limit.get_tpm_str()}\n"
+                output += f"  RPD: {limit.get_rpd_str()}\n"
     
     else:
         # Show all models

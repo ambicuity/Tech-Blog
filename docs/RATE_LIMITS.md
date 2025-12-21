@@ -7,47 +7,62 @@ This document provides information about rate limits for various Google Gemini m
 Rate limits are enforced per model to ensure fair usage and system stability. The following metrics are tracked:
 
 - **RPM** (Requests Per Minute): Number of API requests allowed per minute
-- **TPM** (Tokens Per Minute): Number of tokens that can be processed per minute
+- **TPM** (Tokens Per Minute): Number of tokens that can be processed per minute  
 - **RPD** (Requests Per Day): Number of API requests allowed per day
 
-## Rate Limits Table
+**Important**: Rate limits are applied per project, not per API key. RPD quotas reset at midnight Pacific time.
+
+## Usage Tiers
+
+Rate limits are tied to your project's usage tier. This project is currently on the **Free Tier**.
+
+| Tier | Qualifications |
+|------|----------------|
+| **Free** | Users in [eligible countries](https://ai.google.dev/gemini-api/docs/available-regions) |
+| **Tier 1** | Full paid Billing account linked to the project |
+| **Tier 2** | Total spend: > $250 and at least 30 days since successful payment |
+| **Tier 3** | Total spend: > $1,000 and at least 30 days since successful payment |
+
+To view your actual usage and limits, visit: **[AI Studio Usage Dashboard](https://aistudio.google.com/usage?timeRange=last-28-days&tab=rate-limit)**
+
+## Free Tier Rate Limits
 
 | Model | Category | RPM | TPM | RPD |
 |-------|----------|-----|-----|-----|
-| gemini-2.5-flash | Text-out models | 5 / 5 | 5,600 / 250,000 | 16 / 20 |
-| gemini-3-flash | Text-out models | 1 / 5 | 4,440 / 250,000 | 11 / 20 |
-| gemini-2.5-flash-lite | Text-out models | 0 / 10 | 0 / 250,000 | 0 / 20 |
-| gemini-2.5-flash-tts | Multi-modal generative models | 0 / 3 | 0 / 10,000 | 0 / 10 |
-| gemini-robotics-er-1.5-preview | Other models | 0 / 10 | 0 / 250,000 | 0 / 20 |
-| gemma-3-12b | Other models | 0 / 30 | 0 / 15,000 | 0 / 14,400 |
-| gemma-3-1b | Other models | 0 / 30 | 0 / 15,000 | 0 / 14,400 |
-| gemma-3-27b | Other models | 0 / 30 | 0 / 15,000 | 0 / 14,400 |
-| gemma-3-2b | Other models | 0 / 30 | 0 / 15,000 | 0 / 14,400 |
-| gemma-3-4b | Other models | 0 / 30 | 0 / 15,000 | 0 / 14,400 |
-| gemini-2.5-flash-native-audio-dialog | Live API | 0 / Unlimited | 0 / 1,000,000 | 0 / Unlimited |
+| gemini-2.0-flash-exp | Text-out models | 10 | 1,000,000 | 1,500 |
+| gemini-2.0-flash | Text-out models | 10 | 1,000,000 | 1,500 |
+| gemini-2.0-flash-thinking-exp | Text-out models | 10 | 1,000,000 | 1,500 |
+| gemini-1.5-flash | Text-out models | 15 | 1,000,000 | 1,500 |
+| gemini-1.5-flash-8b | Text-out models | 15 | 1,000,000 | 1,500 |
+| gemini-1.5-pro | Text-out models | 2 | 32,000 | 50 |
+| gemini-2.5-flash | Text-out models | 2 | 10,000 | 50 |
+| gemini-3-flash | Text-out models | 2 | 10,000 | 50 |
 
-*Note: The table shows peak usage compared to limits over the last 28 days.*
+**Note**: Experimental and preview models (like gemini-2.5-flash and gemini-3-flash) have more restricted limits.
 
-## Model Categories
+## How Rate Limits Work
 
-### Text-out models
-Models optimized for text generation:
-- `gemini-2.5-flash` - Fast text generation
-- `gemini-3-flash` - Next generation flash model
-- `gemini-2.5-flash-lite` - Lightweight variant
+Your usage is evaluated against each limit independently. **Exceeding any single limit will trigger a rate limit error**, even if other limits haven't been reached.
 
-### Multi-modal generative models
-Models that support multiple input/output modalities:
-- `gemini-2.5-flash-tts` - Text-to-speech capabilities
+For example, if your RPM limit is 10:
+- Making 11 requests within a minute will cause an error
+- This happens regardless of TPM or RPD usage
 
-### Other models
-Specialized models:
-- `gemini-robotics-er-1.5-preview` - Robotics preview
-- `gemma-3-*` - Various Gemma model sizes (1b, 2b, 4b, 12b, 27b)
+## Current Model Usage
 
-### Live API
-Real-time interaction models:
-- `gemini-2.5-flash-native-audio-dialog` - Native audio dialog processing
+The Tech-Blog project currently uses the **gemini-2.0-flash** model for blog post generation (see `scripts/generate_blog.py`).
+
+According to Free Tier limits:
+- **RPM**: 10 requests per minute
+- **TPM**: 1,000,000 tokens per minute
+- **RPD**: 1,500 requests per day
+
+### Recommendations
+
+1. **Monitor Usage**: Check your actual usage at [AI Studio](https://aistudio.google.com/usage)
+2. **Stay Within Limits**: With hourly blog generation (24 posts/day), we're well within the 1,500 RPD limit
+3. **Handle Errors**: Implement retry logic with exponential backoff for rate limit errors
+4. **Consider Upgrading**: If you need higher limits, enable Cloud Billing to upgrade to Tier 1
 
 ## Usage
 
@@ -66,7 +81,7 @@ python scripts/show_rate_limits.py --format markdown
 ### View Rate Limits for Specific Model
 
 ```bash
-python scripts/show_rate_limits.py --model gemini-2.5-flash
+python scripts/show_rate_limits.py --model gemini-2.0-flash
 ```
 
 ### View Rate Limits by Category
@@ -84,7 +99,7 @@ python scripts/show_rate_limits.py --list-categories
 ### Save to File
 
 ```bash
-python scripts/show_rate_limits.py --format markdown --output docs/rate_limits.md
+python scripts/show_rate_limits.py --format markdown --output docs/rate_limits_report.md
 ```
 
 ## Using the Rate Limits Module
@@ -98,41 +113,46 @@ from scripts.rate_limits import get_rate_limits, get_models_by_category
 all_limits = get_rate_limits()
 
 # Get rate limits for a specific model
-model_limits = get_rate_limits('gemini-2.5-flash')
-print(f"RPM: {model_limits.rpm}")
-print(f"TPM: {model_limits.tpm}")
-print(f"RPD: {model_limits.rpd}")
+model_limits = get_rate_limits('gemini-2.0-flash')
+print(f"RPM: {model_limits.get_rpm_str()}")
+print(f"TPM: {model_limits.get_tpm_str()}")
+print(f"RPD: {model_limits.get_rpd_str()}")
 
 # Get all models in a category
 text_models = get_models_by_category('Text-out models')
 for model in text_models:
-    print(f"{model.model}: {model.rpm}")
+    print(f"{model.model}: RPM={model.get_rpm_str()}")
 ```
-
-## Current Usage
-
-The Tech-Blog project currently uses the `gemini-2.0-flash` model for blog post generation. According to the rate limits data:
-
-- **gemini-2.5-flash** is at **100% usage** on RPM (5/5)
-- TPM usage is at **2.24%** (5,600 / 250,000)
-- RPD usage is at **80%** (16/20)
-
-### Recommendations
-
-1. Consider using `gemini-2.5-flash-lite` which has higher limits (10 RPM) and is currently unused
-2. Implement rate limiting logic in the blog generation script to prevent hitting limits
-3. Monitor daily usage to stay within RPD limits
-4. Consider adding retry logic with exponential backoff for rate limit errors
 
 ## Rate Limit Best Practices
 
-1. **Monitor Usage**: Regularly check current vs. limit ratios
-2. **Implement Backoff**: Use exponential backoff when approaching limits
+1. **Monitor Usage**: Regularly check your actual usage at [AI Studio](https://aistudio.google.com/usage)
+2. **Implement Backoff**: Use exponential backoff when approaching limits or receiving rate limit errors
 3. **Cache Results**: Cache API responses when possible to reduce requests
-4. **Batch Operations**: Group multiple operations when the API supports it
-5. **Choose Appropriate Models**: Select models with sufficient headroom for your use case
+4. **Choose Appropriate Models**: Select models with sufficient headroom for your use case
+5. **Handle Errors Gracefully**: Implement proper error handling for rate limit exceptions
+
+## Upgrading to Higher Tiers
+
+To transition from the Free tier to a paid tier:
+
+1. Enable [Cloud Billing](https://ai.google.dev/gemini-api/docs/billing#enable-cloud-billing) for your Google Cloud project
+2. Once you meet the tier qualifications, navigate to the [API keys page](https://aistudio.google.com/app/apikey) in AI Studio
+3. Click "Upgrade" for the eligible project
+4. After validation, your project will be upgraded with increased rate limits
+
+## Request Rate Limit Increase
+
+For paid tier users who need higher rate limits:
+
+[Request paid tier rate limit increase](https://forms.gle/ETzX94k8jf7iSotH9)
+
+**Note**: No guarantees are provided for rate limit increases, but Google will review all requests.
 
 ## References
 
-- [Google AI Studio Rate Limits](https://ai.google.dev/pricing)
-- [Gemini API Documentation](https://ai.google.dev/gemini-api/docs)
+- [Google Gemini API Rate Limits Documentation](https://ai.google.dev/gemini-api/docs/rate-limits)
+- [AI Studio Usage Dashboard](https://aistudio.google.com/usage)
+- [Gemini API Pricing](https://ai.google.dev/pricing)
+- [Available Regions](https://ai.google.dev/gemini-api/docs/available-regions)
+- [Cloud Billing Setup](https://ai.google.dev/gemini-api/docs/billing)
