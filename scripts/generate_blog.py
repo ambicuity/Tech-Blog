@@ -100,10 +100,10 @@ def generate_blog_post(api_key):
         safety_settings=safety_settings
     )
     
-    # Generate content using gemini-1.5-flash model
+    # Generate content using gemini-2.0-flash-exp model
     prompt = get_blog_prompt()
     response = client.models.generate_content(
-        model='gemini-1.5-flash',
+        model='gemini-2.0-flash-exp',
         contents=prompt,
         config=config
     )
