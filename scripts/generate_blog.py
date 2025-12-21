@@ -25,7 +25,7 @@ The blog post MUST follow this exact structure in Markdown format with Jekyll fr
 
 ---
 title: "[Your Creative Title Here]"
-date: [Current Date in format: 2023-10-27 14:30:00 +0000]
+date: [Current Date in UTC format: 2023-10-27 14:30:00 +0000]
 categories: [Category1, Category2]
 tags: [relevant, tags, here]
 ---
