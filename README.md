@@ -74,4 +74,5 @@ To enable GitHub Pages deployment:
 
 ## Documentation
 
+- [GitHub Pages Setup](docs/GITHUB_PAGES_SETUP.md) - Guide for configuring GitHub Pages deployment
 - [Rate Limits Documentation](docs/RATE_LIMITS.md) - Detailed information about Gemini model rate limits
