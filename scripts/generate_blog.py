@@ -6,6 +6,8 @@ Generates technical blog posts and saves them to posts/YYYY/MM/DD/ directory
 
 import os
 import sys
+import re
+import shutil
 from datetime import datetime
 from pathlib import Path
 from google import genai
@@ -23,7 +25,7 @@ The blog post MUST follow this exact structure in Markdown format with Jekyll fr
 
 ---
 title: "[Your Creative Title Here]"
-date: [Current Date in YYYY-MM-DD HH:MM:SS format with timezone +0000]
+date: [Current Date in format: 2023-10-27 14:30:00 +0000]
 categories: [Category1, Category2]
 tags: [relevant, tags, here]
 ---
@@ -127,9 +129,6 @@ def save_blog_post(content):
     Returns:
         str: Path to the saved file
     """
-    import re
-    import shutil
-    
     now = datetime.now()
     
     # Create directory structure: posts/YYYY/MM/DD/
@@ -160,6 +159,7 @@ def save_blog_post(content):
     # Copy to _posts directory with Jekyll naming convention
     try:
         # Extract date and title from front matter
+        # Match date format: YYYY-MM-DD HH:MM:SS +ZZZZ or just YYYY-MM-DD
         date_match = re.search(r'^date:\s*(\d{4}-\d{2}-\d{2})', content, re.MULTILINE)
         title_match = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE)
         
