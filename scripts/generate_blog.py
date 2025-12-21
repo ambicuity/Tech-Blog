@@ -8,7 +8,8 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 
 def get_blog_prompt():
@@ -71,37 +72,41 @@ def generate_blog_post(api_key):
     Returns:
         str: Generated blog post content in Markdown
     """
-    genai.configure(api_key=api_key)
+    # Create client with API key
+    client = genai.Client(api_key=api_key)
     
     # Configure safety settings to block harmful content
     safety_settings = [
-        {
-            "category": "HARM_CATEGORY_HARASSMENT",
-            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-        },
-        {
-            "category": "HARM_CATEGORY_HATE_SPEECH",
-            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-        },
-        {
-            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-        },
-        {
-            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-        },
+        types.SafetySetting(
+            category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+        ),
+        types.SafetySetting(
+            category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+        ),
+        types.SafetySetting(
+            category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+        ),
+        types.SafetySetting(
+            category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+            threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+        ),
     ]
     
-    # Use gemini-pro model with safety settings
-    model = genai.GenerativeModel(
-        'gemini-pro',
+    # Create config with safety settings
+    config = types.GenerateContentConfig(
         safety_settings=safety_settings
     )
     
-    # Generate content
+    # Generate content using gemini-3-flash model
     prompt = get_blog_prompt()
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model='gemini-3-flash',
+        contents=prompt,
+        config=config
+    )
     
     if not response or not response.text:
         raise Exception("Failed to generate blog post - empty response")
