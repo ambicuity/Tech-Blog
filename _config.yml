@@ -1,0 +1,18 @@
+# Site settings
+title: blog
+description: Automated technical blog post generator
+url: http://blog.riteshrana.engineer
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - scripts/
+  - requirements.txt
+  - README.md
+  - .gitignore
+  - .github/
+  - posts/
