@@ -8,6 +8,7 @@ Automated technical blog post generator using Google Gemini API.
 - Structured content with Jekyll front matter
 - Rate limits tracking and reporting for Gemini models
 - Daily automated blog generation via GitHub Actions
+- Automatic deployment to GitHub Pages with Jekyll Chirpy theme
 
 ## Rate Limits
 
@@ -31,7 +32,32 @@ python scripts/show_rate_limits.py --list-categories
 
 ## Setup
 
-1. Install dependencies:
+### GitHub Pages Configuration
+
+To enable GitHub Pages deployment:
+
+1. Go to your repository **Settings** > **Pages**
+2. Under **Build and deployment**, set:
+   - **Source**: GitHub Actions
+3. The site will automatically deploy when changes are pushed to the `main` branch
+
+### Local Development
+
+1. Install Ruby dependencies:
+   ```bash
+   bundle install
+   ```
+
+2. Run Jekyll locally:
+   ```bash
+   bundle exec jekyll serve
+   ```
+
+3. Visit `http://localhost:4000` to preview the site
+
+### Blog Post Generation
+
+1. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
@@ -48,4 +74,5 @@ python scripts/show_rate_limits.py --list-categories
 
 ## Documentation
 
+- [GitHub Pages Setup](docs/GITHUB_PAGES_SETUP.md) - Guide for configuring GitHub Pages deployment
 - [Rate Limits Documentation](docs/RATE_LIMITS.md) - Detailed information about Gemini model rate limits
