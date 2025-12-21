@@ -8,8 +8,9 @@ Rate limits are tier-based (Free, Tier 1, Tier 2, Tier 3).
 For actual usage, visit: https://aistudio.google.com/usage
 """
 
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Union
 
 
 @dataclass
@@ -17,9 +18,9 @@ class ModelRateLimits:
     """Represents complete rate limit information for a Gemini model"""
     model: str
     category: str
-    rpm: int | str  # Requests Per Minute (can be "Unlimited")
-    tpm: int | str  # Tokens Per Minute (can be "Unlimited")
-    rpd: int | str  # Requests Per Day (can be "Unlimited")
+    rpm: Union[int, str]  # Requests Per Minute (can be "Unlimited")
+    tpm: Union[int, str]  # Tokens Per Minute (can be "Unlimited")
+    rpd: Union[int, str]  # Requests Per Day (can be "Unlimited")
     
     def to_dict(self):
         """Convert to dictionary for easy access"""
@@ -115,7 +116,7 @@ FREE_TIER_RATE_LIMITS: List[ModelRateLimits] = [
 GEMINI_RATE_LIMITS = FREE_TIER_RATE_LIMITS
 
 
-def get_rate_limits(model_name: Optional[str] = None) -> List[ModelRateLimits] | ModelRateLimits | None:
+def get_rate_limits(model_name: Optional[str] = None) -> Union[List[ModelRateLimits], ModelRateLimits, None]:
     """
     Get rate limits for a specific model or all models.
     
