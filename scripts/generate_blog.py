@@ -14,6 +14,32 @@ from google import genai
 from google.genai import types
 
 
+def clean_blog_content(content):
+    """
+    Cleans the generated blog content by removing markdown code block wrappers.
+    The Gemini API sometimes wraps responses in ```markdown ... ``` blocks,
+    which breaks Jekyll's front matter parsing.
+    
+    Args:
+        content (str): Raw content from Gemini API
+        
+    Returns:
+        str: Cleaned content with code block wrappers removed
+    """
+    content = content.strip()
+    
+    # Remove leading ```markdown or ``` and trailing ```
+    if content.startswith('```markdown'):
+        content = content[len('```markdown'):].strip()
+    elif content.startswith('```'):
+        content = content[3:].strip()
+    
+    if content.endswith('```'):
+        content = content[:-3].strip()
+    
+    return content
+
+
 def get_blog_prompt():
     """
     Returns the prompt for generating a technical blog post.
@@ -206,6 +232,9 @@ def main():
         # Generate blog post
         print("Generating content using Google Gemini API...")
         content = generate_blog_post(api_key)
+        
+        # Clean the content (remove markdown code block wrappers if present)
+        content = clean_blog_content(content)
         
         # Save blog post
         print("Saving blog post...")
