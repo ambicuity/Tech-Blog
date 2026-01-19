@@ -3,7 +3,7 @@ layout: post
 title: "Kubernetes Security Best Practices 2026"
 date: 2024-02-29
 categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, security, best practices, 2026]
+tags: [tech, software, engineering, kubernetes, security, best practices, "2026"]
 author: ritesh
 ---
 
