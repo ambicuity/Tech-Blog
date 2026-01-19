@@ -46,7 +46,7 @@ def clean_blog_content(content):
 
 
 
-def get_recent_posts(limit=50):
+def get_recent_posts(limit=200):
     """
     Retrieves a list of recent blog post titles to avoid duplication.
     Scans the _posts directory.
@@ -83,7 +83,7 @@ def get_blog_prompt():
     current_date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S +0000")
     
     # Get recent topics to avoid
-    recent_posts = get_recent_posts(limit=40)
+    recent_posts = get_recent_posts(limit=200)
     avoid_list = "\n- ".join(recent_posts)
     
     return f"""You are a Staff Software Engineer and Technical Writer. Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
