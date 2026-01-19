@@ -4,7 +4,7 @@
 // Run via Cron Job (e.g., every hour): php /path/to/server/cron_send.php YOUR_SECRET_KEY
 
 // --- CONFIGURATION ---
-$SECRET_KEY = 'RiteshBlogSecureKey123'; // CHANGE THIS to something random!
+$SECRET_KEY = 'CHANGE_ME_ON_SERVER'; // ⚠️ CHANGE THIS on your server file manager!
 $FEED_URL = 'https://blog.riteshrana.engineer/feed.xml';
 $STATE_FILE = __DIR__ . '/last_sent_post.txt';
 $CSV_FILE = __DIR__ . '/subscribers.csv';
