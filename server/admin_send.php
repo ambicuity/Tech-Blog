@@ -252,13 +252,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
                 </html>';
 
                 $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+                $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+                $headers .= "Content-Transfer-Encoding: base64" . "\r\n";
                 $headers .= "From: Ritesh Rana <" . $SENDER_EMAIL . ">" . "\r\n";
                 $headers .= "Reply-To: " . $SENDER_EMAIL . "\r\n";
                 $headers .= "X-Mailer: PHP/" . phpversion();
 
+                // Encode the body to base64 and split it into chunks to avoid line length limits
+                $encoded_body = chunk_split(base64_encode($full_body));
+
                 // '-f' parameter sets the Return-Path envelope address (critical for spam filters)
-                if (mail($email, $subject, $full_body, $headers, "-f" . $SENDER_EMAIL)) {
+                if (mail($email, '=?UTF-8?B?' . base64_encode($subject) . '?=', $encoded_body, $headers, "-f" . $SENDER_EMAIL)) {
                     $count++;
                 }
             }
