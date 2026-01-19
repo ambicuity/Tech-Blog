@@ -28,4 +28,30 @@ This blog is powered by Google Gemini API and automatically generates high-quali
 
 All posts are generated automatically to explore cutting-edge AI content generation capabilities while providing valuable technical insights.
 
+## 🛠️ Tech Stack
+
+This blog (and my career) relies on a modern, robust set of tools:
+
+| Domain | Technologies |
+| :--- | :--- |
+| **Cloud Native** | Kubernetes, Docker, Helm, Istio, Prometheus, Grafana |
+| **Infrastructure** | Terraform, Ansible, AWS, Azure, Google Cloud |
+| **Development** | Python, Go, Rust, JavaScript/TypeScript |
+| **CI/CD** | GitHub Actions, GitLab CI, ArgoCD, Jenkins |
+| **Data & AI** | Redis, PostgreSQL, Google Gemini API, Kafka |
+
+## 🚀 Engineering Philosophy
+
+> "Built by engineer, for engineers."
+
+I believe in **automation first**, **observability always**, and **simplicity by design**. This blog serves as a living repository of the challenges I've faced and the solutions I've architected.
+
+### 📫 Connect With Me
+
+I'm always open to discussing complex systems, side projects, and new opportunities.
+
+- **GitHub:** [ambicuity](https://github.com/ambicuity)
+- **LinkedIn:** [ritesh-rana](https://www.linkedin.com/in/riteshengineer/)
+- **Email:** `contact@riteshrana.engineer`
+
 
