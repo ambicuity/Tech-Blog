@@ -48,7 +48,7 @@ I run a self-hosted newsletter to share the latest articles.
 ## 👤 Author
 
 **Ritesh Rana**  
-*Staff Software Engineer*
+*Software Engineer*
 
 - **Website**: [riteshrana.engineer](https://riteshrana.engineer)
 - **Contact**: [contact@riteshrana.engineer](mailto:contact@riteshrana.engineer)
