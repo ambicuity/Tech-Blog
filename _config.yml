@@ -83,9 +83,9 @@ comments:
   active: giscus
   giscus:
     repo: ambicuity/Tech-Blog
-    repo_id: # R_kgD... (You need to get this from Giscus.app)
+    repo_id: R_kgDOQMkdDQ
     category: General
-    category_id: # DIC_kwD... (You need to get this from Giscus.app)
+    category_id: DIC_kwDOQMkdDc4C1JM_
     mapping: pathname
     strict: 0
     reactions_enabled: 1
