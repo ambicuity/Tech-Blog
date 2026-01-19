@@ -45,13 +45,14 @@ def get_blog_prompt():
     Returns the prompt for generating a technical blog post.
     The prompt ensures consistent structure and quality.
     """
-    return """Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
+    current_date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S +0000")
+    return f"""Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
 
 The blog post MUST follow this exact structure in Markdown format with Jekyll front matter:
 
 ---
 title: "[Your Creative Title Here]"
-date: [Current Date in UTC format: 2023-10-27 14:30:00 +0000]
+date: {current_date_str}
 categories: [Category1, Category2]
 tags: [relevant, tags, here]
 ---
