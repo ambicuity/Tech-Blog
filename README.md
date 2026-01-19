@@ -1,78 +1,59 @@
-# Tech-Blog
+# Ritesh Rana Tech Blog
 
-Automated technical blog post generator using Google Gemini API.
+Welcome to the source code for my personal engineering blog, where I share deep dives into **Kubernetes**, **System Design**, **DevOps**, and **Software Engineering** best practices.
 
-## Features
+**Live Site:** [blog.riteshrana.engineer](https://blog.riteshrana.engineer)
 
-- Automated blog post generation using Google Gemini models
-- Structured content with Jekyll front matter
-- Rate limits tracking and reporting for Gemini models
-- Daily automated blog generation via GitHub Actions
-- Automatic deployment to GitHub Pages with Jekyll Chirpy theme
+## 🚀 About the Blog
 
-## Rate Limits
+This blog is built for engineers, by an engineer. It serves as a knowledge base for solving complex infrastructure problems, understanding distributed systems, and mastering modern CI/CD workflows.
 
-The project tracks rate limits for various Google Gemini models. For detailed information about rate limits, usage, and recommendations, see [Rate Limits Documentation](docs/RATE_LIMITS.md).
+### Key Topics
+- **Kubernetes & Orchestration**: Advanced patterns, security, and performance tuning.
+- **System Design**: Architectural decisions, scalability, and reliability.
+- **DevOps**: CI/CD pipelines, Infrastructure as Code (IaC), and observability.
+- **Backend Engineering**: Python, Go, and database optimization.
 
-### Quick Rate Limits Check
+## 🛠️ Tech Stack
 
-```bash
-# View all rate limits
-python scripts/show_rate_limits.py
+This site is statically generated using **Jekyll** and hosted on **GitHub Pages**, ensuring speed, security, and reliability.
 
-# View rate limits in Markdown format
-python scripts/show_rate_limits.py --format markdown
+- **Theme**: [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) (Customized)
+- **Comments**: Giscus (GitHub Discussions)
+- **Analytics**: Google Analytics 4
+- **Newsletter**: Custom PHP Integration (Self-Hosted)
+- **Deployment**: GitHub Actions
 
-# View rate limits for specific model
-python scripts/show_rate_limits.py --model gemini-2.5-flash
+## 💻 Local Development
 
-# List all categories
-python scripts/show_rate_limits.py --list-categories
-```
+To run this blog locally on your machine:
 
-## Setup
+1.  **Prerequisites**: Ensure you have Ruby and Bundler installed.
+2.  **Install Dependencies**:
+    ```bash
+    bundle install
+    ```
+3.  **Run Server**:
+    ```bash
+    bundle exec jekyll serve
+    ```
+4.  **Preview**: Open `http://localhost:4000` in your browser.
 
-### GitHub Pages Configuration
+## 📬 Newsletter
 
-To enable GitHub Pages deployment:
+I run a self-hosted newsletter to share the latest articles.
+- **Subscribe**: Form available on the [home page](https://blog.riteshrana.engineer).
+- **Privacy**: No tracking pixels, no third-party data sharing. Just engineering content.
 
-1. Go to your repository **Settings** > **Pages**
-2. Under **Build and deployment**, set:
-   - **Source**: GitHub Actions
-3. The site will automatically deploy when changes are pushed to the `main` branch
+## 👤 Author
 
-### Local Development
+**Ritesh Rana**  
+*Staff Software Engineer*
 
-1. Install Ruby dependencies:
-   ```bash
-   bundle install
-   ```
+- **Website**: [riteshrana.engineer](https://riteshrana.engineer)
+- **Contact**: [contact@riteshrana.engineer](mailto:contact@riteshrana.engineer)
+- **LinkedIn**: [riteshengineer](https://www.linkedin.com/in/riteshengineer/)
+- **GitHub**: [ambicuity](https://github.com/ambicuity)
 
-2. Run Jekyll locally:
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-3. Visit `http://localhost:4000` to preview the site
-
-### Blog Post Generation
-
-1. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. Set up Google API key:
-   ```bash
-   export GOOGLE_API_KEY="your-api-key"
-   ```
-
-3. Generate a blog post:
-   ```bash
-   python scripts/generate_blog.py
-   ```
-
-## Documentation
-
-- [GitHub Pages Setup](docs/GITHUB_PAGES_SETUP.md) - Guide for configuring GitHub Pages deployment
-- [Rate Limits Documentation](docs/RATE_LIMITS.md) - Detailed information about Gemini model rate limits
+---
+© 2026 Ritesh Rana. All Rights Reserved.
