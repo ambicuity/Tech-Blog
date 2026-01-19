@@ -1,5 +1,4 @@
----
----
+--- ---
 /* 
    Import the default Chirpy theme styles. 
    We must do this first so we can override them below.
@@ -83,7 +82,7 @@
   --mesh-color-1: rgba(99, 102, 241, 0.08);
   --mesh-color-2: rgba(139, 92, 246, 0.06);
   --mesh-color-3: rgba(168, 85, 247, 0.04);
-  
+
   --body-bg: var(--bg-primary);
   --sidebar-bg: var(--glass-bg);
   --topbar-bg: var(--glass-bg);
@@ -96,10 +95,15 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg-primary);
+  background-color: transparent;
+  /* Make transparent to show mesh */
   /* The animated mesh background */
   position: relative;
   min-height: 100vh;
+}
+
+html {
+  background-color: var(--bg-primary);
 }
 
 /* Animated Gradient Mesh Background */
@@ -111,22 +115,40 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-      radial-gradient(ellipse 80% 50% at 20% 40%, var(--mesh-color-1), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 20%, var(--mesh-color-2), transparent),
-      radial-gradient(ellipse 50% 50% at 50% 80%, var(--mesh-color-3), transparent);
+    radial-gradient(ellipse 80% 50% at 20% 40%, var(--mesh-color-1), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 20%, var(--mesh-color-2), transparent),
+    radial-gradient(ellipse 50% 50% at 50% 80%, var(--mesh-color-3), transparent);
   animation: meshFloat 20s ease-in-out infinite;
   pointer-events: none;
-  z-index: -1; 
+  z-index: -1;
 }
 
 @keyframes meshFloat {
-  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%; }
-  25% { background-position: 10% 10%, 90% 15%, 45% 95%; }
-  50% { background-position: 5% 5%, 95% 10%, 55% 90%; }
-  75% { background-position: 15% 0%, 85% 5%, 50% 95%; }
+
+  0%,
+  100% {
+    background-position: 0% 0%, 100% 0%, 50% 100%;
+  }
+
+  25% {
+    background-position: 10% 10%, 90% 15%, 45% 95%;
+  }
+
+  50% {
+    background-position: 5% 5%, 95% 10%, 55% 90%;
+  }
+
+  75% {
+    background-position: 15% 0%, 85% 5%, 50% 95%;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Outfit', 'Inter', sans-serif;
 }
 
@@ -143,7 +165,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Post Cards */
-.post-preview, .card {
+.post-preview,
+.card {
   background: var(--bg-card) !important;
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -153,7 +176,8 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.post-preview:hover, .card:hover {
+.post-preview:hover,
+.card:hover {
   background: var(--bg-card-hover) !important;
   border-color: var(--border-color-hover) !important;
   transform: translateY(-2px);
