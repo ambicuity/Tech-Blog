@@ -102,3 +102,9 @@ assets:
 
 pwa:
   enabled: false
+
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
