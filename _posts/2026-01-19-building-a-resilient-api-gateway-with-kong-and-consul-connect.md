@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API Gateway with Kong and Consul Connect"
 date: 2026-01-19 09:27:41 +0000
 categories: [DevOps, Cloud Computing]
