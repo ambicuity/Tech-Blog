@@ -210,3 +210,13 @@ h6 {
   border-color: var(--accent-start);
   box-shadow: 0 0 0 4px var(--glow-color);
 }
+/* FIX: Ensure code blocks preserve formatting and whitespace */
+div.highlight, pre.highlight, code {
+  white-space: pre !important; 
+  overflow-x: auto !important;
+  word-wrap: normal !important;
+}
+
+div.highlight pre {
+    white-space: pre !important;
+}
