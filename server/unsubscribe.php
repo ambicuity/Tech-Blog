@@ -1,5 +1,5 @@
 <?php
-$CSV_FILE = 'subscribers.csv';
+$CSV_FILE = __DIR__ . '/subscribers.csv';
 $email_to_remove = $_GET['email'] ?? '';
 
 $message = '';
@@ -11,8 +11,11 @@ if ($email_to_remove && filter_var($email_to_remove, FILTER_VALIDATE_EMAIL)) {
 
         if (($handle = fopen($CSV_FILE, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                // CHECK INDEX 1 (Email), NOT INDEX 0 (Date)
+                $current_email = trim($data[1] ?? '');
+
                 // If this is NOT the email to remove, keep it
-                if ($data[0] !== $email_to_remove) {
+                if ($current_email !== $email_to_remove) {
                     $temp_csv[] = $data;
                 } else {
                     $found = true;
@@ -71,9 +74,7 @@ if ($email_to_remove && filter_var($email_to_remove, FILTER_VALIDATE_EMAIL)) {
 <body>
     <div class="box">
         <h2>Unsubscribe</h2>
-        <p>
-            <?= htmlspecialchars($message) ?>
-        </p>
+        <p><?= htmlspecialchars($message) ?></p>
         <p><a href="https://blog.riteshrana.engineer">Return to Blog</a></p>
     </div>
 </body>
