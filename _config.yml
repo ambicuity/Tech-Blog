@@ -80,7 +80,20 @@ avatar: https://riteshrana.engineer/assets/RR.webp
 toc: true
 
 comments:
-  active: # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active: giscus
+  giscus:
+    repo: ambicuity/Tech-Blog
+    repo_id: # R_kgD... (You need to get this from Giscus.app)
+    category: General
+    category_id: # DIC_kwD... (You need to get this from Giscus.app)
+    mapping: pathname
+    strict: 0
+    reactions_enabled: 1
+    input_position: bottom
+    lang: en
+
+google_analytics:
+  id: # G-XXXXXXXXXX (Add your GA4 Measurement ID here)
   
 assets:
   self_host:
