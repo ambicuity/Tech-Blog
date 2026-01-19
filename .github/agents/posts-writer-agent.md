@@ -25,7 +25,7 @@
 
 ### 2. 🚫 Anti-Duplication Protocol
 **Goal:** Diverse, non-repetitive content.
-- **Check History:** The generation script injects a list of the last 50 blog topics. **YOU MUST NOT** write about these topics again.
+- **Check History:** The generation script injects a list of the previous topics posted. **YOU MUST NOT** write about these topics again.
 - **Unique Angles:** If covering a broad topic (e.g., "Kubernetes"), choose a specific, unique angle (e.g., "Custom Controllers" instead of "What is K8s?").
 
 ### 3. 📝 Content Quality Standards
