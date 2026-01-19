@@ -44,3 +44,8 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 Gemfile.lock
+
+# Server Data (Sensitive)
+server/subscribers.csv
+server/last_sent_post.txt
+
