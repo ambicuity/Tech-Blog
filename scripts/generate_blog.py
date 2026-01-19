@@ -45,13 +45,55 @@ def clean_blog_content(content):
     return content
 
 
+
+def get_recent_posts(limit=50):
+    """
+    Retrieves a list of recent blog post titles to avoid duplication.
+    Scans the _posts directory.
+    """
+    try:
+        posts_dir = Path("_posts")
+        if not posts_dir.exists():
+            return []
+            
+        # Get all markdown files
+        files = list(posts_dir.glob("*.md"))
+        
+        # Sort by modification time (newest first)
+        files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+        
+        recent_titles = []
+        for file_path in files[:limit]:
+            # Extract title from filename or simple parsing
+            # Filename format: YYYY-MM-DD-title-slug.md
+            # We'll just use the stem (filename without extension) as a proxy for the topic
+            recent_titles.append(file_path.stem)
+            
+        return recent_titles
+    except Exception as e:
+        print(f"Warning: Failed to get recent posts: {e}")
+        return []
+
+
 def get_blog_prompt():
     """
     Returns the prompt for generating a technical blog post.
     The prompt ensures consistent structure and quality.
     """
     current_date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S +0000")
-    return f"""Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
+    
+    # Get recent topics to avoid
+    recent_posts = get_recent_posts(limit=40)
+    avoid_list = "\n- ".join(recent_posts)
+    
+    return f"""You are a Staff Software Engineer and Technical Writer. Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
+
+CRITICAL INSTRUCTIONS:
+1. **NO HALLUCINATIONS**: Do not invent libraries, commands, or flags. Verify every code snippet.
+2. **NO DUPLICATES**: Do NOT write about the following recently covered topics:
+- {avoid_list}
+
+3. **ORIGINALITY**: Provide a unique angle. Do not just regurgitate documentation.
 
 The blog post MUST follow this exact structure in Markdown format with Jekyll front matter:
 
@@ -90,8 +132,6 @@ Requirements:
 - Must be beginner to intermediate friendly
 - Must be SEO optimized
 - Choose topics like: Kubernetes, Docker, CI/CD, Python, Go, React, PostgreSQL, Redis, AWS, System Design patterns, Microservices, etc.
-- Make it unique - avoid generic content
-- Categories should be 2 broad categories (e.g., [DevOps, Kubernetes] or [Programming, Python])
 - Tags should be lowercase and use hyphens instead of spaces
 - DO NOT include the title as H1 (# Title) in the content - only in the front matter
 
