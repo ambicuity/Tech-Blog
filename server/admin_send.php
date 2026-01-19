@@ -131,14 +131,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
 
                 $full_body = "<html><body>";
                 $full_body .= $body_content;
-                $full_body .= "<hr><small>You are receiving this because you subscribed to riteshrana.engineer. <a href='https://riteshrana.engineer/unsubscribe.php?email=" . urlencode($email) . "'>Unsubscribe</a></small>";
+                $full_body .= "<div style='margin-top:20px; padding-top:10px; border-top:1px solid #eee; color:#777; font-size:12px; font-family:sans-serif;'>";
+                $full_body .= "You are receiving this because you subscribed to <a href='https://blog.riteshrana.engineer' style='color:#007bff; text-decoration:none;'>Ritesh Rana's Tech Blog</a>.<br>";
+                $full_body .= "<a href='https://riteshrana.engineer/unsubscribe.php?email=" . urlencode($email) . "' style='color:#777;'>Unsubscribe</a>";
+                $full_body .= "</div>";
                 $full_body .= "</body></html>";
 
                 $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: " . $SENDER_EMAIL . "\r\n";
+                $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+                $headers .= "From: Ritesh Rana <" . $SENDER_EMAIL . ">" . "\r\n";
+                $headers .= "Reply-To: " . $SENDER_EMAIL . "\r\n";
+                $headers .= "X-Mailer: PHP/" . phpversion();
 
-                if (mail($email, $subject, $full_body, $headers)) {
+                // '-f' parameter sets the Return-Path envelope address (critical for spam filters)
+                if (mail($email, $subject, $full_body, $headers, "-f" . $SENDER_EMAIL)) {
                     $count++;
                 }
             }
