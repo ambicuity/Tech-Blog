@@ -4,7 +4,8 @@
     d-flex flex-column justify-content-center text-muted
     flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
   ">
-    <p>
+    <!-- Left Side: Copyright -->
+    <p class="mb-2 mb-lg-0">
         {{- '©' }}
         <time>{{ 'now' | date: '%Y' }}</time>
 
@@ -21,4 +22,15 @@
         </span>
         {% endif %}
     </p>
+
+    <!-- Right Side: Custom Info -->
+    <div class="text-center text-lg-end">
+        <div class="mb-1">Built by engineer, for engineers</div>
+        <div class="small">
+            Made By: <a href="https://riteshrana.engineer">Ritesh Rana</a>
+        </div>
+        <div class="small">
+            Contact: <a href="mailto:contact@riteshrana.engineer">contact@riteshrana.engineer</a>
+        </div>
+    </div>
 </footer>
