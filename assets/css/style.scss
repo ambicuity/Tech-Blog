@@ -220,3 +220,20 @@ div.highlight, pre.highlight, code {
 div.highlight pre {
     white-space: pre !important;
 }
+
+/* FORCE OVERRIDE: Fix code block formatting */
+.highlight pre, 
+.highlight code, 
+pre.highlight, 
+code.language-plaintext,
+div.highlight button + pre,
+div.highlight table pre {
+  white-space: pre !important;
+  word-wrap: normal !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure the parent container doesn't constrain it */
+div.highlight {
+  white-space: pre !important;
+}
