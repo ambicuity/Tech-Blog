@@ -18,6 +18,8 @@ An automated content engine that generates high-quality technical blog posts usi
 #### [Job Board Scraper](https://github.com/ambicuity/New-Grad-Jobs)
 *Python, BeautifulSoup, GitHub Actions*
 an automated pipeline that scrapes, aggregates, and filters entry-level engineering jobs from multiple sources, updating a static job board daily.
+[**Live Website**](https://jobs.riteshrana.engineer)
+
 
 ---
 
