@@ -10,6 +10,6 @@
   icon: "fas fa-globe"
   url: "https://riteshrana.engineer"
 
-- type: email
+- type: email_manual
   icon: "fas fa-envelope"
-  nospam: "contact@riteshrana.engineer"
+  url: "mailto:contact@riteshrana.engineer"
