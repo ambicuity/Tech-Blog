@@ -1,8 +1,10 @@
 <?php
+// server/admin_send.php
 session_start();
+require_once __DIR__ . '/utils.php';
 
 // Configuration
-$CSV_FILE = __DIR__ . '/subscribers.csv'; // Use absolute path for safety
+$CSV_FILE = __DIR__ . '/subscribers.csv';
 // ⚠️ SECURITY: Use generate_hash.php to get this value!
 $ADMIN_PASSWORD_HASH = '$2y$10$YourGeneratedHashGoesHere...'; // Replace with your actual hash
 $SENDER_EMAIL = 'newsletter@riteshrana.engineer';
@@ -19,6 +21,8 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     if (password_verify($_POST['password'], $ADMIN_PASSWORD_HASH)) {
         $_SESSION['logged_in'] = true;
+        // Regenerate session ID to prevent fixation
+        session_regenerate_id(true);
     } else {
         $error = "Invalid password";
     }
@@ -32,54 +36,66 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
     <head>
         <title>Newsletter Admin Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             body {
-                font-family: sans-serif;
+                font-family: -apple-system, system-ui, sans-serif;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
                 background: #f0f2f5;
+                margin: 0;
             }
 
             .login-box {
                 background: white;
                 padding: 2rem;
                 border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 400px;
             }
 
             input {
                 display: block;
                 width: 100%;
                 margin: 10px 0;
-                padding: 10px;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
             }
 
             button {
                 width: 100%;
-                padding: 10px;
-                background: #007bff;
+                padding: 12px;
+                background: #0070f3;
                 color: white;
                 border: none;
                 border-radius: 4px;
                 cursor: pointer;
+                font-weight: 600;
             }
 
             button:hover {
-                background: #0056b3;
+                background: #0051a2;
             }
 
             .error {
-                color: red;
-                margin-bottom: 10px;
+                color: #d32f2f;
+                margin-bottom: 15px;
+                padding: 10px;
+                background: #ffebee;
+                border-radius: 4px;
+                font-size: 14px;
             }
         </style>
     </head>
 
     <body>
         <div class="login-box">
-            <h2>Newsletter Login</h2>
+            <h2 style="text-align:center; margin-top:0;">Newsletter Login</h2>
             <?php if ($error)
                 echo "<div class='error'>$error</div>"; ?>
             <form method="post">
@@ -94,353 +110,250 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
-// Read Subscribers Helper
-function getSubscribers($csv_file)
-{
-    $emails = [];
-    if (file_exists($csv_file) && ($handle = fopen($csv_file, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            // Format is: Date, Email, IP
-            // So Email is at index 1
-            $email = trim($data[1] ?? '');
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                // Return full data for display
-                $emails[] = ['date' => $data[0] ?? '', 'email' => $email, 'ip' => $data[2] ?? ''];
-            }
-        }
-        fclose($handle);
+// Handle Load Latest Posts (AJAX)
+if (isset($_GET['action']) && $_GET['action'] == 'get_latest_posts') {
+    header('Content-Type: application/json');
+    $posts = getLatestPostsFromFeed('https://blog.riteshrana.engineer/feed.xml');
+
+    if (empty($posts)) {
+        echo json_encode(['error' => 'Failed to fetch posts']);
+        exit;
     }
-    return $emails;
+
+    $latest_post = $posts[0];
+
+    // Generate HTML content for the body
+    $content_html = "<h2>Here is what I've been writing about lately:</h2>";
+    foreach ($posts as $post) {
+        $content_html .= '<div class="post-preview">';
+        $content_html .= '<a href="' . $post['link'] . '" class="post-title">' . $post['title'] . '</a>';
+        $content_html .= '<div class="post-meta">New Post</div>';
+        $content_html .= '<p>' . $post['description'] . '</p>';
+        $content_html .= '<a href="' . $post['link'] . '" class="btn">Read Article</a>';
+        $content_html .= '</div>';
+    }
+
+    echo json_encode([
+        'subject' => "New on the Blog: " . $latest_post['title'],
+        'body' => $content_html
+    ]);
+    exit;
 }
 
-// Helper: Fetch RSS Feed
-function getLatestPosts($limit = 3)
-{
-    $feed_url = 'https://blog.riteshrana.engineer/feed.xml';
-    $html = '';
-    $latest_title = '';
+// Handle Email Sending
+$msg = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_email'])) {
+    $subject = trim($_POST['subject']);
+    $content = trim($_POST['body']); // Now this is just the inner content, not full HTML
 
-    // Attempt to fetch feed
-    $content = @file_get_contents($feed_url);
-    if ($content) {
-        $xml = @simplexml_load_string($content);
-        if ($xml) {
-            $count = 0;
-            // Handle Atom feed (Jekyll default) or RSS 2.0
-            $items = isset($xml->entry) ? $xml->entry : (isset($xml->channel->item) ? $xml->channel->item : []);
+    if (empty($subject) || empty($content)) {
+        $msg = "<div class='error'>Subject and Body are required.</div>";
+    } else {
+        $emails = getSubscribers($CSV_FILE);
+        $count = 0;
 
-            $html .= "<h2>🔥 Latest Updates from the Blog</h2>";
+        foreach ($emails as $email) {
+            $unsubscribe_link = "https://riteshrana.engineer/unsubscribe.php?email=" . urlencode($email);
+            // Use shared template generator
+            $full_body = generateEmailTemplate($content, $unsubscribe_link);
 
-            foreach ($items as $item) {
-                if ($count >= $limit)
-                    break;
-
-                // Extract fields (handle namespaces if needed, but basic access usually works)
-                $title = (string) $item->title;
-                $link = isset($item->link['href']) ? (string) $item->link['href'] : (string) $item->link;
-                // Try summary, then content, then description
-                $desc = (string) ($item->summary ?? $item->content ?? $item->description ?? '');
-
-                // Capture the first title for the email subject
-                if ($count === 0) {
-                    $latest_title = $title;
-                }
-
-                // Clean up description (strip tags, limit length)
-                $desc_clean = strip_tags($desc);
-                if (strlen($desc_clean) > 200)
-                    $desc_clean = substr($desc_clean, 0, 200) . '...';
-
-                $html .= '<div style="margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #eee;">';
-                $html .= '<h3 style="margin-top: 0;"><a href="' . $link . '" style="color: #1e1e1e; text-decoration: none;">' . $title . '</a></h3>';
-                $html .= '<p style="color: #555;">' . $desc_clean . '</p>';
-                $html .= '<a href="' . $link . '" style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">Read Article &rarr;</a>';
-                $html .= '</div>';
-
+            if (sendNewsletter($email, $subject, $full_body, $SENDER_EMAIL)) {
                 $count++;
             }
-        } else {
-            return ['error' => "Error parsing feed."];
         }
-    } else {
-        return ['error' => "Could not fetch feed: $feed_url"];
-    }
-    return ['html' => $html, 'subject' => $latest_title];
-}
-
-// Handle Sending
-$message_status = '';
-$prefill_body = '';
-
-// Handle "Load Feed" Action
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['load_feed'])) {
-    $feed_data = getLatestPosts();
-    if (isset($feed_data['error'])) {
-        $message_status = "<div class='error'>" . $feed_data['error'] . "</div>";
-    } else {
-        $prefill_body = $feed_data['html'];
-        // Pre-fill subject if not set (or overwrite? user expects auto-fill)
-        $_POST['subject'] = "New on the Blog: " . ($feed_data['subject'] ?? 'Latest Updates');
-        $message_status = "<div class='success'>✅ Loaded latest posts! Subject updated.</div>";
+        $msg = "<div class='success'>✅ Newsletter queued for $count subscribers.</div>";
     }
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
-    $subject = $_POST['subject'] ?? '';
-    $body_content = $_POST['body'] ?? '';
-
-    if ($subject && $body_content) {
-        if (!file_exists($CSV_FILE)) {
-            $message_status = "<div class='error'>Subscribers file not found at: $CSV_FILE</div>";
-        } else {
-            $count = 0;
-            $subscribers = getSubscribers($CSV_FILE);
-
-            foreach ($subscribers as $sub) {
-                $email = $sub['email'];
-
-                // --- Professional Email Template ---
-                $full_body = '<!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <style>
-                        body { margin: 0; padding: 0; background-color: #f4f4f4; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-                        .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-                        .header { background: #1e1e1e; padding: 30px 20px; text-align: center; }
-                        .header img { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #ffffff; vertical-align: middle; }
-                        .header h1 { color: #ffffff; margin: 15px 0 5px 0; font-size: 24px; font-weight: 700; }
-                        .header p { color: #aaaaaa; margin: 0; font-size: 14px; }
-                        .content { padding: 30px; font-size: 16px; line-height: 1.6; color: #333333; }
-                        .content h1, .content h2, .content h3 { color: #1e1e1e; margin-top: 0; }
-                        .content img { max-width: 100%; border-radius: 4px; }
-                        .footer { background: #f9f9f9; padding: 20px; text-align: center; border-top: 1px solid #eeeeee; font-size: 12px; color: #888888; }
-                        .footer a { color: #007bff; text-decoration: none; }
-                        .button { display: inline-block; padding: 12px 24px; background-color: #007bff; color: #ffffff !important; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px; }
-                    </style>
-                </head>
-                <body>
-                    <div style="padding: 20px;">
-                        <div class="container">
-                            <!-- Header -->
-                            <div class="header">
-                                <a href="https://blog.riteshrana.engineer" target="_blank">
-                                    <img src="https://riteshrana.engineer/assets/RR.webp" alt="Ritesh Rana">
-                                </a>
-                                <h1>Ritesh Rana Tech Blog</h1>
-                                <p>Built by engineer, for engineers</p>
-                            </div>
-
-                            <!-- Body Content -->
-                            <div class="content">
-                                ' . $body_content . '
-                            </div>
-
-                            <!-- Footer -->
-                            <div class="footer">
-                                <p>You received this because you subscribed to our newsletter.</p>
-                                <p>
-                                    <a href="https://blog.riteshrana.engineer">Visit Blog</a> • 
-                                    <a href="https://riteshrana.engineer/unsubscribe.php?email=' . urlencode($email) . '">Unsubscribe</a>
-                                </p>
-                                <p style="margin-top: 10px; opacity: 0.7;">© ' . date("Y") . ' Ritesh Rana. All rights reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </body>
-                </html>';
-
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
-                $headers .= "Content-Transfer-Encoding: base64" . "\r\n";
-                $headers .= "From: Ritesh Rana <" . $SENDER_EMAIL . ">" . "\r\n";
-                $headers .= "Reply-To: " . $SENDER_EMAIL . "\r\n";
-                $headers .= "X-Mailer: PHP/" . phpversion();
-
-                // Encode the body to base64 and split it into chunks to avoid line length limits
-                $encoded_body = chunk_split(base64_encode($full_body));
-
-                // '-f' parameter sets the Return-Path envelope address (critical for spam filters)
-                if (mail($email, '=?UTF-8?B?' . base64_encode($subject) . '?=', $encoded_body, $headers, "-f" . $SENDER_EMAIL)) {
-                    $count++;
-                }
-            }
-            $message_status = "<div class='success'>✅ Sent to $count subscribers!</div>";
-        }
-    } else {
-        $message_status = "<div class='error'>Subject and Body are required.</div>";
-    }
-}
-
-// Get list for viewing
-$subscriber_list = getSubscribers($CSV_FILE);
 ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Send Newsletter</title>
+    <title>Newsletter Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            font-family: sans-serif;
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
             padding: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            background: #f9f9f9;
         }
 
         .container {
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        h1,
         h2 {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
             margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
+        .logout {
+            font-size: 14px;
+            color: #d32f2f;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #d32f2f;
+            border-radius: 4px;
         }
 
-        input[type="text"],
+        .logout:hover {
+            background: #fee2e2;
+        }
+
+        input,
         textarea {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            margin: 10px 0 20px;
+            padding: 12px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-family: inherit;
             box-sizing: border-box;
         }
 
         textarea {
             height: 300px;
-            font-family: monospace;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        label {
+            font-weight: 600;
+            color: #24292e;
+            display: block;
+            margin-top: 20px;
         }
 
         button {
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: #28a745;
+            padding: 12px 25px;
+            background: #0070f3;
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.2s;
         }
 
         button:hover {
-            background: #218838;
+            background: #0051a2;
         }
 
-        .logout {
-            float: right;
-            color: #666;
-            text-decoration: none;
+        #load-posts-btn {
+            background: #2ea44f;
+            margin-right: 10px;
+        }
+
+        #load-posts-btn:hover {
+            background: #2c974b;
         }
 
         .success {
             background: #d4edda;
             color: #155724;
-            padding: 10px;
+            padding: 15px;
+            border-radius: 6px;
             margin-bottom: 20px;
-            border-radius: 4px;
+            border: 1px solid #c3e6cb;
         }
 
         .error {
             background: #f8d7da;
             color: #721c24;
-            padding: 10px;
+            padding: 15px;
+            border-radius: 6px;
             margin-bottom: 20px;
-            border-radius: 4px;
+            border: 1px solid #f5c6cb;
         }
 
-        /* Tab/Section styling */
-        .section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+        .helper-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: -15px;
+            margin-bottom: 15px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-            font-size: 0.9em;
-        }
-
-        th {
-            background-color: #f2f2f2;
+        .stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <a href="?action=logout" class="logout">Logout</a>
-        <h1>📨 Newsletter Dashboard</h1>
+        <h2>
+            Admin Dashboard
+            <a href="?action=logout" class="logout">Logout</a>
+        </h2>
 
-        <?= $message_status ?>
+        <div class="stats">
+            <strong>Subscribers:</strong> <?php echo count(getSubscribers($CSV_FILE)); ?>
+        </div>
 
-        <div class="section">
-            <h2>Compose Email</h2>
-            <div style="margin-bottom: 20px; text-align: right;">
-                <form method="post" style="display: inline;">
-                    <button type="submit" name="load_feed"
-                        style="background: #17a2b8; width: auto; font-size: 14px; padding: 8px 16px; margin-top: 0;">🔄
-                        Load Latest Posts from Blog</button>
-                </form>
+        <?php echo $msg; ?>
+
+        <form method="post">
+            <div style="display: flex; gap: 10px;">
+                <button type="button" id="load-posts-btn" onclick="loadLatestPosts()">✨ Auto-Fill from Blog</button>
+                <div id="loading" style="display:none; align-self: center; color: #666;">Loading...</div>
             </div>
 
-            <form method="post"
-                onsubmit="return confirm('Are you sure you want to send this to ALL <?= count($subscriber_list) ?> subscribers?');">
-                <label for="subject">Subject:</label>
-                <input type="text" name="subject" id="subject" placeholder="e.g., Weekly Roundup"
-                    value="<?= isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : '' ?>" required>
+            <label for="subject">Email Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g., New Post: Kubernetes Best Practices"
+                required>
 
-                <label for="body">Email Body (HTML):</label>
-                <textarea name="body" id="body" required placeholder="<h1>Hello!</h1>"
-                    style="height: 400px;"><?= htmlspecialchars($prefill_body ?: ($_POST['body'] ?? '')) ?></textarea>
+            <label for="body">Email Content (HTML)</label>
+            <p class="helper-text">This will be wrapped in the standard header/footer. Use &lt;h2&gt;, &lt;p&gt;, etc.
+            </p>
+            <textarea id="body" name="body" placeholder="Write your newsletter content here..." required></textarea>
 
-                <button type="submit" name="send">🚀 Send to <?= count($subscriber_list) ?> Subscribers</button>
-            </form>
-        </div>
-
-        <div class="section">
-            <h2>Current Subscribers (<?= count($subscriber_list) ?>)</h2>
-            <?php if (empty($subscriber_list)): ?>
-                <p>No subscribers found. (Checking file: <?= $CSV_FILE ?>)</p>
-            <?php else: ?>
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Email</th>
-                        <th>IP (Partial)</th>
-                    </tr>
-                    <?php foreach ($subscriber_list as $sub): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($sub['date']) ?></td>
-                            <td><?= htmlspecialchars($sub['email']) ?></td>
-                            <td><?= htmlspecialchars(substr($sub['ip'], 0, 7)) . '...' ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-            <?php endif; ?>
-        </div>
+            <button type="submit" name="send_email">🚀 Send Newsletter</button>
+        </form>
     </div>
+
+    <script>
+        function loadLatestPosts() {
+            const btn = document.getElementById('load-posts-btn');
+            const loading = document.getElementById('loading');
+
+            btn.disabled = true;
+            loading.style.display = 'block';
+
+            fetch('admin_send.php?action=get_latest_posts')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        document.getElementById('subject').value = data.subject;
+                        document.getElementById('body').value = data.body;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Failed to load posts.');
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                });
+        }
+    </script>
 </body>
 
 </html>
