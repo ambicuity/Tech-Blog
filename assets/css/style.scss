@@ -237,3 +237,21 @@ div.highlight table pre {
 div.highlight {
   white-space: pre !important;
 }
+
+/* NUCLEAR OPTION: Fix missing <pre> tag in code blocks */
+div.highlight > code,
+div.highlighter-rouge > div.highlight > code {
+  display: block !important;
+  white-space: pre !important; 
+  overflow-x: auto !important;
+  font-family: monospace !important;
+  width: 100% !important;
+  padding: 1em !important;
+}
+
+/* Ensure container allows scrolling */
+div.highlight {
+  display: block !important;
+  overflow-x: auto !important;
+  white-space: pre !important;
+}
