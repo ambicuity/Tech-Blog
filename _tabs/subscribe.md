@@ -1,7 +1,7 @@
 ---
 layout: page
 icon: fas fa-envelope
-order: 3
+order: 6
 title: Newsletter
 ---
 

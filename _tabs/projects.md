@@ -1,7 +1,7 @@
 ---
 layout: page
 icon: fas fa-code
-order: 4
+order: 7
 title: Projects
 ---
 
