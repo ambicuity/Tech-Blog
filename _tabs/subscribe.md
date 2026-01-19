@@ -40,12 +40,23 @@ document.getElementById('subscribeForm').addEventListener('submit', async functi
     const btn = document.getElementById('submitBtn');
     const msg = document.getElementById('message');
     
-    // REPLACE THIS URL with your actual Namecheap VPS URL
-    const API_URL = 'https://YOUR_VPS_DOMAIN.com/subscribe.php'; 
+    // ⚠️ IMPORTANT: Replace with your actual VPS URL
+    // e.g., 'https://api.yourdomain.com/subscribe.php'
+    const API_URL = 'https://riteshrana.engineer/subscribe.php'; 
 
     btn.disabled = true;
-    btn.innerText = 'Sending...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     msg.innerText = '';
+    
+    // Check if user forgot to update the URL
+    if (API_URL.includes('YOUR_VPS_DOMAIN')) {
+
+        msg.style.color = '#ff9800';
+        msg.innerText = '⚠️ Setup Required: Please update the API URL in subscribe.md';
+        btn.disabled = false;
+        btn.innerText = 'Subscribe';
+        return;
+    }
 
     try {
         const response = await fetch(API_URL, {
@@ -55,24 +66,30 @@ document.getElementById('subscribeForm').addEventListener('submit', async functi
             },
             body: JSON.stringify({ email: email })
         });
-
-        const data = await response.json();
+        
+        let data;
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            data = await response.json();
+        } else {
+             // Handle non-JSON response gracefully
+             const text = await response.text();
+             console.error("Non-JSON response:", text);
+             throw new Error("Server returned an unexpected response.");
+        }
 
         if (response.ok) {
-            msg.style.color = '#4caf50'; // Green
-            msg.innerText = '✅ ' + data.message;
+            msg.style.color = '#4caf50';
+            msg.innerText = '✅ ' + (data.message || 'Subscribed successfully!');
             document.getElementById('email').value = '';
             document.getElementById('form-title').innerText = 'Welcome Aboard! 🚀';
         } else {
             throw new Error(data.message || 'Subscription failed');
         }
     } catch (error) {
-        msg.style.color = '#ff5252'; // Red
+        msg.style.color = '#ff5252';
         msg.innerText = '❌ Error: ' + error.message;
-        
-        if (API_URL.includes('YOUR_VPS_DOMAIN')) {
-             msg.innerText = '❌ Configuration Error: Please update the API URL in subscribe.md';
-        }
+        console.error('Subscription Error:', error);
     } finally {
         btn.disabled = false;
         btn.innerText = 'Subscribe';
