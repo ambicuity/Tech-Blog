@@ -39,6 +39,17 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
 
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archives
+    tag: archives
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
 # Exclude from processing
 exclude:
   - scripts/
