@@ -36,6 +36,11 @@ def clean_blog_content(content):
     
     if content.endswith('```'):
         content = content[:-3].strip()
+        
+    # Ensure layout: post is present in front matter
+    # This fixes the issue where new posts are unstyled
+    if content.startswith('---') and 'layout: post' not in content[:500]:
+        content = content.replace('---', '---\nlayout: post', 1)
     
     return content
 
