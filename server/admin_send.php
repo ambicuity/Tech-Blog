@@ -114,10 +114,12 @@ function getSubscribers($csv_file)
 }
 
 // Helper: Fetch RSS Feed
-function getLatestPosts($limit = 3) {
+function getLatestPosts($limit = 3)
+{
     $feed_url = 'https://blog.riteshrana.engineer/feed.xml';
     $html = '';
-    
+    $latest_title = '';
+
     // Attempt to fetch feed
     $content = @file_get_contents($feed_url);
     if ($content) {
@@ -126,37 +128,44 @@ function getLatestPosts($limit = 3) {
             $count = 0;
             // Handle Atom feed (Jekyll default) or RSS 2.0
             $items = isset($xml->entry) ? $xml->entry : (isset($xml->channel->item) ? $xml->channel->item : []);
-            
+
             $html .= "<h2>🔥 Latest Updates from the Blog</h2>";
-            
+
             foreach ($items as $item) {
-                if ($count >= $limit) break;
-                
+                if ($count >= $limit)
+                    break;
+
                 // Extract fields (handle namespaces if needed, but basic access usually works)
-                $title = (string)$item->title;
-                $link = isset($item->link['href']) ? (string)$item->link['href'] : (string)$item->link;
+                $title = (string) $item->title;
+                $link = isset($item->link['href']) ? (string) $item->link['href'] : (string) $item->link;
                 // Try summary, then content, then description
-                $desc = (string)($item->summary ?? $item->content ?? $item->description ?? ''); 
-                
+                $desc = (string) ($item->summary ?? $item->content ?? $item->description ?? '');
+
+                // Capture the first title for the email subject
+                if ($count === 0) {
+                    $latest_title = $title;
+                }
+
                 // Clean up description (strip tags, limit length)
                 $desc_clean = strip_tags($desc);
-                if (strlen($desc_clean) > 200) $desc_clean = substr($desc_clean, 0, 200) . '...';
-                
+                if (strlen($desc_clean) > 200)
+                    $desc_clean = substr($desc_clean, 0, 200) . '...';
+
                 $html .= '<div style="margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #eee;">';
                 $html .= '<h3 style="margin-top: 0;"><a href="' . $link . '" style="color: #1e1e1e; text-decoration: none;">' . $title . '</a></h3>';
                 $html .= '<p style="color: #555;">' . $desc_clean . '</p>';
                 $html .= '<a href="' . $link . '" style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">Read Article &rarr;</a>';
                 $html .= '</div>';
-                
+
                 $count++;
             }
         } else {
-            return "<p>Error parsing feed.</p>";
+            return ['error' => "Error parsing feed."];
         }
     } else {
-        return "<p>Could not fetch feed: $feed_url</p>";
+        return ['error' => "Could not fetch feed: $feed_url"];
     }
-    return $html;
+    return ['html' => $html, 'subject' => $latest_title];
 }
 
 // Handle Sending
@@ -165,8 +174,15 @@ $prefill_body = '';
 
 // Handle "Load Feed" Action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['load_feed'])) {
-    $prefill_body = getLatestPosts();
-    $message_status = "<div class='success'>✅ Loaded latest posts!</div>";
+    $feed_data = getLatestPosts();
+    if (isset($feed_data['error'])) {
+        $message_status = "<div class='error'>" . $feed_data['error'] . "</div>";
+    } else {
+        $prefill_body = $feed_data['html'];
+        // Pre-fill subject if not set (or overwrite? user expects auto-fill)
+        $_POST['subject'] = "New on the Blog: " . ($feed_data['subject'] ?? 'Latest Updates');
+        $message_status = "<div class='success'>✅ Loaded latest posts! Subject updated.</div>";
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
