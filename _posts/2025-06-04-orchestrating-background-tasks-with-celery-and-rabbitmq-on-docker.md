@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Background Tasks with Celery and RabbitMQ on Docker"
 date: 2025-06-04 18:05:03 +0000
 categories: [DevOps, Python]

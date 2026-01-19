@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting PostgreSQL Performance with Connection Pooling using PgBouncer"
 date: 2024-01-17 04:36:47 +0000
 categories: [Databases, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Redis with Redis Cluster: A Practical Guide"
 date: 2025-10-30 16:09:15 +0000
 categories: [DevOps, Database]

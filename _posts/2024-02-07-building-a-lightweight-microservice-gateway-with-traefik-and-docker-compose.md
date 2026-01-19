@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Lightweight Microservice Gateway with Traefik and Docker Compose"
 date: 2024-02-07 13:17:21 +0000
 categories: [DevOps, Microservices]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Images for Size and Security: A Practical Guide"
 date: 2025-04-27 15:07:26 +0000
 categories: [DevOps, Docker]

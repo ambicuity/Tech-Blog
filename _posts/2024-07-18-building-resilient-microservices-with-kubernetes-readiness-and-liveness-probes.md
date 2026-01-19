@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient Microservices with Kubernetes Readiness and Liveness Probes"
 date: 2024-07-18 20:26:05 +0000
 categories: [DevOps, Kubernetes]

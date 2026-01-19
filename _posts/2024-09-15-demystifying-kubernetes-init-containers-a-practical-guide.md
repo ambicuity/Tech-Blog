@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Init Containers: A Practical Guide"
 date: 2024-09-15 18:14:16 +0000
 categories: [DevOps, Kubernetes]

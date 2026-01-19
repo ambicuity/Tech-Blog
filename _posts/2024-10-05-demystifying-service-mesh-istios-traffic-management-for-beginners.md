@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Service Mesh: Istio's Traffic Management for Beginners"
 date: 2024-10-05 17:56:35 +0000
 categories: [DevOps, Kubernetes]

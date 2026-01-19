@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying gRPC: Building High-Performance Microservices with Python"
 date: 2024-09-10 15:46:15 +0000
 categories: [Programming, Microservices]

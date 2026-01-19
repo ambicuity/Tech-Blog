@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Recommendation Engine with Redis Bloom Filters and Python"
 date: 2024-05-04 17:26:22 +0000
 categories: [Programming, Data Science]

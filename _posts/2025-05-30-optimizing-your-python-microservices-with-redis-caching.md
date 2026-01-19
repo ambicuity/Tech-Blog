@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Your Python Microservices with Redis Caching"
 date: 2025-05-30 11:29:02 +0000
 categories: [Programming, Python]

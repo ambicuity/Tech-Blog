@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient Microservices with Graceful Shutdowns in Kubernetes"
 date: 2024-07-14 13:31:20 +0000
 categories: [DevOps, Kubernetes]

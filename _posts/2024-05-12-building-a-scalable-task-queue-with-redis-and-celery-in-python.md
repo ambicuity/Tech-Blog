@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Task Queue with Redis and Celery in Python"
 date: 2024-05-12 07:50:38 +0000
 categories: [Programming, DevOps]

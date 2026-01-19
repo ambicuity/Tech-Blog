@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Multi-Stage Builds for Optimized Images"
 date: 2025-02-09 12:58:13 +0000
 categories: [DevOps, Docker]

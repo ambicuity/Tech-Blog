@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Python API with Asynchronous Tasks and Redis Queue"
 date: 2025-11-04 04:17:01 +0000
 categories: [Programming, Python]

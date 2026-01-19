@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Python Microservice with Docker and Health Checks"
 date: 2024-03-14 04:03:28 +0000
 categories: [DevOps, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable API with FastAPI, Redis, and Docker"
 date: 2024-04-17 00:10:19 +0000
 categories: [Backend, Python]

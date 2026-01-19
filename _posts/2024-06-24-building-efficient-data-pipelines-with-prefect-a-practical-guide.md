@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Efficient Data Pipelines with Prefect: A Practical Guide"
 date: 2024-06-24 12:00:01 +0000
 categories: [Data Engineering, Python]

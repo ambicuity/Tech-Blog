@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Communication with gRPC Interceptors in Go"
 date: 2025-12-20 03:27:54 +0000
 categories: [Programming, Go]

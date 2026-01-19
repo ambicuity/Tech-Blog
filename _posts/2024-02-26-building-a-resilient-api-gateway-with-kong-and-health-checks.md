@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API Gateway with Kong and Health Checks"
 date: 2024-02-26 03:51:40 +0000
 categories: [DevOps, API Management]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Kubernetes Observability: Integrating Prometheus, Grafana, and Alertmanager"
 date: 2025-01-03 23:18:06 +0000
 categories: [DevOps, Kubernetes]

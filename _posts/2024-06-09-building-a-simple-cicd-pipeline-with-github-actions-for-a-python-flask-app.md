@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with GitHub Actions for a Python Flask App"
 date: 2024-06-09 17:07:28 +0000
 categories: [DevOps, CI/CD]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Container Image Optimization with BuildKit and Multistage Builds"
 date: 2024-10-15 13:14:22 +0000
 categories: [DevOps, Docker]

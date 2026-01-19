@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Machine Learning Model Deployment with Docker and FastAPI"
 date: 2025-12-15 19:54:08 +0000
 categories: [DevOps, Machine Learning]

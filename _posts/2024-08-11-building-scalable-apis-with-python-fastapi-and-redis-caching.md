@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable APIs with Python FastAPI and Redis Caching"
 date: 2024-08-11 07:06:10 +0000
 categories: [Programming, Backend]

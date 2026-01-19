@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Image Processing Pipeline with Serverless Functions and SQS"
 date: 2024-03-07 17:42:27 +0000
 categories: [Cloud Computing, DevOps]

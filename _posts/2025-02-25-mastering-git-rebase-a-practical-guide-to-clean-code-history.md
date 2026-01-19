@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Git Rebase: A Practical Guide to Clean Code History"
 date: 2025-02-25 19:00:00 +0000
 categories: [DevOps, Version Control]

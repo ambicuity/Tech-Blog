@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Image Management with Docker Multi-Stage Builds"
 date: 2024-10-30 22:45:54 +0000
 categories: [DevOps, Docker]

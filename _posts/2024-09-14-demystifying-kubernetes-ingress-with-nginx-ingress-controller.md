@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Ingress with Nginx Ingress Controller"
 date: 2024-09-14 20:06:01 +0000
 categories: [DevOps, Kubernetes]

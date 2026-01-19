@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Serverless Workflows with AWS Step Functions: A Practical Guide"
 date: 2025-09-08 03:06:21 +0000
 categories: [DevOps, Cloud Computing]

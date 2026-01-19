@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Probes: Ensuring Application Health and Resilience"
 date: 2025-03-10 21:17:18 +0000
 categories: [DevOps, Kubernetes]

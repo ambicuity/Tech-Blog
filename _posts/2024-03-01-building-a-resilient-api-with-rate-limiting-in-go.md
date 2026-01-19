@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API with Rate Limiting in Go"
 date: 2024-03-01 15:53:26 +0000
 categories: [Programming, Go]

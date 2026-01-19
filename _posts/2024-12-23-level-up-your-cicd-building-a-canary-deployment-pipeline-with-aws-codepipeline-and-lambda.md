@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your CI/CD: Building a Canary Deployment Pipeline with AWS CodePipeline and Lambda"
 date: 2024-12-23 02:32:04 +0000
 categories: [DevOps, AWS]

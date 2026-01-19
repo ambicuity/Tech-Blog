@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effective Container Image Optimization with DockerSlim"
 date: 2024-10-08 06:38:05 +0000
 categories: [DevOps, Docker]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Compose: Orchestrating Multi-Container Applications"
 date: 2025-02-04 08:50:27 +0000
 categories: [DevOps, Docker]

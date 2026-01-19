@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Configuration Management with Ansible and HashiCorp Vault"
 date: 2025-07-14 22:31:56 +0000
 categories: [DevOps, Automation]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust Feature Flag System with Python and Redis"
 date: 2024-03-29 22:29:16 +0000
 categories: [Programming, DevOps]

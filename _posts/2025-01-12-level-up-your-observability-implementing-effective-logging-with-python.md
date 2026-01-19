@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Observability: Implementing Effective Logging with Python"
 date: 2025-01-12 23:02:38 +0000
 categories: [Programming, Python]

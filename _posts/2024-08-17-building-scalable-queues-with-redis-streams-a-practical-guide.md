@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Queues with Redis Streams: A Practical Guide"
 date: 2024-08-17 10:28:11 +0000
 categories: [DevOps, Databases]

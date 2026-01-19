@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Harnessing Docker BuildKit: Advanced Image Building Techniques"
 date: 2024-12-01 09:57:15 +0000
 categories: [DevOps, Docker]

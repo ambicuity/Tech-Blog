@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Leveraging Pre-Commit Hooks for Python Code Quality: A Practical Guide"
 date: 2025-01-23 12:39:25 +0000
 categories: [Programming, DevOps]

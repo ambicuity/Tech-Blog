@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Basic Go Operator"
 date: 2024-09-21 18:51:17 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API with Circuit Breaker Pattern in Python"
 date: 2024-02-28 09:58:55 +0000
 categories: [Programming, System Design]

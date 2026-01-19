@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Data Ingestion with Kafka Connect and a Custom Python Transform"
 date: 2025-12-06 08:52:37 +0000
 categories: [Data Engineering, DevOps]

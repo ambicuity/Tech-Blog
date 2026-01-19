@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Communication with gRPC and Protocol Buffers"
 date: 2025-12-17 06:22:24 +0000
 categories: [DevOps, Microservices]

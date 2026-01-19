@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable API Gateway with Kong and PostgreSQL"
 date: 2024-04-10 00:53:02 +0000
 categories: [DevOps, API]

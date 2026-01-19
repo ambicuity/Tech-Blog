@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Resource Quotas: Enforcing Limits and Preventing Resource Starvation"
 date: 2025-03-16 19:15:19 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Python Applications with Celery and RabbitMQ: A Practical Guide"
 date: 2025-10-15 19:53:42 +0000
 categories: [Programming, DevOps]

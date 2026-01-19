@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Python Microservices with Asynchronous Task Queues: A Celery and Redis Deep Dive"
 date: 2025-05-26 22:44:32 +0000
 categories: [Programming, Python]

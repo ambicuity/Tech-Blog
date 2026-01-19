@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API with Kubernetes and Circuit Breaker Pattern"
 date: 2024-03-01 00:44:10 +0000
 categories: [DevOps, Kubernetes]

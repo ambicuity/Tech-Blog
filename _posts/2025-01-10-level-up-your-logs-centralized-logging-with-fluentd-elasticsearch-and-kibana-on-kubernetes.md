@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Logs: Centralized Logging with Fluentd, Elasticsearch, and Kibana on Kubernetes"
 date: 2025-01-10 13:53:07 +0000
 categories: [DevOps, Kubernetes]

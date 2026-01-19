@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Resource Management: Requests and Limits Demystified"
 date: 2025-03-14 06:34:48 +0000
 categories: [DevOps, Kubernetes]

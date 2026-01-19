@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Feature Flag System with Redis and Python"
 date: 2024-06-17 19:14:45 +0000
 categories: [Programming, Python]

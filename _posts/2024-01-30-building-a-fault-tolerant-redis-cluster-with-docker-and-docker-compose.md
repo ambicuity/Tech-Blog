@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Fault-Tolerant Redis Cluster with Docker and Docker Compose"
 date: 2024-01-30 20:34:05 +0000
 categories: [DevOps, Databases]

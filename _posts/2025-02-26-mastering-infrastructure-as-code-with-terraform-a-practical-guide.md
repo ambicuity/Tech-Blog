@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Infrastructure as Code with Terraform: A Practical Guide"
 date: 2025-02-26 18:18:16 +0000
 categories: [DevOps, Cloud Computing]

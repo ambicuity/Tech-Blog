@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable APIs with FastAPI and Redis Caching"
 date: 2024-08-07 01:56:24 +0000
 categories: [Programming, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Kubernetes Ingress: Demystifying Traffic Management with Nginx"
 date: 2024-12-18 12:47:18 +0000
 categories: [DevOps, Kubernetes]

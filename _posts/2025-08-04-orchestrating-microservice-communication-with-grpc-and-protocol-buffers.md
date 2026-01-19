@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Microservice Communication with gRPC and Protocol Buffers"
 date: 2025-08-04 18:51:29 +0000
 categories: [Microservices, gRPC]

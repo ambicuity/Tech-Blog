@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Application Performance with Redis Caching in Python"
 date: 2024-01-14 20:59:17 +0000
 categories: [Programming, DevOps]

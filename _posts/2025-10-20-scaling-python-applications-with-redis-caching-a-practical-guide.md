@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Python Applications with Redis Caching: A Practical Guide"
 date: 2025-10-20 04:08:28 +0000
 categories: [Programming, DevOps]

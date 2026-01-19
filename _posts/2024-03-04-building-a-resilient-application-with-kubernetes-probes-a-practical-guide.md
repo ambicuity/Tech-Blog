@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Application with Kubernetes Probes: A Practical Guide"
 date: 2024-03-04 16:54:56 +0000
 categories: [DevOps, Kubernetes]

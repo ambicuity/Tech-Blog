@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Deployment Strategies: Minimizing Downtime and Maximizing Uptime"
 date: 2025-05-02 23:50:28 +0000
 categories: [DevOps, Kubernetes]

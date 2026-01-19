@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Managing PostgreSQL Connections with PGBouncer"
 date: 2024-11-09 21:50:41 +0000
 categories: [Databases, DevOps]

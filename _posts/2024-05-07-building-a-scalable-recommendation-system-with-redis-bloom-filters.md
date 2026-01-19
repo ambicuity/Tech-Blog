@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Recommendation System with Redis Bloom Filters"
 date: 2024-05-07 23:02:53 +0000
 categories: [Data Engineering, System Design]

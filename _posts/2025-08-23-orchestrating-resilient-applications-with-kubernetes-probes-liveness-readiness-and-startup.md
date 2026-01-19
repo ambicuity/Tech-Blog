@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Resilient Applications with Kubernetes Probes: Liveness, Readiness, and Startup"
 date: 2025-08-23 10:27:33 +0000
 categories: [DevOps, Kubernetes]

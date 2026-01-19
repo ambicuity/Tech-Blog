@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating PostgreSQL Backups to AWS S3 with pg_dump and Cron"
 date: 2024-01-08 02:03:16 +0000
 categories: [Databases, DevOps]

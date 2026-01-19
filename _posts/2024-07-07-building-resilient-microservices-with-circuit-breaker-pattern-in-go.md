@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient Microservices with Circuit Breaker Pattern in Go"
 date: 2024-07-07 21:36:19 +0000
 categories: [Microservices, Go]

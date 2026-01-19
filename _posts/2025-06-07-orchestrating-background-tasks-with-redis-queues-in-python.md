@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Background Tasks with Redis Queues in Python"
 date: 2025-06-07 02:55:19 +0000
 categories: [Programming, Python]

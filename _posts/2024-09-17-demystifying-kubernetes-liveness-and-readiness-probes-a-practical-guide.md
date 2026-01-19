@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Liveness and Readiness Probes: A Practical Guide"
 date: 2024-09-17 12:42:31 +0000
 categories: [DevOps, Kubernetes]

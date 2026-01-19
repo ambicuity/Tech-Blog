@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Data Ingestion with Python and Apache Kafka: A Practical Guide"
 date: 2025-12-08 17:18:52 +0000
 categories: [Data Engineering, DevOps]

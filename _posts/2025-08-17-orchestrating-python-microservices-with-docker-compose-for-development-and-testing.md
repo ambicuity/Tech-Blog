@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Python Microservices with Docker Compose for Development and Testing"
 date: 2025-08-17 00:36:32 +0000
 categories: [DevOps, Microservices]

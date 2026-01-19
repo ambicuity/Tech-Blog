@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Log Aggregation with the EFK Stack: A Practical Guide"
 date: 2025-03-19 13:47:49 +0000
 categories: [DevOps, Observability]

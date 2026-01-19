@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Data Pipelines with Prefect and Docker Compose"
 date: 2024-08-14 02:16:40 +0000
 categories: [DevOps, Data Engineering]

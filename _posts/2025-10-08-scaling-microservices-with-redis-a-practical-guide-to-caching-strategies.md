@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Microservices with Redis: A Practical Guide to Caching Strategies"
 date: 2025-10-08 12:24:26 +0000
 categories: [DevOps, Microservices]

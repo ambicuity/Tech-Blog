@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effective Containerization with Multi-Stage Docker Builds"
 date: 2024-10-10 01:16:20 +0000
 categories: [DevOps, Docker]

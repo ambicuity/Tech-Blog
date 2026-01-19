@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Resilient Web Scraping with Docker, Kubernetes, and Retries"
 date: 2025-08-26 04:39:03 +0000
 categories: [DevOps, Kubernetes]

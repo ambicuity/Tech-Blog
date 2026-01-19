@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Containerized Python Applications with Docker Compose"
 date: 2025-07-21 19:04:57 +0000
 categories: [DevOps, Docker]

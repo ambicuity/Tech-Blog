@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating PostgreSQL Schema Changes with Liquibase and GitHub Actions"
 date: 2025-08-14 00:50:01 +0000
 categories: [DevOps, Database]

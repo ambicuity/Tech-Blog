@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Containerized Applications with Docker Compose and Health Checks"
 date: 2025-07-18 05:01:26 +0000
 categories: [DevOps, Docker]

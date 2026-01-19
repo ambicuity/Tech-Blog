@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Python Logging with Structlog: Structured Logging for Fun and Profit"
 date: 2025-01-17 16:10:23 +0000
 categories: [Programming, Python]

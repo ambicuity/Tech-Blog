@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Rate Limiter in Go with Redis"
 date: 2024-02-17 14:15:08 +0000
 categories: [Programming, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating Database Schema Migrations with Flyway and Docker"
 date: 2024-01-05 04:29:45 +0000
 categories: [DevOps, Databases]

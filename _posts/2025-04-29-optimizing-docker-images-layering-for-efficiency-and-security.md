@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Images: Layering for Efficiency and Security"
 date: 2025-04-29 01:42:42 +0000
 categories: [DevOps, Docker]

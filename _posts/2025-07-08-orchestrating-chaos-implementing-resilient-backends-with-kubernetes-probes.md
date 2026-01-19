@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Implementing Resilient Backends with Kubernetes Probes"
 date: 2025-07-08 02:10:39 +0000
 categories: [DevOps, Kubernetes]

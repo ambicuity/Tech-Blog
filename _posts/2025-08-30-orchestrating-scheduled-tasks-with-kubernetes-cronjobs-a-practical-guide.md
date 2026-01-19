@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Scheduled Tasks with Kubernetes CronJobs: A Practical Guide"
 date: 2025-08-30 06:06:49 +0000
 categories: [DevOps, Kubernetes]

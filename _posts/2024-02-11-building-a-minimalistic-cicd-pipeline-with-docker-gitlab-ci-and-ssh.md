@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Minimalistic CI/CD Pipeline with Docker, GitLab CI, and SSH"
 date: 2024-02-11 07:47:07 +0000
 categories: [DevOps, CI/CD]

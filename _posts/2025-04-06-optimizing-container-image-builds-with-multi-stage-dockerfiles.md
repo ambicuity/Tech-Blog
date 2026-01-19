@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Container Image Builds with Multi-Stage Dockerfiles"
 date: 2025-04-06 15:05:53 +0000
 categories: [DevOps, Docker]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Resilience: Implementing Self-Healing Kubernetes Pods with Liveness and Readiness Probes"
 date: 2025-08-21 17:43:17 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Data Pipelines with Prefect and Kubernetes: A Practical Guide"
 date: 2025-10-07 05:42:11 +0000
 categories: [DevOps, Python]

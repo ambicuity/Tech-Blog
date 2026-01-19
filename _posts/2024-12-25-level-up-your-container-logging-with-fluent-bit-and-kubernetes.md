@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Container Logging with Fluent Bit and Kubernetes"
 date: 2024-12-25 09:33:19 +0000
 categories: [DevOps, Kubernetes]

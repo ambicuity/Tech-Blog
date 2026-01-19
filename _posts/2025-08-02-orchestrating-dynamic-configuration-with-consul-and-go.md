@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Dynamic Configuration with Consul and Go"
 date: 2025-08-02 10:42:59 +0000
 categories: [DevOps, Programming]

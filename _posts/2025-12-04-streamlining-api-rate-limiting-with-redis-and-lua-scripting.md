@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining API Rate Limiting with Redis and Lua Scripting"
 date: 2025-12-04 23:10:21 +0000
 categories: [Backend, DevOps]

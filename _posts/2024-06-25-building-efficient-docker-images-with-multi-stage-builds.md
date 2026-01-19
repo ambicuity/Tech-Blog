@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Efficient Docker Images with Multi-Stage Builds"
 date: 2024-06-25 19:48:16 +0000
 categories: [DevOps, Docker]

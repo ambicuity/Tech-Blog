@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Data Processing with Apache Kafka Streams and Python"
 date: 2024-10-25 02:05:53 +0000
 categories: [Data Engineering, Streaming]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust CI/CD Pipeline for Serverless Applications with AWS SAM CLI"
 date: 2024-03-28 22:40:00 +0000
 categories: [DevOps, Cloud Computing]

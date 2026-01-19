@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Harnessing the Power of Git Hooks: Automating Your Development Workflow"
 date: 2024-12-03 14:51:45 +0000
 categories: [DevOps, Version Control]

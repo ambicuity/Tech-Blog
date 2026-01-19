@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Redis Cache with Lettuce Cluster in Spring Boot"
 date: 2025-11-19 05:12:33 +0000
 categories: [Programming, Java]

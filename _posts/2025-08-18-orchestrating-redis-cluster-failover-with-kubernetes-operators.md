@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Redis Cluster Failover with Kubernetes Operators"
 date: 2025-08-18 05:16:47 +0000
 categories: [DevOps, Kubernetes]

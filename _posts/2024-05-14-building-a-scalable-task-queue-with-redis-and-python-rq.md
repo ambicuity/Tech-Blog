@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Task Queue with Redis and Python RQ"
 date: 2024-05-14 04:49:54 +0000
 categories: [Programming, DevOps]

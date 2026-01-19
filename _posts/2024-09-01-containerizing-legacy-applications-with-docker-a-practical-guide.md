@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Containerizing Legacy Applications with Docker: A Practical Guide"
 date: 2024-09-01 10:33:44 +0000
 categories: [DevOps, Docker]

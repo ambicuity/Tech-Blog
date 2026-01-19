@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Event-Driven System with AWS SQS and Serverless Functions"
 date: 2024-04-18 05:58:34 +0000
 categories: [Cloud, DevOps]

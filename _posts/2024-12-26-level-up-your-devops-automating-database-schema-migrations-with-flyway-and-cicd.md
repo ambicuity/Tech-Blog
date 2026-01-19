@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your DevOps: Automating Database Schema Migrations with Flyway and CI/CD"
 date: 2024-12-26 19:22:34 +0000
 categories: [DevOps, Databases]

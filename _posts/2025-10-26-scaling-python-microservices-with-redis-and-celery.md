@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Python Microservices with Redis and Celery"
 date: 2025-10-26 07:32:29 +0000
 categories: [Backend, DevOps]

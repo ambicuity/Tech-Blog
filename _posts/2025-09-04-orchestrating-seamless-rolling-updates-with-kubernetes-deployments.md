@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Seamless Rolling Updates with Kubernetes Deployments"
 date: 2025-09-04 11:55:35 +0000
 categories: [DevOps, Kubernetes]

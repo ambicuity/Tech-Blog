@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Image Processing Pipeline with Serverless Functions and AWS SQS"
 date: 2024-04-24 19:15:35 +0000
 categories: [Cloud Computing, DevOps]

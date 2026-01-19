@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Multi-Stage Docker Builds for Smaller, Faster Images"
 date: 2025-03-24 09:00:35 +0000
 categories: [DevOps, Docker]

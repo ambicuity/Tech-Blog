@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Simple Memcached Operator with Kubebuilder"
 date: 2024-09-29 09:23:34 +0000
 categories: [DevOps, Kubernetes]

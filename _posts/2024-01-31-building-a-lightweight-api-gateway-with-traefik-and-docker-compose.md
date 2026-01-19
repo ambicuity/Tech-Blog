@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Lightweight API Gateway with Traefik and Docker Compose"
 date: 2024-01-31 23:37:20 +0000
 categories: [DevOps, Docker]

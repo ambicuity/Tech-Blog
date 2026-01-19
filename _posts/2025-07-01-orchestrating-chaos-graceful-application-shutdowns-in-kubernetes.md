@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Graceful Application Shutdowns in Kubernetes"
 date: 2025-07-01 21:33:38 +0000
 categories: [DevOps, Kubernetes]

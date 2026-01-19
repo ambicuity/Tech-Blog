@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Web Applications with Docker and Nginx Reverse Proxy"
 date: 2024-08-24 11:16:27 +0000
 categories: [DevOps, Cloud Computing]

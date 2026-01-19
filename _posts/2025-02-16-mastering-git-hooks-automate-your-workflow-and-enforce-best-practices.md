@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Git Hooks: Automate Your Workflow and Enforce Best Practices"
 date: 2025-02-16 19:52:29 +0000
 categories: [DevOps, Version Control]

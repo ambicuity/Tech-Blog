@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Web Scraper with Python and Asynchronous Requests"
 date: 2024-03-18 19:13:13 +0000
 categories: [Programming, Python]

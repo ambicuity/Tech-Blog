@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Zero-Downtime Database Migrations with Flyway in a Kubernetes Environment"
 date: 2025-09-22 20:53:53 +0000
 categories: [DevOps, Kubernetes]

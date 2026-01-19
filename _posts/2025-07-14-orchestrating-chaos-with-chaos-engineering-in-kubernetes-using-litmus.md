@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos with Chaos Engineering in Kubernetes using Litmus"
 date: 2025-07-14 00:34:40 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Python Development with Poetry: Dependency Management Made Easy"
 date: 2025-12-27 16:12:10 +0000
 categories: [Programming, Python]

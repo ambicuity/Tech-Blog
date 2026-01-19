@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Image Optimization in CI/CD Pipelines with Imgproxy"
 date: 2024-11-01 00:16:10 +0000
 categories: [DevOps, CI/CD]

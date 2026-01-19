@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Kubernetes Observability with Kiali"
 date: 2025-01-06 00:58:21 +0000
 categories: [DevOps, Kubernetes]

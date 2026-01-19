@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Microservices with Docker Compose: From Zero to Production"
 date: 2025-08-11 09:58:31 +0000
 categories: [DevOps, Docker]

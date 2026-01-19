@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Microservices: Graceful Shutdowns with Kubernetes and Go"
 date: 2025-01-11 15:42:22 +0000
 categories: [DevOps, Kubernetes]

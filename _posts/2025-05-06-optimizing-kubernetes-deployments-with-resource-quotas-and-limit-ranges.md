@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Deployments with Resource Quotas and Limit Ranges"
 date: 2025-05-06 08:49:58 +0000
 categories: [DevOps, Kubernetes]

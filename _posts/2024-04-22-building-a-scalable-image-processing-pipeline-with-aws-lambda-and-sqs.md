@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Image Processing Pipeline with AWS Lambda and SQS"
 date: 2024-04-22 17:29:20 +0000
 categories: [Cloud Computing, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Stateful Applications with Kubernetes StatefulSets: A Practical Guide"
 date: 2025-09-18 18:49:07 +0000
 categories: [DevOps, Kubernetes]

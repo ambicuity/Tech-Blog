@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Implementing Efficient Rate Limiting with Redis and Python"
 date: 2024-12-12 19:07:17 +0000
 categories: [Programming, DevOps]

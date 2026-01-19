@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with Docker, GitHub Actions, and Heroku"
 date: 2024-06-05 18:00:43 +0000
 categories: [DevOps, Cloud Computing]

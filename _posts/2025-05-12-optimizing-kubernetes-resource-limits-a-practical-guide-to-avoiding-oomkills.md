@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Resource Limits: A Practical Guide to Avoiding OOMKills"
 date: 2025-05-12 03:30:59 +0000
 categories: [DevOps, Kubernetes]

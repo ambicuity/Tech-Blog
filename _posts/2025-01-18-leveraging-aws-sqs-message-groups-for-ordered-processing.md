@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Leveraging AWS SQS Message Groups for Ordered Processing"
 date: 2025-01-18 16:18:39 +0000
 categories: [Cloud Computing, AWS]

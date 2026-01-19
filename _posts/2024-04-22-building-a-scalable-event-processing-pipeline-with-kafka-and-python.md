@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Event Processing Pipeline with Kafka and Python"
 date: 2024-04-22 01:50:05 +0000
 categories: [DevOps, Data Engineering]

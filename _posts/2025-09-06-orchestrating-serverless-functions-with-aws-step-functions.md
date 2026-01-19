@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Serverless Functions with AWS Step Functions"
 date: 2025-09-06 14:42:05 +0000
 categories: [Cloud Computing, DevOps]

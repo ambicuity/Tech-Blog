@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Scaling Redis with Kubernetes: A Practical Guide to Cluster Mode"
 date: 2024-11-15 17:37:42 +0000
 categories: [DevOps, Kubernetes]

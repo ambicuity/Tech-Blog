@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling PostgreSQL Read Performance with Read Replicas on AWS RDS"
 date: 2025-10-09 14:13:41 +0000
 categories: [Database, AWS]

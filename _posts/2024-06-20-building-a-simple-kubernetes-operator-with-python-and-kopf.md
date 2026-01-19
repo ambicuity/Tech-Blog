@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Kubernetes Operator with Python and Kopf"
 date: 2024-06-20 13:37:15 +0000
 categories: [DevOps, Kubernetes]

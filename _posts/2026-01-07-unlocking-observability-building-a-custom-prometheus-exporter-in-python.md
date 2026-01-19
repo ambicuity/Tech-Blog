@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Observability: Building a Custom Prometheus Exporter in Python"
 date: 2026-01-07 11:26:57 +0000
 categories: [DevOps, Monitoring]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing PostgreSQL Queries with EXPLAIN and Indexes"
 date: 2025-05-24 00:49:01 +0000
 categories: [Databases, DevOps]

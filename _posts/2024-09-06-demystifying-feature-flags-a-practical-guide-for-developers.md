@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Feature Flags: A Practical Guide for Developers"
 date: 2024-09-06 16:34:45 +0000
 categories: [DevOps, Software Engineering]

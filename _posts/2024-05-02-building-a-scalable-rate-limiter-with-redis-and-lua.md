@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Rate Limiter with Redis and Lua"
 date: 2024-05-02 15:01:52 +0000
 categories: [DevOps, System Design]

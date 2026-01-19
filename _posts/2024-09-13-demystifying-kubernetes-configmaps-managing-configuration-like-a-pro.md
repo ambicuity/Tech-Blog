@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes ConfigMaps: Managing Configuration Like a Pro"
 date: 2024-09-13 06:57:46 +0000
 categories: [DevOps, Kubernetes]

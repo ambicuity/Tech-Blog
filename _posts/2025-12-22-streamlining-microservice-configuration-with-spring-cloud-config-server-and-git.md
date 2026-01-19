@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Configuration with Spring Cloud Config Server and Git"
 date: 2025-12-22 03:21:09 +0000
 categories: [DevOps, Microservices]

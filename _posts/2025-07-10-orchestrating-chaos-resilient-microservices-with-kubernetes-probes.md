@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Resilient Microservices with Kubernetes Probes"
 date: 2025-07-10 13:35:10 +0000
 categories: [DevOps, Kubernetes]

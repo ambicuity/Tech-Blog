@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Jobs: One-Shot Tasks Done Right"
 date: 2025-03-04 09:46:17 +0000
 categories: [DevOps, Kubernetes]

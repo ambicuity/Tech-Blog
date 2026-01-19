@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Docker Images: Multi-Stage Builds for Efficiency and Security"
 date: 2024-12-29 18:19:05 +0000
 categories: [DevOps, Docker]

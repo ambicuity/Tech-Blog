@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Seamless Rollbacks: Blue/Green Deployments with Docker Compose"
 date: 2026-01-11 06:40:43 +0000
 categories: [DevOps, Docker]

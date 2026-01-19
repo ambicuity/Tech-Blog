@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Python API with Gunicorn and Nginx: A Practical Guide"
 date: 2025-11-05 05:22:16 +0000
 categories: [DevOps, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Fault-Tolerant Microservice with Kubernetes Probes and Rolling Updates"
 date: 2024-01-29 18:36:50 +0000
 categories: [DevOps, Kubernetes]

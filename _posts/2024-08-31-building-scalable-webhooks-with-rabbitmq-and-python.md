@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Webhooks with RabbitMQ and Python"
 date: 2024-08-31 01:39:28 +0000
 categories: [DevOps, Programming]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable APIs with Go and Redis Caching"
 date: 2024-08-10 00:42:54 +0000
 categories: [Programming, Go]

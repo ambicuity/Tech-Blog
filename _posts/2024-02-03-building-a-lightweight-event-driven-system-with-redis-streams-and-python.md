@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Lightweight Event-Driven System with Redis Streams and Python"
 date: 2024-02-03 20:50:51 +0000
 categories: [Programming, DevOps]

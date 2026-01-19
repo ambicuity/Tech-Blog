@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering PostgreSQL Row-Level Security: A Practical Guide"
 date: 2025-03-30 10:21:36 +0000
 categories: [Databases, Security]

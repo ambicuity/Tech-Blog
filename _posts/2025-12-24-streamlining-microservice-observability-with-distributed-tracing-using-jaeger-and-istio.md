@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Observability with Distributed Tracing using Jaeger and Istio"
 date: 2025-12-24 15:39:40 +0000
 categories: [DevOps, Microservices]

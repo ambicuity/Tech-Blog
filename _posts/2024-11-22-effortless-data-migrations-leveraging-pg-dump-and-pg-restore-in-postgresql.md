@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless Data Migrations: Leveraging pg_dump and pg_restore in PostgreSQL"
 date: 2024-11-22 06:01:43 +0000
 categories: [Databases, DevOps]

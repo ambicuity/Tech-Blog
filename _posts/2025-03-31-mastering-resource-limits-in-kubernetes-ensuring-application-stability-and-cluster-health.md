@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Resource Limits in Kubernetes: Ensuring Application Stability and Cluster Health"
 date: 2025-03-31 15:25:52 +0000
 categories: [DevOps, Kubernetes]

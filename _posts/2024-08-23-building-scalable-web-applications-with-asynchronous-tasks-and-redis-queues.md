@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Web Applications with Asynchronous Tasks and Redis Queues"
 date: 2024-08-23 10:31:12 +0000
 categories: [Backend, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Web Scraping Pipelines with Scrapy and Celery"
 date: 2024-08-29 15:47:13 +0000
 categories: [Programming, Python]

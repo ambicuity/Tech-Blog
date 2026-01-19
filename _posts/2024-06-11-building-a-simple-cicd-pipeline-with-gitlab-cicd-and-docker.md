@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with Gitlab CI/CD and Docker"
 date: 2024-06-11 19:59:44 +0000
 categories: [DevOps, CI/CD]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Scaling Python Web Apps with Gunicorn and Nginx on Linux"
 date: 2024-11-14 22:41:27 +0000
 categories: [DevOps, Python]

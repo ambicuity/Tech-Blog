@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Pod Affinity: Scheduling for Performance and Resilience"
 date: 2025-03-09 04:50:03 +0000
 categories: [DevOps, Kubernetes]

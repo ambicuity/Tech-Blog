@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling PostgreSQL with Connection Pooling using PgBouncer"
 date: 2025-10-12 22:13:12 +0000
 categories: [Database, DevOps]

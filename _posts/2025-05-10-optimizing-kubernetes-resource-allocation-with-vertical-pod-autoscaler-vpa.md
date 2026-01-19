@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Resource Allocation with Vertical Pod Autoscaler (VPA)"
 date: 2025-05-10 10:15:44 +0000
 categories: [DevOps, Kubernetes]

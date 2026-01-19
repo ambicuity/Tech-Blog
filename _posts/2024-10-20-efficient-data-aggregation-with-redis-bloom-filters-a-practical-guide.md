@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Data Aggregation with Redis Bloom Filters: A Practical Guide"
 date: 2024-10-20 11:05:07 +0000
 categories: [Databases, DevOps]

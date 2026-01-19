@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Blue/Green Deployments with Docker and Nginx for Zero-Downtime Releases"
 date: 2025-01-27 01:36:55 +0000
 categories: [DevOps, Docker]

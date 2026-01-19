@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Event-Driven Architectures with Kafka and Python: A Practical Guide"
 date: 2024-06-29 13:29:47 +0000
 categories: [DevOps, Data Engineering]

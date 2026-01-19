@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Task Queue with Redis Streams and Python"
 date: 2024-05-15 17:43:09 +0000
 categories: [DevOps, Programming]

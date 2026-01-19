@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Container Resource Management with Kubernetes Resource Quotas"
 date: 2024-10-18 23:18:52 +0000
 categories: [DevOps, Kubernetes]

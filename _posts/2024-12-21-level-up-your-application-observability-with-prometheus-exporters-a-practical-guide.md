@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Application Observability with Prometheus Exporters: A Practical Guide"
 date: 2024-12-21 19:10:49 +0000
 categories: [DevOps, Monitoring]

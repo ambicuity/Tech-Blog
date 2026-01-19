@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API Gateway with Kong and Consul"
 date: 2024-02-22 02:54:54 +0000
 categories: [DevOps, Microservices]

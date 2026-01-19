@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Microservices with gRPC and Protocol Buffers"
 date: 2024-08-15 11:48:56 +0000
 categories: [Microservices, Programming]

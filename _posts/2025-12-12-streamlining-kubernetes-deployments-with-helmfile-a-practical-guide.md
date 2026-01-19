@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Kubernetes Deployments with Helmfile: A Practical Guide"
 date: 2025-12-12 07:17:38 +0000
 categories: [DevOps, Kubernetes]

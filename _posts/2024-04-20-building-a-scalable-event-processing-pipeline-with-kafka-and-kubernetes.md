@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Event Processing Pipeline with Kafka and Kubernetes"
 date: 2024-04-20 12:16:49 +0000
 categories: [DevOps, Kubernetes]

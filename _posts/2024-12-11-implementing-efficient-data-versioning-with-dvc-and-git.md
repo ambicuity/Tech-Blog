@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Implementing Efficient Data Versioning with DVC and Git"
 date: 2024-12-11 20:08:02 +0000
 categories: [DevOps, Machine Learning]

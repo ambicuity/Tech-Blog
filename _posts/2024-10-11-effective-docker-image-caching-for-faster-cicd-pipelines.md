@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effective Docker Image Caching for Faster CI/CD Pipelines"
 date: 2024-10-11 12:11:36 +0000
 categories: [DevOps, Docker]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Zero-Downtime Deployments with Kubernetes Blue/Green Strategy"
 date: 2025-09-26 13:23:24 +0000
 categories: [DevOps, Kubernetes]

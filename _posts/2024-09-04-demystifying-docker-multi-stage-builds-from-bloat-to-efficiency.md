@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Docker Multi-Stage Builds: From Bloat to Efficiency"
 date: 2024-09-04 06:49:14 +0000
 categories: [DevOps, Docker]

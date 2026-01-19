@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Real-Time Sentiment Analysis Pipeline with Kafka, Spark Streaming, and NLTK"
 date: 2024-02-20 20:17:39 +0000
 categories: [Data Engineering, Machine Learning]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Python Web App Performance with Redis Caching"
 date: 2024-01-24 08:10:04 +0000
 categories: [Programming, Python]

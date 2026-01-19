@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Rolling Updates with Kubernetes Deployments: A Practical Guide"
 date: 2025-04-02 15:59:07 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating State with Docker Compose for Scalable Applications"
 date: 2025-09-11 06:43:51 +0000
 categories: [DevOps, Docker]

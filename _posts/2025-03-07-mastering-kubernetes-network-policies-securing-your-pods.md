@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Network Policies: Securing Your Pods"
 date: 2025-03-07 22:52:47 +0000
 categories: [DevOps, Kubernetes]

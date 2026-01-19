@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Python Microservices Performance with gRPC: A Practical Guide"
 date: 2024-01-18 19:00:03 +0000
 categories: [Programming, Microservices]

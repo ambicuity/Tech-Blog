@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Simple Custom Operator with Python and Kubebuilder"
 date: 2024-09-26 01:15:03 +0000
 categories: [DevOps, Kubernetes]

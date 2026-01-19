@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Ingress: Routing Traffic with Nginx Ingress Controller"
 date: 2025-03-03 00:06:02 +0000
 categories: [DevOps, Kubernetes]

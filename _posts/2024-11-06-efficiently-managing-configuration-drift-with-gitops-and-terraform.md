@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Managing Configuration Drift with GitOps and Terraform"
 date: 2024-11-06 02:50:55 +0000
 categories: [DevOps, Infrastructure-as-Code]

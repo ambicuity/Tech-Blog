@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Managing Docker Container Dependencies with Docker Compose"
 date: 2025-07-09 20:30:55 +0000
 categories: [DevOps, Docker]

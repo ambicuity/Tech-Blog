@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Infrastructure as Code with Terraform: A Practical Guide to AWS EC2"
 date: 2024-09-11 10:16:30 +0000
 categories: [DevOps, Cloud Computing]

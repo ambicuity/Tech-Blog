@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Serverless URL Shortener with AWS Lambda and DynamoDB"
 date: 2024-05-29 21:59:42 +0000
 categories: [Cloud Computing, Serverless]

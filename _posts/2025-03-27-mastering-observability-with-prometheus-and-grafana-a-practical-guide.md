@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Observability with Prometheus and Grafana: A Practical Guide"
 date: 2025-03-27 00:57:06 +0000
 categories: [DevOps, Monitoring]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Robust Serverless Applications: A Practical Guide to Graceful Shutdowns on AWS Lambda"
 date: 2025-10-03 17:55:40 +0000
 categories: [DevOps, AWS]

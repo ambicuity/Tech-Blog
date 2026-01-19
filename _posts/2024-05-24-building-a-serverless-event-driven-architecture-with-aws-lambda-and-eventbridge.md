@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Serverless Event-Driven Architecture with AWS Lambda and EventBridge"
 date: 2024-05-24 17:42:41 +0000
 categories: [Cloud Computing, Serverless]

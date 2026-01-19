@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Scaling PostgreSQL Reads with PgBouncer in Kubernetes"
 date: 2024-11-12 17:58:12 +0000
 categories: [DevOps, Kubernetes]

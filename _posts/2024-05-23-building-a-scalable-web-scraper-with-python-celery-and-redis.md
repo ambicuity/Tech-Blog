@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Web Scraper with Python, Celery, and Redis"
 date: 2024-05-23 01:33:25 +0000
 categories: [Programming, Python]

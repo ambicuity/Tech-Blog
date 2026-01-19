@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Builds: A Layered Approach to Speed and Efficiency"
 date: 2025-04-07 22:46:08 +0000
 categories: [DevOps, Docker]

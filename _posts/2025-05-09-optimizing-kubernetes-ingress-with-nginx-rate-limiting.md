@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Ingress with Nginx Rate Limiting"
 date: 2025-05-09 03:06:29 +0000
 categories: [DevOps, Kubernetes]

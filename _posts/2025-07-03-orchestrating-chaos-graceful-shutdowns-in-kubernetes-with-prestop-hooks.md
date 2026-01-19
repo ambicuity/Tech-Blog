@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Graceful Shutdowns in Kubernetes with PreStop Hooks"
 date: 2025-07-03 07:57:54 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Robust Containerized Applications with Docker Health Checks"
 date: 2024-07-24 14:26:07 +0000
 categories: [DevOps, Docker]

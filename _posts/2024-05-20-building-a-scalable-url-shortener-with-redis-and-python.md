@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable URL Shortener with Redis and Python"
 date: 2024-05-20 10:51:55 +0000
 categories: [System Design, Programming]

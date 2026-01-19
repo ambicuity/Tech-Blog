@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Testing Microservice Resilience with Chaos Mesh"
 date: 2025-07-12 19:25:25 +0000
 categories: [DevOps, Kubernetes]

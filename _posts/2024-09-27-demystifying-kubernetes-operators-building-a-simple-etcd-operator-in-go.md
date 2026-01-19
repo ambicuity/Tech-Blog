@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Simple Etcd Operator in Go"
 date: 2024-09-27 18:00:18 +0000
 categories: [DevOps, Kubernetes]

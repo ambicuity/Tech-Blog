@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Managing PostgreSQL Connection Pools with PgBouncer"
 date: 2024-11-08 11:57:26 +0000
 categories: [Databases, DevOps]

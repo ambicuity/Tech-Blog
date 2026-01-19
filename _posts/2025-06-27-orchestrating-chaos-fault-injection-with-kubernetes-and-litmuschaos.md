@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Fault Injection with Kubernetes and LitmusChaos"
 date: 2025-06-27 01:51:52 +0000
 categories: [DevOps, Kubernetes]

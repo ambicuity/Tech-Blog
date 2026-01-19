@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effective Configuration Management with Kubernetes ConfigMaps and Secrets"
 date: 2024-10-07 00:08:50 +0000
 categories: [DevOps, Kubernetes]

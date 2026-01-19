@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Event-Driven System with RabbitMQ and Python"
 date: 2024-06-12 23:19:59 +0000
 categories: [Software Engineering, Messaging]

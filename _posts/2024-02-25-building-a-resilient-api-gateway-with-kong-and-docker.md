@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API Gateway with Kong and Docker"
 date: 2024-02-25 04:52:24 +0000
 categories: [DevOps, Microservices]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Git's Power: Interactive Rebasing for Cleaner Commits"
 date: 2026-01-03 21:14:27 +0000
 categories: [DevOps, Version Control]

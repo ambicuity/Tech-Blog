@@ -51,6 +51,7 @@ def get_blog_prompt():
 The blog post MUST follow this exact structure in Markdown format with Jekyll front matter:
 
 ---
+layout: post
 title: "[Your Creative Title Here]"
 date: {current_date_str}
 categories: [Category1, Category2]

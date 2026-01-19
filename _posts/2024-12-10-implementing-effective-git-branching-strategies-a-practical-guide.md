@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Implementing Effective Git Branching Strategies: A Practical Guide"
 date: 2024-12-10 08:35:46 +0000
 categories: [DevOps, Version Control]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless Rollbacks in Kubernetes with RollingUpdate and Readiness Probes"
 date: 2024-11-26 20:11:29 +0000
 categories: [DevOps, Kubernetes]

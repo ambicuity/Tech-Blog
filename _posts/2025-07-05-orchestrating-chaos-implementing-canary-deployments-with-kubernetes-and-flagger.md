@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Implementing Canary Deployments with Kubernetes and Flagger"
 date: 2025-07-05 10:43:09 +0000
 categories: [DevOps, Kubernetes]

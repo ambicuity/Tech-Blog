@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Building a Resilient API Gateway with Istio"
 date: 2025-06-15 05:27:50 +0000
 categories: [DevOps, Kubernetes]

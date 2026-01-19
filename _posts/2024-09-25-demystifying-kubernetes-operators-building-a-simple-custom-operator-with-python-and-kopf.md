@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Simple Custom Operator with Python and Kopf"
 date: 2024-09-25 05:34:48 +0000
 categories: [DevOps, Kubernetes]

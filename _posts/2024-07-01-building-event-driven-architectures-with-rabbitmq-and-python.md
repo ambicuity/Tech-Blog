@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Event-Driven Architectures with RabbitMQ and Python"
 date: 2024-07-01 17:53:18 +0000
 categories: [DevOps, Programming]

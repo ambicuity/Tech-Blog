@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Git Hooks: Automate Your Workflow Like a Pro"
 date: 2024-09-08 17:04:00 +0000
 categories: [DevOps, VersionControl]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Event-Driven System with Redis Pub/Sub and Python"
 date: 2024-06-14 04:19:14 +0000
 categories: [Programming, System Design]

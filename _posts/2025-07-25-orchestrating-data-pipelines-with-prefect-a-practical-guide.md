@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Data Pipelines with Prefect: A Practical Guide"
 date: 2025-07-25 22:28:43 +0000
 categories: [Data Engineering, Python]

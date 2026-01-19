@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Robust Error Handling in Go: Beyond the Basics"
 date: 2025-09-30 13:53:10 +0000
 categories: [Programming, Go]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effective Docker Image Layering: Optimizing for Speed and Efficiency"
 date: 2024-10-12 20:32:51 +0000
 categories: [DevOps, Docker]

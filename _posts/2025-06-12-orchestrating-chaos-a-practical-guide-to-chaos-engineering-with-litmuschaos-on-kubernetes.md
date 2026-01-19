@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: A Practical Guide to Chaos Engineering with LitmusChaos on Kubernetes"
 date: 2025-06-12 03:10:20 +0000
 categories: [DevOps, Kubernetes]

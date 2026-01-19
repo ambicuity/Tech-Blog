@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Container Resource Limits: Ensuring Stability in Kubernetes"
 date: 2025-01-28 03:41:10 +0000
 categories: [DevOps, Kubernetes]

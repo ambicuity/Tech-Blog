@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating PostgreSQL Backups to AWS S3 with WAL Archiving"
 date: 2024-01-09 19:49:31 +0000
 categories: [DevOps, PostgreSQL]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Python Performance with Multiprocessing: A Practical Guide"
 date: 2024-01-23 08:46:49 +0000
 categories: [Programming, Python]

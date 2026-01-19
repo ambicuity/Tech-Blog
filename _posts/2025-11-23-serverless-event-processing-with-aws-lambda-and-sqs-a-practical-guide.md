@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Serverless Event Processing with AWS Lambda and SQS: A Practical Guide"
 date: 2025-11-23 22:29:19 +0000
 categories: [Cloud Computing, DevOps]

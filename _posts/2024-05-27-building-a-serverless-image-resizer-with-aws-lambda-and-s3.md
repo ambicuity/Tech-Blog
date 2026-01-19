@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Serverless Image Resizer with AWS Lambda and S3"
 date: 2024-05-27 10:10:11 +0000
 categories: [Cloud Computing, DevOps]

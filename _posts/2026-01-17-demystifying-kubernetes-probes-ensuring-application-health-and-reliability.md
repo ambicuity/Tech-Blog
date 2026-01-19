@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Probes: Ensuring Application Health and Reliability"
 date: 2026-01-17 08:31:44 +0000
 categories: [DevOps, Kubernetes]

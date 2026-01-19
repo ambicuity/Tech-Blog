@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Robust Python CLIs with Typer and Rich"
 date: 2024-07-28 14:53:52 +0000
 categories: [Programming, Python]

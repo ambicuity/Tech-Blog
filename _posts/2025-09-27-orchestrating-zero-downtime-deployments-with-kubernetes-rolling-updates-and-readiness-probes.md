@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Zero-Downtime Deployments with Kubernetes Rolling Updates and Readiness Probes"
 date: 2025-09-27 10:55:39 +0000
 categories: [DevOps, Kubernetes]

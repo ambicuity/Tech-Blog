@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating PostgreSQL Backups with Kubernetes CronJobs and AWS S3"
 date: 2025-08-12 12:51:46 +0000
 categories: [DevOps, Kubernetes]

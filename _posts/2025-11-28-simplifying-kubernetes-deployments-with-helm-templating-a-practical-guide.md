@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Simplifying Kubernetes Deployments with Helm Templating: A Practical Guide"
 date: 2025-11-28 03:45:05 +0000
 categories: [DevOps, Kubernetes]

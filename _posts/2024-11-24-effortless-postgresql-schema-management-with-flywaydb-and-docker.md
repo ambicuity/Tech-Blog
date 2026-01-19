@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless PostgreSQL Schema Management with FlywayDB and Docker"
 date: 2024-11-24 16:06:14 +0000
 categories: [DevOps, Database]

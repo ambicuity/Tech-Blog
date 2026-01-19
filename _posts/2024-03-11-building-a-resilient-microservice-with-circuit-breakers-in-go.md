@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Microservice with Circuit Breakers in Go"
 date: 2024-03-11 08:56:57 +0000
 categories: [Programming, Go]

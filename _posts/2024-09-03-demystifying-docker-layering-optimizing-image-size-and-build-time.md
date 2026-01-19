@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Docker Layering: Optimizing Image Size and Build Time"
 date: 2024-09-03 05:38:59 +0000
 categories: [DevOps, Docker]

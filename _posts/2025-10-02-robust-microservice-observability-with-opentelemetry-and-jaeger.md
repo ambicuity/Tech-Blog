@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Robust Microservice Observability with OpenTelemetry and Jaeger"
 date: 2025-10-02 15:14:25 +0000
 categories: [DevOps, Observability]

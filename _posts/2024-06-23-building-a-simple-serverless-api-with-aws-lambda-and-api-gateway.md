@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Serverless API with AWS Lambda and API Gateway"
 date: 2024-06-23 05:21:46 +0000
 categories: [Cloud Computing, DevOps]

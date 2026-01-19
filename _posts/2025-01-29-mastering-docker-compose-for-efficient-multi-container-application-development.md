@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Compose for Efficient Multi-Container Application Development"
 date: 2025-01-29 08:58:26 +0000
 categories: [DevOps, Docker]

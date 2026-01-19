@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your FastAPI: Dependency Injection with a Twist"
 date: 2025-01-02 07:40:51 +0000
 categories: [Programming, Python]

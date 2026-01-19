@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Resource Requests and Limits: A Practical Guide"
 date: 2025-03-18 16:11:34 +0000
 categories: [DevOps, Kubernetes]

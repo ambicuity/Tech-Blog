@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Application Configuration with Kubernetes ConfigMaps and Secrets"
 date: 2025-06-01 05:04:18 +0000
 categories: [DevOps, Kubernetes]

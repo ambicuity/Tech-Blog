@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Redis Cache with Cluster Mode: A Practical Guide"
 date: 2025-11-17 21:03:18 +0000
 categories: [DevOps, Databases]

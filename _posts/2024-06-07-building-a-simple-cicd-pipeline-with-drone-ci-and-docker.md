@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with Drone CI and Docker"
 date: 2024-06-07 00:53:58 +0000
 categories: [DevOps, CI/CD]

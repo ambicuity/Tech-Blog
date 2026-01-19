@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Builds with Multi-Stage Builds and BuildKit"
 date: 2025-04-09 16:59:23 +0000
 categories: [DevOps, Docker]

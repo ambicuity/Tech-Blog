@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Message Queue with Redis Streams and Python"
 date: 2024-04-28 21:56:21 +0000
 categories: [DevOps, Programming]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Redis with Redis Sentinel for High Availability"
 date: 2025-11-01 12:26:30 +0000
 categories: [DevOps, Databases]

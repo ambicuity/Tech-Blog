@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust and Scalable API Gateway with Kong"
 date: 2024-03-20 23:28:44 +0000
 categories: [DevOps, API]

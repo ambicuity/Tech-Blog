@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust Alerting System with Prometheus and Alertmanager"
 date: 2024-03-19 19:49:29 +0000
 categories: [DevOps, Monitoring]

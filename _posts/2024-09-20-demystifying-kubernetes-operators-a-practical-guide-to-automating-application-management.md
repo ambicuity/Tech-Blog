@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: A Practical Guide to Automating Application Management"
 date: 2024-09-20 07:07:02 +0000
 categories: [DevOps, Kubernetes]

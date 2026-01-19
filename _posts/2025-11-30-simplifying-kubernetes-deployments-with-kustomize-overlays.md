@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Simplifying Kubernetes Deployments with Kustomize Overlays"
 date: 2025-11-30 17:35:36 +0000
 categories: [DevOps, Kubernetes]

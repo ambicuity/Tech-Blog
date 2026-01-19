@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Serverless Functions with AWS Step Functions and API Gateway"
 date: 2025-09-05 15:44:50 +0000
 categories: [Cloud Computing, Serverless]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Asynchronous Tasks with Celery and Redis: A Practical Guide"
 date: 2025-06-02 08:18:33 +0000
 categories: [Programming, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless Zero-Downtime Deployments with Rolling Updates in Kubernetes"
 date: 2024-11-29 06:54:00 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Supercharge Your Python Logging with Structured Data and Loki"
 date: 2026-01-01 08:10:56 +0000
 categories: [Programming, DevOps]

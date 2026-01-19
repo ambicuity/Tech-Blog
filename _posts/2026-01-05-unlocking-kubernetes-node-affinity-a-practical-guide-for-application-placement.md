@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Kubernetes Node Affinity: A Practical Guide for Application Placement"
 date: 2026-01-05 14:55:42 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Container Image Builds with BuildKit and Kaniko"
 date: 2025-04-04 21:34:37 +0000
 categories: [DevOps, Docker]

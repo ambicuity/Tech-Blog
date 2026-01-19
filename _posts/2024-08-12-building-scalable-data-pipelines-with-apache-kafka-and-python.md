@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable Data Pipelines with Apache Kafka and Python"
 date: 2024-08-12 21:45:25 +0000
 categories: [Data Engineering, Python]

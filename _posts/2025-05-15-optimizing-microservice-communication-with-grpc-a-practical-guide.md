@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Microservice Communication with gRPC: A Practical Guide"
 date: 2025-05-15 04:43:30 +0000
 categories: [Microservices, Communication]

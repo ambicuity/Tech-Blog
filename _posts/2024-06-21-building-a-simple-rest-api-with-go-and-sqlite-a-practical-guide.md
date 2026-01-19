@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple REST API with Go and SQLite: A Practical Guide"
 date: 2024-06-21 21:02:31 +0000
 categories: [Programming, Go]

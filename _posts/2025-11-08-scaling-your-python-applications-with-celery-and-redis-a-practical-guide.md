@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Python Applications with Celery and Redis: A Practical Guide"
 date: 2025-11-08 04:32:47 +0000
 categories: [Programming, DevOps]

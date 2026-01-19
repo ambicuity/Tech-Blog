@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Robust Microservices with Kong API Gateway and Health Checks"
 date: 2024-07-26 00:05:22 +0000
 categories: [DevOps, Microservices]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Message Queue with Redis Streams"
 date: 2024-03-09 14:22:42 +0000
 categories: [DevOps, Data Engineering]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Liveness and Readiness Probes: Keeping Your Pods Healthy"
 date: 2024-09-19 00:31:47 +0000
 categories: [DevOps, Kubernetes]

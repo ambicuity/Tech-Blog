@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Rate Limiter with Redis and Python: Protecting Your APIs from Abuse"
 date: 2024-02-19 04:12:23 +0000
 categories: [DevOps, Programming]

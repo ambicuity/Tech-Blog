@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Container Orchestration with Docker Compose Profiles"
 date: 2024-10-17 06:07:37 +0000
 categories: [DevOps, Docker]

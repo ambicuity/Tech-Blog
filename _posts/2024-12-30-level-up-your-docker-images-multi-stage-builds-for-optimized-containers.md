@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Docker Images: Multi-Stage Builds for Optimized Containers"
 date: 2024-12-30 20:06:20 +0000
 categories: [DevOps, Docker]

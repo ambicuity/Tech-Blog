@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Development with Dockerized PostgreSQL and pgAdmin"
 date: 2025-12-11 00:23:23 +0000
 categories: [DevOps, Databases]

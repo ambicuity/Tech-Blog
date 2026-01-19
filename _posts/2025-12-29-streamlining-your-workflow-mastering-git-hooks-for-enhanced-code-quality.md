@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Your Workflow: Mastering Git Hooks for Enhanced Code Quality"
 date: 2025-12-29 04:07:26 +0000
 categories: [DevOps, Git]

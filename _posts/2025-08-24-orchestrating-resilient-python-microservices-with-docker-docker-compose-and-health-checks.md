@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Resilient Python Microservices with Docker, Docker Compose, and Health Checks"
 date: 2025-08-24 08:49:48 +0000
 categories: [DevOps, Python]

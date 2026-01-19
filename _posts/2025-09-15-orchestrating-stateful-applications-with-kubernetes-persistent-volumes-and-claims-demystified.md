@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Stateful Applications with Kubernetes: Persistent Volumes and Claims Demystified"
 date: 2025-09-15 21:08:37 +0000
 categories: [DevOps, Kubernetes]

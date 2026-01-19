@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating Infrastructure with Terraform: From Zero to Production"
 date: 2024-01-06 19:05:01 +0000
 categories: [DevOps, Cloud Computing]

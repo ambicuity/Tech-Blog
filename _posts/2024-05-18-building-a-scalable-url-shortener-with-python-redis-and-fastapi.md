@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable URL Shortener with Python, Redis, and FastAPI"
 date: 2024-05-18 15:28:39 +0000
 categories: [Programming, System Design]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: A Practical Guide to Kubernetes Resource Limits and Requests"
 date: 2025-06-14 14:10:35 +0000
 categories: [DevOps, Kubernetes]

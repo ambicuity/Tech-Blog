@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Microservice with Go and Docker: A Practical Guide"
 date: 2024-04-30 09:39:36 +0000
 categories: [Programming, DevOps]

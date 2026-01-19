@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Robust Pipelines with Docker Compose: Beyond Basic Development"
 date: 2024-07-27 07:51:37 +0000
 categories: [DevOps, Docker]

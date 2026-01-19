@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Python Logging: Beyond Print Statements with Structlog"
 date: 2025-01-15 03:49:53 +0000
 categories: [Programming, Python]

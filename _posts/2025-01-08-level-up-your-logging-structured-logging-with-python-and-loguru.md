@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Logging: Structured Logging with Python and Loguru"
 date: 2025-01-08 17:47:52 +0000
 categories: [Programming, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Robust Task Queues with Redis and Python: A Practical Guide"
 date: 2025-10-05 04:10:55 +0000
 categories: [Programming, DevOps]

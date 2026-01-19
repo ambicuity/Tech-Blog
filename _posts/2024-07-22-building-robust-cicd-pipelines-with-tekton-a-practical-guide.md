@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Robust CI/CD Pipelines with Tekton: A Practical Guide"
 date: 2024-07-22 18:49:51 +0000
 categories: [DevOps, Kubernetes]

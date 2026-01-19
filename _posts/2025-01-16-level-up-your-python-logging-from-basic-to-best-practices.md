@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Python Logging: From Basic to Best Practices"
 date: 2025-01-16 16:31:08 +0000
 categories: [Programming, Python]

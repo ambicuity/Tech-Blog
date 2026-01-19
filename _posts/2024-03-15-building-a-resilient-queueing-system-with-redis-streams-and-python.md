@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Queueing System with Redis Streams and Python"
 date: 2024-03-15 12:11:43 +0000
 categories: [DevOps, Programming]

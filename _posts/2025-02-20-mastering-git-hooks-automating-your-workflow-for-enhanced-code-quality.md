@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Git Hooks: Automating Your Workflow for Enhanced Code Quality"
 date: 2025-02-20 15:24:15 +0000
 categories: [DevOps, Git]

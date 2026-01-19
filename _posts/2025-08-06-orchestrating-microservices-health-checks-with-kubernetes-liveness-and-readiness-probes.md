@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Microservices Health Checks with Kubernetes Liveness and Readiness Probes"
 date: 2025-08-06 12:21:45 +0000
 categories: [DevOps, Kubernetes]

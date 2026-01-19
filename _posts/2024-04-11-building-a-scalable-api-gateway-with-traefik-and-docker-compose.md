@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable API Gateway with Traefik and Docker Compose"
 date: 2024-04-11 17:43:18 +0000
 categories: [DevOps, Cloud Native]

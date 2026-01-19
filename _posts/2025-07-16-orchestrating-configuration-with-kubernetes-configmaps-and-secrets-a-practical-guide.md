@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Configuration with Kubernetes ConfigMaps and Secrets: A Practical Guide"
 date: 2025-07-16 10:28:11 +0000
 categories: [DevOps, Kubernetes]

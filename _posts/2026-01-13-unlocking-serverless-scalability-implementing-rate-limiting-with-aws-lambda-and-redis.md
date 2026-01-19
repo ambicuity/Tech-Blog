@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Serverless Scalability: Implementing Rate Limiting with AWS Lambda and Redis"
 date: 2026-01-13 04:22:58 +0000
 categories: [Cloud Computing, DevOps]

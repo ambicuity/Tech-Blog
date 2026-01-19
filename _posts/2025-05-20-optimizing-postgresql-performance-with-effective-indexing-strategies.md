@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing PostgreSQL Performance with Effective Indexing Strategies"
 date: 2025-05-20 02:54:15 +0000
 categories: [Databases, PostgreSQL]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Redis Sentinel Failover with Kubernetes"
 date: 2025-08-20 12:39:02 +0000
 categories: [DevOps, Kubernetes]

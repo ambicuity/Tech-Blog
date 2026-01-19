@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Minimalist CI/CD Pipeline with GitHub Actions and Docker Compose"
 date: 2024-02-09 23:23:52 +0000
 categories: [DevOps, CI/CD]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Operators: Building a Basic Redis Operator in Go"
 date: 2024-09-23 13:18:33 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Data Processing with Python's Generator Functions"
 date: 2024-10-27 15:35:24 +0000
 categories: [Programming, Python]

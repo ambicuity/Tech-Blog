@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking the Power of Redis Streams: Building Real-Time Data Pipelines"
 date: 2026-01-16 10:18:29 +0000
 categories: [Database, DevOps]

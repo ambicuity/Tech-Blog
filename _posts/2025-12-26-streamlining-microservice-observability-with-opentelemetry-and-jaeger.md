@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Observability with OpenTelemetry and Jaeger"
 date: 2025-12-26 14:13:55 +0000
 categories: [DevOps, Microservices]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Rate Limiter with Redis and Python"
 date: 2024-05-03 12:25:07 +0000
 categories: [DevOps, Programming]

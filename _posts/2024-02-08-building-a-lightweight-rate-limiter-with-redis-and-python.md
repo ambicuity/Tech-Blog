@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Lightweight Rate Limiter with Redis and Python"
 date: 2024-02-08 08:02:36 +0000
 categories: [Programming, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Simplifying Kubernetes Deployments with Kustomize: A Practical Guide"
 date: 2025-11-29 05:13:20 +0000
 categories: [DevOps, Kubernetes]

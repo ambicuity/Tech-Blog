@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Serverless Event-Driven Workflow with AWS Lambda, SQS, and EventBridge"
 date: 2024-05-26 02:32:56 +0000
 categories: [Cloud Computing, DevOps]

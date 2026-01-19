@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Redis with Consistent Hashing and Twemproxy"
 date: 2025-10-28 20:25:00 +0000
 categories: [DevOps, Databases]

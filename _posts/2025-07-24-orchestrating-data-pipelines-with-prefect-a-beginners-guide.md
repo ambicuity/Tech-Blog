@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Data Pipelines with Prefect: A Beginner's Guide"
 date: 2025-07-24 13:24:27 +0000
 categories: [Data Engineering, DevOps]

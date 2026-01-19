@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Compose for Local Development: Beyond the Basics"
 date: 2025-02-01 15:28:56 +0000
 categories: [DevOps, Docker]

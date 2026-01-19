@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Data Pipelines with Prefect: A Beginner's Guide"
 date: 2025-12-09 11:10:07 +0000
 categories: [DevOps, Python]

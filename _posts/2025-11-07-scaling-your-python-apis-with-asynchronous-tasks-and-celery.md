@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Your Python APIs with Asynchronous Tasks and Celery"
 date: 2025-11-07 08:45:31 +0000
 categories: [Programming, Python]

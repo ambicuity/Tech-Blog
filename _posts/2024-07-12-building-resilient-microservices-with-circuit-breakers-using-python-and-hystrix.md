@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient Microservices with Circuit Breakers using Python and Hystrix"
 date: 2024-07-12 03:37:04 +0000
 categories: [Programming, Microservices]

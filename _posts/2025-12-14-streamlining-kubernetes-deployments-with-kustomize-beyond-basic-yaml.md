@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Kubernetes Deployments with Kustomize: Beyond Basic YAML"
 date: 2025-12-14 18:47:53 +0000
 categories: [DevOps, Kubernetes]

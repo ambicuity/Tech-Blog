@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Python Performance with Memoryview and Zero-Copy Techniques"
 date: 2024-01-22 02:41:33 +0000
 categories: [Programming, Python]

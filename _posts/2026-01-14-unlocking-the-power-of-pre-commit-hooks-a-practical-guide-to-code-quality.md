@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking the Power of Pre-Commit Hooks: A Practical Guide to Code Quality"
 date: 2026-01-14 23:54:14 +0000
 categories: [DevOps, Software Development]

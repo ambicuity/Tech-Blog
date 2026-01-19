@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Ingress: A Practical Guide with Nginx Ingress Controller"
 date: 2025-02-28 01:35:31 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Your Python Microservices with Docker Compose and Traefik"
 date: 2025-09-22 04:09:38 +0000
 categories: [DevOps, Docker]

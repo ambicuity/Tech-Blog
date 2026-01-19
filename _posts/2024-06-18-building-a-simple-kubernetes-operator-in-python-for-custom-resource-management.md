@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Kubernetes Operator in Python for Custom Resource Management"
 date: 2024-06-18 16:40:00 +0000
 categories: [DevOps, Kubernetes]

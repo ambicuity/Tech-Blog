@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating Canary Deployments with Kubernetes and Argo Rollouts"
 date: 2024-01-02 11:30:15 +0000
 categories: [DevOps, Kubernetes]

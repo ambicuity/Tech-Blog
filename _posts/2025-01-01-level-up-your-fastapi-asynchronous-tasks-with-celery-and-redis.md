@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your FastAPI: Asynchronous Tasks with Celery and Redis"
 date: 2025-01-01 18:00:36 +0000
 categories: [Programming, Python]

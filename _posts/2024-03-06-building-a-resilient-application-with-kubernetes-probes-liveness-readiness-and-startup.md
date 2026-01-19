@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Application with Kubernetes Probes: Liveness, Readiness, and Startup"
 date: 2024-03-06 09:42:11 +0000
 categories: [DevOps, Kubernetes]

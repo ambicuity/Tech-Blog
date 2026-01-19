@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Harnessing PostgreSQL LISTEN/NOTIFY for Real-Time Application Updates"
 date: 2024-12-02 11:11:30 +0000
 categories: [Databases, DevOps]

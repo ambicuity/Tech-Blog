@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Liveness and Readiness Probes for Robust Applications"
 date: 2025-03-06 13:43:32 +0000
 categories: [DevOps, Kubernetes]

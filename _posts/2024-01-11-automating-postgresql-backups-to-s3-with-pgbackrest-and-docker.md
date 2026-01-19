@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating PostgreSQL Backups to S3 with pgBackRest and Docker"
 date: 2024-01-11 21:09:46 +0000
 categories: [DevOps, Databases]

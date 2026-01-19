@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Microservice Communication with gRPC: A Practical Guide"
 date: 2025-08-03 17:09:14 +0000
 categories: [Microservices, DevOps]

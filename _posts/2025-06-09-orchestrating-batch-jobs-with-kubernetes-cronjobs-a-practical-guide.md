@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Batch Jobs with Kubernetes CronJobs: A Practical Guide"
 date: 2025-06-09 19:39:49 +0000
 categories: [DevOps, Kubernetes]

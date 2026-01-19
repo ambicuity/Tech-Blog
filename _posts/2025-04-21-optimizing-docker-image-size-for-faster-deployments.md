@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Image Size for Faster Deployments"
 date: 2025-04-21 11:58:25 +0000
 categories: [DevOps, Docker]

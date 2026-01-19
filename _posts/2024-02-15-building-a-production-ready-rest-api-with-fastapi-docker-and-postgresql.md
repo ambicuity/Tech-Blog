@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Production-Ready REST API with FastAPI, Docker, and PostgreSQL"
 date: 2024-02-15 20:26:53 +0000
 categories: [Backend, DevOps]

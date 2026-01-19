@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Seamless Rollbacks in Kubernetes with Canary Deployments"
 date: 2025-09-02 21:23:20 +0000
 categories: [DevOps, Kubernetes]

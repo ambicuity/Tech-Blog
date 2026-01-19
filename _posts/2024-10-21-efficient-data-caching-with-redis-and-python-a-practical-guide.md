@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Data Caching with Redis and Python: A Practical Guide"
 date: 2024-10-21 23:25:23 +0000
 categories: [Programming, Data Engineering]

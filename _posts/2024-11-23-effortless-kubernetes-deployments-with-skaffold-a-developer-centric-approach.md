@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless Kubernetes Deployments with Skaffold: A Developer-Centric Approach"
 date: 2024-11-23 23:50:59 +0000
 categories: [DevOps, Kubernetes]

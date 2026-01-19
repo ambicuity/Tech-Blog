@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Recommendation System with Redis and Python"
 date: 2024-05-06 01:41:37 +0000
 categories: [Data Science, System Design]

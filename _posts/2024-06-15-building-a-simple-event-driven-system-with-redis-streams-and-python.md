@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple Event-Driven System with Redis Streams and Python"
 date: 2024-06-15 07:37:30 +0000
 categories: [Backend, Distributed Systems]

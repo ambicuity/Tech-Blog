@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Implementing Canary Deployments with Kubernetes and Istio"
 date: 2024-12-08 20:12:31 +0000
 categories: [DevOps, Kubernetes]

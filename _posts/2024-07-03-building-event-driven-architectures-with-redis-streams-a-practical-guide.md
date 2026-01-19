@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Event-Driven Architectures with Redis Streams: A Practical Guide"
 date: 2024-07-03 22:54:33 +0000
 categories: [System Design, Data Engineering]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Demystifying Kubernetes Service Discovery with CoreDNS"
 date: 2024-10-02 04:32:04 +0000
 categories: [DevOps, Kubernetes]

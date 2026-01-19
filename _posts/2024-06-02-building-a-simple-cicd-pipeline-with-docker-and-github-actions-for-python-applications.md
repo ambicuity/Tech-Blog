@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with Docker and GitHub Actions for Python Applications"
 date: 2024-06-02 18:57:12 +0000
 categories: [DevOps, CI/CD]

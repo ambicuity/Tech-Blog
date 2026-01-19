@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering PostgreSQL Connection Pooling with PgBouncer"
 date: 2025-03-28 07:02:21 +0000
 categories: [Databases, DevOps]

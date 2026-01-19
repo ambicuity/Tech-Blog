@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Docker Game: Multi-Stage Builds for Smaller, Faster Images"
 date: 2024-12-27 17:43:50 +0000
 categories: [DevOps, Docker]

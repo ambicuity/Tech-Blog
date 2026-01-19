@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Multi-Stage Docker Builds for Smaller, Secure Images"
 date: 2025-03-25 09:37:51 +0000
 categories: [DevOps, Docker]

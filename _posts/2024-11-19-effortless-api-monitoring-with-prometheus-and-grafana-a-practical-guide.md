@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless API Monitoring with Prometheus and Grafana: A Practical Guide"
 date: 2024-11-19 07:03:13 +0000
 categories: [DevOps, Monitoring]

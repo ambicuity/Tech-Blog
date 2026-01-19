@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Level Up Your Logging: Centralized Logging with Fluentd and Elasticsearch"
 date: 2025-01-07 03:18:37 +0000
 categories: [DevOps, Observability]

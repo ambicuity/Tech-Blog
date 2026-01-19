@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient API with Rate Limiting using Redis and Python"
 date: 2024-03-03 07:27:41 +0000
 categories: [Programming, DevOps]

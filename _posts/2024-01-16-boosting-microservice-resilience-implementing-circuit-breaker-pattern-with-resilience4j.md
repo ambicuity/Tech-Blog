@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Boosting Microservice Resilience: Implementing Circuit Breaker Pattern with Resilience4j"
 date: 2024-01-16 05:09:32 +0000
 categories: [Java, Microservices]

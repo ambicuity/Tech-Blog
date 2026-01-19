@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust Multi-Stage Dockerfile for Python Applications"
 date: 2024-04-02 18:12:46 +0000
 categories: [DevOps, Docker]

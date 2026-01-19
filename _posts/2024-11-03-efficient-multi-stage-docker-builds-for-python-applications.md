@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Multi-Stage Docker Builds for Python Applications"
 date: 2024-11-03 00:41:25 +0000
 categories: [DevOps, Docker]

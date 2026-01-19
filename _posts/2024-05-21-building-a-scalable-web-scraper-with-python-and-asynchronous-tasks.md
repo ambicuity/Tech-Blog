@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Web Scraper with Python and Asynchronous Tasks"
 date: 2024-05-21 05:19:10 +0000
 categories: [Programming, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Robust Message Queue with Redis Streams and Python"
 date: 2024-03-31 19:39:31 +0000
 categories: [DevOps, Programming]

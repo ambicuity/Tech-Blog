@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Compose: From Zero to Orchestration Hero"
 date: 2025-02-03 04:53:11 +0000
 categories: [DevOps, Docker]

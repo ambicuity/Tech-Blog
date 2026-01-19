@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Resource Limits and Requests for Optimal Pod Performance"
 date: 2025-03-12 09:04:33 +0000
 categories: [DevOps, Kubernetes]

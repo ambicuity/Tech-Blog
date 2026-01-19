@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering the Art of Rolling Updates in Kubernetes with Canary Deployments"
 date: 2025-04-04 00:57:22 +0000
 categories: [DevOps, Kubernetes]

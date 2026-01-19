@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable REST APIs with FastAPI and Asynchronous Tasks"
 date: 2024-08-18 10:11:26 +0000
 categories: [Programming, Python]

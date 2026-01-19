@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Git Bisect: A Powerful Tool for Debugging"
 date: 2025-02-15 07:28:14 +0000
 categories: [DevOps, Version Control]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Kubernetes Ingress: Routing Traffic to Your Services"
 date: 2025-03-02 07:24:46 +0000
 categories: [DevOps, Kubernetes]

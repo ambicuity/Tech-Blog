@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Lightweight Message Queue with Redis Streams and Python"
 date: 2024-02-05 12:50:06 +0000
 categories: [DevOps, Programming]

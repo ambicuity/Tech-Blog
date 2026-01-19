@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Cron Jobs in Kubernetes with ScheduledJobs"
 date: 2025-07-22 09:32:12 +0000
 categories: [DevOps, Kubernetes]

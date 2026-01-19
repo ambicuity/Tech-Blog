@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient APIs with Circuit Breakers in Python"
 date: 2024-07-05 11:19:48 +0000
 categories: [Programming, Python]

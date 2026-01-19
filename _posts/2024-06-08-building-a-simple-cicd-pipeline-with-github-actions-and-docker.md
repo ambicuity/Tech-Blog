@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with GitHub Actions and Docker"
 date: 2024-06-08 03:58:13 +0000
 categories: [DevOps, CI/CD]

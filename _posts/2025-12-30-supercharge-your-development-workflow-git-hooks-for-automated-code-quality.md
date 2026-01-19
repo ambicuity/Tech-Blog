@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Supercharge Your Development Workflow: Git Hooks for Automated Code Quality"
 date: 2025-12-30 23:12:41 +0000
 categories: [DevOps, Version Control]

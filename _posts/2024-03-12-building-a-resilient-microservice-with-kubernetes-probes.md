@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Resilient Microservice with Kubernetes Probes"
 date: 2024-03-12 15:51:12 +0000
 categories: [DevOps, Kubernetes]

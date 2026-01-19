@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Resilient Microservices with Circuit Breakers in Python"
 date: 2024-07-10 20:47:49 +0000
 categories: [Software Engineering, Microservices]

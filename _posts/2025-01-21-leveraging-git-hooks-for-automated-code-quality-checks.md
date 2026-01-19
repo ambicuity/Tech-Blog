@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Leveraging Git Hooks for Automated Code Quality Checks"
 date: 2025-01-21 23:14:09 +0000
 categories: [DevOps, Git]

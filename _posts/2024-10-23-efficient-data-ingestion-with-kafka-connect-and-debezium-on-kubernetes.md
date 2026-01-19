@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Data Ingestion with Kafka Connect and Debezium on Kubernetes"
 date: 2024-10-23 02:46:38 +0000
 categories: [DevOps, Kubernetes]

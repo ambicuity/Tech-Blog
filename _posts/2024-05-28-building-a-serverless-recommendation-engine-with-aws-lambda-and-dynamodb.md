@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Serverless Recommendation Engine with AWS Lambda and DynamoDB"
 date: 2024-05-28 12:20:26 +0000
 categories: [Cloud Computing, Machine Learning]

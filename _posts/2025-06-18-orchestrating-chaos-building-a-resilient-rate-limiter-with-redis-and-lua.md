@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Building a Resilient Rate Limiter with Redis and Lua"
 date: 2025-06-18 17:51:21 +0000
 categories: [DevOps, System Design]

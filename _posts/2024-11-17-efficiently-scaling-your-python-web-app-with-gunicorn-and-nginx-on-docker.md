@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Scaling Your Python Web App with Gunicorn and Nginx on Docker"
 date: 2024-11-17 11:04:57 +0000
 categories: [DevOps, Python]

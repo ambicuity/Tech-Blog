@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Deployment with GitOps and Argo CD"
 date: 2025-05-04 23:59:43 +0000
 categories: [DevOps, Kubernetes]

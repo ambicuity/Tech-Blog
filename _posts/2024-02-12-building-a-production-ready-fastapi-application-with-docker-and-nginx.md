@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Production-Ready FastAPI Application with Docker and Nginx"
 date: 2024-02-12 17:37:22 +0000
 categories: [DevOps, Python]

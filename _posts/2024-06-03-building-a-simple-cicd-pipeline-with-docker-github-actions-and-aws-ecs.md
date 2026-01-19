@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Simple CI/CD Pipeline with Docker, GitHub Actions, and AWS ECS"
 date: 2024-06-03 13:13:27 +0000
 categories: [DevOps, Cloud Computing]

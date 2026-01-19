@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Deployments with GitOps and Argo CD"
 date: 2025-12-22 23:39:25 +0000
 categories: [DevOps, Kubernetes]

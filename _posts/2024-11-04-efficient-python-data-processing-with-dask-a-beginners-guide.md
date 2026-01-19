@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficient Python Data Processing with Dask: A Beginner's Guide"
 date: 2024-11-04 14:08:40 +0000
 categories: [Programming, Python]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Chaos: Fault Injection in Kubernetes with Chaos Mesh"
 date: 2025-06-21 13:36:51 +0000
 categories: [DevOps, Kubernetes]

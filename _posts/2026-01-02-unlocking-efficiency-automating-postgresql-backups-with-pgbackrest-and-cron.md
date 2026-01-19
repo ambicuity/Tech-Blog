@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Efficiency: Automating PostgreSQL Backups with pgBackRest and Cron"
 date: 2026-01-02 15:12:12 +0000
 categories: [DevOps, PostgreSQL]

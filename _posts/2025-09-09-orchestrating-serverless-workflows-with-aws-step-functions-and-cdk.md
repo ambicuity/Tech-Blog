@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Serverless Workflows with AWS Step Functions and CDK"
 date: 2025-09-09 20:01:36 +0000
 categories: [CloudComputing, DevOps]

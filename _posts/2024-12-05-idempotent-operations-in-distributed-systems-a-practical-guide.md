@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Idempotent Operations in Distributed Systems: A Practical Guide"
 date: 2024-12-05 05:28:01 +0000
 categories: [System Design, Distributed Systems]

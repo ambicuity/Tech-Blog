@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Automating Database Migrations with Flyway and Docker: A Practical Guide"
 date: 2024-01-04 10:50:30 +0000
 categories: [DevOps, Database]

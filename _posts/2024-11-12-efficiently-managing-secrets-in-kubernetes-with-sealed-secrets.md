@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Efficiently Managing Secrets in Kubernetes with Sealed Secrets"
 date: 2024-11-12 01:24:56 +0000
 categories: [DevOps, Kubernetes]

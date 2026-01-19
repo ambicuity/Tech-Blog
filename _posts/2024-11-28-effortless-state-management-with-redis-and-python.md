@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless State Management with Redis and Python"
 date: 2024-11-28 00:18:44 +0000
 categories: [Programming, Databases]

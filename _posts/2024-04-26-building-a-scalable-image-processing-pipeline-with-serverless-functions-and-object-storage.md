@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building a Scalable Image Processing Pipeline with Serverless Functions and Object Storage"
 date: 2024-04-26 13:21:50 +0000
 categories: [Cloud Computing, DevOps]

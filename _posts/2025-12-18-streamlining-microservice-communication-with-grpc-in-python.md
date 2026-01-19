@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Streamlining Microservice Communication with gRPC in Python"
 date: 2025-12-18 20:35:39 +0000
 categories: [Programming, Python]

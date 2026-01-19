@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building Scalable APIs with FastAPI and PostgreSQL: A Practical Guide"
 date: 2024-08-04 23:35:09 +0000
 categories: [Programming, Python]

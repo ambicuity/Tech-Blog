@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Kubernetes Autoscaling: From Zero to Hero with HPA and VPA"
 date: 2024-12-17 20:07:03 +0000
 categories: [DevOps, Kubernetes]

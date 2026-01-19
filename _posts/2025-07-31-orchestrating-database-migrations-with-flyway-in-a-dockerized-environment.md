@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Database Migrations with Flyway in a Dockerized Environment"
 date: 2025-07-31 17:50:44 +0000
 categories: [DevOps, Databases]

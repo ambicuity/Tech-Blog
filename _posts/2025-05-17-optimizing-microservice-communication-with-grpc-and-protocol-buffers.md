@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Microservice Communication with gRPC and Protocol Buffers"
 date: 2025-05-17 06:32:45 +0000
 categories: [Microservices, DevOps]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Effortless Containerization with Docker Compose Profiles"
 date: 2024-11-20 17:25:28 +0000
 categories: [DevOps, Docker]

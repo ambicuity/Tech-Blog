@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing PostgreSQL Query Performance with EXPLAIN ANALYZE"
 date: 2025-05-25 22:41:17 +0000
 categories: [Databases, PostgreSQL]

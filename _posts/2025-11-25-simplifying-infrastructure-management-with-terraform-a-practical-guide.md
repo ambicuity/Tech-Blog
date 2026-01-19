@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Simplifying Infrastructure Management with Terraform: A Practical Guide"
 date: 2025-11-25 06:51:35 +0000
 categories: [DevOps, Infrastructure]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Scaling Python Microservices with Celery and RabbitMQ"
 date: 2025-10-21 19:12:43 +0000
 categories: [Programming, DevOps]

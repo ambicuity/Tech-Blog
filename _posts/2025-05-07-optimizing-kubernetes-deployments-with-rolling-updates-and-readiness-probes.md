@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Kubernetes Deployments with Rolling Updates and Readiness Probes"
 date: 2025-05-07 18:16:13 +0000
 categories: [DevOps, Kubernetes]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Optimizing Docker Image Size: A Practical Guide to Lean Containerization"
 date: 2025-04-16 00:11:24 +0000
 categories: [DevOps, Docker]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Unlocking Observability: Implementing Distributed Tracing with Jaeger and Spring Boot"
 date: 2026-01-08 21:08:13 +0000
 categories: [DevOps, Microservices]

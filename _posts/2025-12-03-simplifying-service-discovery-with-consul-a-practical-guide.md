@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Simplifying Service Discovery with Consul: A Practical Guide"
 date: 2025-12-03 20:25:06 +0000
 categories: [DevOps, System Design]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Mastering Docker Multi-Stage Builds: Optimizing for Speed and Security"
 date: 2025-02-11 18:21:43 +0000
 categories: [DevOps, Docker]

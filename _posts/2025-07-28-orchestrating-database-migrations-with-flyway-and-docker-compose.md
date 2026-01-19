@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Orchestrating Database Migrations with Flyway and Docker Compose"
 date: 2025-07-28 20:03:13 +0000
 categories: [DevOps, Databases]

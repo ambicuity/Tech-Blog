@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Leveraging Docker Multi-Stage Builds for Optimized Python Applications"
 date: 2025-01-21 04:30:54 +0000
 categories: [DevOps, Docker]
