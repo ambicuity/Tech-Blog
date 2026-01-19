@@ -113,8 +113,62 @@ function getSubscribers($csv_file)
     return $emails;
 }
 
+// Helper: Fetch RSS Feed
+function getLatestPosts($limit = 3) {
+    $feed_url = 'https://blog.riteshrana.engineer/feed.xml';
+    $html = '';
+    
+    // Attempt to fetch feed
+    $content = @file_get_contents($feed_url);
+    if ($content) {
+        $xml = @simplexml_load_string($content);
+        if ($xml) {
+            $count = 0;
+            // Handle Atom feed (Jekyll default) or RSS 2.0
+            $items = isset($xml->entry) ? $xml->entry : (isset($xml->channel->item) ? $xml->channel->item : []);
+            
+            $html .= "<h2>🔥 Latest Updates from the Blog</h2>";
+            
+            foreach ($items as $item) {
+                if ($count >= $limit) break;
+                
+                // Extract fields (handle namespaces if needed, but basic access usually works)
+                $title = (string)$item->title;
+                $link = isset($item->link['href']) ? (string)$item->link['href'] : (string)$item->link;
+                // Try summary, then content, then description
+                $desc = (string)($item->summary ?? $item->content ?? $item->description ?? ''); 
+                
+                // Clean up description (strip tags, limit length)
+                $desc_clean = strip_tags($desc);
+                if (strlen($desc_clean) > 200) $desc_clean = substr($desc_clean, 0, 200) . '...';
+                
+                $html .= '<div style="margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #eee;">';
+                $html .= '<h3 style="margin-top: 0;"><a href="' . $link . '" style="color: #1e1e1e; text-decoration: none;">' . $title . '</a></h3>';
+                $html .= '<p style="color: #555;">' . $desc_clean . '</p>';
+                $html .= '<a href="' . $link . '" style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">Read Article &rarr;</a>';
+                $html .= '</div>';
+                
+                $count++;
+            }
+        } else {
+            return "<p>Error parsing feed.</p>";
+        }
+    } else {
+        return "<p>Could not fetch feed: $feed_url</p>";
+    }
+    return $html;
+}
+
 // Handle Sending
 $message_status = '';
+$prefill_body = '';
+
+// Handle "Load Feed" Action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['load_feed'])) {
+    $prefill_body = getLatestPosts();
+    $message_status = "<div class='success'>✅ Loaded latest posts!</div>";
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
     $subject = $_POST['subject'] ?? '';
     $body_content = $_POST['body'] ?? '';
@@ -181,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
                 </body>
                 </html>';
 
-                $headers  = "MIME-Version: 1.0" . "\r\n";
+                $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
                 $headers .= "From: Ritesh Rana <" . $SENDER_EMAIL . ">" . "\r\n";
                 $headers .= "Reply-To: " . $SENDER_EMAIL . "\r\n";
@@ -323,15 +377,23 @@ $subscriber_list = getSubscribers($CSV_FILE);
 
         <div class="section">
             <h2>Compose Email</h2>
+            <div style="margin-bottom: 20px; text-align: right;">
+                <form method="post" style="display: inline;">
+                    <button type="submit" name="load_feed"
+                        style="background: #17a2b8; width: auto; font-size: 14px; padding: 8px 16px; margin-top: 0;">🔄
+                        Load Latest Posts from Blog</button>
+                </form>
+            </div>
+
             <form method="post"
                 onsubmit="return confirm('Are you sure you want to send this to ALL <?= count($subscriber_list) ?> subscribers?');">
                 <label for="subject">Subject:</label>
-                <input type="text" name="subject" id="subject" placeholder="e.g., New Post: Automated Canary Deploys"
-                    required>
+                <input type="text" name="subject" id="subject" placeholder="e.g., Weekly Roundup"
+                    value="<?= isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : '' ?>" required>
 
                 <label for="body">Email Body (HTML):</label>
-                <textarea name="body" id="body" required
-                    placeholder="<h1>Hello Subscriber!</h1><p>Check out my new post...</p>"></textarea>
+                <textarea name="body" id="body" required placeholder="<h1>Hello!</h1>"
+                    style="height: 400px;"><?= htmlspecialchars($prefill_body ?: ($_POST['body'] ?? '')) ?></textarea>
 
                 <button type="submit" name="send">🚀 Send to <?= count($subscriber_list) ?> Subscribers</button>
             </form>
