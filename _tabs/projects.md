@@ -11,9 +11,6 @@ A collection of open-source tools, infrastructure scripts, and experimental proj
 
 ### 🤖 Automation & CI/CD
 
-#### [Generate Blog](https://github.com/ambicuity/Tech-Blog/blob/main/scripts/mass_backfill.py)
-*Python, Gemini API, GitHub Actions*
-An automated content engine that generates high-quality technical blog posts using Google's Gemini API, fully integrated with Jekyll and GitHub Pages for daily publishing.
 
 #### [Job Board Scraper](https://github.com/ambicuity/New-Grad-Jobs)
 *Python, BeautifulSoup, GitHub Actions*
