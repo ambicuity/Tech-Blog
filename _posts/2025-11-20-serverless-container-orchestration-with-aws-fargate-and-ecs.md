@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Serverless Container Orchestration with AWS Fargate and ECS"
 date: 2025-11-20 13:34:49 +0000
@@ -224,4 +223,3 @@ Fargate is suitable for various real-world use cases, including:
 ## Conclusion
 
 AWS Fargate, combined with ECS, provides a powerful and efficient way to orchestrate containers in a serverless environment. By eliminating the need to manage servers, Fargate allows developers to focus on building and deploying applications while leveraging the scalability and cost-effectiveness of the cloud. This tutorial provided a basic example of deploying a "Hello World" application. With further exploration and customization, Fargate can be applied to a wide range of containerized applications and workloads.
-```

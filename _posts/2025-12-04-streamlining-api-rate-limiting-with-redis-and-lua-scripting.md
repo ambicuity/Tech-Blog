@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Streamlining API Rate Limiting with Redis and Lua Scripting"
 date: 2025-12-04 23:10:21 +0000
@@ -207,4 +206,3 @@ Interviewers often ask about rate limiting during system design interviews. Key 
 ## Conclusion
 
 Implementing API rate limiting using Redis and Lua scripting provides a robust and efficient solution for protecting your backend services. By leveraging Redis's speed and Lua's atomic operations, you can achieve high performance and scalability while ensuring fair usage and preventing abuse. Understanding the core concepts, implementing the script correctly, and avoiding common mistakes are key to building a reliable and effective rate limiting system. Remember to tailor the rate limiting parameters to your specific needs and monitor your system to identify and address any potential issues.
-```

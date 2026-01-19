@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Unlocking Kubernetes Node Affinity: A Practical Guide for Application Placement"
 date: 2026-01-05 14:55:42 +0000
@@ -122,4 +121,3 @@ Here are a few examples of how node affinity can be used in real-world scenarios
 ## Conclusion
 
 Node affinity is a powerful tool for controlling Pod placement in Kubernetes. By understanding the core concepts and implementing practical examples, you can optimize your deployments for performance, availability, and resource utilization. Remember to start with simple rules and gradually add complexity as needed. Pay attention to common mistakes to avoid scheduling issues and ensure your applications run smoothly in your Kubernetes cluster. Node affinity, along with taints and tolerations, gives you significant control over workload distribution across your cluster.
-```

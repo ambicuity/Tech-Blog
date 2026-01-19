@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with GitHub Actions and Docker"
 date: 2024-06-08 03:58:13 +0000
@@ -185,4 +184,3 @@ CI/CD is applicable in a wide range of scenarios:
 ## Conclusion
 
 This blog post provided a practical guide to building a simple CI/CD pipeline using GitHub Actions and Docker. By automating the build, test, and deployment processes, you can significantly improve your software development workflow and deliver value to your users more quickly and reliably. Remember to tailor the pipeline to your specific needs and continuously improve it as your project evolves. Understanding CI/CD principles is essential for any modern software engineer.
-```

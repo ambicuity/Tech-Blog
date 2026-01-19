@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Resilient Microservices with Kubernetes Liveness and Readiness Probes"
 date: 2024-07-15 12:30:35 +0000
@@ -196,4 +195,3 @@ Key talking points should include: Resilience, self-healing, fault tolerance, av
 ## Conclusion
 
 Liveness and Readiness probes are essential tools for building resilient microservices on Kubernetes. By carefully configuring these probes, you can ensure that your applications are healthy, available, and automatically recover from failures.  Understanding their purpose, implementation, and common pitfalls is crucial for any software engineer or DevOps professional working with Kubernetes. Remember to carefully consider the specific requirements of your application when designing your probes to avoid common mistakes and maximize their effectiveness.
-```

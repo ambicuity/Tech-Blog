@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Lightweight API Gateway with Traefik and Docker Compose"
 date: 2024-01-31 23:37:20 +0000
@@ -210,4 +209,3 @@ Key talking points:
 ## Conclusion
 
 Using Traefik and Docker Compose provides a simple and effective way to implement a lightweight API Gateway. This setup is ideal for local development, testing, and small-scale deployments. By leveraging Docker labels, Traefik automatically discovers and configures routes, simplifying the management of your microservices. Remember to prioritize security and disable the insecure API in production environments. This approach allows you to gain the benefits of an API Gateway without the overhead of more complex solutions.
-```

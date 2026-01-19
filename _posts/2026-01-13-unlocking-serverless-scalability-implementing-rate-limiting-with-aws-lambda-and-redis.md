@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Unlocking Serverless Scalability: Implementing Rate Limiting with AWS Lambda and Redis"
 date: 2026-01-13 04:22:58 +0000
@@ -162,4 +161,3 @@ Key talking points:
 ## Conclusion
 
 Implementing rate limiting with AWS Lambda and Redis provides a scalable and cost-effective way to protect your serverless applications. By understanding the core concepts, following the practical implementation steps, and avoiding common mistakes, you can build a robust rate limiting solution that ensures service availability, prevents abuse, and provides a fair user experience. Remember to focus on atomic operations, error handling, and proper configuration to create a resilient and scalable rate limiting system.
-```

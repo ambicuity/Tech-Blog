@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with Gitlab CI/CD and Docker"
 date: 2024-06-11 19:59:44 +0000
@@ -214,4 +213,3 @@ CI/CD pipelines are used in a wide range of real-world scenarios:
 ## Conclusion
 
 This post provided a practical guide to building a simple CI/CD pipeline using GitLab CI/CD and Docker. You learned about the core concepts, implemented a basic pipeline for a Flask application, and explored common mistakes and real-world use cases. By automating your build, test, and deployment processes, you can significantly improve your software development workflow and release high-quality software faster. Remember to adapt and expand upon this example to meet the specific needs of your projects.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple Event-Driven System with RabbitMQ and Python"
 date: 2024-06-12 23:19:59 +0000
@@ -190,4 +189,3 @@ For example, consider an e-commerce system. When a customer places an order, an 
 
 ## Conclusion
 This blog post provided a practical introduction to building event-driven systems with RabbitMQ and Python. By understanding the core concepts and following the step-by-step implementation guide, you can start building your own scalable and resilient applications. Remember to consider common mistakes and best practices to ensure the reliability of your system. Event driven architectures offer benefits in scalability, resilience and allow for services to be more independent and responsive. Explore more advanced features of RabbitMQ such as different exchange types, message TTL (Time-To-Live), and dead-letter exchanges to further enhance your event-driven systems.
-```

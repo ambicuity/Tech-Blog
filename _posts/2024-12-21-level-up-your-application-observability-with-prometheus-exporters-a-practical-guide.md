@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your Application Observability with Prometheus Exporters: A Practical Guide"
 date: 2024-12-21 19:10:49 +0000
@@ -162,4 +161,3 @@ Key talking points: Observability, pull-based model, metric types, cardinality, 
 ## Conclusion
 
 Prometheus Exporters are essential for building a robust and comprehensive monitoring solution. By understanding the core concepts and following best practices, you can effectively leverage exporters to gain deep insights into the health and performance of your applications and systems. Creating custom exporters allows you to monitor application-specific metrics that are not covered by existing solutions, providing a tailored view of your environment. Remember to choose the correct metric types, avoid high cardinality, and optimize your exporter for performance.  Mastering Prometheus Exporters is a critical skill for any DevOps engineer or developer aiming to build observable and reliable systems.
-```

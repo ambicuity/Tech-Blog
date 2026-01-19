@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable API Rate Limiter with Redis and Lua"
 date: 2024-04-12 19:45:33 +0000
@@ -205,4 +204,3 @@ Key talking points include:
 ## Conclusion
 
 Implementing API rate limiting is essential for building robust and scalable applications.  This blog post has demonstrated how to implement a practical rate limiter using Redis and Lua scripting. By understanding the core concepts, following the implementation guide, avoiding common mistakes, and considering real-world use cases, you can effectively protect your APIs and ensure a positive user experience. Remember to consider your specific requirements and adjust the configuration accordingly. Remember to prioritize atomicity and scalability for long-term reliability.
-```

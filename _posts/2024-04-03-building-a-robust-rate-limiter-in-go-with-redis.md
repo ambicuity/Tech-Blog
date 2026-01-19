@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Robust Rate Limiter in Go with Redis"
 date: 2024-04-03 07:47:01 +0000
@@ -178,4 +177,3 @@ Open your browser or use `curl` to make requests to `http://localhost:8080/hello
 ## Conclusion
 
 This blog post has provided a practical guide to building a robust rate limiter in Go using Redis. By understanding the core concepts, implementing the solution, and avoiding common pitfalls, you can effectively protect your applications from abuse and ensure availability. Remember to consider the specific requirements of your system when choosing an algorithm and implementing the rate limiter.  Experiment with different configurations and monitor the performance to optimize your solution. Understanding rate limiting is crucial for designing scalable and reliable applications in today's world.
-```

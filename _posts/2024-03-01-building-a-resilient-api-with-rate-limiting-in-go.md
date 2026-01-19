@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient API with Rate Limiting in Go"
 date: 2024-03-01 15:53:26 +0000
@@ -182,4 +181,3 @@ Interviewers often ask about rate limiting to assess your understanding of syste
 ## Conclusion
 
 Implementing rate limiting is a critical step in building resilient and scalable APIs. This post demonstrated how to implement a simple token bucket rate limiter in Go, highlighting the importance of concurrency and careful design. By understanding the core concepts, avoiding common mistakes, and considering real-world use cases, you can effectively protect your APIs from abuse and ensure a smooth user experience. Remember to continuously monitor and adjust your rate limiting parameters based on your application's needs.
-```

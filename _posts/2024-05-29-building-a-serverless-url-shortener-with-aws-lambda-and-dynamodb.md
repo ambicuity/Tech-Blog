@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Serverless URL Shortener with AWS Lambda and DynamoDB"
 date: 2024-05-29 21:59:42 +0000
@@ -207,4 +206,3 @@ Interviewers often use URL shortener design as a system design question. Key tal
 ## Conclusion
 
 Building a serverless URL shortener using AWS Lambda and DynamoDB is a straightforward and rewarding project. It demonstrates the power of serverless technologies for creating scalable and cost-effective applications. By understanding the core concepts, implementing the solution, and considering potential pitfalls, you can create a functional and robust URL shortener that meets your needs. Remember to focus on handling edge cases like hash collisions and ensuring proper IAM permissions. Further improvements could include adding custom domain support, analytics tracking, and rate limiting.
-```

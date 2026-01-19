@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Resilient APIs with Rate Limiting in Go"
 date: 2024-07-06 16:46:03 +0000
@@ -168,4 +167,3 @@ Rate limiting is widely used in various real-world scenarios:
 ## Conclusion
 
 Rate limiting is a critical technique for building resilient and scalable APIs. By understanding the core concepts, implementing rate limiters effectively, and avoiding common mistakes, you can protect your APIs from abuse, ensure resource availability, and maintain a high quality of service for your users. Remember to consider concurrency, edge cases, and scalability when designing and implementing your rate-limiting solution. Furthermore, use cases like social media APIs or authentication systems show the breadth of applications rate limiting offers. Leveraging rate limiting correctly makes for a much more robust and reliable system.
-```

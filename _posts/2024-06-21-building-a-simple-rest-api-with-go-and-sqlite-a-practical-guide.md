@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple REST API with Go and SQLite: A Practical Guide"
 date: 2024-06-21 21:02:31 +0000
@@ -326,4 +325,3 @@ This simple API can be extended to more complex scenarios:
 ## Conclusion
 
 This blog post provided a step-by-step guide to building a simple REST API with Go and SQLite. You learned about fundamental concepts, implemented CRUD operations, and addressed common pitfalls. By understanding these principles, you can build more complex and robust APIs for a variety of applications. Remember to practice, experiment, and continue learning to master your Go API development skills. Good luck!
-```

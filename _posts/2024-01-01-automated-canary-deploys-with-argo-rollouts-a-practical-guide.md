@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automated Canary Deploys with Argo Rollouts: A Practical Guide"
 date: 2024-01-01 06:29:00 +0000
@@ -196,4 +195,3 @@ Key talking points: emphasize your understanding of the trade-offs involved, you
 ## Conclusion
 
 Argo Rollouts provides a robust and flexible solution for automating canary deployments in Kubernetes. By leveraging its advanced deployment strategies and integration with monitoring systems, you can significantly reduce the risk associated with software releases and improve the overall quality of your applications. This blog post provides a foundation for implementing canary deployments with Argo Rollouts. Experiment with different configurations, explore the advanced features, and integrate it into your CI/CD pipeline for a seamless and automated deployment process. Remember to prioritize monitoring and observability to ensure the success of your canary deployments.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Resilient Web Scraping with Docker, Kubernetes, and Retries"
 date: 2025-08-26 04:39:03 +0000
@@ -216,4 +215,3 @@ Interviewers often ask about building scalable and resilient systems. Key talkin
 ## Conclusion
 
 Building a resilient web scraping system requires careful consideration of containerization, orchestration, and error handling. By using Docker, Kubernetes, and retry mechanisms, you can create a scraping system that is robust, scalable, and reliable. Remember to respect `robots.txt`, avoid excessive scraping, and implement monitoring to ensure the long-term health of your scraping operation. This approach allows you to extract valuable data from the web even in the face of network issues or website changes.
-```

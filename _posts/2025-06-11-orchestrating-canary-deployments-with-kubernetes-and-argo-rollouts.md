@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Canary Deployments with Kubernetes and Argo Rollouts"
 date: 2025-06-11 06:41:05 +0000
@@ -248,4 +247,3 @@ Canary deployments are widely used in various industries, including:
 ## Conclusion
 
 Canary deployments are a valuable technique for reducing the risk associated with deploying new versions of applications. Argo Rollouts provides a powerful and flexible platform for implementing canary deployments on Kubernetes. By understanding the core concepts, following the practical implementation guide, and avoiding common mistakes, you can leverage canary deployments to improve the stability, reliability, and performance of your applications. The automation that Argo Rollouts provides significantly reduces the operational overhead of progressive delivery. Remember to define clear metrics, implement robust monitoring, and automate rollbacks to maximize the benefits of canary deployments.
-```

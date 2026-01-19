@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Optimizing Docker Image Size with Multi-Stage Builds"
 date: 2025-04-22 16:43:41 +0000
@@ -135,4 +134,3 @@ Multi-stage builds are widely used in various scenarios:
 ## Conclusion
 
 Multi-stage builds are a powerful technique for optimizing Docker image sizes. By leveraging multiple stages and selectively copying artifacts, you can create leaner, more secure, and faster-deploying containerized applications.  Understanding and implementing multi-stage builds is a valuable skill for any software engineer or DevOps professional working with Docker.  By minimizing the final image size, you improve deployment times, reduce storage costs, and enhance the overall efficiency of your containerized applications.
-```

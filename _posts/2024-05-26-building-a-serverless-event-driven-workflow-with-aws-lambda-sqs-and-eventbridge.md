@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Serverless Event-Driven Workflow with AWS Lambda, SQS, and EventBridge"
 date: 2024-05-26 02:32:56 +0000
@@ -154,4 +153,3 @@ Here are some key talking points for interviews related to serverless event-driv
 ## Conclusion
 
 Building a serverless event-driven workflow with AWS Lambda, SQS, and EventBridge offers numerous benefits, including scalability, cost-effectiveness, and improved resilience. By understanding the core concepts, following the practical implementation guide, and avoiding common mistakes, you can leverage these powerful AWS services to build robust and efficient applications. This approach enables you to decouple your services, handle asynchronous tasks, and build scalable and responsive systems. Remember to consider the specific requirements of your use case and choose the appropriate configuration options for each service.
-```

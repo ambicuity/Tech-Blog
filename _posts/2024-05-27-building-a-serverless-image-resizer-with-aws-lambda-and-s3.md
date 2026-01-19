@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Serverless Image Resizer with AWS Lambda and S3"
 date: 2024-05-27 10:10:11 +0000
@@ -204,4 +203,3 @@ This serverless image resizer can be applied in various real-world scenarios:
 ## Conclusion
 
 Building a serverless image resizer with AWS Lambda and S3 provides a scalable, cost-effective, and easy-to-manage solution for optimizing images. This project demonstrates the power of serverless computing and the benefits of leveraging cloud services for image processing. By understanding the core concepts, implementing the code, and avoiding common pitfalls, you can create a robust and efficient image resizing solution for your applications. Remember to refine the IAM roles for production environments for increased security.
-```

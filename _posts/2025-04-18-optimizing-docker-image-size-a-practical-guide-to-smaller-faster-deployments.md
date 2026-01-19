@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Optimizing Docker Image Size: A Practical Guide to Smaller, Faster Deployments"
 date: 2025-04-18 17:59:55 +0000
@@ -191,4 +190,3 @@ Key talking points:
 ## Conclusion
 
 Optimizing Docker image size is a critical aspect of building efficient and scalable containerized applications. By leveraging minimal base images, multi-stage builds, `.dockerignore`, and efficient layering strategies, you can significantly reduce your image size, improve build and deployment times, and optimize your overall DevOps workflow. Regularly review and refine your Dockerfiles to ensure they are as efficient as possible.
-```

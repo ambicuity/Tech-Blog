@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with Docker, GitHub Actions, and Heroku"
 date: 2024-06-05 18:00:43 +0000
@@ -190,4 +189,3 @@ CI/CD pipelines are used extensively in various real-world scenarios:
 ## Conclusion
 
 This blog post demonstrated how to create a simple CI/CD pipeline using Docker, GitHub Actions, and Heroku. By automating the build, test, and deployment process, you can significantly improve your software development workflow and deliver value to users more efficiently. This simple example is a good starting point to explore more complex CI/CD scenarios and incorporate additional tools and practices to further optimize your deployment process. Remember to focus on security best practices, thorough testing, and continuous monitoring to ensure the reliability and stability of your applications.
-```

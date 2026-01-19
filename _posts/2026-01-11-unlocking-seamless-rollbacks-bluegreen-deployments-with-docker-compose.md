@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Unlocking Seamless Rollbacks: Blue/Green Deployments with Docker Compose"
 date: 2026-01-11 06:40:43 +0000
@@ -275,4 +274,3 @@ Blue/Green deployments are widely used in various industries:
 ## Conclusion
 
 Blue/Green deployments provide a powerful strategy for minimizing downtime and enabling rapid rollbacks. By leveraging Docker Compose and Nginx, you can implement this approach in a practical and relatively straightforward manner. While requiring careful planning and automation, the benefits of reduced risk and improved availability make it a valuable technique for modern software development and DevOps practices. Remember to thoroughly test your deployments, automate the process, and implement robust monitoring to ensure a smooth and reliable experience.
-```

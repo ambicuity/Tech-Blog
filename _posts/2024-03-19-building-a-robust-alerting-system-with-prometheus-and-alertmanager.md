@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Robust Alerting System with Prometheus and Alertmanager"
 date: 2024-03-19 19:49:29 +0000
@@ -182,4 +181,3 @@ Key talking points:
 ## Conclusion
 
 Building a robust alerting system with Prometheus and Alertmanager is a critical step towards achieving reliable and resilient software systems. By understanding the core concepts, implementing practical configurations, and avoiding common mistakes, you can create an effective alerting system that proactively notifies you of potential problems and allows you to address them before they impact users. Remember to continuously refine your alerting rules and configurations based on your system's performance and evolving needs.  This ensures that your alerting system remains effective and relevant over time.
-```

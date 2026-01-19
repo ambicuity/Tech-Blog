@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Serverless Event-Driven Architecture with AWS Lambda and EventBridge"
 date: 2024-05-24 17:42:41 +0000
@@ -160,4 +159,3 @@ Key talking points include emphasizing the importance of loose coupling, scalabi
 ## Conclusion
 
 Building serverless event-driven architectures with AWS Lambda and EventBridge provides a powerful way to create scalable, resilient, and cost-effective applications. By understanding the core concepts, following the implementation steps, and avoiding common mistakes, you can leverage the benefits of serverless computing to build modern, event-driven systems. Remember to carefully design your event schemas, implement proper error handling, and monitor your system to ensure its reliability and performance.
-```

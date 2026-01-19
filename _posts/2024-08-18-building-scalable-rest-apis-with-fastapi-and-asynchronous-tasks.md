@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Scalable REST APIs with FastAPI and Asynchronous Tasks"
 date: 2024-08-18 10:11:26 +0000
@@ -211,4 +210,3 @@ This architecture is applicable in various scenarios:
 ## Conclusion
 
 By combining the power of FastAPI for building APIs with Celery for asynchronous task processing, you can create highly scalable and responsive applications.  Remember to carefully configure your Celery worker, handle errors gracefully, and monitor the system to ensure optimal performance. This pattern is a valuable tool for any software engineer building modern, high-performance services.
-```

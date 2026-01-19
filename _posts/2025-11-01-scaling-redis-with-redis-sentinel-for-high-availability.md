@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Scaling Redis with Redis Sentinel for High Availability"
 date: 2025-11-01 12:26:30 +0000
@@ -243,4 +242,3 @@ Essentially, any application that relies on Redis for critical data or operation
 
 ## Conclusion
 Redis Sentinel is a powerful tool for achieving high availability and fault tolerance in Redis deployments. By understanding the core concepts and following best practices, you can ensure that your Redis-backed applications remain available even in the face of failures. This guide provided a practical, hands-on approach to setting up and testing Redis Sentinel, equipping you with the knowledge to implement it in your own projects. Remember to carefully consider the configuration options, especially the quorum and authentication settings, to ensure optimal performance and reliability.
-```

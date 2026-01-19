@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating PostgreSQL Schema Changes with Liquibase and GitHub Actions"
 date: 2025-08-14 00:50:01 +0000
@@ -196,4 +195,3 @@ Key Talking Points:
 ## Conclusion
 
 Automating PostgreSQL schema changes with Liquibase and GitHub Actions is a powerful way to streamline your database deployments, improve collaboration among developers, and reduce the risk of errors. By following the steps outlined in this blog post, you can establish a robust CI/CD pipeline for your database schema evolution and ensure that your database is always up-to-date and consistent across all environments. Remember to prioritize security, test your changes thoroughly, and implement a rollback strategy to minimize the impact of potential errors.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Demystifying Infrastructure as Code with Terraform: A Practical Guide to AWS EC2"
 date: 2024-09-11 10:16:30 +0000
@@ -183,4 +182,3 @@ Key talking points:
 ## Conclusion
 
 Terraform is a powerful tool for managing and automating your infrastructure. By understanding the core concepts and following the practical implementation steps outlined in this blog post, you can start using Terraform to improve your DevOps workflows and build more reliable and scalable applications. Don't forget to practice, experiment, and explore the vast ecosystem of Terraform providers and modules. Remember to always plan before you apply, and clean up your resources when you're done. Happy Terraforming!
-```

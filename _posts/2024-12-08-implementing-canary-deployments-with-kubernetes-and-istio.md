@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Implementing Canary Deployments with Kubernetes and Istio"
 date: 2024-12-08 20:12:31 +0000
@@ -206,4 +205,3 @@ Canary deployments are valuable in various scenarios:
 
 ## Conclusion
 Canary deployments are a powerful technique for safely releasing new versions of your applications. By using Kubernetes and Istio, you can easily implement canary deployments with fine-grained traffic control and observability. Remember to start with a small traffic weight, monitor the canary deployment closely, and have a clear rollback strategy in place. By following these best practices, you can minimize the risk of impacting your users and ensure a smooth release process.
-```

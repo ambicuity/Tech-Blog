@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your FastAPI: Asynchronous Tasks with Celery and Redis"
 date: 2025-01-01 18:00:36 +0000
@@ -179,4 +178,3 @@ Key talking points: *Benefits of decoupling operations, handling failures in asy
 
 ## Conclusion
 Integrating Celery and Redis with FastAPI provides a robust solution for handling asynchronous tasks in your applications. By offloading time-consuming operations to background workers, you can significantly improve your application's responsiveness and scalability. This setup provides a strong foundation for building more complex and performant applications, improving the user experience and streamlining workflows. Remember to thoroughly test and monitor your Celery tasks to ensure their reliability and efficiency.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with GitHub Actions for a Python Flask App"
 date: 2024-06-09 17:07:28 +0000
@@ -166,4 +165,3 @@ CI/CD is applicable to a wide range of projects:
 ## Conclusion
 
 This blog post has provided a practical guide to building a simple CI/CD pipeline with GitHub Actions for a Python Flask application.  By automating the build, test, and deployment process, you can improve the speed and quality of your software development lifecycle.  While this example is basic, it provides a strong foundation for building more sophisticated and customized CI/CD pipelines to meet the specific needs of your projects. Remember to focus on robust testing, security, and proper environment management for a successful and reliable CI/CD implementation.
-```

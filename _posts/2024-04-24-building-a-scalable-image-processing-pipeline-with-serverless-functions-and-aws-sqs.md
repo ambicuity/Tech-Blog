@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable Image Processing Pipeline with Serverless Functions and AWS SQS"
 date: 2024-04-24 19:15:35 +0000
@@ -231,4 +230,3 @@ This architecture can be applied to various scenarios, including:
 ## Conclusion
 
 By leveraging AWS Lambda and SQS, you can build a scalable and cost-effective image processing pipeline that improves the performance and responsiveness of your applications. This asynchronous approach allows you to handle image processing tasks in the background without blocking the main execution thread, providing a better user experience. Remember to focus on proper IAM configuration, error handling, and dependency management for a robust and reliable solution.
-```

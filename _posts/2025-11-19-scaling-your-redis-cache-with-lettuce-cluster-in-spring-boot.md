@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Scaling Your Redis Cache with Lettuce Cluster in Spring Boot"
 date: 2025-11-19 05:12:33 +0000
@@ -219,4 +218,3 @@ Let's break down the process into the following steps:
 ## Conclusion
 
 Using Redis Cluster with Lettuce in a Spring Boot application is a powerful way to scale your caching infrastructure and improve application performance. By understanding the core concepts, following the practical implementation steps, and avoiding common mistakes, you can effectively leverage Redis Cluster to build highly available and scalable applications. Remember to consider key distribution, connection pooling, and network latency when optimizing your configuration.
-```

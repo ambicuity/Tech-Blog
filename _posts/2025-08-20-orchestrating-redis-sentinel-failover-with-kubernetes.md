@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Redis Sentinel Failover with Kubernetes"
 date: 2025-08-20 12:39:02 +0000
@@ -331,4 +330,3 @@ This setup is applicable in various scenarios:
 ## Conclusion
 
 Orchestrating Redis Sentinel failover with Kubernetes provides a robust, scalable, and self-healing solution for managing Redis in production environments.  By leveraging Kubernetes' features, we can automate the failover process and ensure high availability, minimizing downtime and data loss. This setup requires a good understanding of both Redis Sentinel and Kubernetes concepts, but the resulting benefits of a resilient and highly available data store are well worth the effort. Remember to thoroughly test your deployment and monitor its performance to ensure optimal operation.
-```

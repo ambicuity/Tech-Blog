@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient Image Processing Pipeline with Serverless Functions and SQS"
 date: 2024-03-07 17:42:27 +0000
@@ -279,4 +278,3 @@ Be prepared to discuss the trade-offs of this design, such as the complexity int
 ## Conclusion
 
 Building an image processing pipeline using serverless functions and SQS provides a scalable, fault-tolerant, and cost-effective solution. By decoupling the image uploading and processing components, you can create a more resilient and flexible system. This architecture allows you to easily adapt to changing requirements and handle fluctuating workloads. Understanding the core concepts and following the implementation steps outlined in this blog post will enable you to build your own robust image processing pipelines in the cloud. Remember to pay close attention to IAM permissions, dependencies, and error handling to ensure a smooth and reliable operation.
-```

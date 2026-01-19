@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable Event-Driven System with AWS SQS and Serverless Functions"
 date: 2024-04-18 05:58:34 +0000
@@ -173,4 +172,3 @@ Key talking points during an interview would include demonstrating a strong unde
 ## Conclusion
 
 Building an event-driven system with AWS SQS and Lambda provides a scalable, resilient, and cost-effective way to decouple services and process events asynchronously. By understanding the core concepts, implementing best practices for error handling and idempotency, and leveraging the power of the AWS serverless ecosystem, you can build powerful and scalable applications. Remember to consider the specific requirements of your application when choosing between Standard and FIFO queues and designing your message structure. This simple example provides a foundation for more complex event-driven architectures, allowing you to build robust and responsive systems.
-```

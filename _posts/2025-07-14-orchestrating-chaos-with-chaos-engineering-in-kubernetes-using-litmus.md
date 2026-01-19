@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Chaos with Chaos Engineering in Kubernetes using Litmus"
 date: 2025-07-14 00:34:40 +0000
@@ -215,4 +214,3 @@ Highlight your understanding of the underlying concepts and your ability to appl
 ## Conclusion
 
 Chaos engineering is a powerful technique for building resilient and reliable systems. Litmus provides a user-friendly framework for implementing chaos engineering in Kubernetes environments. By following the steps outlined in this blog post, you can start experimenting with chaos and gain valuable insights into the behavior of your Kubernetes applications under stress. Remember to start small, monitor carefully, and learn from each experiment to continuously improve the resilience of your systems.
-```

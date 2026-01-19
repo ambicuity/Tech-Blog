@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient Web Scraper with Python and Asynchronous Requests"
 date: 2024-03-18 19:13:13 +0000
@@ -169,4 +168,3 @@ Here are some key talking points if you're asked about web scraping in an interv
 ## Conclusion
 
 Building a resilient web scraper requires careful planning and attention to detail. By using asynchronous requests, implementing robust error handling, and respecting website policies, you can create a scraper that is both efficient and reliable.  Remember to continuously monitor and adapt your scraper to changes in website structure and anti-scraping techniques. This blog post provided a solid foundation for building a robust web scraper, and hopefully, it also gave you some talking points for your next software engineering interview.
-```

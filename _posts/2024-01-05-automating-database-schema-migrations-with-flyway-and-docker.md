@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automating Database Schema Migrations with Flyway and Docker"
 date: 2024-01-05 04:29:45 +0000
@@ -191,4 +190,3 @@ Key talking points:
 ## Conclusion
 
 Automating database schema migrations with Flyway and Docker significantly simplifies database management and deployment. By using Docker Compose, you create a consistent and repeatable environment for running migrations, ensuring that your database schema is always in the correct state. This approach reduces manual errors, improves deployment speed, and enhances the overall reliability of your application. Remember to focus on creating idempotent migration scripts, carefully planning your migrations, and thoroughly testing them before deploying them to production.
-```

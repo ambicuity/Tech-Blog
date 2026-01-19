@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Robust Rate Limiter with Redis and Lua"
 date: 2024-04-05 05:22:17 +0000
@@ -151,4 +150,3 @@ Key talking points: Atomic operations are crucial, scalability considerations ar
 ## Conclusion
 
 Rate limiting is a vital technique for building resilient and scalable applications. By leveraging Redis and Lua scripting, you can create a robust and efficient rate limiter that protects your resources and ensures a smooth user experience. Remember to consider the trade-offs of different algorithms, handle edge cases gracefully, and monitor the rate limiter's performance. This post provided a practical foundation for implementing rate limiting; further exploration into sliding window implementations, distributed architectures, and dynamic rate limiting based on system load will further enhance your knowledge and capabilities.
-```

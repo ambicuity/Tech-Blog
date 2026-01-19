@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Database Migrations with Flyway in a Dockerized Environment"
 date: 2025-07-31 17:50:44 +0000
@@ -192,4 +191,3 @@ Flyway (or similar migration tools) is applicable in a wide range of scenarios:
 ## Conclusion
 
 This blog post demonstrated how to use Flyway to orchestrate database migrations in a Dockerized PostgreSQL environment. Flyway simplifies the process of managing database schema changes, ensuring that your database is always in a consistent state. By understanding the core concepts and following the practical implementation steps outlined in this post, you can effectively manage database migrations in your own projects and leverage these concepts to confidently discuss these topics in interviews.
-```

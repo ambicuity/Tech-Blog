@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable API Gateway with Kong and PostgreSQL"
 date: 2024-04-10 00:53:02 +0000
@@ -216,4 +215,3 @@ Interviewers often ask about API Gateway design and implementation. Key talking 
 ## Conclusion
 
 This blog post demonstrated how to build a scalable API Gateway using Kong and PostgreSQL. We covered the core concepts, provided a practical implementation guide, highlighted common mistakes, and discussed real-world use cases. By using Kong with PostgreSQL, you can create a robust and scalable API management solution for your microservices architecture. This setup provides a solid foundation for managing your APIs efficiently and securely. Remember to explore the wide range of Kong plugins to further customize your API Gateway to meet your specific requirements.
-```

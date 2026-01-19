@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Serverless Recommendation Engine with AWS Lambda and DynamoDB"
 date: 2024-05-28 12:20:26 +0000
@@ -180,4 +179,3 @@ When discussing this topic in an interview, be prepared to:
 ## Conclusion
 
 Building a serverless recommendation engine with AWS Lambda and DynamoDB offers a cost-effective and scalable solution for personalized recommendations. This tutorial provides a basic framework that you can adapt and extend to meet the specific needs of your application. While the example is simplified, it demonstrates the power of serverless computing for building intelligent systems. Remember to consider error handling, scalability, and the complexity of your recommendation algorithm when designing and implementing your own serverless recommendation engine.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable Recommendation System with Redis Bloom Filters"
 date: 2024-05-07 23:02:53 +0000
@@ -133,4 +132,3 @@ Key talking points:
 ## Conclusion
 
 Redis Bloom filters provide an efficient and scalable solution for filtering seen items in recommendation systems. By understanding the underlying concepts, carefully choosing filter parameters, and planning for false positives, you can significantly improve the performance and user experience of your recommendation system. This probabilistic approach provides a crucial optimization in scenarios with a large number of users and potential recommendations, allowing you to deliver more relevant and personalized experiences.
-```

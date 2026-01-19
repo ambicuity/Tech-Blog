@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Minimalistic CI/CD Pipeline with Docker, GitLab CI, and SSH"
 date: 2024-02-11 07:47:07 +0000
@@ -215,4 +214,3 @@ For larger and more complex applications, consider using more robust tools and p
 ## Conclusion
 
 This blog post demonstrated how to build a simple yet functional CI/CD pipeline using Docker, GitLab CI, and SSH. While it has limitations in terms of security and scalability, it provides a valuable starting point for automating deployments and streamlining your software development process. Remember to prioritize security and consider more advanced tools as your application grows. This foundation will allow you to understand the core concepts before moving to more robust solutions.
-```

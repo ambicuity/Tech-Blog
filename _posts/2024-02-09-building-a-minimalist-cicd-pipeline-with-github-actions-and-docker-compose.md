@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Minimalist CI/CD Pipeline with GitHub Actions and Docker Compose"
 date: 2024-02-09 23:23:52 +0000
@@ -191,4 +190,3 @@ Key talking points:  Automation, testing, security, efficiency, scalability, and
 ## Conclusion
 
 This blog post demonstrated a basic CI/CD pipeline using GitHub Actions and Docker Compose. While simplified, it illustrates the core principles of automation, testing, and delivery. By incorporating more sophisticated testing strategies, integrating with deployment platforms, and addressing security considerations, you can build robust CI/CD pipelines that significantly improve your software development process. Remember to tailor your pipeline to the specific needs of your project and environment.
-```

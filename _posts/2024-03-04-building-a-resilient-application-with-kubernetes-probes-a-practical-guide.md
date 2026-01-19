@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient Application with Kubernetes Probes: A Practical Guide"
 date: 2024-03-04 16:54:56 +0000
@@ -201,4 +200,3 @@ Key talking points: Resilience, health checks, application availability, prevent
 ## Conclusion
 
 Kubernetes probes are a fundamental aspect of building resilient applications. By understanding the different types of probes and how to configure them correctly, you can significantly improve the availability and reliability of your deployments.  Remember to carefully consider the specific needs of your application and choose the appropriate probe settings to avoid common pitfalls. Implement startup probes if your application needs time to initialize. Leverage environment variables for configurable parameters.  Always test your probes thoroughly to ensure they are working as expected.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Unlocking Observability: Building a Custom Prometheus Exporter in Python"
 date: 2026-01-07 11:26:57 +0000
@@ -142,4 +141,3 @@ Prometheus exporters are valuable in various scenarios:
 ## Conclusion
 
 Building custom Prometheus exporters in Python is a powerful way to extend your monitoring capabilities and gain deeper insights into your systems. By understanding the core concepts, implementing the steps outlined in this guide, and avoiding common pitfalls, you can effectively leverage Prometheus exporters to improve the observability of your applications and infrastructure. Remember to replace the simulated data collection with connections to your real services and data sources, and properly calculate your averages. This will allow you to gain better insight into the health and performance of your critical systems.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automating PostgreSQL Backups to S3 with pgBackRest and Docker"
 date: 2024-01-11 21:09:46 +0000
@@ -198,4 +197,3 @@ Key talking points: emphasize your understanding of data protection principles, 
 ## Conclusion
 
 This blog post provided a practical guide to automating PostgreSQL backups to S3 using pgBackRest and Docker. By following these steps, you can ensure the safety and availability of your valuable database data. Remember to tailor the configuration and scripts to your specific needs and environment. Regularly testing your backup and restore procedures is crucial to ensure they function correctly when needed.  Consider exploring more advanced pgBackRest features like incremental backups and parallel processing for larger databases.
-```

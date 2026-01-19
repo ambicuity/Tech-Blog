@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automating PostgreSQL Database Backups to AWS S3 with pg_dump and Python"
 date: 2024-01-13 10:20:02 +0000
@@ -190,4 +189,3 @@ Key talking points:
 ## Conclusion
 
 Automating PostgreSQL database backups to AWS S3 is a simple yet crucial task for ensuring data protection and business continuity. By using `pg_dump`, Python, and AWS services, you can create a reliable and cost-effective backup solution. Remember to prioritize security by using `.pgpass` for credential management and granting the appropriate IAM permissions.  This setup provides a solid foundation for building a robust disaster recovery strategy.
-```

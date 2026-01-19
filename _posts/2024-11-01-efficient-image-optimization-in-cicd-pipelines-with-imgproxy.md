@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Efficient Image Optimization in CI/CD Pipelines with Imgproxy"
 date: 2024-11-01 00:16:10 +0000
@@ -186,4 +185,3 @@ Key talking points should include your understanding of the performance implicat
 ## Conclusion
 
 Integrating image optimization into your CI/CD pipeline is a crucial step in building performant and user-friendly web applications. By leveraging tools like Imgproxy and automating the optimization process, you can ensure that only optimized images are deployed to production, resulting in faster page load times, improved user experience, and better search engine rankings. This automated process reduces manual effort and eliminates the risk of deploying unoptimized images. This blog post provides a solid foundation for understanding and implementing efficient image optimization in your CI/CD pipeline.
-```

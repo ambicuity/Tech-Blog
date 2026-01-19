@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Unlocking Observability: Implementing Distributed Tracing with Jaeger and Spring Boot"
 date: 2026-01-08 21:08:13 +0000
@@ -227,4 +226,3 @@ Distributed tracing is crucial in many real-world scenarios:
 ## Conclusion
 
 Distributed tracing is an essential tool for managing and understanding complex microservice architectures. By using Jaeger with Spring Boot, you can gain valuable insights into the behavior of your distributed systems, making it easier to debug performance issues, optimize resource utilization, and improve the overall reliability of your applications. Remember to configure your Jaeger Agent correctly, propagate the span context, and use sampling effectively to avoid performance overhead. Implementing distributed tracing early in your development process will save you time and effort in the long run.
-```

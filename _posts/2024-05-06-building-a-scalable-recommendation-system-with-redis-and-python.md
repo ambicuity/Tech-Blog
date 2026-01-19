@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable Recommendation System with Redis and Python"
 date: 2024-05-06 01:41:37 +0000
@@ -132,4 +131,3 @@ Key talking points:
 
 ## Conclusion
 This post provided a practical introduction to building a scalable recommendation system using Redis and Python. We covered the core concepts, implemented a simple collaborative filtering algorithm, discussed common mistakes, and explored real-world use cases. By leveraging Redis's efficient data structures, you can build a recommendation system that can handle a growing user base and item catalog.  This example provides a starting point for building more sophisticated and personalized recommendation engines.
-```

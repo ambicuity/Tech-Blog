@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable URL Shortener with Python, Redis, and FastAPI"
 date: 2024-05-18 15:28:39 +0000
@@ -201,4 +200,3 @@ Key talking points:
 
 ## Conclusion
 This blog post has covered the creation of a functional and scalable URL shortener using Python, FastAPI, and Redis. While this is a basic implementation, it provides a strong foundation for building a more robust and feature-rich system. Remember to consider scalability, security, and user experience when developing real-world applications. The incremental ID approach simplifies short code generation, and utilizing Redis for fast key-value storage allows for quick lookups, resulting in an efficient URL shortening service.
-```

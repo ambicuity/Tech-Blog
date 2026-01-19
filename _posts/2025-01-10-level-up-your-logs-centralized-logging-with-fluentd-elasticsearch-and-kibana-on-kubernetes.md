@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your Logs: Centralized Logging with Fluentd, Elasticsearch, and Kibana on Kubernetes"
 date: 2025-01-10 13:53:07 +0000
@@ -279,4 +278,3 @@ Look for the `NodePort` value under the `PORT(S)` column (e.g., `5601:31000/TCP`
 ## Conclusion
 
 Centralized logging with Fluentd, Elasticsearch, and Kibana provides a powerful solution for gaining insights into your Kubernetes applications. By following this guide, you can set up a robust logging pipeline, effectively troubleshoot issues, and improve the overall observability of your system. Remember to consider the common mistakes and implement appropriate security measures to ensure a reliable and secure logging environment. Experiment with different configurations and dashboards to tailor the solution to your specific needs.
-```

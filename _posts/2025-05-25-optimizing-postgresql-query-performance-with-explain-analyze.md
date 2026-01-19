@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Optimizing PostgreSQL Query Performance with EXPLAIN ANALYZE"
 date: 2025-05-25 22:41:17 +0000
@@ -154,4 +153,3 @@ Interviewers often ask about query optimization and how to identify and resolve 
 ## Conclusion
 
 `EXPLAIN ANALYZE` is an indispensable tool for PostgreSQL database performance tuning. By understanding its output and applying the principles discussed in this post, you can effectively identify and resolve query performance issues, leading to a faster and more responsive application. Remember to analyze the output carefully, establish baselines, and update statistics regularly to keep your database running smoothly. Regularly reviewing query plans with `EXPLAIN ANALYZE`, especially for critical queries, should be a standard part of your database maintenance routine.
-```

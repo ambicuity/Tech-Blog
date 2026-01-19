@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple Serverless API with AWS Lambda and API Gateway"
 date: 2024-06-23 05:21:46 +0000
@@ -151,4 +150,3 @@ Serverless APIs built with Lambda and API Gateway are suitable for a wide range 
 ## Conclusion
 
 This post provided a practical introduction to building a simple serverless API using AWS Lambda and API Gateway. By following these steps, you can quickly deploy a basic "Hello, World!" API and start exploring the world of serverless development. Remember to understand the core concepts, avoid common mistakes, and consider real-world use cases to leverage the full potential of this powerful technology. This basic example serves as a solid foundation upon which you can build more complex and sophisticated serverless applications. Remember to clean up your AWS resources when you're finished to avoid incurring unnecessary charges.
-```

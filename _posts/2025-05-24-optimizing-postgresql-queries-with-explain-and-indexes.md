@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Optimizing PostgreSQL Queries with EXPLAIN and Indexes"
 date: 2025-05-24 00:49:01 +0000
@@ -151,4 +150,3 @@ Key talking points: understanding execution plans, choosing the right indexes, a
 ## Conclusion
 
 Optimizing PostgreSQL queries is an ongoing process that requires a deep understanding of the database system and the application's data access patterns. The `EXPLAIN` command and indexes are powerful tools that can help you identify and resolve performance bottlenecks. By understanding the core concepts, implementing practical solutions, avoiding common mistakes, and considering real-world use cases, you can build high-performance and scalable PostgreSQL applications. Remember to regularly monitor query performance and adjust your optimization strategies as your data and application evolve.
-```

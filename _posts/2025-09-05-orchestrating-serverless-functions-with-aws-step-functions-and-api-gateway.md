@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Serverless Functions with AWS Step Functions and API Gateway"
 date: 2025-09-05 15:44:50 +0000
@@ -293,4 +292,3 @@ AWS Step Functions can be used in various real-world scenarios, including:
 ## Conclusion
 
 AWS Step Functions provides a powerful and flexible solution for orchestrating serverless functions. By leveraging Step Functions, you can build complex, reliable, and scalable serverless applications without the complexity of managing underlying infrastructure. This post provided a practical walkthrough of building a serverless application with Step Functions and API Gateway, highlighting core concepts, implementation steps, common mistakes, and real-world use cases. By understanding these principles, you can effectively utilize Step Functions to orchestrate your serverless workloads.
-```

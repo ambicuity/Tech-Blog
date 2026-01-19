@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Robust Microservices with Kong API Gateway and Health Checks"
 date: 2024-07-26 00:05:22 +0000
@@ -227,4 +226,3 @@ Key talking points:
 ## Conclusion
 
 Kong API Gateway, combined with robust health checks, provides a powerful solution for managing and securing microservices. By implementing the steps outlined in this blog post, you can build a resilient and reliable microservices architecture that can handle the demands of modern applications.  Declarative configuration allows for infrastructure as code management, making your setup repeatable and automated. Remember to tailor the health check configuration to the specific needs of your microservices and continuously monitor their health to ensure optimal performance and availability.
-```

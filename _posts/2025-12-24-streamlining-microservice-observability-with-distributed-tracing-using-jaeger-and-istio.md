@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Streamlining Microservice Observability with Distributed Tracing using Jaeger and Istio"
 date: 2025-12-24 15:39:40 +0000
@@ -149,4 +148,3 @@ When discussing distributed tracing in an interview, be prepared to address the 
 
 ## Conclusion
 Distributed tracing is an indispensable tool for managing and understanding the complexities of microservice architectures.  By leveraging tools like Jaeger and Istio, you can gain deep visibility into the flow of requests, identify performance bottlenecks, and troubleshoot errors effectively.  While implementing distributed tracing requires careful planning and configuration, the benefits it provides in terms of observability and debugging are well worth the effort. Remember to consider sampling rates and context propagation for optimal performance and accuracy.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Mastering Kubernetes Pod Affinity: Scheduling for Performance and Resilience"
 date: 2025-03-09 04:50:03 +0000
@@ -209,4 +208,3 @@ Key talking points:
 ## Conclusion
 
 Kubernetes pod affinity and anti-affinity are powerful tools for fine-tuning pod scheduling, enabling you to optimize performance, enhance resilience, and meet specific application requirements. By understanding the core concepts and practicing with the examples provided, you can effectively leverage these features to create a more robust and efficient Kubernetes environment. Remember to carefully consider the impact of your affinity rules on cluster resource utilization and plan accordingly.
-```

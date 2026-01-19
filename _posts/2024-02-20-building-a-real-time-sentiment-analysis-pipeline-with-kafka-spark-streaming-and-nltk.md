@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Real-Time Sentiment Analysis Pipeline with Kafka, Spark Streaming, and NLTK"
 date: 2024-02-20 20:17:39 +0000
@@ -180,4 +179,3 @@ Interviewers might ask about:
 ## Conclusion
 
 This blog post has demonstrated how to build a real-time sentiment analysis pipeline using Kafka, Spark Streaming, and NLTK.  By leveraging these technologies, you can gain valuable insights from streaming text data and make data-driven decisions in near real-time. Remember to consider scalability, fault tolerance, and latency when designing and deploying such a system.  Experiment with different configurations and libraries to optimize the pipeline for your specific use case.
-```

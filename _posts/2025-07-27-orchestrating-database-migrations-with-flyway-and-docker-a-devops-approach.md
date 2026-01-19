@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Database Migrations with Flyway and Docker: A DevOps Approach"
 date: 2025-07-27 19:56:58 +0000
@@ -179,4 +178,3 @@ Key Talking Points:
 
 ## Conclusion
 Flyway, combined with Docker, provides a powerful and efficient way to manage database migrations in a DevOps environment. By following the steps outlined in this blog post and adhering to best practices, you can streamline your database development workflow, reduce errors, and ensure that your database schema is always up-to-date. Remember to prioritize idempotency, version control, and thorough testing to create a robust and reliable database migration process.
-```

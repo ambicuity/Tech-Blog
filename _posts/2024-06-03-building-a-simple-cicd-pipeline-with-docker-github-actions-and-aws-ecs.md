@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with Docker, GitHub Actions, and AWS ECS"
 date: 2024-06-03 13:13:27 +0000
@@ -191,4 +190,3 @@ This CI/CD pipeline can be adapted for various real-world use cases:
 ## Conclusion
 
 This blog post provided a practical guide to building a simple CI/CD pipeline using Docker, GitHub Actions, and AWS ECS. By following these steps, you can automate the process of building, testing, and deploying your applications, leading to faster release cycles and improved code quality. Remember to pay close attention to configuration details and security considerations to ensure a robust and reliable pipeline. While this example is basic, it forms a strong foundation for more complex and sophisticated CI/CD implementations.
-```

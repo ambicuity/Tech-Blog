@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your CI/CD: Building a Canary Deployment Pipeline with AWS CodePipeline and Lambda"
 date: 2024-12-23 02:32:04 +0000
@@ -175,4 +174,3 @@ Key talking points:
 ## Conclusion
 
 This post outlined a serverless approach to implementing a canary deployment pipeline using AWS CodePipeline and Lambda. By automating the traffic shifting process and incorporating robust monitoring, you can significantly reduce the risk associated with software deployments and deliver a better user experience. Remember to adapt this example to your specific infrastructure and needs, and always prioritize monitoring and automated rollback to ensure a smooth and reliable deployment process. Don't forget to use Infrastructure as Code (IaC) for a production-ready setup.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Serverless Event Processing with AWS Lambda and SQS: A Practical Guide"
 date: 2025-11-23 22:29:19 +0000
@@ -205,4 +204,3 @@ The Lambda and SQS combination is applicable in various scenarios:
 ## Conclusion
 
 Using AWS Lambda and SQS together provides a powerful and flexible way to build serverless, event-driven applications. By decoupling components and leveraging asynchronous processing, you can create scalable, resilient, and cost-effective systems. This guide provided a practical example of an image processing pipeline, but the principles can be applied to a wide range of use cases. Remember to pay attention to IAM permissions, error handling, and message formats to ensure a robust and reliable implementation.
-```

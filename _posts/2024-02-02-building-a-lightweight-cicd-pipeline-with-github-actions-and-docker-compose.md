@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Lightweight CI/CD Pipeline with GitHub Actions and Docker Compose"
 date: 2024-02-02 17:32:35 +0000
@@ -209,4 +208,3 @@ Key talking points should include your understanding of the entire process from 
 ## Conclusion
 
 This blog post demonstrated how to build a lightweight CI/CD pipeline using GitHub Actions and Docker Compose. This approach is suitable for small to medium-sized projects and provides a solid foundation for automating your software development lifecycle. By embracing CI/CD, you can significantly improve the speed, reliability, and efficiency of your development process. Remember to focus on writing comprehensive tests, managing dependencies effectively, and securing your pipeline with proper secret management techniques. This example provides a basic framework; real-world pipelines often involve more complex configurations, including multiple environments, advanced testing strategies, and integration with other services.
-```

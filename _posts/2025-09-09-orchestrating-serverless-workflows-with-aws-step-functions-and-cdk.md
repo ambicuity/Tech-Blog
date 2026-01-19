@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Serverless Workflows with AWS Step Functions and CDK"
 date: 2025-09-09 20:01:36 +0000
@@ -225,4 +224,3 @@ Interviewers often ask about Step Functions to assess your understanding of serv
 ## Conclusion
 
 AWS Step Functions, combined with the power of CDK, offers a robust and efficient way to manage serverless workflows.  By leveraging IaC principles, you can define, deploy, and maintain your workflows consistently and predictably.  Understanding the core concepts, avoiding common mistakes, and practicing with real-world use cases will empower you to build scalable and reliable serverless applications. Remember to pay close attention to IAM permissions, `outputPath`, and error handling for a successful implementation.
-```

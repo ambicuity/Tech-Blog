@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Background Tasks with Celery and RabbitMQ on Docker"
 date: 2025-06-04 18:05:03 +0000
@@ -225,4 +224,3 @@ Celery and RabbitMQ are widely used in various applications, including:
 ## Conclusion
 
 Celery, combined with RabbitMQ and containerized using Docker, provides a powerful and flexible solution for managing background tasks in your applications. By understanding the core concepts, implementing the practical example, and avoiding common mistakes, you can effectively leverage Celery to improve the performance, scalability, and user experience of your software. Remember to focus on clear configuration, robust error handling, and comprehensive monitoring for a successful deployment.
-```

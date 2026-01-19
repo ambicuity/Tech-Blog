@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Demystifying Kubernetes Operators: Building a Simple Memcached Operator with Kubebuilder"
 date: 2024-09-29 09:23:34 +0000
@@ -349,4 +348,3 @@ Kubernetes Operators are widely used in various scenarios:
 ## Conclusion
 
 Kubernetes Operators are a powerful tool for automating the management of complex applications. By understanding the core concepts and utilizing frameworks like Kubebuilder, you can build Operators that encapsulate domain-specific knowledge and simplify operational tasks. This tutorial provided a practical introduction to building a simple Memcached Operator. Remember to focus on error handling, RBAC, and owner references to create robust and reliable Operators. Experiment with more complex scenarios and explore the capabilities of Kubebuilder to build Operators tailored to your specific needs.
-```

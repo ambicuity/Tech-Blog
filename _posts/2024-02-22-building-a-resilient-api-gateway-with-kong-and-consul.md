@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient API Gateway with Kong and Consul"
 date: 2024-02-22 02:54:54 +0000
@@ -251,4 +250,3 @@ When discussing this setup in an interview, emphasize the following points:
 ## Conclusion
 
 Combining Kong and Consul provides a powerful solution for building a resilient and dynamically configurable API gateway. By leveraging Consul's service discovery capabilities, Kong can automatically adapt to changes in your microservice landscape, ensuring high availability and scalability.  While the setup requires some initial configuration, the benefits of automated service discovery and load balancing significantly outweigh the costs, especially in complex microservices environments.
-```

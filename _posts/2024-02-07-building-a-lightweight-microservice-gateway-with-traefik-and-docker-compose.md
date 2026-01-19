@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Lightweight Microservice Gateway with Traefik and Docker Compose"
 date: 2024-02-07 13:17:21 +0000
@@ -212,4 +211,3 @@ This setup is ideal for:
 ## Conclusion
 
 This blog post demonstrated how to build a lightweight microservice gateway using Traefik and Docker Compose. This approach provides a solid foundation for understanding the core concepts of API gateways and reverse proxies.  By leveraging Traefik's automatic service discovery and Docker Compose's orchestration capabilities, you can quickly deploy and manage your microservices in a streamlined manner. Remember to consider the trade-offs and choose the right solution based on your specific needs and requirements. While this setup is simplified, it serves as a great starting point for exploring more advanced features of Traefik and building more sophisticated microservice architectures.
-```

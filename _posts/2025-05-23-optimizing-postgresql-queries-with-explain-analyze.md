@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Optimizing PostgreSQL Queries with EXPLAIN ANALYZE"
 date: 2025-05-23 03:48:46 +0000
@@ -140,4 +139,3 @@ Key talking points should include indexing strategies, the effects of using appr
 
 ## Conclusion
 The `EXPLAIN ANALYZE` command is an indispensable tool for optimizing PostgreSQL queries. By understanding the execution plans and identifying performance bottlenecks, you can significantly improve the performance of your applications and ensure a smooth user experience. Remember to regularly analyze your queries, update statistics, and add indexes strategically to maintain optimal database performance. Ignoring the output of `EXPLAIN ANALYZE` is like flying blind.
-```

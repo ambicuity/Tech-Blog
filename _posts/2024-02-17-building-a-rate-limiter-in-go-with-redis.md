@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Rate Limiter in Go with Redis"
 date: 2024-02-17 14:15:08 +0000
@@ -187,4 +186,3 @@ Key talking points:
 ## Conclusion
 
 Building a rate limiter is a fundamental skill in software engineering, especially when dealing with APIs and microservices. This blog post provided a practical guide to implementing a simple fixed window counter rate limiter using Go and Redis. Remember to consider the common mistakes and interview perspectives discussed above when designing and implementing rate limiting solutions in your own projects. As your needs become more complex, consider exploring more sophisticated algorithms like token bucket or sliding window logs to achieve greater flexibility and accuracy.
-```

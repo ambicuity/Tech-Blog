@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Simple CI/CD Pipeline with Drone CI and Docker"
 date: 2024-06-07 00:53:58 +0000
@@ -183,4 +182,3 @@ When discussing CI/CD with Drone CI in an interview, be prepared to discuss the 
 ## Conclusion
 
 This blog post provided a practical guide to building a simple CI/CD pipeline with Drone CI and Docker. By automating the build, test, and deployment process, you can significantly improve your software development workflow, leading to faster releases and higher-quality software. Remember to prioritize security and start with simple pipelines, gradually adding complexity as your needs evolve. Experiment with different features of Drone CI and Docker to create a CI/CD pipeline that meets the specific requirements of your project.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automating Infrastructure with Terraform: From Zero to Production"
 date: 2024-01-06 19:05:01 +0000
@@ -135,4 +134,3 @@ When discussing Terraform in an interview, be prepared to address the following:
 
 ## Conclusion
 Terraform is a powerful tool for automating infrastructure management. By using Terraform, you can improve the speed, reliability, and consistency of your infrastructure deployments. This blog post provided a foundational understanding of Terraform, guiding you through a practical implementation and highlighting common pitfalls. Embrace Infrastructure as Code and unlock the power of automation in your cloud environments. Practice, experiment, and build reusable modules to become proficient with Terraform and confidently manage your infrastructure in a declarative and efficient manner.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Resilient Applications with Kubernetes Probes: Liveness, Readiness, and Startup"
 date: 2025-08-23 10:27:33 +0000
@@ -204,4 +203,3 @@ Be prepared to discuss trade-offs, such as the impact of probe frequency on reso
 ## Conclusion
 
 Kubernetes probes are essential for building resilient and highly available applications. By understanding the purpose of liveness, readiness, and startup probes and implementing them effectively, you can ensure that your applications can recover from failures and serve traffic reliably. Properly configured probes enable Kubernetes to automate failure detection and recovery, significantly reducing downtime and improving the overall user experience. Remember to carefully consider the configuration options and potential pitfalls when designing your probes.
-```

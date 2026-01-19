@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Scalable Web Applications with Docker and Nginx Reverse Proxy"
 date: 2024-08-24 11:16:27 +0000
@@ -192,4 +191,3 @@ Key talking points include: "I've used Docker to package and deploy applications
 ## Conclusion
 
 This post demonstrated how to build a scalable web application using Docker and Nginx. By containerizing your application with Docker and deploying it behind an Nginx reverse proxy, you can improve its portability, scalability, and security. Understanding these concepts and gaining practical experience with these tools is essential for modern software development and DevOps practices. Remember to experiment with different configurations and explore advanced features of Docker and Nginx to further optimize your applications.
-```

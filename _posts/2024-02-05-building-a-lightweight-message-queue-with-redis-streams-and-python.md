@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Lightweight Message Queue with Redis Streams and Python"
 date: 2024-02-05 12:50:06 +0000
@@ -160,4 +159,3 @@ Key talking points: Redis Streams offer a simpler alternative to heavyweight mes
 ## Conclusion
 
 This blog post demonstrated how to implement a basic message queue using Redis Streams and Python. We covered the fundamental concepts, provided a step-by-step implementation guide, highlighted common mistakes, and discussed interview-relevant aspects. While Redis Streams might not be a replacement for fully-fledged message queue systems like Kafka or RabbitMQ in all scenarios, they offer a lightweight and effective solution for many smaller projects and internal tooling requirements. They are particularly useful when you already have Redis as part of your infrastructure. By understanding the core principles and potential pitfalls, you can leverage Redis Streams to build robust and scalable asynchronous systems.
-```

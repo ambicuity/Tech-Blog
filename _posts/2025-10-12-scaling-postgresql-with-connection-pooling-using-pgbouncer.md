@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Scaling PostgreSQL with Connection Pooling using PgBouncer"
 date: 2025-10-12 22:13:12 +0000
@@ -174,4 +173,3 @@ Key talking points:
 ## Conclusion
 
 PgBouncer is a powerful tool for scaling PostgreSQL deployments and improving database performance. By implementing connection pooling, you can significantly reduce connection overhead, increase concurrency, and improve the overall responsiveness of your applications. Understanding the core concepts, configuration options, and potential pitfalls is crucial for successful implementation and maintenance. Remember to carefully consider your application's workload and choose the appropriate pooling mode for optimal performance.
-```

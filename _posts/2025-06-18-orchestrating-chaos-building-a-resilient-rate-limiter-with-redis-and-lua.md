@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Chaos: Building a Resilient Rate Limiter with Redis and Lua"
 date: 2025-06-18 17:51:21 +0000
@@ -147,4 +146,3 @@ Key Talking Points:
 ## Conclusion
 
 Building a resilient rate limiter is essential for maintaining the stability and security of modern applications. By leveraging the power of Redis and Lua scripting, we can create a scalable and robust solution that protects our services from abuse and ensures a fair and consistent user experience. While this example focuses on a sliding window implementation, the core principles can be adapted to other rate-limiting algorithms and technologies. Remember to consider the specific requirements of your application when designing and implementing your rate limiter. Always prioritize atomicity, scalability, and resilience.
-```

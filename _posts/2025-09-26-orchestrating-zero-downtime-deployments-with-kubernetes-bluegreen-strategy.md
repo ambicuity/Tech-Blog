@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating Zero-Downtime Deployments with Kubernetes Blue/Green Strategy"
 date: 2025-09-26 13:23:24 +0000
@@ -192,4 +191,3 @@ Interviewers want to see that you understand the underlying concepts, can articu
 ## Conclusion
 
 The Blue/Green deployment strategy is a powerful technique for achieving zero-downtime deployments in Kubernetes. By understanding the core concepts, following the practical implementation steps, avoiding common mistakes, and considering the interview perspective, you can successfully implement this strategy and deliver seamless updates to your applications. Remember to prioritize thorough testing, robust monitoring, and automation to maximize the benefits of Blue/Green deployments.
-```

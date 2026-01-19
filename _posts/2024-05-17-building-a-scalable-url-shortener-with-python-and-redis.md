@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Scalable URL Shortener with Python and Redis"
 date: 2024-05-17 08:00:24 +0000
@@ -166,4 +165,3 @@ Key Talking Points:
 ## Conclusion
 
 This blog post provided a practical guide to building a scalable URL shortener using Python and Redis. We covered the fundamental concepts, implemented a working solution, discussed common mistakes, and explored its real-world applications and relevance to system design interviews.  By understanding the principles and techniques discussed, you can effectively build and deploy your own URL shortening service, leveraging the power and scalability of Redis. Remember to focus on scalability, collision handling, error handling, and security when designing your solution.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Automating Canary Deployments with Kubernetes and Argo Rollouts"
 date: 2024-01-02 11:30:15 +0000
@@ -182,4 +181,3 @@ Interviewers will likely ask about how you would handle a failed canary deployme
 ## Conclusion
 
 Canary deployments offer a powerful way to release software with confidence. By using Kubernetes and Argo Rollouts, you can automate the process and minimize the risk of introducing issues to your entire user base. Remember to focus on thorough monitoring, careful planning, and a robust rollback strategy. This, combined with the practical steps outlined here, will pave the way for successful and safer deployments.
-```

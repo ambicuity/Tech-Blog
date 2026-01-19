@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Lightweight Event-Driven System with Redis Streams and Python"
 date: 2024-02-03 20:50:51 +0000
@@ -175,4 +174,3 @@ if __name__ == '__main__':
 
 ## Conclusion
 Redis Streams offer a powerful and lightweight solution for building event-driven systems, especially when you already utilize Redis. By understanding the core concepts and implementing the practical examples provided, you can leverage Redis Streams to create scalable and resilient applications. Remember to handle errors gracefully, acknowledge messages, and choose the right tool for the job based on your specific requirements and scale.
-```

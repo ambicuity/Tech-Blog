@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building Scalable Data Pipelines with Prefect and Docker Compose"
 date: 2024-08-14 02:16:40 +0000
@@ -208,4 +207,3 @@ Key Talking Points:
 ## Conclusion
 
 This post demonstrated how to build a scalable data pipeline using Prefect and Docker Compose. By leveraging Prefect's Python-first approach and Docker Compose's ability to create reproducible environments, you can streamline your data engineering workflows and build robust, maintainable data pipelines. Remember to prioritize error handling, resource management, and security best practices to ensure the reliability and scalability of your pipelines in production. Embrace Prefect as a tool for its simplicity and ability to handle complex workflows effectively.
-```

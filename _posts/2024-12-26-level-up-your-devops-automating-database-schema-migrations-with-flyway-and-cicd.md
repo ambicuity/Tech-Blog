@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your DevOps: Automating Database Schema Migrations with Flyway and CI/CD"
 date: 2024-12-26 19:22:34 +0000
@@ -166,4 +165,3 @@ Key talking points:
 
 ## Conclusion
 Automating database schema migrations with Flyway and CI/CD is a crucial practice for modern software development. It ensures consistency, reduces deployment risks, and enables faster and more reliable deployments. By following the steps outlined in this post, you can integrate Flyway into your CI/CD pipeline and level up your DevOps practices. Remember to prioritize security, error handling, and testing to ensure a smooth and reliable database deployment process.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Orchestrating PostgreSQL Backups with Kubernetes CronJobs and AWS S3"
 date: 2025-08-12 12:51:46 +0000
@@ -224,4 +223,3 @@ This approach is applicable in various scenarios:
 ## Conclusion
 
 Automating PostgreSQL backups with Kubernetes CronJobs and AWS S3 provides a scalable, reliable, and secure solution for protecting your data. By following the steps outlined in this blog post, you can implement a robust backup strategy that minimizes the risk of data loss and ensures business continuity. Remember to regularly test your backups to ensure they can be successfully restored when needed. This example demonstrates a powerful way to leverage Kubernetes and cloud services for essential operational tasks.
-```

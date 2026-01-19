@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient Application with Kubernetes Probes: Liveness, Readiness, and Startup"
 date: 2024-03-06 09:42:11 +0000
@@ -201,4 +200,3 @@ Key talking points include: self-healing, fault tolerance, graceful degradation,
 ## Conclusion
 
 Kubernetes probes are essential for building resilient and self-healing applications. By correctly configuring liveness, readiness, and startup probes, you can ensure that your applications are always available and responsive. Understanding the core concepts, avoiding common mistakes, and considering real-world use cases will empower you to build more robust and fault-tolerant systems in Kubernetes. Remember to tailor the probes to the specific needs of your application and continuously monitor their behavior to ensure optimal performance and resilience.
-```

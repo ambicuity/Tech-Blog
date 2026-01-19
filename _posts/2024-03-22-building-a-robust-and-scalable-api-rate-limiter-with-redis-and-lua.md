@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Robust and Scalable API Rate Limiter with Redis and Lua"
 date: 2024-03-22 15:08:59 +0000
@@ -177,4 +176,3 @@ Key talking points should include:
 ## Conclusion
 
 Building a robust and scalable API rate limiter is essential for protecting your APIs and ensuring a positive user experience. By leveraging Redis and Lua scripting, you can create a high-performance and atomic rate-limiting solution. Remember to consider the core concepts, follow the implementation steps, avoid common mistakes, and be prepared to discuss the topic from an interview perspective. By implementing rate limiting correctly, you can significantly improve the reliability and security of your applications.
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Scaling PostgreSQL Read Performance with Read Replicas on AWS RDS"
 date: 2025-10-09 14:13:41 +0000
@@ -168,4 +167,3 @@ Key talking points include: the importance of monitoring, the trade-off between 
 ## Conclusion
 
 PostgreSQL read replicas on AWS RDS are a powerful tool for scaling read performance and improving application availability. By understanding the core concepts, following the implementation steps, avoiding common mistakes, and being prepared to discuss the topic in an interview, you can effectively leverage read replicas to build scalable and resilient applications. Remember to monitor replication lag, configure connection pooling, and carefully plan your query routing strategy.  By carefully considering these aspects, you can successfully implement and manage read replicas to optimize your database performance and application experience.
-```

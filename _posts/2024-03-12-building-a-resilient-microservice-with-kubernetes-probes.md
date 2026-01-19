@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Building a Resilient Microservice with Kubernetes Probes"
 date: 2024-03-12 15:51:12 +0000
@@ -183,4 +182,3 @@ Key talking points: emphasize the importance of proper probe configuration for e
 ## Conclusion
 
 Kubernetes probes are a critical component for building resilient and self-healing microservices. By understanding the different types of probes, their configuration options, and common pitfalls, you can significantly improve the availability and reliability of your applications running in Kubernetes.  Properly configured probes allow Kubernetes to automatically detect and recover from failures, minimizing downtime and ensuring a better user experience.  Remember to tailor your probes to the specific needs of your application and monitor their behavior to ensure they are functioning as intended.
-```

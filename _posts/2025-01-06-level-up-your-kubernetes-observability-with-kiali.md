@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Level Up Your Kubernetes Observability with Kiali"
 date: 2025-01-06 00:58:21 +0000
@@ -151,4 +150,3 @@ Key talking points:
 ## Conclusion
 
 Kiali is an invaluable tool for enhancing the observability of your Kubernetes service mesh. By leveraging Istio's telemetry data, Kiali provides a comprehensive view of your microservices applications, enabling you to identify and resolve performance issues, troubleshoot errors, and ensure the overall health and stability of your system.  By following the steps outlined in this blog post, you can quickly deploy Kiali and start gaining deeper insights into your Kubernetes environment. Remember to practice generating traffic and experimenting with the various features of the Kiali dashboard to fully realize its potential.
-```
