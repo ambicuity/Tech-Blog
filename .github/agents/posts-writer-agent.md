@@ -66,6 +66,10 @@ title: "Your Engaging Title Here"
 date: YYYY-MM-DD HH:MM:SS +0000
 categories: [Category1, Category2]
 tags: [tag1, tag2, tag3]
+description: "A concise summary of the post (150-160 characters) for SEO and social previews."
+image:
+  path: /assets/img/posts/YYYY/image-name.jpg
+  alt: "Descriptive alt text for the image"
 ---
 ```
 **Mandatory Field**: `layout: post` must ALWAYS be present.
