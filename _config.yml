@@ -93,7 +93,7 @@ comments:
     lang: en
 
 google_analytics:
-  id: # G-XXXXXXXXXX (Add your GA4 Measurement ID here)
+  id: G-FSTNSBY5ZH
   
 assets:
   self_host:
