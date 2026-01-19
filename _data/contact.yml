@@ -9,3 +9,7 @@
 - type: website
   icon: "fas fa-globe"
   url: "https://riteshrana.engineer"
+
+- type: email
+  icon: "fas fa-envelope"
+  nospam: "contact@riteshrana.engineer"
