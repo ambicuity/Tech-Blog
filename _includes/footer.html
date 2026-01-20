@@ -30,4 +30,9 @@
             Contact: <a href="mailto:contact@riteshrana.engineer">contact@riteshrana.engineer</a>
         </div>
     </div>
+    </div>
 </footer>
+
+{% if page.layout == 'post' %}
+{% include reading-progress.html %}
+{% endif %}

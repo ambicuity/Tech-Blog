@@ -54,4 +54,9 @@ I'm always open to discussing complex systems, side projects, and new opportunit
 - **LinkedIn:** [ritesh-rana](https://www.linkedin.com/in/riteshengineer/)
 - **Email:** `contact@riteshrana.engineer`
 
+## ⌨️ Interactive Shell
+
+{% include terminal.html %}
+
+
 
