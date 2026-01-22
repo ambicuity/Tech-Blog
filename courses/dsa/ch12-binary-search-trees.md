@@ -4,37 +4,30 @@ title: "DSA Ch.12: BST"
 permalink: /courses/dsa/ch12-binary-search-trees/
 ---
 
-# Chapter 12: Binary Search Trees
+# Chapter 12: Binary Search Trees (BST)
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 12
 
-Search trees are data structures that support many dynamic-set operations, including `Search`, `Minimum`, `Maximum`, `Predecessor`, `Successor`, `Insert`, and `Delete`.
+## 12.1 BST Property
+For any node $x$:
+-   If $y$ is in Left Subtree of $x$, then $y.key \le x.key$.
+-   If $y$ is in Right Subtree of $x$, then $y.key \ge x.key$.
 
-## 12.1 What is a BST?
-A binary search tree is a binary tree where each node `x` satisfies the **binary-search-tree property**:
-- If `y` is a node in the left subtree of `x`, then `y.key` $\le$ `x.key`.
-- If `y` is a node in the right subtree of `x`, then `y.key` $\ge$ `x.key`.
+This allows **Inorder Traversal** to print sorted keys in $O(n)$.
 
-**Inorder Tree Walk**: Prints keys in sorted order. $\Theta(n)$.
+## 12.2 Operations
+All basic operations take $O(h)$ time, where $h$ is height.
+-   **Search**: Trace down.
+-   **Minimum**: Go left until null.
+-   **Successor**:
+    1.  If right subtree exists: Minimum of Right.
+    2.  Else: Go up until we turn Right.
+-   **Insert**: Trace down to leaf, attach.
+-   **Delete**:
+    1.  No children: Just remove.
+    2.  One child: Splice out.
+    3.  Two children: Find Successor (in right subtree), replace content, delete successor.
 
-## 12.2 Querying a BST
-- **Search**: Trace a path from root. If $k < x.key$, go left. Else go right.
-- **Minimum**: Go left until you hit a leaf.
-- **Maximum**: Go right until you hit a leaf.
-- **Successor**: The node with the smallest key greater than `x.key`.
-    - If right subtree is non-empty: Minimum of right subtree.
-    - Else: Use parent pointer to go up until you turn right.
-
-**Complexity**: All operations are $O(h)$, where $h$ is height of tree.
-
-## 12.3 Insertion and Deletion
-- **Insertion**: Like search. When you hit a `NIL`, place new node there.
-- **Deletion**:
-    - Case 1: Node $z$ has no children. Just remove it.
-    - Case 2: Node $z$ has one child. Splice $z$ out.
-    - Case 3: Node $z$ has two children. Find $z$'s successor $y$ (which has no left child). Splice $y$ out, and replace $z$ with $y$.
-
-## 12.4 Randomly Built BSTs
-If we insert $n$ keys in random order, expected height is $O(\lg n)$.
-If we insert sorted keys, height is $O(n)$ (Linked list).
-To guarantee $O(\lg n)$, we need **Balanced Trees** (e.g., Red-Black Trees).
+## 12.3 Randomly Built BSTs
+If keys inserted in random order, expected height is $O(\lg n)$.
+Worst case (sorted input): $O(n)$ chain.

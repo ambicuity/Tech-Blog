@@ -8,33 +8,21 @@ permalink: /courses/architecture/ch3-arithmetic/
 
 > **Reference**: *Computer Organization and Design* by Patterson & Hennessy, Chapter 3
 
-Computers manipulate binary numbers. A 32-bit word is just a string of 0s and 1s.
+ALU Design.
 
-## 3.1 Signed Numbers
-How to represent negative numbers?
-- **Sign-Magnitude**: First bit is sign. Problem: Two zeros (+0, -0). Hard hardware.
-- **2's Complement**: Leading system.
-    - To negate: Invert bits and add 1.
-    - Range: $-2^{n-1}$ to $2^{n-1}-1$.
-    - Addition works exactly the same for signed and unsigned!
+## 3.1 Integer Arithmetic
+-   **Addition**: Full Adder ($Sum = A \oplus B \oplus Cin$, $Cout = AB + Cin(A \oplus B)$). Ripple Carry vs Carry Lookahead (CLA).
+-   **Multiplication**: Shift and Add. Optimized Booth's Algorithm for signed numbers.
 
-## 3.2 Addition and Subtraction
-- **ALU (Arithmetic Logic Unit)**: Hardware block.
-- **Overflow**: Result is too large to fit in 32 bits.
-    - On addition: Occurs if operands have same sign, but result has different sign.
+## 3.2 Floating Point (IEEE 754)
+Representation of reals.
+$$ (-1)^S \times (1 + Fraction) \times 2^{(Exponent - Bias)} $$
+**Single Precision (32-bit)**:
+-   S (1 bit).
+-   Exponent (8 bits, Bias 127).
+-   Fraction (23 bits).
 
-## 3.3 Multiplication
-- **Grade School Algorithm**: Shift and add.
-- **Hardware**: Implementation involves a 64-bit product register.
-- **Fast Multiplication**: Booth's Algorithm (handles signed numbers properly).
-
-## 3.4 Floating Point (IEEE 754)
-Representation for Reals (Scientific notation: $1.xxxx \times 2^{yyyy}$).
-- **Single Precision (32-bit)**:
-    - Sign (1 bit).
-    - Exponent (8 bits): Bias-127.
-    - Significand (23 bits).
-- **Double Precision (64-bit)**:
-    - Exponent (11 bits).
-    - Significand (52 bits).
-- Special values: `+Infinity`, `-Infinity`, `NaN` (Not a Number).
+**Issues**:
+-   **Overflow**: Too large.
+-   **Underflow**: Too small (use subnormals).
+-   **Precision**: $0.1 + 0.2 \neq 0.3$.

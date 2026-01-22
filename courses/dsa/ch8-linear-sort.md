@@ -8,24 +8,28 @@ permalink: /courses/dsa/ch8-linear-sort/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 8
 
-We have established a lower bound of $\Omega(n \lg n)$ for **comparison sorts** (Heapsort, Merge Sort, Quicksort). To sort faster, we must assume something about the input and avoid comparing elements directly.
+**Lower Bound**: Any comparison-based sort (Merge, Heap, Quick) requires $\Omega(n \lg n)$ comparisons.
+To beat this, we must stop comparing and start **Counting**.
 
-## 8.1 Lower Bounds for Sorting
-Any decision tree that sorts $n$ elements must have height $\Omega(n \lg n)$. Thus, no comparison sort can be faster than $O(n \lg n)$.
+## 8.1 Counting Sort
+Assumption: Input integers are in range $0 \dots k$.
+1.  Create array `C[0..k]`.
+2.  Count occurrences: `C[A[i]]++`.
+3.  Cumulative sum `C` to find positions.
+4.  Place elements.
+-   **Time**: $O(n + k)$.
+-   **Space**: $O(k)$. Stable.
 
-## 8.2 Counting Sort
-Assumes input elements are integers in the range $0$ to $k$.
-- **Idea**: Count how many elements are equal to $x$. Use this to place $x$ directly into its position.
-- **Time**: $\Theta(n+k)$.
-- **Space**: $\Theta(n+k)$.
-- **Stable**: Yes. (Crucial for Radix sort).
+## 8.2 Radix Sort
+Sorts numbers digit by digit (Least Significant Digit first).
+Requires a stable intermediate sort (like Counting Sort).
+-   If we have $d$ digits, cost is $O(d(n+k))$.
+-   Can sort integers up to $N^2$ in linear time $O(N)$ by treating them as base-$N$ numbers ($d=2$).
 
-## 8.3 Radix Sort
-Sorts on the least significant digit first using a stable sort (like Counting Sort).
-- **Time**: $\Theta(d(n+k))$ where $d$ is number of digits.
-- Historic use: Sorting punch cards.
-
-## 8.4 Bucket Sort
-Assumes input is drawn from a uniform distribution over $[0, 1)$.
-- **Idea**: Divide interval $[0, 1)$ into $n$ equal-sized buckets. Distribute $n$ inputs into buckets. Sort each bucket (usually Insertion Sort). Concatenate.
-- **Expected Time**: $\Theta(n)$.
+## 8.3 Bucket Sort
+Assumption: Input uniformly distributed over $[0, 1)$.
+1.  Divide $[0, 1)$ into $n$ equal buckets.
+2.  Scatter $A[i]$ into buckets.
+3.  Sort buckets (Insertion Sort).
+4.  Concat.
+-   Expected time $O(n)$.

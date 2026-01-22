@@ -8,30 +8,34 @@ permalink: /courses/dsa/ch3-growth-of-functions/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 3
 
-The order of growth of the running time of an algorithm gives a simple characterization of the algorithm's efficiency and also allows us to compare the relative performance of alternative algorithms.
+We drop lower-order terms and constants to focus on the rate of growth.
 
 ## 3.1 Asymptotic Notation
-We use asymptotic notation to describe the running time of an algorithm for **large inputs**.
+Definitions apply to functions $f(n), g(n)$ where domain is $\mathbb{N}$.
 
-### 1. Theta Notation ($\Theta$-notation)
-Depending on inputs, the exact running time may vary. $\Theta(g(n))$ represents the **exact** asymptotic bound.
-> $f(n) = \Theta(g(n))$ if there exist positive constants $c_1, c_2, n_0$ such that $0 \le c_1 g(n) \le f(n) \le c_2 g(n)$ for all $n \ge n_0$.
+### $\Theta$-notation (Big-Theta)
+Tight bound.
+$$ \Theta(g(n)) = \{ f(n) : \exists c_1, c_2, n_0 \text{ such that } 0 \le c_1 g(n) \le f(n) \le c_2 g(n) \text{ for all } n \ge n_0 \} $$
+*   "f(n) grows exactly as fast as g(n)".
 
-**Intuition**: $f(n)$ is "sandwiched" between $c_1 g(n)$ and $c_2 g(n)$.
+### $O$-notation (Big-O)
+Upper bound.
+$$ O(g(n)) = \{ f(n) : \exists c, n_0 \text{ such that } 0 \le f(n) \le c g(n) \text{ for all } n \ge n_0 \} $$
+*   "f(n) grows no faster than g(n)".
+*   $f(n) = n^2 + 100 \implies f(n) \in O(n^2)$ and $f(n) \in O(n^3)$.
 
-### 2. O-Notation ($O$-notation)
-Represents an **asymptotic upper bound**. We use it to bound the **worst-case** running time.
-> $f(n) = O(g(n))$ if there exist positive constants $c, n_0$ such that $0 \le f(n) \le c g(n)$ for all $n \ge n_0$.
+### $\Omega$-notation (Big-Omega)
+Lower bound.
+$$ \Omega(g(n)) = \{ f(n) : \exists c, n_0 \text{ such that } 0 \le c g(n) \le f(n) \text{ for all } n \ge n_0 \} $$
+*   "f(n) grows at least as fast as g(n)".
 
-### 3. Omega Notation ($\Omega$-notation)
-Represents an **asymptotic lower bound**.
-> $f(n) = \Omega(g(n))$ if there exist positive constants $c, n_0$ such that $0 \le c g(n) \le f(n)$ for all $n \ge n_0$.
+---
 
-## 3.2 Standard Notations and Common Functions
-- **Monotonicity**: A function $f(n)$ is monotonically increasing if $m \le n$ implies $f(m) \le f(n)$.
-- **Polynomials**: An asymptotically positive polynomial $p(n)$ of degree $d$ is $\Theta(n^d)$.
-- **Exponentials**: For all real constants $a > 1$ and $b > 1$, $\lim_{n \to \infty} \frac{n^b}{a^n} = 0$ (exponentials beat polynomials).
-- **Logarithms**: We define $\lg n = \log_2 n$ (binary logarithm), $\ln n = \log_e n$ (natural logarithm).
+## 3.2 Standard Notations
+-   **Monotonicity**: $f(n) \le f(n+1)$.
+-   **Floors/Ceilings**: $\lfloor x \rfloor, \lceil x \rceil$.
+-   **Logarithms**: $\lg n = \log_2 n$, $\ln n = \log_e n$.
+-   **Factorials**: $n! \approx \sqrt{2\pi n} (\frac{n}{e})^n$ (Stirling's approx). $\lg (n!) = \Theta(n \lg n)$.
 
-**Ranking of Common complexities**:
-$O(1) < O(\lg n) < O(n) < O(n \lg n) < O(n^2) < O(2^n) < O(n!)$
+## 3.3 Common Growth Rates
+$$ 1 < \lg n < \sqrt{n} < n < n \lg n < n^2 < n^3 < 2^n < n! $$

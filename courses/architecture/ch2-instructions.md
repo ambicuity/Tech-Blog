@@ -8,32 +8,25 @@ permalink: /courses/architecture/ch2-instructions/
 
 > **Reference**: *Computer Organization and Design* by Patterson & Hennessy, Chapter 2
 
-The **Instruction Set Architecture (ISA)** is the contract between software and hardware. We focus on **MIPS** (or RISC-V), a typical RISC architecture.
+The MIPS ISA.
 
-## 2.1 Design Principles
-1.  **Simplicity favors regularity**: All instructions are 32-bits long. All arithmetic uses 3 registers.
-    - `add a, b, c`  # a = b + c
-2.  **Smaller is faster**: Limit number of registers to 32 ($0-$31).
-3.  **Good design demands good compromises**: Immediates (constants) are kept inside the instruction format to avoid memory access.
+## 2.1 MIPS Fields
+All instructions 32-bit.
+**R-Type** (Register): `add $t0, $s1, $s2`.
+-   `Op(6) | Rs(5) | Rt(5) | Rd(5) | Shamt(5) | Funct(6)`
 
-## 2.2 Operands
-- **Registers**: Fast locations. `$s0-$s7` (saved), `$t0-$t9` (temporaries).
-- **Memory**: Byte addressed.
-    - **Load Word (lw)**: Memory $\to$ Register.
-    - **Store Word (sw)**: Register $\to$ Memory.
-    - Alignment restriction: Words must start at addresses divisible by 4.
+**I-Type** (Immediate): `lw $t0, 32($s3)`.
+-   `Op(6) | Rs(5) | Rt(5) | Imm(16)`
 
-## 2.3 Instruction Formats
-- **R-Format**: `op | rs | rt | rd | shamt | funct` (Arithmetic).
-- **I-Format**: `op | rs | rt | constant` (Loads/Stores/Branch/Immediates).
-- **J-Format**: `op | address` (Jumps).
+**J-Type** (Jump): `j 1000`.
+-   `Op(6) | Address(26)`
 
-## 2.4 Logical Operations
-- `sll` (Shift Left Logic): Multiply by $2^i$.
-- `and` / `or`: Bitwise masking.
+## 2.2 Addressing Modes
+1.  **Register**: Operand in register.
+2.  **Base**: Operand at `Reg + Imm` (Memory).
+3.  **Immediate**: Constant in instruction.
+4.  **PC-Relative**: `PC + 4 + Imm` (Branch).
+5.  **Pseudo-Direct**: `PC[31:28] | Address | 00` (Jump).
 
-## 2.5 Procedures
-Using the stack to support function calls.
-- `jal` (Jump And Link): Saves PC+4 to `$ra` (Return Address).
-- `jr $ra`: Jump to return address.
-- **Spilling**: If we need more registers, we push old values to **Stack** (growing down in memory) and pop them later.
+## 2.3 Stored Program Concept
+Instructions are just data in memory. We can build compilers, linkers, loaders.

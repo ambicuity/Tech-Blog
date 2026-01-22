@@ -8,46 +8,38 @@ permalink: /courses/dsa/ch6-heapsort/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 6
 
-Heapsort is a sorting algorithm that introduces a new data structure: the **Heap**.
-Like merge sort, its running time is $O(n \lg n)$. Like insertion sort, it sorts **in place** (no extra memory).
+Introduces the **Heap** data structure. Steps:
+1.  Build Heap.
+2.  Extract Max.
 
 ## 6.1 Heaps
-The (binary) heap data structure is an array object that we can view as a nearly complete binary tree.
-- **Parent(i)**: `floor(i/2)`
-- **Left(i)**: `2i`
-- **Right(i)**: `2i + 1`
+A nearly complete binary tree.
+-   **Max-Heap Property**: $A[Parent(i)] \ge A[i]$.
+-   **Indices**:
+    -   $Parent(i) = \lfloor i/2 \rfloor$.
+    -   $Left(i) = 2i$.
+    -   $Right(i) = 2i+1$.
 
-### Max-Heap Property
-For every node $i$ other than the root:
-$$A[Parent(i)] \ge A[i]$$
-The largest element is at the root. (Used for Heapsort).
-
-### Min-Heap Property
-$$A[Parent(i)] \le A[i]$$
-The smallest element is at the root. (Used for Priority Queues).
-
-## 6.2 Maintaining the Heap Property
-`Max-Heapify(A, i)`: Assumes binary trees rooted at `Left(i)` and `Right(i)` are max-heaps, but $A[i]$ might be smaller than its children. It lets the value at $A[i]$ "float down".
-- **Time Complexity**: $O(\lg n)$ (height of tree).
+## 6.2 Maintaining the Heap
+`Max-Heapify(A, i)`: Assumes Left(i) and Right(i) are heaps, but A[i] might be small. Floats A[i] down.
+-   Time: $O(\lg n)$ (Height of tree).
 
 ## 6.3 Building a Heap
-`Build-Max-Heap(A)`: call `Max-Heapify` on all non-leaf nodes (from $n/2$ down to 1).
-- **Time Complexity**: Linear time, $O(n)$. (Surprising, but rigorous proof exists).
+`Build-Max-Heap(A)`:
+Run `Max-Heapify` on all non-leaf nodes ($\lfloor n/2 \rfloor$ down to 1).
+-   **Analysis**: While it looks like $O(n \lg n)$, a tighter analysis shows it is **$O(n)$**. (Most nodes are at bottom with height 1, few at top).
 
 ## 6.4 The Heapsort Algorithm
-1.  `Build-Max-Heap(A)`: Make the array a max-heap. Root is max.
-2.  Swap $A[1]$ with $A[n]$ (Move max to end).
-3.  Discard node $n$ from heap size.
-4.  `Max-Heapify(A, 1)` to fix the new root.
-5.  Repeat until heap size is 1.
+1.  `Build-Max-Heap(A)`.
+2.  Swap $A[1]$ with $A[n]$. Decrease heap size.
+3.  `Max-Heapify(A, 1)`.
+4.  Repeat.
 
-**Running Time**: $O(n \lg n)$.
+Total Time: $O(n \lg n)$.
+-   **Pros**: Sorted in place (unlike Merge Sort).
+-   **Cons**: Not stable, poor cache locality compared to Quicksort.
 
 ## 6.5 Priority Queues
-Heaps are fantastic for implementing **Priority Queues**.
-- `Insert(S, x)`: $O(\lg n)$
-- `Maximum(S)`: $O(1)$
-- `Extract-Max(S)`: $O(\lg n)$
-- `Increase-Key(S, x, k)`: $O(\lg n)$
-
-Used in process scheduling, Dijkstra's algorithm, and event simulation.
+Heaps are mostly used for PQs.
+-   `Insert(S, x)`: Place at end, float up ($O(\lg n)$).
+-   `Extract-Max(S)`: Return root, swap last to root, float down ($O(\lg n)$).

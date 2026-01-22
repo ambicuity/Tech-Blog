@@ -8,34 +8,28 @@ permalink: /courses/dsa/ch11-hash-tables/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 11
 
-Many applications require a dynamic set that supports only `Insert`, `Search`, and `Delete`. A **Hash Table** is an effective data structure for this.
+Dictionary operations (Insert, Search, Delete) in $O(1)$ average time.
 
-## 11.1 Direct-Address Tables
-If the universe of keys $U$ is small (e.g., $0..99$), we can use an array $T[0..99]$.
-- $O(1)$ operations.
-- **Problem**: If $U$ is large ($2^{64}$), the table won't fit in memory.
+## 11.1 Direct Address Table
+If universe $U$ is small, just use an array. Fast but takes $|U|$ space.
 
 ## 11.2 Hash Tables
-Use a **hash function** $h$ to compute the slot for key $k$: $h(k)$.
-- This maps universe $U$ to small table $T[0..m-1]$.
-- **Collision**: When two keys hash to the same slot ($h(k1) = h(k2)$).
+Use function $h(k)$ to map $U \to 0 \dots m-1$.
+**Collisions**: When $h(k_1) = h(k_2)$.
 
-## 11.3 Collision Resolution: Chaining
-Put all elements that hash to the same slot in a **linked list**.
-- **Analysis**:
-    - Let $n$ be number of keys, $m$ be number of slots.
-    - Load factor $\alpha = n/m$.
-    - Simple Uniform Hashing: Any key is equally likely to hash into any of the $m$ slots.
-    - Average search time: $\Theta(1 + \alpha)$.
-    - If $m \propto n$, then $\Theta(1)$.
+### Chaining
+Store linked list at each bucket.
+-   Load factor $\alpha = n/m$.
+-   Expected search time $\Theta(1 + \alpha)$.
 
-## 11.4 Collision Resolution: Open Addressing
-Store all elements in the table itself. If collision, "probe" for next empty slot.
-1.  **Linear Probing**: check $h(k), h(k)+1, h(k)+2...$
-    - Problem: **Primary Clustering**. Long runs of occupied slots build up.
-2.  **Quadratic Probing**: check $h(k) + c_1 i + c_2 i^2$.
-3.  **Double Hashing**: $h(k, i) = (h_1(k) + i h_2(k)) \mod m$.
-    - Best method for open addressing.
+### Open Addressing
+All elements stored in table. If collision, **Probe** for next slot.
+1.  **Linear Probing**: $h(k, i) = (h'(k) + i) \pmod m$. (Primary Clustering problem).
+2.  **Quadratic Probing**: $h(k, i) = (h'(k) + c_1 i + c_2 i^2) \pmod m$.
+3.  **Double Hashing**: $h(k, i) = (h_1(k) + i h_2(k)) \pmod m$. Best distribution.
 
-## 11.5 Universal Hashing
-To prevent a malicious adversary from choosing keys that all hash to the same slot (DoS attack), select the hash function **randomly** from a carefully designed class of functions at runtime.
+## 11.3 Universal Hashing
+A malicious adversary can choose keys that map to same slot (DOS attack).
+Solution: Choose hash function **randomly** from a carefully designed family of functions.
+$$ P(h(k_1) = h(k_2)) \le 1/m $$
+Example: $h_{a,b}(k) = ((ak+b) \pmod p) \pmod m$.
