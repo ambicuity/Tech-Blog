@@ -97,7 +97,7 @@ assets:
     enabled: false
 
 pwa:
-  enabled: false
+  enabled: true
 
 collections:
   tabs:
