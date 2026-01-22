@@ -1,0 +1,87 @@
+name: "🎁 Submit a Free Dev Tool"
+description: Suggest a free tool or service to add to the Free Dev Stuff page
+title: "[Tool] "
+labels: ["free-dev-stuff", "enhancement"]
+body:
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool Name
+      description: What is the name of this tool?
+      placeholder: e.g., Supabase
+    validations:
+      required: true
+
+  - type: input
+    id: website-url
+    attributes:
+      label: Website URL
+      description: Link to the tool's website
+      placeholder: https://supabase.com/
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of what this tool does (1-2 sentences)
+      placeholder: Open source Firebase alternative with a Postgres database
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Select the most appropriate category
+      options:
+        - Hosting
+        - Database
+        - API
+        - Authentication
+        - Storage
+        - Serverless
+        - CI/CD
+        - Design
+        - Productivity
+        - Learning
+        - Dev Tools
+        - Monitoring
+        - Security
+        - Jobs
+        - CMS
+        - Version Control
+        - Note Taking
+        - Project Management
+        - Testing
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Add relevant tags (comma-separated)
+      placeholder: database, baas, authentication
+    validations:
+      required: false
+
+  - type: textarea
+    id: free-tier
+    attributes:
+      label: Free Tier Details
+      description: What's included for free?
+      placeholder: "e.g., 500MB database, 1GB storage, 2GB bandwidth"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information about this tool that would be helpful
+    validations:
+      required: false
