@@ -60,7 +60,38 @@ All content is structured around the "Legendary Books" of our field.
         </div>
       </div>
     </a>
-  </div>
+      <!-- 5. DBMS -->
+    <a href="/courses/dbms/" class="card text-decoration-none">
+        <div class="card-body text-center">
+            <h3 class="card-title"><i class="fas fa-database"></i><br>DBMS</h3>
+            <p class="card-text small">Internals of Database Management Systems.</p>
+        </div>
+    </a>
+    
+    <!-- 6. AI -->
+    <a href="/courses/ai/" class="card text-decoration-none">
+        <div class="card-body text-center">
+            <h3 class="card-title"><i class="fas fa-brain"></i><br>AI</h3>
+            <p class="card-text small">Artificial Intelligence & Machine Learning.</p>
+        </div>
+    </a>
+
+    <!-- 7. Compilers -->
+    <a href="/courses/compilers/" class="card text-decoration-none">
+        <div class="card-body text-center">
+            <h3 class="card-title"><i class="fas fa-code"></i><br>Compilers</h3>
+            <p class="card-text small">Theory of language translation.</p>
+        </div>
+    </a>
+
+    <!-- 8. Architecture -->
+    <a href="/courses/architecture/" class="card text-decoration-none">
+        <div class="card-body text-center">
+            <h3 class="card-title"><i class="fas fa-microchip"></i><br>Architecture</h3>
+            <p class="card-text small">Hardware/Software Interface.</p>
+        </div>
+    </a>
+</div>
 
   <!-- Networking -->
   <div class="col">
