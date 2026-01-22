@@ -4,26 +4,47 @@ title: "DBMS Ch.18: Recovery"
 permalink: /courses/dbms/ch18-crash-recovery/
 ---
 
-# Chapter 18: Crash Recovery (AHEAD/ARIES)
+# Chapter 18: Crash Recovery (ARIES)
 
 > **Reference**: *Database Management Systems* by Ramakrishnan & Gehrke, Chapter 18
 
-How to ensure Atomicity and Durability even if power plug is pulled?
-**ARIES Algorithm** (Algorithms for Recovery and Isolation Exploiting Semantics).
+The **ARIES** algorithm is the gold standard for database recovery. It assumes **WAL** (Write Ahead Logging).
 
-## 18.1 Steal / No-Force
-- **Steal**: Can buffer manager write an uncommitted page to disk? YES (to free up RAM).
-- **No-Force**: Must buffer manager write all pages to disk at commit? NO (for performance).
-This is the hardest combination (Undo/Redo required).
+## 18.1 Log Structure
+The Log is a sequence of records on stable storage.
+Each record has a **LSN (Log Sequence Number)**.
+-   `prev_LSN`: Link to previous record for same transaction.
+-   `transID`, `type` (Update, Commit, Abort).
+-   `pageID`, `old_value`, `new_value`.
 
-## 18.2 The Log (WAL)
-Write-Ahead Logging protocol:
-1.  Must write log record for update *before* page is written to disk.
-2.  Must write commit record to log *before* acknowledge to user.
-Log Sequence Number (**LSN**).
+**Key Structures**:
+1.  **Transaction Table**: Active Txs. Contains `last_LSN`.
+2.  **Dirty Page Table (DPT)**: Pages in RAM modified but not written to disk. Contains `rec_LSN` (LSN of first change).
 
-## 18.3 ARIES Phases
-On restart after crash:
-1.  **Analysis**: Scan log forward. Determine winners (committed) and losers (active at crash). Build Dirty Page Table.
-2.  **Redo**: Scan forward again. Replay ALL actions (even losers). Restore DB to state at crash.
-3.  **Undo**: Scan backward. Undo actions of Losers.
+---
+
+## 18.2 Checkpointing
+Periodically, the DBMS writes a checkpoint to truncate the log.
+-   **Fuzzy Checkpoint**: Save TransTable and DPT to log. Do *not* flush dirt pages (too slow).
+
+---
+
+## 18.3 The 3 Phases of Recovery
+
+### 1. Analysis Phase
+Scan Log forward from last Checkpoint.
+-   Reconstruct Transaction Table and DPT.
+-   Identify "Winners" (Committed) and "Losers" (Active at crash).
+
+### 2. Redo Phase (Repeating History)
+Scan Log forward from smallest `rec_LSN` in DPT.
+-   Re-apply **ALL** updates (even for Losers!).
+-   This restores the DB to the *exact state* at the moment of crash.
+-   **CLRs (Compensation Log Records)**: Redo them too.
+
+### 3. Undo Phase
+Scan Log backward.
+-   For each Loser Tx, undo its actions using `old_value`.
+-   Write a CLR for each undo (to ensure we don't undo the undo if we crash again).
+
+Result: The DB is consistent. Atomicity and Durability preserved.
