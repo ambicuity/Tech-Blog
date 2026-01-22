@@ -8,32 +8,48 @@ permalink: /courses/dsa/ch4-divide-and-conquer/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 4
 
-Recursive algorithms often follow this pattern. We solve recurrences to find complexity.
-
 ## 4.1 The Maximum Subarray Problem
-Given array of price changes, find contiguous subarray with largest sum.
--   **Brute Force**: Check all $\Theta(n^2)$ pairs.
--   **Divide & Conquer**:
-    -   Max subarray is either in Left, Right, or Crossing the midpoint.
-    -   $T(n) = 2T(n/2) + \Theta(n) \implies \Theta(n \lg n)$.
--   **Kadane's Algorithm**: $O(n)$ (Dynamic Programming).
+Find contiguous subarray with largest sum.
 
-## 4.2 Strassen's Algorithm for Matrix Multiplication
-Standard Matrix Mult is $\Theta(n^3)$.
-Strassen found a way to compute $2 \times 2$ product with only **7 multiplications** (instead of 8).
-$$ T(n) = 7 T(n/2) + \Theta(n^2) $$
-$$ T(n) = \Theta(n^{\log_2 7}) \approx \Theta(n^{2.81}) $$
+### Python Implementation (Kadane's Algorithm)
+Dynamic Programming approach $O(n)$.
 
----
+```python
+def max_subarray(A):
+    max_so_far = float('-inf')
+    max_ending_here = 0
+    start_index = 0
+    end_index = 0
+    temp_start = 0
+
+    for i in range(len(A)):
+        max_ending_here += A[i]
+        
+        if max_so_far < max_ending_here:
+            max_so_far = max_ending_here
+            start_index = temp_start
+            end_index = i
+        
+        if max_ending_here < 0:
+            max_ending_here = 0
+            temp_start = i + 1
+            
+    return max_so_far, A[start_index : end_index+1]
+
+# Example
+arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+val, sub = max_subarray(arr)
+print(f"Max Sum: {val}, Subarray: {sub}") 
+# Output: Max Sum: 6, Subarray: [4, -1, 2, 1]
+```
+
+## 4.2 Strassen's Algorithm
+Matrix Multiplication in $O(n^{2.81})$.
+Standard: $C_{ij} = \sum A_{ik} B_{kj}$ ($O(n^3)$).
+Strassen uses 7 multiplications of submatrices.
 
 ## 4.3 The Master Method
-For recurrences of form $T(n) = a T(n/b) + f(n)$.
-Compare $f(n)$ to $n^{\log_b a}$ (the "watershed" function).
-
-1.  **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon})$, then $T(n) = \Theta(n^{\log_b a})$. (Cost dominated by leaves).
-2.  **Case 2**: If $f(n) = \Theta(n^{\log_b a})$, then $T(n) = \Theta(n^{\log_b a} \lg n)$. (Cost evenly distributed).
-3.  **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon})$ and regularity holds, then $T(n) = \Theta(f(n))$. (Cost dominated by root).
-
-### Examples
--   **Merge Sort**: $a=2, b=2, f(n)=n$. $n^{\log_2 2} = n^1$. Case 2. $\Theta(n \lg n)$.
--   **Binary Search**: $a=1, b=2, f(n)=1$. $n^{\log_2 1} = n^0 = 1$. Case 2. $\Theta(\lg n)$.
+$T(n) = a T(n/b) + f(n)$.
+1.  $f(n) < n^{\log_b a} \implies T(n) = \Theta(n^{\log_b a})$
+2.  $f(n) = n^{\log_b a} \implies T(n) = \Theta(n^{\log_b a} \lg n)$
+3.  $f(n) > n^{\log_b a} \implies T(n) = \Theta(f(n))$

@@ -8,28 +8,42 @@ permalink: /courses/dsa/ch7-quicksort/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 7
 
-The practical sorting champion.
+## 7.1 Python Implementation
+Standard in-place Quicksort with Lomuto partition.
 
-## 7.1 Description
-Divide-and-Conquer, but does work in the **Divide** step (Partitioning).
-`Quicksort(A, p, r)`:
-1.  `q = Partition(A, p, r)`
-2.  `Quicksort(A, p, q-1)`
-3.  `Quicksort(A, q+1, r)`
+```python
+import random
 
-## 7.2 Partitioning
-Lomuto Partition scheme:
--   Pivot $x = A[r]$.
--   Maintain index $i$ ending the "smaller than x" region.
--   Scan $j$ from $p$ to $r-1$. If $A[j] \le x$, increment $i$, swap $A[i], A[j]$.
--   Swap pivot to $i+1$.
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+            
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
 
-## 7.3 Performance
--   **Worst Case**: $O(n^2)$. Happens if pivot is always min or max (e.g. sorted array).
--   **Best Case**: $O(n \lg n)$. Pivot always splits 50/50.
--   **Average Case**: $O(n \lg n)$. Even a 9-to-1 split yields logarithmic depth.
+def randomized_partition(arr, low, high):
+    rand_idx = random.randint(low, high)
+    arr[rand_idx], arr[high] = arr[high], arr[rand_idx]
+    return partition(arr, low, high)
 
-## 7.4 Randomized Quicksort
-Pick a random element as pivot.
--   Guarantees expected $O(n \lg n)$ time regardless of input distribution.
--   No input causes worst-case behavior. The coin flips must be unlucky.
+def quicksort(arr, low, high):
+    if low < high:
+        pi = randomized_partition(arr, low, high)
+        quicksort(arr, low, pi - 1)
+        quicksort(arr, pi + 1, high)
+
+# Usage
+data = [10, 7, 8, 9, 1, 5]
+quicksort(data, 0, len(data) - 1)
+print(data) # [1, 5, 7, 8, 9, 10]
+```
+
+## 7.2 Analysis
+-   **Worst Case**: $O(n^2)$ (Sorted array, if not randomized).
+-   **Expected**: $O(n \lg n)$.
+-   **Space**: $O(\lg n)$ stack depth.

@@ -8,27 +8,39 @@ permalink: /courses/dsa/ch13-red-black-trees/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 13
 
-A **Balanced** BST. Height guaranteed to be $O(\lg n)$.
+Full RBT implementation includes extensive case handling (300+ lines). Here is the critical **Left Rotate** logic.
 
-## 13.1 RB Properties
-1.  Every node is Red or Black.
-2.  Root is Black.
-3.  Leaves (NIL) are Black.
-4.  If a node is Red, both children are Black (No Red-Red edges).
-5.  For each node, all paths to descendant leaves contain same number of Black nodes (**Black-Height**).
+## 13.1 Left Rotate
+Moves `x` down to left, moves `y` (right child) up.
 
-**Height Bound**: $h \le 2 \lg(n+1)$.
+```python
+class Node:
+    def __init__(self, data, color="RED"):
+        self.data = data
+        self.color = color 
+        self.left = None
+        self.right = None
+        self.parent = None
 
-## 13.2 Rotations
-Local operations to restructure tree while preserving BST property. $O(1)$.
--   `Left-Rotate(x)`: Moves x down, x.right up.
--   `Right-Rotate(y)`: Moves y down, y.left up.
+def left_rotate(tree, x):
+    y = x.right
+    x.right = y.left  # Turn y's left subtree into x's right subtree
+    
+    if y.left:
+        y.left.parent = x
+        
+    y.parent = x.parent 
+    
+    if x.parent is None:
+        tree.root = y
+    elif x == x.parent.left:
+        x.parent.left = y
+    else:
+        x.parent.right = y
+        
+    y.left = x
+    x.parent = y
+```
 
-## 13.3 Insertion
-Insert red node $z$. Fix violations (Red-Red).
-**Case 1**: Uncle is Red. Color Flip (Parent/Uncle $\to$ Black, Grandparent $\to$ Red). Move up.
-**Case 2**: Uncle is Black, Triangle. Rotate to Line.
-**Case 3**: Uncle is Black, Line. Rotate + Recolor. Done.
-
-## 13.4 Deletion
-Complex. Requires fixing "Double Black" nodes.
+## 13.2 Properties Check
+Ideally, verification code runs `check_black_height(root)` to ensure validity.

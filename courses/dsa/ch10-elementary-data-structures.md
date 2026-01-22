@@ -8,16 +8,59 @@ permalink: /courses/dsa/ch10-elementary-data-structures/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 10
 
-## 10.1 Stacks and Queues
--   **Stack**: LIFO (Last-In First-Out). `Push`, `Pop`. Implemented with array and `top` pointer. $O(1)$.
--   **Queue**: FIFO. `Enqueue`, `Dequeue`. Implemented with array and `head`, `tail` pointers (wrapping around). $O(1)$.
+## 10.1 Stack (LIFO)
+```python
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return None
+    
+    def is_empty(self):
+        return len(self.items) == 0
+```
 
-## 10.2 Linked Lists
-Objects arranged in linear order.
--   **Doubly Linked**: `prev`, `next`, `key`.
--   **Sentinel**: A dummy object `nil` to simplify boundary conditions (no need to check `if x.next == null`).
+## 10.2 Linked List
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-## 10.3 Geometric Representation
-Trees and Graphs are usually implemented using pointer-based nodes.
--   **Binary Tree**: `left`, `right`, `p` (parent).
--   **Unbounded Branching**: `left-child`, `right-sibling` representation.
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def insert(self, data):
+        # Insert at front O(1)
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+        
+    def search(self, key):
+        current = self.head
+        while current:
+            if current.data == key:
+                return current
+            current = current.next
+        return None
+        
+    def delete(self, key):
+        current = self.head
+        prev = None
+        while current and current.data != key:
+            prev = current
+            current = current.next
+            
+        if current: # Found
+            if prev:
+                prev.next = current.next
+            else:
+                self.head = current.next # Deleting head
+```

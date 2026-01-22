@@ -8,26 +8,62 @@ permalink: /courses/dsa/ch12-binary-search-trees/
 
 > **Reference**: *Introduction to Algorithms* (CLRS), Chapter 12
 
-## 12.1 BST Property
-For any node $x$:
--   If $y$ is in Left Subtree of $x$, then $y.key \le x.key$.
--   If $y$ is in Right Subtree of $x$, then $y.key \ge x.key$.
+## 12.1 Python Implementation
 
-This allows **Inorder Traversal** to print sorted keys in $O(n)$.
+```python
+class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
 
-## 12.2 Operations
-All basic operations take $O(h)$ time, where $h$ is height.
--   **Search**: Trace down.
--   **Minimum**: Go left until null.
--   **Successor**:
-    1.  If right subtree exists: Minimum of Right.
-    2.  Else: Go up until we turn Right.
--   **Insert**: Trace down to leaf, attach.
--   **Delete**:
-    1.  No children: Just remove.
-    2.  One child: Splice out.
-    3.  Two children: Find Successor (in right subtree), replace content, delete successor.
+def insert(root, key):
+    if root is None:
+        return TreeNode(key)
+    if key < root.key:
+        root.left = insert(root.left, key)
+    else:
+        root.right = insert(root.right, key)
+    return root
 
-## 12.3 Randomly Built BSTs
-If keys inserted in random order, expected height is $O(\lg n)$.
-Worst case (sorted input): $O(n)$ chain.
+def search(root, key):
+    if root is None or root.key == key:
+        return root
+    if key < root.key:
+        return search(root.left, key)
+    return search(root.right, key)
+
+def inorder_traversal(root):
+    res = []
+    if root:
+        res = inorder_traversal(root.left)
+        res.append(root.key)
+        res = res + inorder_traversal(root.right)
+    return res
+
+def min_value_node(node):
+    current = node
+    while current.left:
+        current = current.left
+    return current
+
+def delete_node(root, key):
+    if not root: return root
+    
+    if key < root.key:
+        root.left = delete_node(root.left, key)
+    elif key > root.key:
+        root.right = delete_node(root.right, key)
+    else:
+        # Case 1 & 2: One child or no child
+        if not root.left: return root.right
+        if not root.right: return root.left
+        
+        # Case 3: Two children
+        # Get inorder successor (smallest in right subtree)
+        temp = min_value_node(root.right)
+        root.key = temp.key
+        root.right = delete_node(root.right, temp.key)
+        
+    return root
+```
