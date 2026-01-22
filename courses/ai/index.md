@@ -25,14 +25,14 @@ This course covers the foundations of AI, moving from classical search to modern
 
 ### Part III: Knowledge, Reasoning, and Planning
 - [**Chapter 7: Logical Agents**](/courses/ai/ch7-logical-agents/)
-- Chapter 8: First-Order Logic
-- Chapter 10: Knowledge Representation
-- Chapter 11: Automated Planning
+- [**Chapter 8: First-Order Logic**](/courses/ai/ch8-first-order-logic/)
+- [**Chapter 10: Knowledge Representation**](/courses/ai/ch10-knowledge-rep/)
+- [**Chapter 11: Automated Planning**](/courses/ai/ch11-planning/)
 
 ### Part IV: Uncertain Knowledge and Reasoning
-- Chapter 12: Quantifying Uncertainty (Probability)
+- [**Chapter 12: Quantifying Uncertainty**](/courses/ai/ch12-uncertainty/)
 - [**Chapter 13: Probabilistic Reasoning**](/courses/ai/ch13-probabilistic-reasoning/)
-- Chapter 14: Probabilistic Reasoning over Time (HMMs)
+- [**Chapter 14: Probabilistic Reasoning over Time (HMMs)**](/courses/ai/ch14-hmms/)
 
 ### Part V: Machine Learning
 - [**Chapter 19: Learning from Examples**](/courses/ai/ch19-learning/)

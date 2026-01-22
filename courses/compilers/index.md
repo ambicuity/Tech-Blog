@@ -29,4 +29,4 @@ This course teaches how programming languages are translated into executable mac
 ### Part IV: Code Generation and Optimization
 - [**Chapter 8: Code Generation**](/courses/compilers/ch8-code-generation/)
 - [**Chapter 9: Machine-Independent Optimizations**](/courses/compilers/ch9-optimization/)
-- Chapter 10: Instruction-Level Parallelism
+- [**Chapter 10: Instruction-Level Parallelism**](/courses/compilers/ch10-instruction-parallelism/)
