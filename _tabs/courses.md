@@ -142,6 +142,22 @@ All content is structured around the "Legendary Books" of our field.
     </a>
   </div>
 
+  <!-- 9. LeetCode 150 -->
+  <div class="col">
+    <a href="/courses/leetcode/" class="text-decoration-none">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="fas fa-code-branch text-danger me-2"></i>LeetCode 150</h3>
+          <p class="card-text text-muted">Top 150 Interview Problems</p>
+          <hr>
+          <small class="text-muted">
+            <i class="fas fa-keyboard me-1"></i> Python Solutions
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+
 </div>
 
 > **Note**: These are living documents. Expect regular updates as I continue my own learning journey.
