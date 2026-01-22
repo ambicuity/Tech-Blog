@@ -35,6 +35,10 @@ This course covers the foundations of AI, moving from classical search to modern
 - [**Chapter 13: Probabilistic Reasoning**](/courses/ai/ch13-probabilistic-reasoning/)
 - [**Chapter 14: Probabilistic Reasoning over Time (HMMs)**](/courses/ai/ch14-hmms/)
 
-### Part V: Machine Learning
+### Part V: Decisions and Learning
+- [**Chapter 15: Making Simple Decisions**](/courses/ai/ch15-simple-decisions/)
+- [**Chapter 16: Making Complex Decisions (MDPs)**](/courses/ai/ch16-complex-decisions/)
+- [**Chapter 17: Reinforcement Learning**](/courses/ai/ch17-reinforcement-learning/)
+- [**Chapter 18: Multi-Agent Systems**](/courses/ai/ch18-multi-agent/)
 - [**Chapter 19: Learning from Examples**](/courses/ai/ch19-learning/)
 - [**Chapter 21: Deep Learning**](/courses/ai/ch21-deep-learning/)
