@@ -24,6 +24,7 @@ This course covers the mathematical foundations of algorithms, advanced data str
 - [**Chapter 6: Heapsort**](/courses/dsa/ch6-heapsort/)
 - [**Chapter 7: Quicksort**](/courses/dsa/ch7-quicksort/)
 - [**Chapter 8: Sorting in Linear Time**](/courses/dsa/ch8-linear-sort/)
+- [**Chapter 9: Medians and Order Statistics**](/courses/dsa/ch9-medians/)
 
 ### Part III: Data Structures
 - [**Chapter 10: Elementary Data Structures**](/courses/dsa/ch10-elementary-data-structures/) (Stacks, Queues, Linked Lists)
