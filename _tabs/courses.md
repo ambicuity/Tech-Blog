@@ -14,7 +14,7 @@ All content is structured around the "Legendary Books" of our field.
 
 <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
   
-  <!-- DSA -->
+  <!-- 1. DSA -->
   <div class="col">
     <a href="/courses/dsa/" class="text-decoration-none">
       <div class="card h-100">
@@ -30,7 +30,7 @@ All content is structured around the "Legendary Books" of our field.
     </a>
   </div>
 
-  <!-- System Design -->
+  <!-- 2. System Design -->
   <div class="col">
     <a href="/courses/system-design/" class="text-decoration-none">
       <div class="card h-100">
@@ -46,7 +46,7 @@ All content is structured around the "Legendary Books" of our field.
     </a>
   </div>
 
-  <!-- OS -->
+  <!-- 3. OS -->
   <div class="col">
     <a href="/courses/os/" class="text-decoration-none">
       <div class="card h-100">
@@ -60,40 +60,9 @@ All content is structured around the "Legendary Books" of our field.
         </div>
       </div>
     </a>
-      <!-- 5. DBMS -->
-    <a href="/courses/dbms/" class="card text-decoration-none">
-        <div class="card-body text-center">
-            <h3 class="card-title"><i class="fas fa-database"></i><br>DBMS</h3>
-            <p class="card-text small">Internals of Database Management Systems.</p>
-        </div>
-    </a>
-    
-    <!-- 6. AI -->
-    <a href="/courses/ai/" class="card text-decoration-none">
-        <div class="card-body text-center">
-            <h3 class="card-title"><i class="fas fa-brain"></i><br>AI</h3>
-            <p class="card-text small">Artificial Intelligence & Machine Learning.</p>
-        </div>
-    </a>
+  </div>
 
-    <!-- 7. Compilers -->
-    <a href="/courses/compilers/" class="card text-decoration-none">
-        <div class="card-body text-center">
-            <h3 class="card-title"><i class="fas fa-code"></i><br>Compilers</h3>
-            <p class="card-text small">Theory of language translation.</p>
-        </div>
-    </a>
-
-    <!-- 8. Architecture -->
-    <a href="/courses/architecture/" class="card text-decoration-none">
-        <div class="card-body text-center">
-            <h3 class="card-title"><i class="fas fa-microchip"></i><br>Architecture</h3>
-            <p class="card-text small">Hardware/Software Interface.</p>
-        </div>
-    </a>
-</div>
-
-  <!-- Networking -->
+  <!-- 4. Networking -->
   <div class="col">
     <a href="/courses/networking/" class="text-decoration-none">
       <div class="card h-100">
@@ -103,6 +72,70 @@ All content is structured around the "Legendary Books" of our field.
           <hr>
           <small class="text-muted">
             <i class="fas fa-book me-1"></i> Based on <strong>Tanenbaum</strong>
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 5. DBMS -->
+  <div class="col">
+    <a href="/courses/dbms/" class="text-decoration-none">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="fas fa-database text-danger me-2"></i>DBMS</h3>
+          <p class="card-text text-muted">Database Internals & SQL</p>
+          <hr>
+          <small class="text-muted">
+            <i class="fas fa-book me-1"></i> Based on <strong>Cow Book</strong>
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 6. AI -->
+  <div class="col">
+    <a href="/courses/ai/" class="text-decoration-none">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="fas fa-brain text-purple me-2"></i>AI</h3>
+          <p class="card-text text-muted">Intelligent Agents & Search</p>
+          <hr>
+          <small class="text-muted">
+            <i class="fas fa-book me-1"></i> Based on <strong>AIMA</strong>
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 7. Compilers -->
+  <div class="col">
+    <a href="/courses/compilers/" class="text-decoration-none">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="fas fa-code text-dark me-2"></i>Compilers</h3>
+          <p class="card-text text-muted">Language Translation</p>
+          <hr>
+          <small class="text-muted">
+            <i class="fas fa-book me-1"></i> Based on <strong>Dragon Book</strong>
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 8. Architecture -->
+  <div class="col">
+    <a href="/courses/architecture/" class="text-decoration-none">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="fas fa-microchip text-secondary me-2"></i>Architecture</h3>
+          <p class="card-text text-muted">Hardware/Software Interface</p>
+          <hr>
+          <small class="text-muted">
+            <i class="fas fa-book me-1"></i> Based on <strong>Patterson</strong>
           </small>
         </div>
       </div>
