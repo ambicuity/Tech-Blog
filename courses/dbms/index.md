@@ -23,18 +23,18 @@ This course explores the internal implementation of database engines, covering s
 - [**Chapter 5: SQL: Queries, Constraints, Triggers**](/courses/dbms/ch5-sql/)
 
 ### Part III: Storage and Indexing
-- Chapter 8: Overview of Storage and Indexing
+- [**Chapter 8: Overview of Storage and Indexing**](/courses/dbms/ch8-storage-indexing/)
 - Chapter 9: Storing Data: Disks and Files
-- Chapter 10: Tree-Structured Indexing (B+ Trees)
+- [**Chapter 10: Tree-Structured Indexing**](/courses/dbms/ch10-tree-indexing/)
 - Chapter 11: Hash-Based Indexing
 
 ### Part IV: Query Evaluation
-- Chapter 12: Overview of Query Evaluation
+- [**Chapter 12: Overview of Query Evaluation**](/courses/dbms/ch12-query-evaluation/)
 - Chapter 13: External Sorting
 - Chapter 14: Evaluating Relational Operators
 - Chapter 15: A Typical Relational Query Optimizer
 
 ### Part V: Transaction Management
-- Chapter 16: Overview of Transaction Management
-- Chapter 17: Concurrency Control (2PL, Lock Managers)
+- [**Chapter 16: Overview of Transaction Management**](/courses/dbms/ch16-transaction-mgmt/)
+- [**Chapter 17: Concurrency Control**](/courses/dbms/ch17-concurrency-control/)
 - Chapter 18: Crash Recovery (AHEAD/ARIES)

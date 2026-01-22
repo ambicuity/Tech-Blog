@@ -31,4 +31,4 @@ This course bridges the gap between high-level code and the physical transistors
 - **Caches**: Direct Mapped, Set Associative.
 
 ### Part VI: Parallelism
-- Chapter 6: Parallel Processors from Client to Cloud (Simultaneous Multithreading, GPUs)
+- [**Chapter 6: Parallel Processors from Client to Cloud**](/courses/architecture/ch6-parallelism/)

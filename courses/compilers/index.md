@@ -23,10 +23,10 @@ This course teaches how programming languages are translated into executable mac
 - [**Chapter 5: Syntax-Directed Translation**](/courses/compilers/ch5-syntax-directed-translation/)
 
 ### Part III: Intermediate Code
-- Chapter 6: Intermediate Code Generation (Three-Address Code)
-- Chapter 7: Run-Time Environments (Stack, Heap, Garbage Collection)
+- [**Chapter 6: Intermediate Code Generation**](/courses/compilers/ch6-intermediate-code/)
+- [**Chapter 7: Run-Time Environments**](/courses/compilers/ch7-runtime-environments/)
 
 ### Part IV: Code Generation and Optimization
-- Chapter 8: Code Generation
-- Chapter 9: Machine-Independent Optimizations (Data Flow Analysis)
+- [**Chapter 8: Code Generation**](/courses/compilers/ch8-code-generation/)
+- [**Chapter 9: Machine-Independent Optimizations**](/courses/compilers/ch9-optimization/)
 - Chapter 10: Instruction-Level Parallelism
