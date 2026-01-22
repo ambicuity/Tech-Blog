@@ -21,6 +21,8 @@ This course explores the internal implementation of database engines, covering s
 ### Part II: Application Development
 - [**Chapter 4: Relational Algebra and Calculus**](/courses/dbms/ch4-relational-algebra/)
 - [**Chapter 5: SQL: Queries, Constraints, Triggers**](/courses/dbms/ch5-sql/)
+- [**Chapter 6: Schema Refinement and Normalization**](/courses/dbms/ch6-normalization/)
+- [**Chapter 7: Database Application Development**](/courses/dbms/ch7-app-development/)
 
 ### Part III: Storage and Indexing
 - [**Chapter 8: Overview of Storage and Indexing**](/courses/dbms/ch8-storage-indexing/)
