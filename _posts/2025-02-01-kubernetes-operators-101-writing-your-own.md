@@ -115,6 +115,7 @@ This generates the CRD YAML manifest in `config/crd/bases`.  This manifest needs
 
 Create a file `controllers/myapplication_controller.go` with the following content:
 
+{% raw %}
 go
 package controllers
 
@@ -274,7 +275,7 @@ func (r *MyApplicationReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Complete(r)
 }
 
-
+{% endraw %}
 This controller watches for changes to `MyApplication` resources.  When a new `MyApplication` resource is created, the controller creates a corresponding `Deployment`.  If the `MyApplication` resource is updated (e.g., the number of replicas changes), the controller updates the `Deployment` accordingly. It also updates the status of the custom resource reflecting the number of running pods.  It uses an Nginx image for simplicity.
 
 **5. Modify `main.go`:**

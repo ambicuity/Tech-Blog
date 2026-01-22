@@ -105,6 +105,7 @@ Note the `+kubebuilder` markers. These are directives that inform Kubebuilder ab
 
 Edit the `controllers/memcached_controller.go` file to implement the reconciliation logic. This is where you define how the Operator creates, updates, and deletes Memcached Deployments based on the `Memcached` CR.  Here's a simplified example:
 
+{% raw %}
 ```go
 package controllers
 
@@ -279,6 +280,7 @@ func (r *MemcachedReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Complete(r)
 }
 ```
+{% endraw %}
 
 This code fetches the `Memcached` CR, checks if a Deployment exists, creates one if it doesn't, updates the deployment size if it differs from the CR spec, and updates the Memcached status with the running pod names.
 

@@ -113,7 +113,7 @@ This will retrieve the database credentials from Vault, populate the `db_config.
 In a production environment, storing the Vault token directly in the playbook is highly insecure. Here are two recommended approaches:
 
 *   **Ansible Vault:** Encrypt the playbook file containing the token using `ansible-vault`.
-*   **Environment Variables:** Store the token in an environment variable and access it in the playbook using `{{ lookup('env', 'VAULT_TOKEN') }}`.
+*   **Environment Variables:** Store the token in an environment variable and access it in the playbook using {% raw %}`{{ lookup('env', 'VAULT_TOKEN') }}`{% endraw %}.
 
 ## Common Mistakes
 
