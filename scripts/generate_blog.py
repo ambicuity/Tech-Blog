@@ -138,16 +138,35 @@ Requirements:
 Generate the complete blog post now:"""
 
 
-def generate_blog_post(api_key):
+def generate_blog_post(api_key, max_retries_per_model=3):
     """
-    Generates a blog post using Google Gemini API.
+    Generates a blog post using Google Gemini API with multi-model fallback and retry logic.
+    
+    Tries models in order of preference. If one model is rate-limited, it falls back
+    to the next model. Each model gets multiple retry attempts with exponential backoff.
     
     Args:
         api_key (str): Google API key for Gemini
+        max_retries_per_model (int): Maximum retry attempts per model before falling back
         
     Returns:
         str: Generated blog post content in Markdown
     """
+    import time
+    import random
+    
+    # Models to try in order of preference
+    # gemini-2.0-flash: Fastest, highest limits (2K RPM, Unlimited RPD)
+    # gemini-2.5-flash: Good balance (1K RPM, 10K RPD)
+    # gemini-1.5-flash: Fallback option (15 RPM, 1500 RPD)
+    # gemini-1.5-pro: Last resort, slower but capable (2 RPM, 50 RPD)
+    MODELS = [
+        'gemini-2.0-flash',
+        'gemini-2.5-flash', 
+        'gemini-1.5-flash',
+        'gemini-1.5-pro',
+    ]
+    
     # Create client with API key
     client = genai.Client(api_key=api_key)
     
@@ -176,18 +195,63 @@ def generate_blog_post(api_key):
         safety_settings=safety_settings
     )
     
-    # Generate content using gemini-2.0-flash model
+    # Generate content with retry logic for rate limits
     prompt = get_blog_prompt()
-    response = client.models.generate_content(
-        model='gemini-2.0-flash',
-        contents=prompt,
-        config=config
-    )
     
-    if not response or not response.text:
-        raise Exception("Failed to generate blog post - empty response")
+    all_errors = []
     
-    return response.text
+    for model_index, model in enumerate(MODELS):
+        print(f"Trying model: {model} ({model_index + 1}/{len(MODELS)})...")
+        
+        for attempt in range(max_retries_per_model):
+            try:
+                # Add jitter delay before retry (not first attempt of each model)
+                if attempt > 0:
+                    # Exponential backoff: 4s, 8s, 16s (capped)
+                    base_delay = min(4 * (2 ** attempt), 30)
+                    jitter = random.uniform(0, base_delay * 0.5)
+                    delay = base_delay + jitter
+                    print(f"  Retry {attempt + 1}/{max_retries_per_model} for {model}, waiting {delay:.1f}s...")
+                    time.sleep(delay)
+                
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                    config=config
+                )
+                
+                if not response or not response.text:
+                    raise Exception(f"Empty response from {model}")
+                
+                print(f"SUCCESS: Generated blog post using {model}")
+                return response.text
+                
+            except Exception as e:
+                error_str = str(e)
+                all_errors.append(f"{model} (attempt {attempt + 1}): {error_str}")
+                
+                # Check if it's a rate limit error (429)
+                is_rate_limit = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
+                
+                if is_rate_limit:
+                    print(f"  Rate limit hit on {model}")
+                    if attempt < max_retries_per_model - 1:
+                        continue  # Retry same model with backoff
+                    else:
+                        print(f"  Exhausted retries for {model}, trying next model...")
+                        break  # Move to next model
+                else:
+                    # For non-rate-limit errors, log and try next model
+                    print(f"  Error on {model}: {error_str[:100]}...")
+                    break  # Move to next model
+        
+        # Small delay between switching models
+        if model_index < len(MODELS) - 1:
+            time.sleep(2)
+    
+    # All models exhausted
+    error_summary = "\n".join(all_errors[-5:])  # Last 5 errors
+    raise Exception(f"All models exhausted. Recent errors:\n{error_summary}")
 
 
 def save_blog_post(content):
