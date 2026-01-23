@@ -34,7 +34,7 @@ All posts are generated automatically to explore cutting-edge AI content generat
 **Master of Engineering, Systems Engineering**
 *Concentration: Data Analytics*
 *Jan 2025*
-*CeDiD: 266M-ZXH6-R5AM — [Validate Credential](https://cecredential-trust.com/)*
+*CeDiD: 266M-ZXH6-R5AM — [Validate Credential](https://secure.cecredentialtrust.com/)*
 
 ## 🛠️ Tech Stack
 
