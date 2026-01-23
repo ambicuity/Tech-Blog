@@ -28,6 +28,13 @@ This blog is powered by Google Gemini API and automatically generates high-quali
 
 All posts are generated automatically to explore cutting-edge AI content generation capabilities while providing valuable technical insights.
 
+## 🎓 Education
+
+### **Boston University**
+**Master of Engineering, Systems Engineering**
+*Concentration: Data Analytics*
+*Jan 2025*
+
 ## 🛠️ Tech Stack
 
 This blog (and my career) relies on a modern, robust set of tools:
