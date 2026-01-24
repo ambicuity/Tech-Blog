@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   generate-blog:
@@ -44,11 +45,20 @@ jobs:
           git config --local user.name "ambicuity"
       
       - name: Commit and push changes
+        id: git-push
         run: |
           git add posts/ _posts/
           if git diff --staged --quiet; then
             echo "No new blog post to commit"
+            echo "pushed=false" >> $GITHUB_OUTPUT
           else
             git commit -m "🤖 Auto-generate blog post - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
             git push
+            echo "pushed=true" >> $GITHUB_OUTPUT
           fi
+      
+      - name: Trigger deployment
+        if: steps.git-push.outputs.pushed == 'true'
+        run: gh workflow run pages-deploy.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
