@@ -39,6 +39,10 @@ jobs:
           BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
         run: |
           python scripts/generate_blog.py
+          
+      - name: Validate generated post
+        run: |
+          python scripts/validate_post.py
       
       - name: Configure Git
         run: |
