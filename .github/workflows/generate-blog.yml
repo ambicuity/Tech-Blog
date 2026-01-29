@@ -40,9 +40,7 @@ jobs:
         run: |
           python scripts/generate_blog.py
           
-        run: |
-          python scripts/generate_blog.py
-          
+
       - name: Format and Fix Posts
         run: |
           python scripts/format_posts.py
