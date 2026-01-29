@@ -85,6 +85,7 @@ This setup includes an Nginx proxy in front of Imgproxy.  This is often a recomm
 Create a new file named `.github/workflows/image-optimization.yml` in your repository. This file will define the workflow that automates the image optimization process.
 
 {% raw %}
+
 ```yaml
 name: Image Optimization
 
@@ -135,6 +136,7 @@ jobs:
           branch: ${{ github.head_ref || github.ref_name }} # commit to the originating branch
 
 ```
+
 {% endraw %}
 
 This workflow does the following:

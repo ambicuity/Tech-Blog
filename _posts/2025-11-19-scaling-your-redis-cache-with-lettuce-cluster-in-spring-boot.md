@@ -189,6 +189,7 @@ Let's break down the process into the following steps:
         }
     }
     ```
+
     The first time `getData("123")` is called, it will retrieve the data and store it in the cache named "myData". Subsequent calls with the same `id` will retrieve the data from the Redis cache, significantly improving performance.
 
 ## Common Mistakes

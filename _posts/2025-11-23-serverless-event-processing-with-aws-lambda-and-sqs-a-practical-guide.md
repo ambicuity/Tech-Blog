@@ -154,12 +154,14 @@ def lambda_handler(event, context):
 **6. Test the Setup:**
 
 *   Send a message to the SQS queue. The message should be a JSON string containing the bucket name and key of the image you want to resize. For example:
+
     ```json
     {
       "bucket": "your-s3-bucket-name",
       "key": "image.jpg"
     }
     ```
+
 *   The Lambda function should be triggered, download the image from S3, resize it, and upload the resized image to your S3 bucket (in the `/resized` folder).
 *   Check the Lambda function's CloudWatch logs for any errors.
 

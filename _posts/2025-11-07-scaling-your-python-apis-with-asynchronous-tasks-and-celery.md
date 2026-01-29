@@ -137,6 +137,7 @@ This creates a Flask API with two endpoints:
     ```bash
     celery -A app.tasks.celery worker --loglevel=info -Q long_tasks
     ```
+
     Important: Adjust your celery command to include `long_tasks` queue.
 
 2.  Start the Flask application:

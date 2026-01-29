@@ -35,10 +35,12 @@ Let's walk through building a "golden AMI" for an AWS EC2 instance that comes pr
 ### Prerequisites
 1.  **Packer:** Install Packer from [HashiCorp's official website](https://developer.hashicorp.com/packer/downloads).
 2.  **Ansible:** Install Ansible, typically via `pip` or your system's package manager.
+
     ```bash
     # On macOS/Linux
     python3 -m pip install ansible
     ```
+
 3.  **AWS CLI (configured):** Ensure you have AWS credentials configured (e.g., `~/.aws/credentials`) or environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` set, with permissions to create EC2 instances and AMIs.
 
 ### Step 1: Create an Ansible Playbook
@@ -73,6 +75,7 @@ First, create a directory for your Ansible configuration, e.g., `ansible/`. Insi
         dest: "/var/www/html/index.nginx-debian.html"
         mode: "0644"
 ```
+
 This playbook will update system packages, install Nginx, ensure it's running, and place a custom `index.html` file.
 
 ### Step 2: Create a Packer Template
@@ -130,6 +133,7 @@ build {
   # For simplicity, we'll omit complex post-processing here.
 }
 ```
+
 This HCL template defines an `amazon-ebs` builder to create an AMI. It specifies the base AMI (Ubuntu 20.04), instance type for the build process, and the naming convention for the resulting AMI. The `ansible` provisioner then tells Packer to execute our `playbook.yml` on the temporary instance before it's turned into an AMI.
 
 ### Step 3: Initialize and Build the Image
@@ -139,6 +143,7 @@ Navigate to your project root in the terminal and run:
 packer init .
 packer build .
 ```
+
 Packer will:
 1.  Launch a temporary EC2 instance in `us-east-1` based on the specified Ubuntu AMI.
 2.  SSH into this instance.

@@ -45,6 +45,7 @@ Let's walk through a simplified example of building an Operator for managing `We
     ```bash
     kubebuilder init --domain example.com --repo github.com/yourusername/webapp-operator
     ```
+
     Replace `example.com` with your domain and `github.com/yourusername/webapp-operator` with your repository path.
 
 2.  **Create the WebApp API (CRD):**
@@ -103,6 +104,7 @@ Let's walk through a simplified example of building an Operator for managing `We
         webappv1alpha1 "github.com/yourusername/webapp-operator/api/v1alpha1"
     )
     ```
+
     Replace `github.com/yourusername/webapp-operator` with your actual repository path.
 
     Now replace the content of the `Reconcile` function with the following:
@@ -189,6 +191,7 @@ Let's walk through a simplified example of building an Operator for managing `We
     You'll also need to add the `deploymentForWebApp` function which defines the deployment:
 
 {% raw %}
+
     ```go
     func (r *WebAppReconciler) deploymentForWebApp(webapp *webappv1alpha1.WebApp) *appsv1.Deployment {
         ls := labelsForWebApp(webapp.Name)
@@ -234,6 +237,7 @@ Let's walk through a simplified example of building an Operator for managing `We
         return map[string]string{"app": "webapp", "webapp_cr": name}
     }
     ```
+
 {% endraw %}
 
     This function creates a `Deployment` object based on the specifications defined in the `WebApp` CR.  It also sets the `WebApp` CR as the owner of the `Deployment`, ensuring that the Deployment is automatically deleted when the `WebApp` CR is deleted.

@@ -103,6 +103,7 @@ def lambda_handler(event, context):
   "event": "$"
 }
 ```
+
 This passes the entire event as a JSON string to the SQS queue.  Without this, you'd only be passing the event ID.
 
 14. Click "Next".

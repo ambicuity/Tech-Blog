@@ -103,11 +103,13 @@ This achieves the same result using a more compact syntax.
 ## Common Mistakes
 
 *   **Trying to Reuse a Generator After Exhaustion:**  Once a generator has yielded all its values, it's exhausted. Attempting to iterate over it again will result in an empty sequence. You need to recreate the generator object if you want to iterate over it again.
+
     ```python
     my_generator = (i for i in range(3))
     for x in my_generator: print(x) # Prints 0, 1, 2
     for x in my_generator: print(x) # Prints nothing!
     ```
+
 *   **Over-Complicating Generator Logic:** While generators can be powerful, avoid making them overly complex.  If your generator logic becomes too intricate, it might be better to refactor it into smaller, more manageable functions.
 *   **Not Understanding the `yield` Keyword:**  The `yield` keyword pauses the function's execution and returns a value. The next time the generator is called, execution resumes from where it left off.  Confusion about this behavior can lead to unexpected results.
 *   **Using Generators When Lists are More Appropriate:** Generators are best suited for large datasets or infinite sequences where memory efficiency is crucial. For small datasets, using lists might be simpler and faster.  Premature optimization is the root of all evil.

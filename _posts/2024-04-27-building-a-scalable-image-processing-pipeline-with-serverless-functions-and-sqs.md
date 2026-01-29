@@ -160,6 +160,7 @@ def lambda_handler(event, context):
             'body': 'Message sent to SQS!'
         }
 ```
+
     *   **Important:**  You would create another Lambda function triggered by S3 `PUT` events (new file uploads) to the `INPUT_BUCKET`.  This Lambda function’s responsibility is only to send a message to the SQS queue with the object key that was uploaded.  It needs an environment variable `SQS_QUEUE_URL` configured. Make sure your S3 bucket event notifications are configured to trigger this Lambda function.
 
 **5.  Testing the Pipeline:**

@@ -127,6 +127,7 @@ The output will show the join type used (e.g., Hash Join, Merge Join, Nested Loo
     ANALYZE customers;
     ANALYZE orders;
     ```
+
 *   **Forgetting to account for data size:** An optimization that works well for a small dataset might not scale to a larger dataset.  Test your changes with representative data volumes.
 *   **Ignoring slow planning time:** While execution time is crucial, a significantly long "Planning Time" can also indicate an issue. Complex queries with numerous joins and subqueries can lead to slow planning. Consider simplifying the query or rewriting it.
 *   **Running ANALYZE on production without considering its impact:** Running ANALYZE locks the table briefly. Schedule it carefully, especially on large tables, to avoid impacting application performance.

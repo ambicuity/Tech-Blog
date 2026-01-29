@@ -185,14 +185,17 @@ func main() {
 **4. Running the Application:**
 
 *   **Set the Consul Key-Value:**  Before running the application, set a key-value pair in Consul:
+
     ```bash
     consul kv put myapp/config/greeting "Hello, Updated World!"
     ```
+
 *   **Run the Go application:**
 
     ```bash
     go run main.go
     ```
+
     You might need to set the `CONSUL_ADDRESS` environment variable if your Consul agent is not running at `localhost:8500`.  For example: `CONSUL_ADDRESS=your-consul-address:8500 go run main.go`
 
 *   **Update the Key-Value in Consul:**  While the application is running, update the greeting message in Consul:

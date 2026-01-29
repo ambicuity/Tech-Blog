@@ -132,6 +132,7 @@ kubectl apply -f pgbouncer-deployment.yaml
 ```
 
 **4.  Create a PgBouncer Secrets ConfigMap**
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -142,8 +143,10 @@ stringData:
   users.txt: |
     "pgbouncer" "md5<hashed-password-here>"
 ```
+
 * Replace `<hashed-password-here>` with the hashed password for pgbouncer user. You can generate this using `pg_md5` function within your PostgreSQL database. For instance: `SELECT md5(concat('pgbouncer', 'your_password_here'));`
 * Apply the Secret
+
 ```bash
 kubectl apply -f pgbouncer-secrets.yaml
 ```

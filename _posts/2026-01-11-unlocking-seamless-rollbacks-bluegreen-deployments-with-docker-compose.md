@@ -195,14 +195,18 @@ docker-compose up -d green
 ```
 
 This rebuilds and restarts only the `green` service with the updated code.  You can access it temporarily through port 5001, for example by temporarily exposing it on port 8080 with the docker port command and test its functionality:
+
 ```bash
 docker port green 5000
 ```
+
 This will return a local port such as 0.0.0.0:32768.
 Then use curl to test the endpoint
+
 ```bash
 curl http://localhost:32768
 ```
+
 If all looks good...
 
 **10. Traffic Switch (Blue to Green):**

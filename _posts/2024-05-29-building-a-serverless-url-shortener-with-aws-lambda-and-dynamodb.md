@@ -154,6 +154,7 @@ def lambda_handler(event, context):
         ]
     }
     ```
+
     Replace `YOUR_REGION` and `YOUR_ACCOUNT_ID` with your actual AWS region and account ID.
 
 **4. Test the Function:**

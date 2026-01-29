@@ -166,6 +166,7 @@ if __name__ == "__main__":
     ```bash
     prefect flow register --path ./pipeline.py
     ```
+
     This will register the flow, and the Prefect agent will pick it up for execution.
 
 3.  Monitor the execution in the Prefect UI at `http://localhost:4200`. You should see your "Data Pipeline" flow and its runs.

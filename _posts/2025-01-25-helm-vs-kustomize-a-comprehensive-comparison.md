@@ -60,6 +60,7 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
 3.  **Modify Templates (Optional):**  You can modify the templates in the `templates` directory to further customize the deployment.  For example, to customize the service type to LoadBalancer, edit `templates/service.yaml`:
 
     {% raw %}
+
     ```yaml
     apiVersion: v1
     kind: Service
@@ -77,6 +78,7 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
       selector:
         {{- include "nginx-chart.selectorLabels" . | nindent 4 }}
     ```
+
     {% endraw %}
 
 4.  **Install the Chart:**

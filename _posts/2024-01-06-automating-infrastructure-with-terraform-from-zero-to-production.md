@@ -72,11 +72,13 @@ Let's walk through a practical example of deploying a simple web server on AWS u
         ```bash
         terraform init
         ```
+
     *   **`terraform plan`:** Creates an execution plan, showing what Terraform will do to achieve the desired state.
 
         ```bash
         terraform plan
         ```
+
     *   **`terraform apply`:** Executes the plan and creates the infrastructure. You will be prompted to confirm the action. Type "yes" to proceed.
 
         ```bash
@@ -111,6 +113,7 @@ Let's walk through a practical example of deploying a simple web server on AWS u
       region = var.region
     }
     ```
+
 *   **Not using Modules:** Modules allow you to encapsulate and reuse Terraform code. This improves code organization, maintainability, and reusability. Start with small modules and gradually build more complex ones.
 *   **Ignoring Input Validation:** Validate input variables to prevent errors and ensure that your configuration is working as expected.
 

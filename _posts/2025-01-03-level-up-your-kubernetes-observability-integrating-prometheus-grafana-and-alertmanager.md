@@ -80,6 +80,7 @@ We'll walk through the steps to deploy Prometheus, Grafana, and Alertmanager usi
     First, create a `PrometheusRule` resource in a file called `high-cpu-alert.yaml`:
 
     {% raw %}
+
     ```yaml
     apiVersion: monitoring.coreos.com/v1
     kind: PrometheusRule
@@ -99,6 +100,7 @@ We'll walk through the steps to deploy Prometheus, Grafana, and Alertmanager usi
             summary: "High CPU Usage"
             description: "CPU usage on instance {{ $labels.instance }} is above 80%."
     ```
+
     {% endraw %}
 
     Then, apply the rule to your cluster:

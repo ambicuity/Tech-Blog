@@ -74,6 +74,7 @@ rule_files:
 Create a new file named `alert.rules.yml` and add the following:
 
 {% raw %}
+
 ```yaml
 groups:
   - name: ExampleAlerts
@@ -87,6 +88,7 @@ groups:
           summary: "High HTTP request latency"
           description: "HTTP request latency is consistently above 1 second ({{ $value }}s) for the past 5 minutes."
 ```
+
 {% endraw %}
 
 **Explanation:**
