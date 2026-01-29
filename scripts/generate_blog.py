@@ -75,7 +75,7 @@ def get_recent_posts(limit=200):
         return []
 
 
-def get_blog_prompt():
+def get_blog_prompt(context):
     """
     Returns the prompt for generating a technical blog post.
     The prompt ensures consistent structure and quality.
@@ -86,14 +86,22 @@ def get_blog_prompt():
     recent_posts = get_recent_posts(limit=200)
     avoid_list = "\n- ".join(recent_posts)
     
-    return f"""You are a Staff Software Engineer and Technical Writer. Generate ONE original technical blog post about a practical topic in Software Engineering, DevOps, Cloud Computing, AI/ML, Linux, or System Design.
 
+    
+    return f"""You are a Staff Software Engineer and Technical Writer. 
+    
+CONTEXT - RECENT TECH NEWS:
+{context}
+
+TASK:
+Pick ONE interesting news item or trend from the context above (or a related trending topic if the context is thin) and write a comprehensive, original technical blog post about it.
+    
 CRITICAL INSTRUCTIONS:
 1. **NO HALLUCINATIONS**: Do not invent libraries, commands, or flags. Verify every code snippet.
 2. **NO DUPLICATES**: Do NOT write about the following recently covered topics:
 - {avoid_list}
 
-3. **ORIGINALITY**: Provide a unique angle. Do not just regurgitate documentation.
+3. **ORIGINALITY**: Provide a unique angle. Do not just regurgitate the news. specific technical analysis, architectural implications, or "what this means for developers".
 
 The blog post MUST follow this exact structure in Markdown format with Jekyll front matter:
 
@@ -106,22 +114,19 @@ tags: [relevant, tags, here]
 ---
 
 ## Introduction
-[Brief introduction to the topic - what and why]
+[Brief introduction to the trend/news - what and why]
 
-## Core Concepts
-[Explain the fundamental concepts and terminology]
+## Technical Deep Dive / Core Concepts
+[Explain the technical details, architecture, or underlying concepts]
 
-## Practical Implementation
-[Step-by-step implementation guide with code examples]
+## Practical Implications / Implementation
+[How developers can use this, or how it affects existing systems. Include code examples if applicable.]
 
-## Common Mistakes
-[List common pitfalls and how to avoid them]
+## Common Challenges / Mistakes
+[Pitfalls or challenges related to this technology/trend]
 
-## Interview Perspective
-[What interviewers look for and key talking points]
-
-## Real-World Use Cases
-[Real-world scenarios where this is applicable]
+## Industry Perspective
+[What this means for the industry, interviews, or future outlook]
 
 ## Conclusion
 [Summary and key takeaways]
@@ -131,7 +136,6 @@ Requirements:
 - Must include practical code examples where applicable
 - Must be beginner to intermediate friendly
 - Must be SEO optimized
-- Choose topics like: Kubernetes, Docker, CI/CD, Python, Go, React, PostgreSQL, Redis, AWS, System Design patterns, Microservices, etc.
 - Tags should be lowercase and use hyphens instead of spaces
 - DO NOT include the title as H1 (# Title) in the content - only in the front matter
 
@@ -195,8 +199,19 @@ def generate_blog_post(api_key, max_retries_per_model=3):
         safety_settings=safety_settings
     )
     
+    # Fetch Tech News for Context
+    print("Fetching recent tech news from Brave Search...")
+    try:
+        from brave_search import search_tech_news, format_search_results
+        news_results = search_tech_news("latest software engineering artificial intelligence news", count=5)
+        news_context = format_search_results(news_results)
+        print(f"Fetched {len(news_results)} news items.")
+    except Exception as e:
+        print(f"Warning: Failed to fetch news: {e}")
+        news_context = "No recent news available. Focus on evergreen technical topics."
+
     # Generate content with retry logic for rate limits
-    prompt = get_blog_prompt()
+    prompt = get_blog_prompt(news_context)
     
     all_errors = []
     

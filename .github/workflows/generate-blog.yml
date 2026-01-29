@@ -36,6 +36,7 @@ jobs:
       - name: Generate blog post
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
         run: |
           python scripts/generate_blog.py
       
