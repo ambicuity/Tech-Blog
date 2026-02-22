@@ -72,7 +72,7 @@ theme_mode: dark # [light|dark]
 cdn:
 
 # The avatar on sidebar, support local or CORS resources
-avatar: https://riteshrana.engineer/assets/RR.webp
+avatar: /assets/img/RR.webp
 
 toc: true
 
