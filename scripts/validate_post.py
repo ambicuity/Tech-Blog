@@ -38,6 +38,16 @@ def validate_markdown_file(file_path):
         if '```markdown' in content and content.strip().startswith('```markdown'):
              errors.append("Found '```markdown' wrapper at start of file")
              
+        # 4. Check for code blocks (required)
+        if '```' not in content:
+            errors.append("No code blocks found. Technical posts must contain code.")
+            
+        # 5. Check for fluff
+        fluff_words = ["In conclusion", "delve into", "paramount", "In today's world", "dynamic landscape"]
+        for word in fluff_words:
+            if word.lower() in content.lower():
+                errors.append(f"Found forbidden fluff phrase: '{word}'")
+             
         if errors:
             print(f"FAILED: {file_path}")
             for err in errors:

@@ -103,6 +103,8 @@ CRITICAL INSTRUCTIONS:
 
 3. **ORIGINALITY**: Provide a unique angle. Do not just regurgitate the news. specific technical analysis, architectural implications, or "what this means for developers".
 
+4. **NO FLUFF**: Maximize signal-to-noise ratio. Be concise. Start immediately with the technical problem. DO NOT use filler words like: delve, paramount, landscape, crucial, robust, or 'in today's world'.
+
 The blog post MUST follow this exact structure in Markdown format with Jekyll front matter:
 
 ---
@@ -113,26 +115,9 @@ categories: [Category1, Category2]
 tags: [relevant, tags, here]
 ---
 
-## Introduction
-[Brief introduction to the trend/news - what and why]
-
-## Technical Deep Dive / Core Concepts
-[Explain the technical details, architecture, or underlying concepts]
-
-## Practical Implications / Implementation
-[How developers can use this, or how it affects existing systems. Include code examples if applicable.]
-
-## Common Challenges / Mistakes
-[Pitfalls or challenges related to this technology/trend]
-
-## Industry Perspective
-[What this means for the industry, interviews, or future outlook]
-
-## Conclusion
-[Summary and key takeaways]
+[Start immediately with the problem and technical content. DO NOT use headers like "Introduction" or "Conclusion"]
 
 Requirements:
-- Must be 800-1200 words
 - Must include practical code examples where applicable
 - Must be beginner to intermediate friendly
 - Must be SEO optimized
@@ -271,9 +256,7 @@ def generate_blog_post(api_key, max_retries_per_model=3):
 
 def save_blog_post(content):
     """
-    Saves the blog post to the appropriate directory structure.
-    Creates directories if they don't exist.
-    Also copies to _posts directory for Jekyll.
+    Saves the blog post directly to the _posts directory for Jekyll.
     
     Args:
         content (str): Blog post content in Markdown
@@ -283,32 +266,6 @@ def save_blog_post(content):
     """
     now = datetime.now()
     
-    # Create directory structure: posts/YYYY/MM/DD/
-    year = now.strftime("%Y")
-    month = now.strftime("%m")
-    day = now.strftime("%d")
-    
-    posts_dir = Path("posts") / year / month / day
-    posts_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Generate filename: auto-HHMMSS.md
-    time_str = now.strftime("%H%M%S")
-    filename = f"auto-{time_str}.md"
-    
-    file_path = posts_dir / filename
-    
-    # Ensure we don't overwrite existing files
-    counter = 1
-    while file_path.exists():
-        filename = f"auto-{time_str}-{counter}.md"
-        file_path = posts_dir / filename
-        counter += 1
-    
-    # Write the blog post
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(content)
-    
-    # Copy to _posts directory with Jekyll naming convention
     try:
         # Extract date and title from front matter
         # Match date format: YYYY-MM-DD HH:MM:SS +ZZZZ or just YYYY-MM-DD
@@ -328,16 +285,32 @@ def save_blog_post(content):
             
             # Create Jekyll post filename: YYYY-MM-DD-title.md
             jekyll_filename = f"{post_date}-{slug}.md"
-            jekyll_posts_dir = Path("_posts")
-            jekyll_posts_dir.mkdir(exist_ok=True)
+        else:
+            time_str = now.strftime("%H%M%S")
+            date_str = now.strftime("%Y-%m-%d")
+            jekyll_filename = f"{date_str}-auto-{time_str}.md"
             
-            jekyll_file_path = jekyll_posts_dir / jekyll_filename
-            shutil.copy2(file_path, jekyll_file_path)
-            print(f"Also copied to Jekyll posts: {jekyll_file_path}")
+        jekyll_posts_dir = Path("_posts")
+        jekyll_posts_dir.mkdir(exist_ok=True)
+        
+        file_path = jekyll_posts_dir / jekyll_filename
+        
+        # Ensure we don't overwrite existing files
+        counter = 1
+        original_filename = jekyll_filename
+        while file_path.exists():
+            name, ext = os.path.splitext(original_filename)
+            file_path = jekyll_posts_dir / f"{name}-{counter}{ext}"
+            counter += 1
+            
+        # Write the blog post
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+            
+        return str(file_path)
     except Exception as e:
-        print(f"Warning: Could not copy to _posts directory: {e}")
-    
-    return str(file_path)
+        print(f"ERROR: Failed to save blog post: {e}")
+        raise
 
 
 def main():

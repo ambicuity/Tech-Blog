@@ -5,8 +5,8 @@ theme: jekyll-theme-chirpy
 
 # Site settings
 title: Ritesh Rana Tech Blog
-tagline: Built by engineer, for engineers
-description: Personal engineering blog sharing insights on Kubernetes, System Design, and DevOps.
+tagline: Production-grade infrastructure, systems architecture, and DevOps.
+description: Technical insights on Kubernetes, Distributed Systems, and Platform Engineering.
 url: https://blog.riteshrana.engineer
 baseurl: ""
 
@@ -72,7 +72,7 @@ theme_mode: dark # [light|dark]
 cdn:
 
 # The avatar on sidebar, support local or CORS resources
-avatar: https://riteshrana.engineer/assets/RR.webp 
+avatar: /assets/img/RR.webp
 
 toc: true
 
