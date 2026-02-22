@@ -335,19 +335,20 @@ def main():
     print("Starting blog post generation...")
     
     try:
-        # Generate blog post
-        print("Generating content using Google Gemini API...")
-        content = generate_blog_post(api_key)
-        
-        # Clean the content (remove markdown code block wrappers if present)
-        content = clean_blog_content(content)
-        
-        # Save blog post
-        print("Saving blog post...")
-        file_path = save_blog_post(content)
-        
-        print(f"SUCCESS: Blog post generated and saved to: {file_path}")
-        print(f"Content preview (first 200 chars):\n{content[:200]}...")
+        import time
+        dates = ["2026-02-02", "2026-02-09", "2026-02-16"]
+        for target_date in dates:
+            print(f"Generating content for {target_date}...")
+            content = generate_blog_post(api_key)
+            content = clean_blog_content(content)
+            
+            # Hack the front matter date to place the generated article into the past
+            content = re.sub(r'^date:\s*.*$', f'date: {target_date} 09:00:00 +0000', content, count=1, flags=re.MULTILINE)
+            
+            print("Saving blog post...")
+            file_path = save_blog_post(content)
+            print(f"SUCCESS: Blog post generated and saved to: {file_path}")
+            time.sleep(15) # Brief cooldown between API hits
         
     except Exception as e:
         print(f"ERROR: Failed to generate blog post: {str(e)}")
