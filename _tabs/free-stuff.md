@@ -8,8 +8,6 @@ permalink: /free-stuff/
 
 ## 🎁 Free Tools & Services for Developers
 
-A curated list of **free tools and services** for developers to use for MVPs, prototyping, or production projects. Inspired by [freestuff.dev](https://freestuff.dev/).
-
 <div class="alert alert-info d-flex align-items-center mb-4" role="alert">
   <i class="fas fa-plus-circle me-2"></i>
   <div>
@@ -526,7 +524,3 @@ Want to add a tool to this list?
 
 1. [Open an issue](https://github.com/ambicuity/Tech-Blog/issues/new?title=New%20Tool%20Submission&body=Tool%20Name:%0AURL:%0ADescription:%0ATags:) with your tool details
 2. Or submit a Pull Request directly
-
----
-
-> **Credits**: This page is inspired by [freestuff.dev](https://freestuff.dev/) by [@hilmanski](https://twitter.com/hilmanski). Please support the original project!
