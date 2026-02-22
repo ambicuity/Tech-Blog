@@ -20,9 +20,15 @@ social:
 # Build settings
 markdown: kramdown
 kramdown:
+  footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: 'highlight'
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 permalink: /posts/:title/
 
 # Timezone
