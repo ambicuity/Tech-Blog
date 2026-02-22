@@ -19,14 +19,12 @@ For more information about me and my work, please visit my main website:
 
 ## About This Blog
 
-This blog is powered by Google Gemini API and automatically generates high-quality technical content on topics including:
+This is my personal engineering notebook. It serves as a living repository of the challenges I've faced, the systems I've architected, and the deep-dives into production-grade infrastructure that I explore. It covers:
 
 - 🐳 DevOps & Kubernetes
 - ☁️ Cloud Computing & Infrastructure
 - 💻 Programming & Software Engineering
 - 🔧 Development Tools & Best Practices
-
-All posts are generated automatically to explore cutting-edge AI content generation capabilities while providing valuable technical insights.
 
 ## 🎓 Education
 
