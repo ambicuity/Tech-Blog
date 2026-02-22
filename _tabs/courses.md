@@ -1,62 +1,73 @@
 ---
 layout: page
-icon: fas fa-graduation-cap
+icon: fas fa-water
 order: 3
-title: Courses
+title: Deep Dives
 permalink: /courses/
 ---
 
-## 🎓 Computer Science Curriculum
+## 🌊 My Engineering Library & Deep Dives
 
-Welcome to the open-source engineering curriculum. Here you will find detailed notes, rigorous explanations, and practical examples covering the core pillars of Computer Science.
+This is not a generic "Computer Science Curriculum." This is my personal engineering notebook.
 
-All content is structured around the "Legendary Books" of our field.
+As a Systems Engineer, I believe in **depth over breadth**. Below are the living documents where I deconstruct the legendary textbooks of our field and bridge the gap between their 1970s academic rigor and the modern, messy reality of Cloud Native infrastructure and AI environments.
 
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+These notes are heavily opinionated, brutally technical, and continually updated based on my lived experience in production.
+
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-5 mt-2">
   
-  <!-- 1. DSA -->
-  <div class="col">
-    <a href="/courses/dsa/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-cubes text-primary me-2"></i>DSA</h3>
-          <p class="card-text text-muted">Data Structures & Algorithms</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>CLRS</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 2. System Design -->
+  <!-- 1. System Design -->
   <div class="col">
     <a href="/courses/system-design/" class="text-decoration-none">
-      <div class="card h-100">
+      <div class="card h-100 shadow-sm border-0">
         <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-server text-success me-2"></i>System Design</h3>
-          <p class="card-text text-muted">Scalable Architecture</p>
+          <h3 class="card-title text-dark"><i class="fas fa-server text-success me-2"></i>System Design for AI</h3>
+          <p class="card-text text-muted">Deconstructing the Data-Intensive Application for modern LLM architectures, caching layers, and high-throughput pipelines.</p>
           <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>DDIA</strong>
-          </small>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <i class="fas fa-book me-1"></i> Based on <strong>DDIA</strong>
+            </small>
+            <small class="text-secondary"><i class="far fa-clock me-1"></i> Last Updated: Feb 2026</small>
+          </div>
         </div>
       </div>
     </a>
   </div>
 
-  <!-- 3. OS -->
+  <!-- 2. OS -> Compute -->
   <div class="col">
     <a href="/courses/os/" class="text-decoration-none">
-      <div class="card h-100">
+      <div class="card h-100 shadow-sm border-0">
         <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-desktop text-warning me-2"></i>Operating Systems</h3>
-          <p class="card-text text-muted">Internals & Concepts</p>
+          <h3 class="card-title text-dark"><i class="fab fa-linux text-warning me-2"></i>OS for Cloud Engineers</h3>
+          <p class="card-text text-muted">Beyond Silberschatz. Understanding Linux cgroups, namespaces, and the actual kernel primitives powering Kubernetes and Containerd.</p>
           <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>Silberschatz</strong>
-          </small>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <i class="fas fa-book me-1"></i> <strong>Linux Internals</strong>
+            </small>
+            <small class="text-secondary"><i class="far fa-clock me-1"></i> Last Updated: Jan 2026</small>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 3. DBMS -> Vector DBs -->
+  <div class="col">
+    <a href="/courses/dbms/" class="text-decoration-none">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="card-title text-dark"><i class="fas fa-database text-danger me-2"></i>DBMS for the AI Era</h3>
+          <p class="card-text text-muted">Bridging the "Cow Book" fundamentals with modern Vector Databases (Pinecone, Milvus) and advanced PostgreSQL internals.</p>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <i class="fas fa-book me-1"></i> <strong>Cow Book + Vector</strong>
+            </small>
+            <small class="text-secondary"><i class="far fa-clock me-1"></i> Last Updated: Dec 2025</small>
+          </div>
         </div>
       </div>
     </a>
@@ -65,94 +76,17 @@ All content is structured around the "Legendary Books" of our field.
   <!-- 4. Networking -->
   <div class="col">
     <a href="/courses/networking/" class="text-decoration-none">
-      <div class="card h-100">
+      <div class="card h-100 shadow-sm border-0">
         <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-network-wired text-info me-2"></i>Networking</h3>
-          <p class="card-text text-muted">Protocols & Distributed Systems</p>
+          <h3 class="card-title text-dark"><i class="fas fa-network-wired text-info me-2"></i>Cloud Networking</h3>
+          <p class="card-text text-muted">Packet captures, Wireshark analysis, and BGP routing. Seeing Tanenbaum's theories in action across distributed mesh networks.</p>
           <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>Tanenbaum</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 5. DBMS -->
-  <div class="col">
-    <a href="/courses/dbms/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-database text-danger me-2"></i>DBMS</h3>
-          <p class="card-text text-muted">Database Internals & SQL</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>Cow Book</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 6. AI -->
-  <div class="col">
-    <a href="/courses/ai/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-brain text-purple me-2"></i>AI</h3>
-          <p class="card-text text-muted">Intelligent Agents & Search</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>AIMA</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 7. Compilers -->
-  <div class="col">
-    <a href="/courses/compilers/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-code text-dark me-2"></i>Compilers</h3>
-          <p class="card-text text-muted">Language Translation</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>Dragon Book</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 8. Architecture -->
-  <div class="col">
-    <a href="/courses/architecture/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-microchip text-secondary me-2"></i>Architecture</h3>
-          <p class="card-text text-muted">Hardware/Software Interface</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-book me-1"></i> Based on <strong>Patterson</strong>
-          </small>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <!-- 9. LeetCode 150 -->
-  <div class="col">
-    <a href="/courses/leetcode/" class="text-decoration-none">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-code-branch text-danger me-2"></i>LeetCode 150</h3>
-          <p class="card-text text-muted">Top 150 Interview Problems</p>
-          <hr>
-          <small class="text-muted">
-            <i class="fas fa-keyboard me-1"></i> Python Solutions
-          </small>
+           <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <i class="fas fa-book me-1"></i> Based on <strong>Tanenbaum</strong>
+            </small>
+            <small class="text-secondary"><i class="far fa-clock me-1"></i> Last Updated: Nov 2025</small>
+          </div>
         </div>
       </div>
     </a>
@@ -160,4 +94,4 @@ All content is structured around the "Legendary Books" of our field.
 
 </div>
 
-> **Note**: These are living documents. Expect regular updates as I continue my own learning journey.
+> **Note**: I do not post placeholders. If a paradigm isn't listed here, it means I haven't finished bridging the theory to my production environments yet. Check back later.
