@@ -1,9 +1,9 @@
 name: Generate Automated Blog Post
 
 on:
-  # Run daily at 09:00 UTC
+  # Run weekly on Monday at 09:00 UTC
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 9 * * 1'
   
   # Allow manual trigger
   workflow_dispatch:
