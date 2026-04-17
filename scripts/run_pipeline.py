@@ -345,6 +345,7 @@ def main() -> int:
         "red_team": g7.__dict__,
     }
     write_json(paths["gate_report"], gate_payload)
+    failed_gates = [name for name, payload in gate_payload.items() if not payload.get("passed", False)]
 
     aggregate = round((g1.score + g2.score + g3.score + g4.score + g5.score + g6.score + g7.score) / 7.0, 3)
     pub = decide(gate_payload, aggregate)
@@ -377,6 +378,16 @@ def main() -> int:
             }
         )
         print(f"QUARANTINED: {quarantine} ({pub.artifacts.get('reason','')})")
+
+    run_artifact_path = paths["run_dir"].relative_to(ROOT)
+    print(
+        "RUN SUMMARY: "
+        f"status={manifest.get('status')} "
+        f"reason={manifest.get('reason', '')} "
+        f"failed_gates={','.join(failed_gates) if failed_gates else 'none'} "
+        f"run_id={run_id} "
+        f"artifacts={run_artifact_path}"
+    )
 
     memory.log_run_telemetry(
         run_id=run_id,
