@@ -87,6 +87,24 @@ def _mutate_candidate_for_target(candidate: dict, target: str, attempt: int) -> 
     return c
 
 
+def _print_run_summary(
+    *,
+    manifest: dict,
+    failed_gates: list[str],
+    run_id: str,
+    paths: dict,
+) -> None:
+    run_artifact_path = paths["run_dir"].relative_to(ROOT)
+    print(
+        "RUN SUMMARY: "
+        f"status={manifest.get('status')} "
+        f"reason={manifest.get('reason', '')} "
+        f"failed_gates={','.join(failed_gates) if failed_gates else 'none'} "
+        f"run_id={run_id} "
+        f"artifacts={run_artifact_path}"
+    )
+
+
 def main() -> int:
     run_id = create_run_id()
     paths = default_run_paths(run_id)
@@ -117,7 +135,8 @@ def main() -> int:
         manifest.update({"status": "failed", "reason": "planner_failed"})
         write_json(paths["manifest"], manifest)
         memory.close()
-        return 1
+        _print_run_summary(manifest=manifest, failed_gates=[], run_id=run_id, paths=paths)
+        return 0
 
     strategy = planner.artifacts.get("strategy", {})
     candidates = planner.artifacts.get("selected_candidates", []) or [planner.artifacts.get("selected_candidate", {})]
@@ -232,7 +251,8 @@ def main() -> int:
                 manifest.update({"status": "failed", "reason": "writer_failed", "errors": writer.errors})
                 write_json(paths["manifest"], manifest)
                 memory.close()
-                return 1
+                _print_run_summary(manifest=manifest, failed_gates=[], run_id=run_id, paths=paths)
+                return 0
 
             draft = writer.artifacts["draft"]
             _save_text(paths["draft"], draft)
@@ -295,7 +315,8 @@ def main() -> int:
         memory.record_prompt_result(writer_lineage.get("lineage_id", ""), False)
         memory.record_strategy_result(strategy.get("strategy_id", ""), False)
         memory.close()
-        return 1
+        _print_run_summary(manifest=manifest, failed_gates=[], run_id=run_id, paths=paths)
+        return 0
 
     tech = tech_review(final_draft)
     write_json(paths["tech_review"], tech.artifacts)
@@ -379,15 +400,7 @@ def main() -> int:
         )
         print(f"QUARANTINED: {quarantine} ({pub.artifacts.get('reason','')})")
 
-    run_artifact_path = paths["run_dir"].relative_to(ROOT)
-    print(
-        "RUN SUMMARY: "
-        f"status={manifest.get('status')} "
-        f"reason={manifest.get('reason', '')} "
-        f"failed_gates={','.join(failed_gates) if failed_gates else 'none'} "
-        f"run_id={run_id} "
-        f"artifacts={run_artifact_path}"
-    )
+    _print_run_summary(manifest=manifest, failed_gates=failed_gates, run_id=run_id, paths=paths)
 
     memory.log_run_telemetry(
         run_id=run_id,
