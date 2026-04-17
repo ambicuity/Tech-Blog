@@ -1,0 +1,1319 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "Analyzing the Root Causes of Kubernetes Admission Control Failures",
+        "persona": "Security Auditor",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->analysis->recommendations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Provides a structured approach to identifying the underlying causes of policy drift.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "deductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Production Policy Breach: A Postmortem of Admission Control Failure",
+              "Symptoms of Admission Control Drift: Misconfigurations and Bypass",
+              "Root Cause 1: Inconsistent Policy Definitions Across Namespaces",
+              "Root Cause 2: Overly Permissive Default Policies and Exceptions",
+              "Root Cause 3: Lack of Automated Policy Validation and Enforcement",
+              "Mitigation Strategy: Implementing GitOps for Declarative Policy Management",
+              "Operational Checklist: Hardening Admission Control",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.198165,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+              "heading_signature_similarity": 0.274029,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "inductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Unexpected Kubernetes Vulnerabilities: Admission Control Under Scrutiny",
+              "Initial Observation: API Server Request Modification Analysis",
+              "Failure Scenario 1: Missing Resource Quotas and Limit Ranges",
+              "Failure Scenario 2: Vulnerable Pod Security Admission Configurations",
+              "Failure Scenario 3: Neglected NetworkPolicy Enforcement Gaps",
+              "Recommendations: Strengthening Admission Control with OPA/Kyverno",
+              "Operational Checklist: Runtime Policy Monitoring",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.213217,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-27-managing-statefulsets-in-production.md",
+              "heading_signature_similarity": 0.269474,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "abductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "The Silent Threat: Kubernetes Admission Control Policy Erosion",
+              "Examining the Evidence: Audit Logs and Event Data Analysis",
+              "Hypothesis 1: Human Error in Manual Policy Application",
+              "Hypothesis 2: CI/CD Pipeline Inconsistencies and Race Conditions",
+              "Hypothesis 3: Inadequate RBAC Permissions and Privilege Escalation",
+              "Proactive Measures: Automating Policy Drift Detection and Remediation",
+              "Operational Checklist: Policy as Code Implementation",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.234246,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.256959,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "incident reframing of Kubernetes Admission Control Policy Drift",
+        "persona": "Security Auditor",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->analysis->recommendations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Provides a structured approach to identifying the underlying causes of policy drift.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "deductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Kubernetes Admission Control Failure: A Post-Mortem",
+              "The Incident: Unauthorized Resource Creation",
+              "Root Cause Analysis: Policy Drift Mechanisms",
+              "Identifying Stale Policy Configurations",
+              "Analyzing RBAC and Namespace Conflicts",
+              "Preventative Measures: Policy Enforcement and Auditing",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.169464,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.282282,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "inductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Admission Control Drift: From Incident to Prevention",
+              "Observed Anomalies: Identifying Policy Violations",
+              "Reverse Engineering the Drift: Reconstructing the Chain of Events",
+              "Impact Assessment: Scope and Severity Analysis",
+              "Identifying the Source: Policy Updates and Versioning Issues",
+              "Proactive Monitoring: Detecting Policy Drift Early",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.24581,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.283117,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "abductive",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Unraveling Kubernetes Admission Control Drift: An Incident Review",
+              "The Symptoms: Unexpected Workload Behavior",
+              "Investigating the Kubernetes API Audit Logs",
+              "Analyzing Admission Webhook Configurations",
+              "Reconciling Policy Definitions with Cluster State",
+              "Implementing Automated Policy Validation",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.211925,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-02-16-fixing-production-gaps-in-ai-generated-kubernetes-manifests.md",
+              "heading_signature_similarity": 0.27907,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "contrarian reframing of Kubernetes Admission Control Policy Drift",
+        "persona": "Security Auditor",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->analysis->recommendations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Provides a structured approach to identifying the underlying causes of policy drift.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "logos",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "The Silent Kubernetes Security Threat: Policy Drift",
+              "Incident Root Cause: Misconfigured Admission Controller Webhooks",
+              "Quantifying the Blast Radius: Identifying Affected Workloads",
+              "Deconstructing the Drift: Policy Definition vs. Runtime State",
+              "Automated Audit Trails: Detecting Policy Deviations Early",
+              "Mitigation Strategies: Versioning and Immutable Policies",
+              "Operational Checklist: Preventing Future Policy Drift",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.197982,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-02-fixing-idempotency-gaps-in-ai-generated-kafka-consumers-on-kubernetes.md",
+              "heading_signature_similarity": 0.272523,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "logos",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Kubernetes Policy Drift: A Security Auditor's Perspective",
+              "The Illusion of Control: Why Static Policies Fail",
+              "Analyzing the Attack Surface: Policy Exceptions and Loopholes",
+              "Dynamic Policy Enforcement: Leveraging OPA and Kyverno",
+              "Operational Checklist: Validating Policy Enforcement",
+              "Root Cause Analysis: Identifying the Source of Policy Deviations",
+              "Remediation: Patching Vulnerable Workloads and Policies",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.244982,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-30-gitops-with-argocd-and-kubernetes.md",
+              "heading_signature_similarity": 0.28341,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "logos",
+            "argument_flow_motif": "problem->analysis->recommendations",
+            "headings": [
+              "Beyond the Firewall: The Peril of Kubernetes Policy Drift",
+              "The False Positive Problem: When Valid Policies Block Legitimate Traffic",
+              "Understanding Policy Propagation: Identifying the Bottlenecks",
+              "Enforcement Points: Admission Controllers, Network Policies, and RBAC",
+              "Operational Checklist: Configuring Alerting and Monitoring",
+              "Analysis: Correlating Policy Changes with Application Behavior",
+              "Policy Hardening: Minimizing the Attack Surface",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.280349,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.264957,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "Hardening Kubernetes with Admission Controllers: Beyond the Basics",
+        "persona": "Security Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "problem->solution->implementation",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [],
+        "why_new": "Delves into advanced techniques for using admission controllers to improve security.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "Are Your Kubernetes Admission Controllers Really Doing Their Job?",
+              "The Silent Threat: Policy Drift in Admission Control",
+              "Root Causes of Kubernetes Admission Control Drift",
+              "Strategic Hardening: Advanced Techniques for Admission Controllers",
+              "Implementing Dynamic Policy Updates with Webhooks",
+              "Monitoring and Alerting on Admission Control Effectiveness",
+              "Operational Checklist: Maintaining a Secure Kubernetes Environment",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.255661,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-27-managing-statefulsets-in-production.md",
+              "heading_signature_similarity": 0.293065,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "Is Your Kubernetes Cluster a False Sense of Security?",
+              "Understanding the Kubernetes Admission Control Landscape",
+              "The Problem: Subtle Configuration Changes Leading to Drift",
+              "Policy as Code: Writing Effective Admission Control Policies",
+              "Validating Admission Control Rules with Automated Testing",
+              "Leveraging OPA (Open Policy Agent) for Fine-Grained Control",
+              "Operational Checklist: Hardening Admission Control",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.244656,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.275862,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "Are You Confident in Your Kubernetes Security Posture?",
+              "Kubernetes Admission Controllers: Your First Line of Defense",
+              "Hidden Vulnerabilities: The Dangers of Admission Control Drift",
+              "Mitigation: Proactive Measures Against Policy Erosion",
+              "Implementing Policy Enforcement with Kyverno",
+              "Automated Auditing and Reporting on Admission Control Policies",
+              "Operational Checklist: Continuous Monitoring of Kubernetes Policies",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.231508,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-30-gitops-with-argocd-and-kubernetes.md",
+              "heading_signature_similarity": 0.277027,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "Hardening Kubernetes with Admission Controllers: Beyond the Basics | reframed opening-1",
+        "persona": "Security Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "story_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "problem->solution->implementation",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [],
+        "why_new": "Delves into advanced techniques for using admission controllers to improve security.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "logos",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "The Case of the Over-Permissive Namespace: A Kubernetes Admission Control Horror Story",
+              "Understanding Kubernetes Admission Controllers: A Quick Refresher",
+              "Identifying Policy Drift: Signs Your Admission Controls Are Failing",
+              "Leveraging OPA Gatekeeper for Policy Enforcement and Auditing",
+              "Implementing Context-Aware Admission Control with Kyverno",
+              "Preventing Future Drift: Monitoring and Alerting Strategies",
+              "Operational Checklist: Hardening Kubernetes with Admission Controllers",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.286473,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.258383,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "pathos",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "When Good Intentions Go Wrong: The Kubernetes Admission Control Gap",
+              "The Growing Threat of Policy Drift in Dynamic Kubernetes Environments",
+              "Why Default Admission Controllers Aren't Enough: Limitations and Blind Spots",
+              "Admission Webhooks Deep Dive: Dynamic Policy Enforcement in Action",
+              "Implementing a 'Least Privilege' Admission Control Strategy",
+              "Automated Policy Testing and Validation: Ensuring Consistent Enforcement",
+              "Operational Checklist: Hardening Kubernetes with Admission Controllers",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.252243,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.28023,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "ethos",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "From Zero to Hero: Mastering Kubernetes Admission Control for Security",
+              "Demystifying Admission Control: Validating vs. Mutating Webhooks",
+              "Analyzing Common Policy Drift Scenarios: Root Causes and Mitigation",
+              "Writing Custom Admission Controllers: Go vs. Python SDKs",
+              "Integrating Admission Control with CI/CD Pipelines: Policy-as-Code",
+              "Real-World Examples: Policy Drift Prevention in Production",
+              "Operational Checklist: Hardening Kubernetes with Admission Controllers",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.207473,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-27-managing-statefulsets-in-production.md",
+              "heading_signature_similarity": 0.286004,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "contrarian reframing of Kubernetes Admission Control Policy Drift",
+        "persona": "Security Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "story_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "problem->solution->implementation",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [],
+        "why_new": "Delves into advanced techniques for using admission controllers to improve security.",
+        "novelty_similarity": 0.090909,
+        "novelty_score": 0.909091
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "diagnosis",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "The Case of the Overly Permissive Pod: A Kubernetes Admission Control Mystery",
+              "The Silent Policy Drift: How Admission Controllers Erode Over Time",
+              "Root Cause Analysis: Why 'Set and Forget' Fails with Admission Control",
+              "Reframing the Problem: Admission Control as a Living Security Layer",
+              "Dynamic Policy Enforcement: Implementing Real-Time Admission Control Audits",
+              "Automated Remediation: Closing the Loop with Webhooks and GitOps",
+              "Operational Checklist: Maintaining a Healthy Admission Control Posture",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.283541,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.27307,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "diagnosis",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "My Pod Broke Free: The Perils of Neglecting Kubernetes Admission Control",
+              "The Illusion of Security: Why Static Admission Policies Create False Confidence",
+              "Uncovering the Drift: Identifying Gaps in Your Admission Control Coverage",
+              "A Contrarian Approach: Treating Admission Control as Code",
+              "Policy-as-Code: Leveraging OPA/Kyverno for Versioned Admission Policies",
+              "Continuous Policy Validation: Integrating Admission Control into CI/CD",
+              "Operational Checklist: Proactive Admission Control Management",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.286135,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.270476,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "diagnosis",
+            "argument_flow_motif": "problem->solution->implementation",
+            "headings": [
+              "The Day Our Deployment Went Rogue: A Tale of Kubernetes Admission Control Failure",
+              "The Hidden Threat: Understanding the Dynamics of Policy Drift in Kubernetes",
+              "Beyond Static Validation: Why Traditional Admission Control Falls Short",
+              "Rethinking Security: Admission Control as a Dynamic, Evolving Defense",
+              "Proactive Monitoring: Using Prometheus and Grafana to Track Policy Compliance",
+              "Automated Rollback: Implementing Self-Healing Admission Control with Webhooks",
+              "Operational Checklist: Hardening Your Kubernetes Cluster with Dynamic Admission Control",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.288923,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.264249,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "The Future of Kubernetes Admission Control: Trends and Technologies",
+        "persona": "Architect",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "past->present->future",
+        "reasoning_path": "inversion",
+        "risk_flags": [],
+        "why_new": "Explores the evolution of admission control in Kubernetes and emerging technologies.",
+        "novelty_similarity": 0.1,
+        "novelty_score": 0.9
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "past->present->future",
+            "headings": [
+              "Kubernetes Admission Control: Are We Solving the Right Problem?",
+              "The State of Admission Control in 2024: Limitations of Static Policies",
+              "Emerging Trends: Dynamic, Context-Aware Admission Control",
+              "Policy as Code (PaC) Evolution: From Rego to Domain-Specific Languages",
+              "The Rise of AI-Driven Policy Generation and Enforcement",
+              "Future Architectures: Admission Control as a Service (ACaaS)",
+              "Operational Checklist: Preparing for the Next Generation of Admission Control",
+              "Evidence & References: Key Research and Implementations",
+              "Is your team prepared to leverage the potential of AI in Kubernetes admission control?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.314124,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.257699,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "cause_effect",
+            "argument_flow_motif": "past->present->future",
+            "headings": [
+              "Kubernetes Admission Control: Why 'Set It and Forget It' is a Dangerous Game",
+              "The Genesis of Admission Controllers: A History of Static Validation",
+              "The Policy Drift Problem: Causes and Consequences in Dynamic Environments",
+              "Current Solutions: OPA, Kyverno, and the Limits of Declarative Policies",
+              "Towards Intelligent Admission Control: Learning from Runtime Behavior",
+              "Next-Gen Technologies: eBPF for Real-Time Policy Enforcement",
+              "Operational Checklist: Auditing and Mitigating Policy Drift",
+              "Evidence & References: Case Studies and Benchmarks",
+              "How are you actively preventing policy drift from compromising your Kubernetes security posture?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.267849,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.260062,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "compare_contrast",
+            "argument_flow_motif": "past->present->future",
+            "headings": [
+              "Admission Control: Is the Traditional Approach Becoming Obsolete?",
+              "Legacy Admission Webhooks: The Bottleneck of Centralized Control",
+              "The Shift Towards Decentralized Policy Enforcement: Empowering Teams",
+              "Comparing OPA/Kyverno with Next-Generation Policy Engines",
+              "Predictive Policy Enforcement: Leveraging Machine Learning for Proactive Security",
+              "Beyond Security: Admission Control for Cost Optimization and Resource Management",
+              "Operational Checklist: Evaluating and Implementing Advanced Admission Control Strategies",
+              "Evidence & References: Industry Reports and Open-Source Projects",
+              "What steps are you taking to ensure your admission control strategy remains effective in the face of evolving threats and technologies?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.226791,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-27-managing-statefulsets-in-production.md",
+              "heading_signature_similarity": 0.249311,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "The Future of Kubernetes Admission Control: Trends and Technologies | reasoning-shift-causal_diagnosis",
+        "persona": "Architect",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [],
+        "why_new": "Explores the evolution of admission control in Kubernetes and emerging technologies.",
+        "novelty_similarity": 0.1,
+        "novelty_score": 0.9
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "chronological",
+            "headings": [
+              "Kubernetes Admission Control: Is the Current Model Sustainable?",
+              "The Rise of Policy Drift: A Causal Analysis",
+              "Root Causes: Human Factors and Automation Overreach",
+              "Emerging Technologies: AI-Powered Policy Enforcement",
+              "Policy-as-Code Evolution: From Rego to Domain-Specific Languages",
+              "The Future Landscape: Decentralized and Intelligent Admission Control",
+              "Operational Checklist: Mitigating Drift with Proactive Measures",
+              "Evidence & References: Supporting Claims and Further Reading",
+              "What safeguards will you implement to ensure policies remain aligned with best practices?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.212991,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.261246,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "compare_contrast",
+            "argument_flow_motif": "topical",
+            "headings": [
+              "Beyond Gatekeeper: Why Kubernetes Admission Control Needs a Revolution",
+              "Policy Drift Defined: A Symptom of Architectural Complexity",
+              "The Limitations of Current Policy Engines: A Comparative Analysis",
+              "Alternative Approaches: eBPF and Sidecar-Based Enforcement",
+              "The Role of GitOps in Preventing and Detecting Drift",
+              "Real-World Case Studies: Learning from Policy Failures",
+              "Operational Checklist: Auditing and Remediation Strategies",
+              "Evidence & References: Supporting Claims and Further Reading",
+              "How can you ensure consistent policy enforcement across different environments?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.263732,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.260794,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "cause_effect",
+            "argument_flow_motif": "narrative",
+            "headings": [
+              "Kubernetes Admission Control: A False Sense of Security?",
+              "The Policy Drift Cascade: A Chain Reaction of Misconfigurations",
+              "Initial Conditions: How Policy Debt Accumulates",
+              "The Trigger Event: An Undetected Policy Violation",
+              "Consequences: Security Breaches and Compliance Failures",
+              "Prevention Strategies: Automated Policy Validation and Testing",
+              "Operational Checklist: Implementing a Robust Policy Lifecycle",
+              "Evidence & References: Supporting Claims and Further Reading",
+              "What steps will you take to proactively identify and address potential policy violations?"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.234155,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-23-setting-up-a-k8s-cluster-on-bare-metal.md",
+              "heading_signature_similarity": 0.265018,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "contrarian reframing of Kubernetes Admission Control Policy Drift",
+        "persona": "Architect",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [],
+        "why_new": "Explores the evolution of admission control in Kubernetes and emerging technologies.",
+        "novelty_similarity": 0.1,
+        "novelty_score": 0.9
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "cause_effect",
+            "argument_flow_motif": "problem_solution",
+            "headings": [
+              "Kubernetes Admission Control: Not a Security Panacea, But a Canary in the Coal Mine?",
+              "The Illusion of Control: How 'Set-and-Forget' Policies Breed Drift",
+              "Detecting Silent Failures: Monitoring Policy Enforcement in a Dynamic Environment",
+              "The Kubernetes Policy Drift Lifecycle: A Causal Chain",
+              "Mitigating Policy Drift: Proactive Strategies and Tools",
+              "Operational Checklist: Preventing and Detecting Kubernetes Policy Drift",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.258893,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.269488,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "compare_contrast",
+            "argument_flow_motif": "chronological",
+            "headings": [
+              "Beyond Gatekeepers: Why Kubernetes Admission Control Alone Isn't Enough",
+              "The Evolution of Kubernetes Admission Control: From Mutating Webhooks to OPA",
+              "Understanding the Anatomy of Kubernetes Policy Drift",
+              "Policy Drift vs. Configuration Drift: A Critical Distinction",
+              "Tools for Detecting and Managing Kubernetes Policy Drift",
+              "Operational Checklist: Auditing and Enforcing Kubernetes Policies",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.284969,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.312649,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "inverted_pyramid",
+            "headings": [
+              "Kubernetes Admission Control Drift: Are Your Policies Actually Doing Anything?",
+              "The Hidden Costs of Unmanaged Kubernetes Policies",
+              "Root Causes of Kubernetes Admission Control Policy Drift",
+              "Automated Policy Testing: Preventing Regressions in Your Kubernetes Policies",
+              "Implementing a Feedback Loop: Continuous Monitoring and Improvement",
+              "Operational Checklist: Maintaining Up-to-Date Kubernetes Policies",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.281356,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-28-kubernetes-cost-optimization-strategies.md",
+              "heading_signature_similarity": 0.297674,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 3,
+      "candidate": {
+        "topic": "Kubernetes Admission Control Policy Drift",
+        "angle": "Kubernetes Policy Drift: Lessons Learned from a Production Outage",
+        "persona": "SRE",
+        "awareness_level": "problem-aware",
+        "format_family": "postmortem",
+        "hook_style": "story_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "timeline->branch_point->root_cause->prevention",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Focuses on learning from a real-world incident, which is highly valuable for SREs.",
+        "novelty_similarity": 0.142857,
+        "novelty_score": 0.857143
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "timeline->branch_point->root_cause->prevention",
+            "headings": [
+              "Kubernetes Policy Drift: A Production Outage Story",
+              "The Incident: Unexpected API Deprecation & Admission Webhook Failure",
+              "Timeline of Events: From Manifest Generation to Cluster-Wide Impact",
+              "Branch Point: Identifying the Policy Drift Culprit",
+              "Root Cause Analysis: Why Our Admission Control Failed Us",
+              "Prevention Strategies: Hardening Kubernetes Policies Against Drift",
+              "Operational Checklist: Future-Proofing Admission Control",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.253127,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+              "heading_signature_similarity": 0.272527,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "cause_effect",
+            "argument_flow_motif": "timeline->branch_point->root_cause->prevention",
+            "headings": [
+              "Policy Drift Debacle: Learning from a Kubernetes Outage",
+              "Initial Symptoms: Pod Evictions and Degraded Service Performance",
+              "The Trigger: A Seemingly Minor Policy Update with Major Consequences",
+              "Unraveling the Timeline: Pinpointing the Moment of Policy Divergence",
+              "The Branch: Where Policy Configurations Diverged",
+              "Root Cause: Insufficient Validation of Admission Webhook Configurations",
+              "Mitigation: Implementing Robust Policy Validation and Drift Detection",
+              "Operational Checklist: Proactive Policy Monitoring and Alerting",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.252832,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.261343,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "deductive",
+            "argument_flow_motif": "timeline->branch_point->root_cause->prevention",
+            "headings": [
+              "Kubernetes Policy Drift: A Postmortem on Preventing Future Outages",
+              "The Outage: Unforeseen Impact of Policy Changes on Application Deployments",
+              "Key Observations: Policy Changes Not Reflected in Admission Controller",
+              "The Branch: Discrepancy Between Intended Policy and Actual Enforcement",
+              "Timeline: Tracking the Propagation of the Policy Drift",
+              "Root Cause: Lack of Automated Policy Synchronization Mechanisms",
+              "Solutions: Establishing a Centralized Policy Management System",
+              "Operational Checklist: Policy Audit and Enforcement Automation",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.198634,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.263251,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
