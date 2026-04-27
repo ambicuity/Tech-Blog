@@ -1,0 +1,663 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Cloudflare Workers Teardown",
+        "angle": "Examining edge compute performance characteristics and limitations",
+        "persona": "Fullstack Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "overview->components->performance->limitations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "A practical look at a serverless compute platform.",
+        "novelty_similarity": 0.071429,
+        "novelty_score": 0.928571
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "teardown",
+            "argument_flow_motif": "overview->components->performance->limitations",
+            "headings": [
+              "Cloudflare Workers Signal Snapshot",
+              "Cloudflare Workers Investigation Timeline",
+              "Cloudflare Workers Root Cause Mechanism",
+              "Cloudflare Workers Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.11407,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.3,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-03-securing-secrets-in-kubernetes-with-vault.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "playbook",
+            "hook_style": "story_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Cloudflare Workers Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Cloudflare Workers Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.146568,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.29703,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Cloudflare Workers Context and Failure Trigger",
+              "Cloudflare Workers Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.162831,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.292308,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Cloudflare Workers Teardown",
+        "angle": "incident reframing of Cloudflare Workers Teardown",
+        "persona": "Fullstack Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "overview->components->performance->limitations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "A practical look at a serverless compute platform.",
+        "novelty_similarity": 0.071429,
+        "novelty_score": 0.928571
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "overview->components->performance->limitations",
+            "headings": [
+              "Cloudflare Workers: The Serverless Promise - Fulfilled?",
+              "What are Cloudflare Workers?",
+              "Core Components: V8 Isolates, Service Workers API, and the Key-Value Store",
+              "Unpacking the Architecture: How Requests Flow Through the Cloudflare Network",
+              "Performance Under the Microscope: Benchmarking Latency and Throughput",
+              "Limitations and Gotchas: Cold Starts, Execution Time, and Data Locality",
+              "Operational Checklist: Monitoring, Debugging, and Security Considerations",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.283873,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.284836,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "overview->components->performance->limitations",
+            "headings": [
+              "Why Did Our Cloudflare Worker Fail? A Post-Mortem Analysis",
+              "Understanding the Anatomy of a Cloudflare Worker",
+              "The V8 Isolation Model: Security and Performance Implications",
+              "Request Routing and Handling: Diving into the Event Listener",
+              "Benchmarking Cloudflare Worker Performance: Key Metrics and Optimization",
+              "Addressing Common Cloudflare Worker Limitations: Resource Constraints and Error Handling",
+              "Evidence & References",
+              "Operational Checklist: Hardening, Deployment, and Observability"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.253458,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.280488,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "overview->components->performance->limitations",
+            "headings": [
+              "Cloudflare Workers: A Deep Dive into Our Recent Incident",
+              "Cloudflare Workers Architecture: A High-Level Overview",
+              "The Role of the Service Worker API: Intercepting and Modifying Requests",
+              "Analyzing Performance Bottlenecks: Cold Starts and Network Latency",
+              "Limitations of the Cloudflare Workers Platform: Scalability and Cost",
+              "Operational Checklist: Security, Monitoring, and Alerting",
+              "Evidence & References",
+              "Mitigation Strategies and Lessons Learned: Preventing Future Outages"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.298367,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.290456,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Cloudflare Workers Teardown",
+        "angle": "contrarian reframing of Cloudflare Workers Teardown",
+        "persona": "Fullstack Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "overview->components->performance->limitations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "A practical look at a serverless compute platform.",
+        "novelty_similarity": 0.071429,
+        "novelty_score": 0.928571
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "overview->components->performance->limitations",
+            "headings": [
+              "Are Cloudflare Workers Really Serverless?",
+              "Cloudflare Workers: An Alternative Perspective",
+              "Core Components: The Underpinnings of Worker Execution",
+              "Unpacking the V8 Isolates: Security and Performance Trade-offs",
+              "KV Store Deep Dive: Data Persistence at the Edge",
+              "Performance Benchmarks: Latency, Throughput, and Cold Starts",
+              "Operational Checklist: Monitoring, Logging, and Deployment Best Practices",
+              "Limitations: When Cloudflare Workers Might Not Be the Right Choice",
+              "Evidence & References: Cloudflare Documentation and Community Insights",
+              "Quantifying the Trade-offs: Measuring Worker Performance in Your Environment"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.255635,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.261637,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analytical",
+            "argument_flow_motif": "overview->limitations->components->performance",
+            "headings": [
+              "Cloudflare Workers: Overhyped or Undervalued?",
+              "Rethinking Edge Computing with Cloudflare Workers",
+              "Key Limitations: Addressing the Drawbacks of Serverless at the Edge",
+              "Under the Hood: Examining the Architecture of Cloudflare Workers",
+              "V8 Isolates: Sandboxing and Security Implications",
+              "Durable Objects: State Management in a Serverless World",
+              "Performance Tuning: Optimizing Cloudflare Workers for Speed and Scale",
+              "Operational Checklist: Security Hardening and Compliance Considerations",
+              "Evidence & References: Case Studies and Real-World Implementations",
+              "Benchmarking and Profiling: Quantifying Performance Gains in Your Specific Use Case"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.244467,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-30-gitops-with-argocd-and-kubernetes.md",
+              "heading_signature_similarity": 0.258915,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "critical",
+            "argument_flow_motif": "overview->performance->components->limitations",
+            "headings": [
+              "Cloudflare Workers: Is the Hype Justified?",
+              "A Contrarian's Guide to Cloudflare Workers",
+              "Performance Analysis: Real-World Latency and Scalability",
+              "The Secret Sauce: V8 Isolates and Their Impact",
+              "Workers AI: A new Frontier or a Gimmick?",
+              "Diving into the Code: Worker Script Structure and Best Practices",
+              "Operational Checklist: Debugging and Troubleshooting Common Issues",
+              "Limitations and Gotchas: Hidden Costs and Unexpected Constraints",
+              "Evidence & References: Open-Source Alternatives and Comparisons",
+              "Measuring the Impact: Track Key Metrics to Evaluate the True Value"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.324777,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.263889,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Kafka Partitioning Strategies",
+        "angle": "Optimizing message delivery and throughput for specific use cases",
+        "persona": "Data Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "metric_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "problem->solution->example->tradeoffs",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Goes beyond basic Kafka usage.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "technical_explanation",
+            "argument_flow_motif": "problem->solution->example->tradeoffs",
+            "headings": [
+              "Kafka Partitioning Bottlenecks: Exceeding 500ms Latency?",
+              "Understanding Kafka Partitioning: A Conceptual Overview",
+              "Partitioning Strategy 1: Key-Based Partitioning for Order Guarantees",
+              "Partitioning Strategy 2: Round-Robin Partitioning for Even Load Distribution",
+              "Partitioning Strategy 3: Custom Partitioning for Complex Routing",
+              "Example: Optimizing a High-Volume Event Stream with Key-Based Partitioning",
+              "Trade-offs: Balancing Throughput, Order, and Complexity",
+              "Operational Checklist: Monitoring and Tuning Partitioning",
+              "Evidence & References: Essential Resources for Kafka Partitioning"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.192771,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.252525,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "playbook",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "technical_explanation",
+            "argument_flow_motif": "problem->solution->example->tradeoffs",
+            "headings": [
+              "Struggling with Uneven Kafka Partition Load? A Practical Guide",
+              "The Core Challenge: Skewed Data and Hot Partitions",
+              "Solution 1: Salting Keys for Improved Distribution",
+              "Solution 2: Custom Partitioning Logic Based on Message Attributes",
+              "Solution 3: Utilizing Kafka's Built-in Sticky Partitioner",
+              "Illustrative Case: Optimizing Clickstream Data Partitioning",
+              "Navigating the Trade-offs: Balancing Complexity and Performance",
+              "Operational Checklist: Validating Partitioning Strategies",
+              "Evidence & References: In-Depth Resources on Partitioning"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.266138,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.272059,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "playbook",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "technical_explanation",
+            "argument_flow_motif": "problem->solution->example->tradeoffs",
+            "headings": [
+              "Is Your Kafka Throughput Limited by Partitioning? Diagnose and Fix!",
+              "Kafka Partitioning Fundamentals: A Refresher",
+              "Addressing the Problem: Identifying Partitioning Inefficiencies",
+              "Technique 1: Increasing the Number of Partitions (With Caution)",
+              "Technique 2: Choosing the Right Partitioning Key for Your Data",
+              "Technique 3: Implementing a Custom Partitioner for Advanced Control",
+              "Real-World Example: Scaling a Real-Time Analytics Pipeline",
+              "The Trade-Offs: Considering Latency, Order, and Scalability",
+              "Operational Checklist: Verifying Partitioning Health and Performance",
+              "Evidence & References: Essential Resources for Mastering Kafka Partitioning"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.277617,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.258806,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Kafka Partitioning Strategies",
+        "angle": "incident reframing of Kafka Partitioning Strategies",
+        "persona": "Data Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "metric_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "problem->solution->example->tradeoffs",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Goes beyond basic Kafka usage.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "problem->solution->example->tradeoffs",
+            "headings": [
+              "Kafka Partitioning Signal Snapshot",
+              "Kafka Partitioning Investigation Timeline",
+              "Kafka Partitioning Root Cause Mechanism",
+              "Kafka Partitioning Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.200392,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.291304,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Kafka Partitioning Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Kafka Partitioning Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.167319,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+              "heading_signature_similarity": 0.29703,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Kafka Partitioning Context and Failure Trigger",
+              "Kafka Partitioning Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.18619,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.302564,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}

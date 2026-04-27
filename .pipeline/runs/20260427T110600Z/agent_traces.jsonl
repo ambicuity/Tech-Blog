@@ -1,0 +1,17 @@
+{"run_id": "20260427T110600Z", "step": "planner", "status": "passed", "confidence": 0.909091, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"}
+{"run_id": "20260427T110600Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.0-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.0-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.0-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"}
+{"run_id": "20260427T110600Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260427T110600Z", "step": "technical_reviewer", "status": "passed", "confidence": 0.9, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "seo_reviewer", "status": "passed", "confidence": 0.95, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "editor", "status": "passed", "confidence": 0.85, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "novelty_reviewer", "status": "passed", "confidence": 0.83, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "red_team_reviewer", "status": "passed", "confidence": 0.229665, "model": "", "error": ""}
+{"run_id": "20260427T110600Z", "step": "publisher", "status": "failed", "confidence": 0.823, "model": "", "error": "gate_failure"}
