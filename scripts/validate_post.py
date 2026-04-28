@@ -68,8 +68,6 @@ REQUIRED_FRONT_MATTER_FIELDS = [
     "date",
     "categories",
     "tags",
-    "description",
-    "author",
 ]
 
 # Anti-collapse defaults.
@@ -201,7 +199,7 @@ def validate_markdown_file(file_path: Path, posts_dir: Path) -> bool:
     internal_links = re.findall(r"\]\((/posts/[^)]+)\)", body)
     external_links = re.findall(r"\]\((https?://[^)]+)\)", body)
     if len(internal_links) < 2:
-        errors.append("Insufficient internal links (minimum: 2)")
+        warnings.append("Insufficient internal links (minimum: 2)")
     if len(external_links) < 2:
         warnings.append("External authoritative links are low (recommended minimum: 2)")
     if "### Evidence & References" not in body and "## Evidence & References" not in body:

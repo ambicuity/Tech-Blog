@@ -4,6 +4,8 @@ title: "Debugging Excessive Memory Usage from AI-Authored Python: A Kubernetes I
 date: 2026-02-02 09:00:00 +0000
 categories: [Kubernetes, Python]
 tags: [debugging, performance, ai-code, memory, oomkill, production, distributed-systems]
+description: "An incident report tracing OOMKilled pods caused by AI-authored Python code to the root cause: missing generator-based processing in data pipelines."
+author: ritesh
 ---
 
 Yesterday morning, around 08:30 UTC, our on-call rotation received a flurry of alerts for the `customer-data-enrichment` service. Multiple pods in its Kubernetes Deployment were in a `CrashLoopBackOff` state, with the primary reason `OOMKilled`. Concurrently, response latencies for downstream services depending on `customer-data-enrichment` spiked, and our API gateway was reporting a high volume of `503 Service Unavailable` errors.

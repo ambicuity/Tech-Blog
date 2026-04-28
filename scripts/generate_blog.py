@@ -121,6 +121,8 @@ title: "[Direct Problem-Solution Title]"
 date: {current_date_str}
 categories: [Category1, Category2]
 tags: [relevant, tags, here]
+description: "A 150-160 char summary for SEO and social previews."
+author: ritesh
 ---
 
 [Start immediately with the problem, logs, or architectural challenge...]

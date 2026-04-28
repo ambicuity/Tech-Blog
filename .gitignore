@@ -49,3 +49,7 @@ Gemfile.lock
 server/subscribers.csv
 server/last_sent_post.txt
 
+# Pipeline run data
+.pipeline/
+!.pipeline/.gitkeep
+

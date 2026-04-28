@@ -66,7 +66,7 @@ def fix_markdown_file(file_path):
                     # Closing fence
                     new_lines.append(line)
                     # Ensure succeeding blank line (if not last line)
-                    if i < len(lines) - 1 and lines[i+1].strip() != '':
+                    if i < len(lines) - 1 and lines[i+1].strip() != '' and (not new_lines or new_lines[-1].strip() != ''):
                         new_lines.append('')
                     in_code_block = False
             else:

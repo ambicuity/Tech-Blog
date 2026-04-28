@@ -4,6 +4,8 @@ title: "Fixing Event Loop Blocking in AI-Assisted Python Services Causing Kubern
 date: 2026-02-09 09:00:00 +0000
 categories: [kubernetes, python, performance]
 tags: [ai-code-quality, event-loop, cpu-throttling, asyncio, python-debugging, kubernetes-performance, microservices]
+description: "How synchronous calls inside async handlers caused CPU throttling in Kubernetes pods and the fix using proper asyncio patterns and process pool executors."
+author: ritesh
 ---
 
 We recently encountered a recurring issue with a newly deployed data aggregation microservice in our Kubernetes cluster. The service, written in Python with FastAPI, had its core data processing and external API interaction logic heavily assisted by AI code generation. Initial development and local testing were rapid, and the service passed basic integration tests in staging environments. However, once deployed to production, we began seeing intermittent, severe latency spikes, followed by `CrashLoopBackOff` events for its pods during specific peak traffic windows.

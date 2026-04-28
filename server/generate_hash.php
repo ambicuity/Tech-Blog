@@ -1,6 +1,6 @@
 <?php
 // Generates a secure hash for a password
-$password = $_GET['password'] ?? 'ChangeMe123!';
+$password = $_POST['password'] ?? 'ChangeMe123!';
 $hash = password_hash($password, PASSWORD_DEFAULT);
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
     <p><em>Copy the hash above and paste it into <code>$ADMIN_PASSWORD_HASH</code> in <code>admin_send.php</code>.</em>
     </p>
     <hr>
-    <form>
+    <form method="post">
         <input type="text" name="password" placeholder="Enter new password" required>
         <button type="submit">Generate Hash</button>
     </form>
