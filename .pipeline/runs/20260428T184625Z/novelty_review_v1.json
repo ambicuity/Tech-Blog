@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.8,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.113961,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-27-managing-statefulsets-in-production.md",
+    "intro_embedding_cosine": 0.320339,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+    "body_embedding_cosine": 0.803275,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-28-kubernetes-cost-optimization-strategies.md",
+    "body_trigram_overlap": 0.021382,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+    "cta_style": "reflective_question",
+    "hook_style": "problem_hook",
+    "argument_flow_motif": "symptom->symptom->root_cause->mitigation->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}

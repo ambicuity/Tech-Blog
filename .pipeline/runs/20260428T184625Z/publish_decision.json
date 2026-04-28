@@ -1,0 +1,6 @@
+{
+  "outcome": "QUARANTINE",
+  "confidence": 0.671,
+  "requires_sampling_review": false,
+  "reason": "gate_failure"
+}
