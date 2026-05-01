@@ -143,7 +143,7 @@ def generate_outlines(candidate: dict, recent_summaries: list[str], exploration:
     temperature = min(0.95, cfg["temperature"] + (0.08 if exploration else 0.0))
     try:
         raw = client.generate_text(
-            "gemini-2.0-flash",
+            "gemini-2.5-flash-lite",
             prompt + payload,
             temperature=temperature,
             top_p=cfg["top_p"],
@@ -155,7 +155,7 @@ def generate_outlines(candidate: dict, recent_summaries: list[str], exploration:
             model = "fallback-outline-template"
             conf = 0.6
         else:
-            model = "gemini-2.0-flash"
+            model = "gemini-2.5-flash-lite"
             conf = 0.82
         return AgentResult(
             name="outliner",

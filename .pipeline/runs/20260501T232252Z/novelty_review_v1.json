@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.837,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.636285,
+    "title_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+    "intro_embedding_cosine": 0.350814,
+    "intro_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+    "body_embedding_cosine": 0.726459,
+    "body_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "body_trigram_overlap": 0.035119,
+    "body_trigram_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "cta_style": "action_cta",
+    "hook_style": "problem_hook",
+    "argument_flow_motif": "symptom->checklist->telemetry->checklist",
+    "argument_flow_reuse": 0
+  }
+}

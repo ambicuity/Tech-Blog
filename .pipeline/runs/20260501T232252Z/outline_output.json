@@ -1,0 +1,137 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Garbage collection pauses triggering health check timeouts",
+        "angle": "tutorial framing of Garbage collection pauses triggering health check timeouts",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Garbage Collection Signal Snapshot",
+              "Garbage Collection Investigation Timeline",
+              "Garbage Collection Root Cause Mechanism",
+              "Garbage Collection Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.15,
+            "reasons": [
+              "outline_embedding_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:1.000",
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:1.000"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 1.0,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 1.0,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Garbage Collection Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Garbage Collection Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.5,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.851"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.70014,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.851485,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Garbage Collection Context and Failure Trigger",
+              "Garbage Collection Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.978,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.497777,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.521739,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}

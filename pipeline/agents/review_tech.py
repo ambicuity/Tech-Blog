@@ -52,7 +52,7 @@ def review(draft: str) -> AgentResult:
             client = LLMClient(api_key)
             prompt = load_prompt("tech_review_prompt.txt") + "\n\nDraft:\n" + draft[:18000]
             cfg = STAGE_MODEL_SETTINGS["critic"]
-            raw = client.generate_text("gemini-2.0-flash", prompt, temperature=cfg["temperature"], top_p=cfg["top_p"])
+            raw = client.generate_text("gemini-2.5-flash-lite", prompt, temperature=cfg["temperature"], top_p=cfg["top_p"])
             parsed = try_parse_json(raw)
         except Exception:
             parsed = {}

@@ -190,7 +190,7 @@ def write(content_brief: dict) -> AgentResult:
         f"Anti-target archetypes to avoid this run: {anti_targets}\n"
     )
 
-    models = ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.0-flash-lite", "gemini-1.5-flash-8b"]
+    models = ["gemini-2.5-flash-lite", "gemini-3-flash-preview", "gemini-2.0-flash-lite", "gemini-2.0-flash", "gemini-2.5-flash"]
     client = LLMClient(api_key)
     cfg = STAGE_MODEL_SETTINGS["writer"]
     errors: list[str] = []
