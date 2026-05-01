@@ -1,11 +1,106 @@
 from __future__ import annotations
 
 import os
+import re
 from datetime import datetime, timezone
 
 from pipeline.config import AGENT_VERSION, STAGE_MODEL_SETTINGS
 from pipeline.llm import LLMClient, load_prompt
 from pipeline.models import AgentResult
+
+
+def _strip_code_block_front_matter(body: str) -> str:
+    fm_key_re = re.compile(r"^(?:layout|title|date|categories|tags|description|author)\s*:", re.MULTILINE)
+    result = body
+    pattern = re.compile(
+        r"```(?:yaml|markdown|yml)?\s*\n"
+        r"((?:.*\n)*?)"
+        r"```",
+        re.MULTILINE,
+    )
+    for m in pattern.finditer(result):
+        block_content = m.group(1)
+        if fm_key_re.search(block_content):
+            result = result[: m.start()] + result[m.end() :]
+            result = result.strip() + "\n" if result.strip() else result
+            return _strip_code_block_front_matter(result)
+    pattern_unclosed = re.compile(
+        r"```(?:yaml|markdown|yml)?\s*\n"
+        r"((?:(?!```).+\n)*?)"
+        r"---\s*\n",
+        re.MULTILINE,
+    )
+    for m in pattern_unclosed.finditer(result):
+        block_content = m.group(1)
+        if fm_key_re.search(block_content):
+            after = result[m.end() :]
+            remaining = result[: m.start()]
+            if after.strip():
+                remaining = remaining.rstrip() + "\n\n" + after.strip() + "\n"
+            return remaining
+    return result
+
+
+def _strip_stray_front_matter(body: str) -> str:
+    if "---" not in body:
+        return body
+    fm_key_re = re.compile(r"^(?:layout|title|date|categories|tags|description|author)\s*:", re.MULTILINE)
+    lines = body.split("\n")
+    result: list[str] = []
+    i = 0
+    while i < len(lines):
+        if lines[i].strip() == "---":
+            block_start = i
+            fm_lines: list[str] = []
+            fm_key_count = 0
+            j = i + 1
+            found_closing = False
+            while j < len(lines):
+                if lines[j].strip() == "---":
+                    found_closing = True
+                    break
+                line = lines[j].strip()
+                if line and fm_key_re.match(line):
+                    fm_key_count += 1
+                fm_lines.append(lines[j])
+                j += 1
+            if found_closing and fm_key_count >= 2:
+                i = j + 1
+                continue
+        result.append(lines[i])
+        i += 1
+    return "\n".join(result)
+
+
+def _sanitize_draft(draft: str) -> str:
+    draft = draft.strip()
+    for prefix in ("yaml", "markdown", "yml"):
+        if draft.startswith(prefix) and len(draft) > len(prefix) and draft[len(prefix)] in ("\n", "\r"):
+            draft = draft[len(prefix):].lstrip("\n\r")
+            break
+    if draft.startswith("```markdown"):
+        draft = draft[len("```markdown"):].lstrip("\n")
+        if draft.endswith("```"):
+            draft = draft[:-3].rstrip()
+        draft = draft.strip()
+    if draft.startswith("```yaml") or draft.startswith("```yml") or draft.startswith("```"):
+        first_newline = draft.find("\n", 3)
+        if first_newline != -1:
+            draft = draft[first_newline + 1:]
+        if draft.rstrip().endswith("```"):
+            draft = draft.rstrip()[:-3].rstrip()
+        draft = draft.strip()
+    if not draft.startswith("---"):
+        return draft
+    first_end = draft.find("\n---\n", 4)
+    if first_end == -1:
+        return draft
+    body = draft[first_end + 5:]
+    body = _strip_code_block_front_matter(body)
+    body = _strip_stray_front_matter(body)
+    body = body.strip()
+    front_matter = draft[: first_end + 5].strip()
+    return front_matter + "\n\n" + body + "\n"
 
 
 
@@ -63,12 +158,12 @@ def write(content_brief: dict) -> AgentResult:
     strategy = content_brief.get("strategy", {})
 
     if not api_key:
-        draft = _fallback_draft(content_brief)
+        draft = _sanitize_draft(_fallback_draft(content_brief))
         return AgentResult(
             name="writer",
             version=AGENT_VERSION,
-            status="passed",
-            confidence=0.68,
+            status="fallback_used",
+            confidence=0.50,
             artifacts={"draft": draft, "model": "fallback-template"},
         )
 
@@ -101,12 +196,13 @@ def write(content_brief: dict) -> AgentResult:
     errors: list[str] = []
     for model in models:
         try:
-            draft = client.generate_text(
+            raw_draft = client.generate_text(
                 model,
                 prompt + brief,
                 temperature=cfg["temperature"],
                 top_p=cfg["top_p"],
             )
+            draft = _sanitize_draft(raw_draft)
             return AgentResult(
                 name="writer",
                 version=AGENT_VERSION,
@@ -124,10 +220,10 @@ def write(content_brief: dict) -> AgentResult:
     return AgentResult(
         name="writer",
         version=AGENT_VERSION,
-        status="passed",
-        confidence=0.68,
+        status="fallback_used",
+        confidence=0.50,
         artifacts={
-            "draft": _fallback_draft(content_brief),
+            "draft": _sanitize_draft(_fallback_draft(content_brief)),
             "model": "fallback-template",
             "prompt_name": "fallback",
         },

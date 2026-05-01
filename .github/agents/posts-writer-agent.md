@@ -84,7 +84,7 @@ image:
 ---
 
 ## Operational Workflow
-1.  **Trigger**: Daily cron schedule (09:00 UTC).
+1.  **Trigger**: Weekly Monday cron schedule (09:00 UTC).
 2.  **Context Loading**: Script reads previous 50 posts.
 3.  **Generation**: Gemini 2.0 Flash generates content based on "Anti-Duplication" prompt.
 4.  **Sanitization**: Script ensures `layout: post` exists.

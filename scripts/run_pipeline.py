@@ -33,13 +33,21 @@ from pipeline.gates.validators import (
 )
 from pipeline.metrics.logger import log_agent_trace
 from pipeline.novelty import NoveltyMemory, check_title_duplicate
-from pipeline.utils import create_run_id, default_run_paths, ensure_dir, slugify, write_json
+from pipeline.utils import build_front_matter, create_run_id, default_run_paths, ensure_dir, slugify, parse_front_matter, strip_stray_front_matter, write_json
 
 
 
 def _save_text(path: Path, text: str) -> None:
     ensure_dir(path.parent)
     path.write_text(text, encoding="utf-8")
+
+
+def _sanitize_full_draft(text: str) -> str:
+    meta, body = parse_front_matter(text)
+    if not meta:
+        return text
+    body = strip_stray_front_matter(body)
+    return build_front_matter(meta, body)
 
 
 def _extract_title(draft: str) -> str:
@@ -247,7 +255,7 @@ def main() -> int:
                 model=writer.artifacts.get("model", ""),
                 error=";".join(writer.errors),
             )
-            if writer.status != "passed":
+            if writer.status == "failed":
                 manifest.update({"status": "failed", "reason": "writer_failed", "errors": writer.errors})
                 write_json(paths["manifest"], manifest)
                 memory.close()
@@ -255,6 +263,7 @@ def main() -> int:
                 return 0
 
             draft = writer.artifacts["draft"]
+            draft = _sanitize_full_draft(draft)
             _save_text(paths["draft"], draft)
 
             # Title-only dedup gate.
@@ -335,8 +344,8 @@ def main() -> int:
     editor = edit(final_draft)
     write_json(paths["editor_review"], editor.artifacts)
     log_agent_trace(paths["traces"], run_id=run_id, step="editor", status=editor.status, confidence=editor.confidence, error=";".join(editor.errors))
-
     final_draft = editor.artifacts.get("patched_draft", final_draft)
+    final_draft = _sanitize_full_draft(final_draft)
     _save_text(paths["draft"], final_draft)
 
     novelty = novelty_reviewer.check_draft(final_draft)

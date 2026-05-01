@@ -49,13 +49,51 @@ def parse_front_matter(content: str) -> tuple[dict[str, str], str]:
     if end == -1:
         return {}, content
     raw = content[4:end]
-    body = content[end + 5 :]
+    body = content[end + 5:]
     meta: dict[str, str] = {}
     for line in raw.splitlines():
         if ":" in line:
             k, v = line.split(":", 1)
             meta[k.strip()] = v.strip()
+    body = strip_stray_front_matter(body)
     return meta, body
+
+
+def strip_stray_front_matter(body: str) -> str:
+    if "---" not in body:
+        return body
+    fm_key_pattern = re.compile(
+        r"^(?:layout|title|date|categories|tags|description|author)\s*:",
+        re.MULTILINE,
+    )
+    lines = body.split("\n")
+    cleaned: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        if stripped == "---":
+            block_start = i
+            i += 1
+            fm_key_count = 0
+            found_closing = False
+            while i < len(lines):
+                if lines[i].strip() == "---":
+                    found_closing = True
+                    break
+                if fm_key_pattern.match(lines[i].strip()):
+                    fm_key_count += 1
+                i += 1
+            if found_closing and fm_key_count >= 2:
+                i += 1
+                continue
+            else:
+                cleaned.append(line)
+                i = block_start + 1
+                continue
+        cleaned.append(line)
+        i += 1
+    return "\n".join(cleaned)
 
 
 def build_front_matter(meta: dict[str, str], body: str) -> str:

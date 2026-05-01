@@ -17,7 +17,7 @@ THRESHOLDS = {
     "seo": 0.80,
     "authority": 0.80,
     "novelty": 0.80,
-    "red_team": 0.65,
+    "red_team": 0.85,
     "aggregate": 0.82,
 }
 

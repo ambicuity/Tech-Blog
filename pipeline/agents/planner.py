@@ -36,6 +36,19 @@ TOPIC_BANK = [
     "Container resource limits vs real runtime behavior",
     "Release engineering controls for AI-assisted code changes",
     "Operational runbooks that reduce MTTR during incidents",
+    "Silent data corruption in replicated database clusters",
+    "DNS propagation delays causing cascading API failures",
+    "TLS certificate rotation outages in service mesh environments",
+    "Connection pool exhaustion under bursty traffic patterns",
+    "Garbage collection pauses triggering health check timeouts",
+    "Log aggregation pipeline failures that hide production errors",
+    "Feature flag misconfiguration causing partial outages",
+    "Database migration rollbacks that leave schema drift",
+    "Sidecar container resource contention in Kubernetes pods",
+    "Rate limiter bypass through header manipulation in API gateways",
+    "Cold start latency in serverless functions and mitigation strategies",
+    "Envoy proxy misconfigurations causing silent request drops",
+    "Distributed tracing gaps that obscure cross-service failures",
 ]
 
 FORMAT_FAMILIES = ["incident_report", "deep_dive", "analysis", "teardown", "playbook", "postmortem"]

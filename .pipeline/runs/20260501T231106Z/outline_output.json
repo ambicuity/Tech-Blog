@@ -1,0 +1,902 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "teardown framing of Operational runbooks that reduce MTTR during incidents",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Signal Snapshot",
+              "Operational Runbooks Investigation Timeline",
+              "Operational Runbooks Root Cause Mechanism",
+              "Operational Runbooks Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.736,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.382408,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.714286,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Operational Runbooks Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.156015,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-11-23-serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide.md",
+              "heading_signature_similarity": 0.369565,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Operational Runbooks Context and Failure Trigger",
+              "Operational Runbooks Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.208923,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.408696,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "teardown framing of Operational runbooks that reduce MTTR during incidents | reframed opening-1",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Signal Snapshot",
+              "Operational Runbooks Investigation Timeline",
+              "Operational Runbooks Root Cause Mechanism",
+              "Operational Runbooks Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.786,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.382408,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.714286,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Operational Runbooks Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.156015,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-11-23-serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide.md",
+              "heading_signature_similarity": 0.369565,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Operational Runbooks Context and Failure Trigger",
+              "Operational Runbooks Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.208923,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.408696,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "contrarian reframing of Operational runbooks that reduce MTTR during incidents",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Signal Snapshot",
+              "Operational Runbooks Investigation Timeline",
+              "Operational Runbooks Root Cause Mechanism",
+              "Operational Runbooks Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.786,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.382408,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.714286,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Operational Runbooks Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Operational Runbooks Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.156015,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-11-23-serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide.md",
+              "heading_signature_similarity": 0.369565,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Operational Runbooks Context and Failure Trigger",
+              "Operational Runbooks Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.208923,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.408696,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "migration framing of Autoscaling misconfigurations that inflate cloud spend",
+        "persona": "senior platform engineer",
+        "awareness_level": "decision-ready",
+        "format_family": "postmortem",
+        "hook_style": "incident_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "incident_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Signal Snapshot",
+              "Autoscaling Misconfigurations Investigation Timeline",
+              "Autoscaling Misconfigurations Root Cause Mechanism",
+              "Autoscaling Misconfigurations Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.807,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.411764,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.693431,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "deep_dive",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Autoscaling Misconfigurations Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.221498,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.343478,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Autoscaling Misconfigurations Context and Failure Trigger",
+              "Autoscaling Misconfigurations Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.201802,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.386957,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "migration framing of Autoscaling misconfigurations that inflate cloud spend | reframed opening-1",
+        "persona": "senior platform engineer",
+        "awareness_level": "decision-ready",
+        "format_family": "postmortem",
+        "hook_style": "metric_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Signal Snapshot",
+              "Autoscaling Misconfigurations Investigation Timeline",
+              "Autoscaling Misconfigurations Root Cause Mechanism",
+              "Autoscaling Misconfigurations Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.807,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.411764,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.693431,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "deep_dive",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Autoscaling Misconfigurations Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.221498,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.343478,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Autoscaling Misconfigurations Context and Failure Trigger",
+              "Autoscaling Misconfigurations Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.201802,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.386957,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "contrarian reframing of Autoscaling misconfigurations that inflate cloud spend",
+        "persona": "senior platform engineer",
+        "awareness_level": "decision-ready",
+        "format_family": "postmortem",
+        "hook_style": "metric_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Signal Snapshot",
+              "Autoscaling Misconfigurations Investigation Timeline",
+              "Autoscaling Misconfigurations Root Cause Mechanism",
+              "Autoscaling Misconfigurations Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.807,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.411764,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.693431,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "deep_dive",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Autoscaling Misconfigurations Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Autoscaling Misconfigurations Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.221498,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.343478,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Autoscaling Misconfigurations Context and Failure Trigger",
+              "Autoscaling Misconfigurations Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.201802,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.386957,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Feature flag misconfiguration causing partial outages",
+        "angle": "postmortem framing of Feature flag misconfiguration causing partial outages",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.052632,
+        "novelty_score": 0.947368
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Feature Flag Signal Snapshot",
+              "Feature Flag Investigation Timeline",
+              "Feature Flag Root Cause Mechanism",
+              "Feature Flag Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.711,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.739"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.35294,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.73913,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Feature Flag Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Feature Flag Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.16169,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-01-21-kubernetes-security-best-practices-2026.md",
+              "heading_signature_similarity": 0.391304,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Feature Flag Context and Failure Trigger",
+              "Feature Flag Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.188348,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.430435,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}

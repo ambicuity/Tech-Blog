@@ -1,4 +1,3 @@
-yaml
 ---
 layout: post
 title: "Kubernetes Operators 101: Writing Your Own"

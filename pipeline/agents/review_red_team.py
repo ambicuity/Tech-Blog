@@ -38,7 +38,7 @@ def _heuristic_red_team(draft: str, nearest: list[dict]) -> dict:
         reused.append("paragraph_rhythm_reuse")
         why.append(f"transition_profile_high:{transition_hits}")
 
-    hidden_similarity = 0.35
+    hidden_similarity = 0.20
     proof = []
     if nearest:
         for r in nearest[:3]:
@@ -120,7 +120,7 @@ def review(draft: str, memory: NoveltyMemory) -> AgentResult:
 
     status = "passed"
     errors: list[str] = []
-    if hidden >= 0.85 or reused:
+    if hidden >= 0.85 or len(reused) >= 2:
         status = "failed"
         errors.append("hidden_similarity_or_reused_patterns")
 

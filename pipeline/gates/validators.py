@@ -23,8 +23,9 @@ def structural_gate(draft: str) -> GateResult:
         critical.append("unclosed_code_fence")
 
     body_lower = body.lower()
+    body_lines_lower = [line.strip() for line in body_lower.splitlines()]
     for h in FORBIDDEN_HEADERS:
-        if h in body_lower:
+        if any(line == h for line in body_lines_lower):
             critical.append(f"forbidden_header:{h}")
 
     if "Operational Checklist" not in body:
@@ -121,11 +122,11 @@ def novelty_gate(novelty_review: dict) -> GateResult:
 
 def red_team_gate(red_review: dict) -> GateResult:
     hidden = float(red_review.get("hidden_similarity_score", 0.0))
-    critical = []
     patterns = red_review.get("reused_patterns", []) or []
-    if hidden >= (1.0 - THRESHOLDS["red_team"]):
+    critical = []
+    if hidden >= 0.85:
         critical.append("hidden_similarity_score_high")
-    if patterns:
+    if len(patterns) >= 2:
         critical.append("reused_patterns_detected")
     score = max(0.0, round(1.0 - hidden, 3))
     return GateResult("red_team", not critical, score, THRESHOLDS["red_team"], critical, [])

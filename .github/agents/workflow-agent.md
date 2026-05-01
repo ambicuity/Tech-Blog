@@ -420,7 +420,7 @@ name: Generate Automated Blog Post
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Every hour
+    - cron: '0 9 * * 1'  # Every Monday at 09:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -429,6 +429,7 @@ permissions:
 jobs:
   generate-blog:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     
     steps:
       - name: Checkout repository
@@ -450,7 +451,7 @@ jobs:
       - name: Generate blog post
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        run: python scripts/generate_blog.py
+        run: python scripts/run_pipeline.py
       
       - name: Configure Git
         run: |
@@ -459,11 +460,11 @@ jobs:
       
       - name: Commit and push changes
         run: |
-          git add posts/
+          git add _posts/ _drafts/ .pipeline/
           if git diff --staged --quiet; then
             echo "No new blog post to commit"
           else
-            git commit -m "🤖 Auto-generate blog post - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            git commit -m "pipeline: gated content run - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
             git push
           fi
 ```

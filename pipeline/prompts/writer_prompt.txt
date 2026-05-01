@@ -10,13 +10,15 @@ You must follow these constraints:
 - No generic fluff, no motivational filler, no clickbait language.
 - Avoid these headers: Introduction, Conclusion, Summary, Interview Perspective, Real-World Use Cases.
 
-Output format:
-1) Jekyll front matter with fields: layout, title, date, categories, tags, description, author.
-2) Body using only selected H2 headings.
-3) Include practical artifacts: commands, config snippets, logs, metrics, or traces.
-4) Ensure sections include:
-   - Operational Checklist
-   - Evidence & References
+Output format — CRITICAL RULES:
+1) Output Jekyll front matter exactly once at the top of the file between --- delimiters. Include fields: layout, title, date, categories, tags, description, author.
+2) After the closing --- of the front matter, write the body. Do NOT output a second front matter block or YAML code block. The body must start immediately after the front matter.
+3) Body must use only the selected H2 headings (## Heading). Do not use H1 headings (#) in the body.
+4) Include practical artifacts: commands, config snippets, logs, metrics, or traces.
+5) These two sections are MANDATORY as H2 headings in every post:
+   - ## Operational Checklist
+   - ## Evidence & References
+   They must appear as H2 (##), not H3 (###). Place them near the end of the post, before any closing section.
 
 Quality bar:
 - High signal-to-noise.

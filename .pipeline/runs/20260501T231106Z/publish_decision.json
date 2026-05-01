@@ -1,0 +1,6 @@
+{
+  "outcome": "PASS",
+  "confidence": 0.823,
+  "requires_sampling_review": false,
+  "reason": "all_gates_passed"
+}

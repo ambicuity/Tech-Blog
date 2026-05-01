@@ -1,4 +1,3 @@
-yaml
 ---
 layout: post
 title: "Pod Topology Spread Constraints Explained"

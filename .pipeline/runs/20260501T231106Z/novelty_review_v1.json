@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.831,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.145479,
+    "title_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-02-06-blue-green-deployments-on-kubernetes.md",
+    "intro_embedding_cosine": 0.26327,
+    "intro_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2025-11-20-serverless-container-orchestration-with-aws-fargate-and-ecs.md",
+    "body_embedding_cosine": 0.769222,
+    "body_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-02-16-fixing-production-gaps-in-ai-generated-kubernetes-manifests.md",
+    "body_trigram_overlap": 0.026598,
+    "body_trigram_nearest": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+    "cta_style": "action_cta",
+    "hook_style": "problem_hook",
+    "argument_flow_motif": "symptom->telemetry->mitigation->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}
