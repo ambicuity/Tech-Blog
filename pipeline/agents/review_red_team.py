@@ -102,7 +102,7 @@ def review(draft: str, memory: NoveltyMemory) -> AgentResult:
             client = LLMClient(api_key)
             cfg = STAGE_MODEL_SETTINGS["red_team"]
             raw = client.generate_text(
-                "gemini-2.5-flash-lite",
+                "gemini-2.5-flash",
                 prompt + payload,
                 temperature=cfg["temperature"],
                 top_p=cfg["top_p"],

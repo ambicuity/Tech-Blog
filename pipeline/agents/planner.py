@@ -159,7 +159,7 @@ def _llm_candidates(topic_hint: str | None, recent_titles: list[str], recent_sum
     cfg = STAGE_MODEL_SETTINGS["planner"]
     try:
         raw = client.generate_text(
-            "gemini-2.5-flash-lite",
+            "gemini-2.5-flash",
             prompt + context,
             temperature=cfg["temperature"],
             top_p=cfg["top_p"],
