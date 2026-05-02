@@ -55,9 +55,9 @@ def _extract_title(draft: str) -> str:
     return m.group(1).strip() if m else "production-engineering-post"
 
 
-def _post_filename(draft: str) -> str:
+def _post_filename(draft: str, override_date: str = "") -> str:
     dm = re.search(r"^date:\s*(\d{4}-\d{2}-\d{2})", draft, re.MULTILINE)
-    date = dm.group(1) if dm else datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    date = override_date if override_date else (dm.group(1) if dm else datetime.now(timezone.utc).strftime("%Y-%m-%d"))
     return f"{date}-{slugify(_extract_title(draft))}.md"
 
 
@@ -136,6 +136,7 @@ def main() -> int:
     strategy_hard_exclude = set()
 
     topic_hint = os.environ.get("TOPIC_HINT")
+    post_date = os.environ.get("POST_DATE", "")
     planner = plan(topic_hint, memory=memory)
     write_json(paths["planner"], planner.artifacts)
     log_agent_trace(paths["traces"], run_id=run_id, step="planner", status=planner.status, confidence=planner.confidence)
@@ -391,8 +392,16 @@ def main() -> int:
     argument_flow_motif = selected_outline.get("argument_flow_motif", selected_candidate.get("argument_flow_motif", ""))
 
     if outcome == "PASS":
-        filename = _post_filename(final_draft)
+        filename = _post_filename(final_draft, override_date=post_date)
         post_path = POSTS_DIR / filename
+        if post_date:
+            final_draft = re.sub(
+                r"^(date:\s*)\d{4}-\d{2}-\d{2}[^\n]*",
+                rf"\g<1>{post_date} 10:00:00 +0000",
+                final_draft,
+                count=1,
+                flags=re.MULTILINE,
+            )
         _save_text(post_path, final_draft)
         memory.ingest_generated_post(post_path, final_draft)
         manifest.update({"status": "published", "post_path": str(post_path.relative_to(ROOT))})
