@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.825,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.313112,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-23-setting-up-a-k8s-cluster-on-bare-metal.md",
+    "intro_embedding_cosine": 0.157123,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+    "body_embedding_cosine": 0.774554,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-24-troubleshooting-crashloopbackoff-errors.md",
+    "body_trigram_overlap": 0.010949,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+    "cta_style": "action_cta",
+    "hook_style": "question_hook",
+    "argument_flow_motif": "root_cause->symptom->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}

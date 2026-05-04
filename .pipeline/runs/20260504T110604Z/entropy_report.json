@@ -1,0 +1,47 @@
+{
+  "entropy": {
+    "metrics": {
+      "H_structure": 0.212243,
+      "H_topic": 0.925537,
+      "H_angle": 0.337567,
+      "H_rhetoric": 0.647015,
+      "H_rhythm": 0.556749,
+      "H_vocab": 0.930812,
+      "H_argflow": 0.337567
+    },
+    "zscores": {
+      "H_structure": -0.447214,
+      "H_topic": -1.320034,
+      "H_angle": 0.0,
+      "H_rhetoric": -0.71769,
+      "H_rhythm": 0.0,
+      "H_vocab": 0.447111,
+      "H_argflow": 0.0
+    },
+    "alerts": [
+      "pattern_collapse_alert",
+      "dominance_alert"
+    ]
+  },
+  "mutation": {
+    "mutated": false
+  },
+  "promotion": {
+    "promoted": false
+  },
+  "cooldowns": {
+    "cooled": [
+      {
+        "strategy_id": "counterfactual_analysis_v1",
+        "count": 4,
+        "cooldown_until": "2026-05-18T11:13:31.494550+00:00"
+      },
+      {
+        "strategy_id": "incident_forensics_v1",
+        "count": 1,
+        "cooldown_until": "2026-05-18T11:13:31.494550+00:00"
+      }
+    ]
+  },
+  "exploration_mode": false
+}
