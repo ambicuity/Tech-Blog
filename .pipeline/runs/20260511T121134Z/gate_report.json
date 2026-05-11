@@ -1,0 +1,67 @@
+{
+  "structural": {
+    "name": "structural",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 1.0,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "factual": {
+    "name": "factual",
+    "passed": false,
+    "score": 0.6,
+    "threshold": 0.85,
+    "critical_errors": [
+      "factual_score_below_threshold"
+    ],
+    "warnings": [
+      "missing_context:{'claim_id': 'N/A', 'reason': \"The `find | xargs grep` command is presented as a 'simpler approach for identifying dependencies through imports/includes.' While technically correct for finding import statements, it provides a very superficial view of dependencies. It does not build a call graph, identify transitive dependencies, or account for other forms of coupling (e.g., runtime reflection, service locators, shared configuration, database coupling). It's a rudimentary search, not a comprehensive dependency mapping tool.\", 'fix': 'Add a caveat explaining the severe limitations of this command for comprehensive dependency mapping and emphasize the need for more sophisticated static analysis tools for a true understanding of module interdependencies.'}",
+      "missing_context:{'claim_id': 'N/A', 'reason': \"The SQL query for identifying tables frequently joined or updated together via foreign keys is a good starting point. However, it only reveals *declared* foreign key relationships within the database schema. It does not account for implicit application-level joins, logical relationships that are not enforced by database constraints, or the actual transactional boundaries which might involve a subset of these linked tables or even tables without direct FKs. Relying solely on this for 'data cohesion and transactional integrity' can be misleading.\", 'fix': 'Add a caveat stating that this query only identifies schema-level relationships and that a full understanding of data cohesion and transactional integrity requires combining this with application-level analysis (e.g., code review, dynamic tracing of data access patterns, and understanding business transactions).'}",
+      "missing_context:{'claim_id': 'N/A', 'reason': 'The Debezium connector configuration snippet is syntactically correct for a PostgreSQL connector. However, Debezium relies on specific PostgreSQL database configurations to function correctly, such as `wal_level` being set to `logical`, the creation of a replication slot, and a publication defined for the tables to be replicated. These are critical prerequisites for Change Data Capture (CDC) from PostgreSQL, and without them, the connector will fail to operate.', 'fix': 'Add a crucial caveat detailing the necessary PostgreSQL database configurations (e.g., `wal_level=logical`, replication slot, and publication) that must be in place for the Debezium connector to successfully capture changes.'}"
+    ]
+  },
+  "seo": {
+    "name": "seo",
+    "passed": true,
+    "score": 0.95,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "link": {
+    "name": "link",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 0.9,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "authority": {
+    "name": "authority",
+    "passed": true,
+    "score": 0.85,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "novelty": {
+    "name": "novelty",
+    "passed": true,
+    "score": 0.8,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "red_team": {
+    "name": "red_team",
+    "passed": false,
+    "score": 0.12,
+    "threshold": 0.85,
+    "critical_errors": [
+      "hidden_similarity_score_high",
+      "reused_patterns_detected"
+    ],
+    "warnings": []
+  }
+}

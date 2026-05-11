@@ -1,0 +1,56 @@
+{
+  "factual_score": 0.6,
+  "critical_inaccuracies": [],
+  "uncertain_claims": [
+    {
+      "claim_id": "CLAIM:Root-cause mechanism",
+      "reason": "The claim states that 'extreme coupling' is *the* root-cause mechanism for 'many' monolith-induced production failures. While coupling is a significant contributor to issues, identifying a single 'root-cause mechanism' for 'many' failures is an overgeneralization and difficult to quantify or verify without specific empirical data. Other factors (e.g., poor testing, infrastructure, human error) also contribute significantly to production failures.",
+      "confidence": 0.8,
+      "fix": "Rephrase to 'a significant root-cause mechanism' or 'a primary contributor to many monolith-induced production failures' to reflect a more nuanced reality and avoid an absolute claim."
+    }
+  ],
+  "missing_context": [
+    {
+      "claim_id": "N/A",
+      "reason": "The `find | xargs grep` command is presented as a 'simpler approach for identifying dependencies through imports/includes.' While technically correct for finding import statements, it provides a very superficial view of dependencies. It does not build a call graph, identify transitive dependencies, or account for other forms of coupling (e.g., runtime reflection, service locators, shared configuration, database coupling). It's a rudimentary search, not a comprehensive dependency mapping tool.",
+      "fix": "Add a caveat explaining the severe limitations of this command for comprehensive dependency mapping and emphasize the need for more sophisticated static analysis tools for a true understanding of module interdependencies."
+    },
+    {
+      "claim_id": "N/A",
+      "reason": "The SQL query for identifying tables frequently joined or updated together via foreign keys is a good starting point. However, it only reveals *declared* foreign key relationships within the database schema. It does not account for implicit application-level joins, logical relationships that are not enforced by database constraints, or the actual transactional boundaries which might involve a subset of these linked tables or even tables without direct FKs. Relying solely on this for 'data cohesion and transactional integrity' can be misleading.",
+      "fix": "Add a caveat stating that this query only identifies schema-level relationships and that a full understanding of data cohesion and transactional integrity requires combining this with application-level analysis (e.g., code review, dynamic tracing of data access patterns, and understanding business transactions)."
+    },
+    {
+      "claim_id": "N/A",
+      "reason": "The Debezium connector configuration snippet is syntactically correct for a PostgreSQL connector. However, Debezium relies on specific PostgreSQL database configurations to function correctly, such as `wal_level` being set to `logical`, the creation of a replication slot, and a publication defined for the tables to be replicated. These are critical prerequisites for Change Data Capture (CDC) from PostgreSQL, and without them, the connector will fail to operate.",
+      "fix": "Add a crucial caveat detailing the necessary PostgreSQL database configurations (e.g., `wal_level=logical`, replication slot, and publication) that must be in place for the Debezium connector to successfully capture changes."
+    }
+  ],
+  "verified_claims": [
+    {
+      "claim_id": "N/A",
+      "reason": "The OpenTelemetry instrumentation snippet correctly demonstrates standard parameters for configuring the Java agent for a monolithic application, including service name, OTLP exporter endpoint, and resource attributes.",
+      "confidence": 1.0
+    },
+    {
+      "claim_id": "CLAIM:Failure mode under production load",
+      "reason": "The description of failure modes arising from unforeseen contention on shared components (cascading latency spikes, resource exhaustion) is a well-documented and accurate characteristic of problematic monoliths under production load.",
+      "confidence": 1.0
+    },
+    {
+      "claim_id": "N/A",
+      "reason": "The Nginx configuration example correctly implements the Strangler Fig pattern by routing specific API paths to a new service while directing all other requests to the monolith. The order of `location` blocks is correct for Nginx's matching algorithm.",
+      "confidence": 1.0
+    },
+    {
+      "claim_id": "CLAIM:Operational mitigation",
+      "reason": "The recommendation to implement robust health checks, circuit breakers, and timeouts at the API gateway layer is a standard and effective operational mitigation strategy to prevent cascading failures in a distributed system, especially during incremental migrations.",
+      "confidence": 1.0
+    },
+    {
+      "claim_id": "CLAIM:Failure mode under production load",
+      "reason": "The description of failure modes in a 'distributed monolith' (increased end-to-end latency, debugging nightmares, difficult-to-isolate partial failures) accurately reflects the challenges of such an anti-pattern.",
+      "confidence": 1.0
+    }
+  ]
+}

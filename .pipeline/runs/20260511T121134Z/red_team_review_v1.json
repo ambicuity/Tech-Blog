@@ -1,0 +1,29 @@
+{
+  "hidden_similarity_score": 0.88,
+  "reused_patterns": [
+    "problem_hook_rhetorical_question",
+    "symptom_analysis_mitigation_argument_flow",
+    "deep_dive_structure_family",
+    "operational_checklist_cta",
+    "claim_mechanism_failure_mode_reasoning_template",
+    "analogy_for_system_complexity"
+  ],
+  "proof_snippets": [
+    "\"Does your monolithic application feel less like a unified system and more like a tangled ball of yarn that actively resists change?\"",
+    "\"Many seasoned infrastructure and software engineers recognize the symptoms: deployment cycles stretching into hours... The core issue in a problematic monolith often boils down to pervasive, implicit coupling... The Strangler Fig pattern is a robust strategy for incremental extraction.\"",
+    "\"[CLAIM:Root-cause mechanism] for many monolith-induced production failures is this extreme coupling...\"",
+    "\"[CLAIM:Failure mode under production load] often arises from unforeseen contention...\"",
+    "\"[CLAIM:Failure mode under production load] in a distributed monolith can manifest as increased end-to-end latency...\"",
+    "\"Operational Checklist: Your Guide to a Smooth Monolith Extraction\"",
+    "\"Does your monolithic application feel less like a unified system and more like a tangled ball of yarn... Is Your Monolith a Ball of Mud or a Gold Mine of Services?\""
+  ],
+  "why_similar": [
+    "The draft employs a highly similar `hook_style` to many historical entries, starting with rhetorical questions that frame a common technical problem ('problem_hook'). This immediately establishes a familiar narrative entry point.",
+    "The `argument_flow_motif` of `symptom->analysis->mitigation` is a dominant pattern in the nearest history and is precisely replicated in the draft. It identifies pain points (monolith issues), delves into their underlying causes (coupling, technical debt), and then offers structured solutions (DDD, Strangler Fig, checklist).",
+    "The `structure_family` is a 'deep_dive' or 'analysis' of a complex technical topic, which is a recurring template in the provided history. This involves breaking down the problem, providing detailed steps, and offering code examples.",
+    "The explicit use of `[CLAIM:Root-cause mechanism]` and `[CLAIM:Failure mode under production load]` tags indicates a direct reuse of a specific `reasoning` template or rhetorical device observed in previous content, particularly similar to the 'silent killer' post's implicit framing of problems.",
+    "The concluding 'Operational Checklist' functions as a direct `action_cta` or `checklist_cta`, a pattern seen in the history, providing actionable steps after the deep dive.",
+    "The use of analogies like 'tangled ball of yarn' and 'Ball of Mud' to describe system complexity aligns with the 'silent killer' type of framing, indicating a recurring rhetorical approach to problem description."
+  ],
+  "recommended_mutation_target": "angle"
+}

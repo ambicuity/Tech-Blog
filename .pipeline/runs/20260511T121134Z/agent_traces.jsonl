@@ -1,0 +1,18 @@
+{"run_id": "20260511T121134Z", "step": "planner", "status": "passed", "confidence": 0.964286, "model": "", "error": ""}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"}
+{"run_id": "20260511T121134Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-3-flash-preview", "error": ""}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.58, "model": "fallback-outline-template", "error": "outline_generation_error:503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"}
+{"run_id": "20260511T121134Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash-lite", "error": ""}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260511T121134Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260511T121134Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260511T121134Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260511T121134Z", "step": "technical_reviewer", "status": "failed", "confidence": 0.6, "model": "", "error": "factual_score_below_threshold"}
+{"run_id": "20260511T121134Z", "step": "seo_reviewer", "status": "passed", "confidence": 0.95, "model": "", "error": ""}
+{"run_id": "20260511T121134Z", "step": "editor", "status": "passed", "confidence": 0.85, "model": "", "error": ""}
+{"run_id": "20260511T121134Z", "step": "novelty_reviewer", "status": "passed", "confidence": 0.8, "model": "", "error": ""}
+{"run_id": "20260511T121134Z", "step": "red_team_reviewer", "status": "failed", "confidence": 0.12, "model": "", "error": "hidden_similarity_or_reused_patterns"}
+{"run_id": "20260511T121134Z", "step": "publisher", "status": "failed", "confidence": 0.76, "model": "", "error": "gate_failure"}

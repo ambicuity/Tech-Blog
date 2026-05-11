@@ -1,0 +1,929 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Teardown: When Your Cache Becomes a Bottleneck and Serves Stale Data",
+        "angle": "Dissecting a common caching anti-pattern: short TTLs on expensive computations without proactive refresh, leading to thundering herd and stale data.",
+        "persona": "Backend Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+        "reasoning_path": "inversion",
+        "risk_flags": [],
+        "why_new": "A specific teardown of a caching anti-pattern, distinct from general 'boosting performance with Redis caching' and focusing on architectural failure modes.",
+        "novelty_similarity": 0.034483,
+        "novelty_score": 0.965517
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "teardown",
+            "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+            "headings": [
+              "Teardown When Signal Snapshot",
+              "Teardown When Investigation Timeline",
+              "Teardown When Root Cause Mechanism",
+              "Teardown When Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.743,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.757"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.756522,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "playbook",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Teardown When Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Teardown When Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.456,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.896"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.895833,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Teardown When Context and Failure Trigger",
+              "Teardown When Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.362,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.856"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.787727,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.85641,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Teardown: When Your Cache Becomes a Bottleneck and Serves Stale Data",
+        "angle": "Dissecting a common caching anti-pattern: short TTLs on expensive computations without proactive refresh, leading to thundering herd and stale data. | alternate structure-1",
+        "persona": "Backend Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+        "reasoning_path": "inversion",
+        "risk_flags": [],
+        "why_new": "A specific teardown of a caching anti-pattern, distinct from general 'boosting performance with Redis caching' and focusing on architectural failure modes.",
+        "novelty_similarity": 0.034483,
+        "novelty_score": 0.965517
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+            "headings": [
+              "Teardown When Signal Snapshot",
+              "Teardown When Investigation Timeline",
+              "Teardown When Root Cause Mechanism",
+              "Teardown When Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.743,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.757"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.756522,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": false,
+            "reason": "hard_constraint:prohibited_cta_combo:reflective_question/question_hook/analysis"
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Teardown When Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Teardown When Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.456,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.896"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.895833,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Teardown When Context and Failure Trigger",
+              "Teardown When Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.362,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.856"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.787727,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.85641,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Teardown: When Your Cache Becomes a Bottleneck and Serves Stale Data",
+        "angle": "Dissecting a common caching anti-pattern: short TTLs on expensive computations without proactive refresh, leading to thundering herd and stale data. | alternate structure-1 | alternate structure-2",
+        "persona": "Backend Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+        "reasoning_path": "inversion",
+        "risk_flags": [],
+        "why_new": "A specific teardown of a caching anti-pattern, distinct from general 'boosting performance with Redis caching' and focusing on architectural failure modes.",
+        "novelty_similarity": 0.034483,
+        "novelty_score": 0.965517
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "teardown",
+            "argument_flow_motif": "problem->current_design->flaws_explained->ideal_design_principles->redesign_recommendations",
+            "headings": [
+              "Teardown When Signal Snapshot",
+              "Teardown When Investigation Timeline",
+              "Teardown When Root Cause Mechanism",
+              "Teardown When Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.743,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.757"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.756522,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "playbook",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Teardown When Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Teardown When Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.456,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.896"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.895833,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Teardown When Context and Failure Trigger",
+              "Teardown When Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.362,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.856"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.787727,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.85641,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Achieving Hermeticity: Diagnosing and Fixing Non-Deterministic Builds in a Monorepo",
+        "angle": "A detailed playbook for identifying sources of non-determinism (timestamps, env vars, race conditions) in complex build systems and enforcing reproducible builds.",
+        "persona": "Platform Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "question_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Addresses the specific challenge of build determinism and hermeticity in large monorepos, distinct from Docker image caching or Git hooks.",
+        "novelty_similarity": 0.035714,
+        "novelty_score": 0.964286
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "question_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+            "headings": [
+              "Achieving Hermeticity Signal Snapshot",
+              "Achieving Hermeticity Investigation Timeline",
+              "Achieving Hermeticity Root Cause Mechanism",
+              "Achieving Hermeticity Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.762,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.535752,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.702479,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Achieving Hermeticity Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Achieving Hermeticity Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.456,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.827"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.826923,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Achieving Hermeticity Context and Failure Trigger",
+              "Achieving Hermeticity Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.319,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.821"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.83077,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.820896,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Achieving Hermeticity: Diagnosing and Fixing Non-Deterministic Builds in a Monorepo",
+        "angle": "A detailed playbook for identifying sources of non-determinism (timestamps, env vars, race conditions) in complex build systems and enforcing reproducible builds. | reframed opening-1",
+        "persona": "Platform Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "story_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Addresses the specific challenge of build determinism and hermeticity in large monorepos, distinct from Docker image caching or Git hooks.",
+        "novelty_similarity": 0.035714,
+        "novelty_score": 0.964286
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+            "headings": [
+              "Achieving Hermeticity Signal Snapshot",
+              "Achieving Hermeticity Investigation Timeline",
+              "Achieving Hermeticity Root Cause Mechanism",
+              "Achieving Hermeticity Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.712,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.535752,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.702479,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "contrarian_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Achieving Hermeticity Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Achieving Hermeticity Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.456,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.827"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.826923,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "incident_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Achieving Hermeticity Context and Failure Trigger",
+              "Achieving Hermeticity Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.369,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.821"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.83077,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.820896,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Achieving Hermeticity: Diagnosing and Fixing Non-Deterministic Builds in a Monorepo",
+        "angle": "contrarian reframing of Achieving Hermeticity: Diagnosing and Fixing Non-Deterministic Builds in a Monorepo",
+        "persona": "Platform Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "story_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Addresses the specific challenge of build determinism and hermeticity in large monorepos, distinct from Docker image caching or Git hooks.",
+        "novelty_similarity": 0.035714,
+        "novelty_score": 0.964286
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "symptoms->common_sources->identification_techniques->enforcement_strategies",
+            "headings": [
+              "Introduction: The Ghost in the Monorepo: When Builds Lie",
+              "The Subtle Sabotage: Recognizing Non-Deterministic Build Symptoms (e.g., Cache Misses, Flaky Tests)",
+              "Unmasking the Culprits: Common Sources of Build Variance (e.g., Unpinned Dependencies, Environment Variables)",
+              "Forensic Engineering: Pinpointing Non-Hermetic Dependencies with Build Tracing",
+              "Blueprint for Predictability: Implementing Hermetic Build Enforcement (e.g., Bazel Sandboxing, Nix)",
+              "Operational Checklist: Establishing Hermeticity Guards",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.282525,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.264045,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "deep_dive",
+            "hook_style": "challenge_statement",
+            "cta_style": "call_to_action",
+            "rhetorical_family": "explanatory",
+            "argument_flow_motif": "principles->diagnosis->solution_patterns",
+            "headings": [
+              "Introduction: Beyond \"It Works On My Machine\": The Imperative of Hermetic Builds",
+              "The Core Tenets of Build Hermeticity: Input Determinism & Output Isolation",
+              "Diagnostic Toolkit: Uncovering Hidden Build Dependencies with Build Graphs and Execution Logs",
+              "Deconstructing Non-Determinism: Common Vectors of Variance (e.g., Network Access, Timestamp Dependencies)",
+              "Engineering Determinism: Strategies for Build System Hardening (e.g., Remote Caching, Strict Sandboxing)",
+              "Operational Checklist: Hardening Your Build Pipeline",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.246924,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.274223,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "case_study",
+            "hook_style": "problem_solution_hook",
+            "cta_style": "resource_download",
+            "rhetorical_family": "narrative",
+            "argument_flow_motif": "journey_from_chaos->lessons_learned->best_practices",
+            "headings": [
+              "Introduction: From Build Lottery to Predictable Outcomes: Our Monorepo's Hermeticity Journey",
+              "The Cost of Build Instability: Why Non-Determinism Plagued Our Monorepo",
+              "Implementing Guardrails: Key Fixes and Tooling Adopted (e.g., Standardizing Toolchains, Dependency Locking)",
+              "Tracing the Phantom Dependencies: Our Diagnostic Process Using Build Reproducers",
+              "Sustaining Predictability: Monorepo Best Practices for Hermeticity Maintenance",
+              "Operational Checklist: Maintaining Hermeticity Post-Fix",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.229217,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-15-advanced-asyncio-patterns-in-python.md",
+              "heading_signature_similarity": 0.277778,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Teardown of a Monolith: Identifying Seams for Incremental Microservice Extraction",
+        "angle": "A systematic approach to analyzing a large, tightly coupled codebase to identify logical boundaries and data dependencies, preparing for incremental microservice migration.",
+        "persona": "Senior Backend Engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "teardown",
+        "hook_style": "question_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "symptoms->analysis_techniques->candidate_services->extraction_strategy->common_pitfalls",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Focuses on the *process* of monolith decomposition and identifying *seams*, distinct from general microservices discussions or technology-specific issues.",
+        "novelty_similarity": 0.035714,
+        "novelty_score": 0.964286
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem-solution",
+            "argument_flow_motif": "symptoms->analysis_techniques->candidate_services->extraction_strategy->common_pitfalls",
+            "headings": [
+              "Is Your Monolith a Ball of Mud or a Gold Mine of Services?",
+              "Unpacking the Monolith's Technical Debt: Why Extraction is Imperative",
+              "Architectural Archaeology: Mapping Call Graphs and Data Flow",
+              "Identifying Bounded Contexts: From Domains to Potential Microservices",
+              "Strangler Fig Pattern in Action: Incrementally Decoupling Core Logic",
+              "Navigating the Minefield: Avoiding Distributed Monoliths and Data Inconsistency",
+              "Operational Checklist: Your Guide to a Smooth Monolith Extraction",
+              "Evidence & References: Further Reading and Tools for Monolith Teardown"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.280728,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.275492,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "how-to guide",
+            "hook_style": "statement_hook",
+            "cta_style": "resource_download_cta",
+            "rhetorical_family": "instructional",
+            "argument_flow_motif": "objective->tooling->methodology->validation->lessons_learned",
+            "headings": [
+              "Deconstructing the Beast: A Practical Blueprint for Monolith to Microservice Transition",
+              "Pinpointing the First Seam: Criteria for Service Identification",
+              "Leveraging Static Analysis and Dynamic Tracing for Dependency Mapping",
+              "Refactoring for Extraction Readiness: Encapsulating Shared State and API Boundaries",
+              "Incremental Extraction Patterns: Proxying, Event Sourcing, and Database Decomposition",
+              "Measuring Progress and Success: Metrics for Microservice Health Post-Extraction",
+              "Operational Checklist: Ensuring a Smooth Cutover: Pre- and Post-Migration Steps",
+              "Evidence & References: Essential Resources for Microservice Decomposition"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.258011,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.262911,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "deep dive",
+            "hook_style": "problem_statement_hook",
+            "cta_style": "workshop_cta",
+            "rhetorical_family": "analytical",
+            "argument_flow_motif": "challenge->data_mapping->dependency_breaking->migration_patterns->risk_mitigation",
+            "headings": [
+              "The Data Gravity Problem: Unraveling the Monolith's Core Data Dependencies",
+              "Schema Archaeology: Deconstructing the Shared Database",
+              "Identifying Data Seams and Bounded Contexts: Transactional Boundaries for Service Isolation",
+              "Strategies for Data Decoupling: Logical vs. Physical Separation Techniques",
+              "Managing Cross-Service Data Consistency: Distributed Transactions vs. Eventual Consistency",
+              "Refactoring Data Access Layers: Transforming ORM-Heavy Codebases for Microservice Data Access",
+              "Operational Checklist: Data Migration & Consistency Verification Steps",
+              "Evidence & References: Advanced Readings on Data Decomposition in Microservices"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.183774,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.266254,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
