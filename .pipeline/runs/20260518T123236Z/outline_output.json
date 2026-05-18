@@ -1,0 +1,1343 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Linux Kernel Packet Filtering Performance",
+        "angle": "Understanding the low-level mechanics of network packet processing (iptables/nftables) and its impact on service latency.",
+        "persona": "Platform Engineer, Network Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "deep_dive",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "problem->kernel_path->netfilter_hooks->performance_implications->optimization_points",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [
+          "requires advanced networking knowledge"
+        ],
+        "why_new": "Explores low-level kernel network performance, distinct from Kubernetes networking or specific API performance topics.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "deep_dive",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "explanatory_mechanistic",
+            "argument_flow_motif": "problem->kernel_path->netfilter_hooks->performance_implications->optimization_points",
+            "headings": [
+              "Is Your Packet Filter a Hidden Latency Sink in Linux Services?",
+              "The Unseen Cost: Service Latency and Network Stack Overhead",
+              "Packet's Perilous Journey: From NIC Interrupt to Application Socket",
+              "The Interceptors: Deep Dive into Netfilter Hooks (NF_PREROUTING, NF_INPUT, etc.)",
+              "Quantifying the Burden: CPU Cycles, Memory Pressure, and Context Switching of Rule Processing",
+              "Strategic Optimizations: eBPF for High-Performance Filtering and XDP Offloading",
+              "Operational Checklist: Monitoring Netfilter Performance with `conntrack`, `perf`, and `bcc` Tools",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.247395,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.264249,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "comparative_analysis",
+            "hook_style": "bold_statement_hook",
+            "cta_style": "tool_adoption_cta",
+            "rhetorical_family": "comparative_persuasive",
+            "argument_flow_motif": "legacy_challenge->modern_solution->comparative_evidence->migration_strategy",
+            "headings": [
+              "Beyond iptables: Unlocking Next-Gen Packet Filtering Performance with nftables",
+              "The Inevitable Bottleneck: When iptables Chains Hit Their Scalability Limit",
+              "Anatomy of iptables: Legacy Architecture, Rule Processing, and Performance Overhead",
+              "Enter nftables: A Modern Kernel Framework for Packet Classification and Its Architectural Advantages",
+              "Head-to-Head: Latency and Throughput Benchmarks (iptables vs. nftables)",
+              "Migrating from iptables to nftables: A Step-by-Step Performance Upgrade",
+              "Leveraging nftables Advanced Features for Peak Performance (Sets, Maps, Verdicts, Concatenations)",
+              "Operational Checklist: Validating nftables Performance and Stability Post-Migration",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.271003,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-12-upgrading-kubernetes-clusters-with-zero-downtime.md",
+              "heading_signature_similarity": 0.234708,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "troubleshooting_guide",
+            "hook_style": "scenario_hook",
+            "cta_style": "diagnostic_cta",
+            "rhetorical_family": "diagnostic_instructive",
+            "argument_flow_motif": "symptom->root_cause_analysis->diagnostic_tools->mitigation_strategies",
+            "headings": [
+              "Diagnosing Hidden Latency: When Linux Packet Filtering Becomes a Bottleneck",
+              "The Tell-Tale Signs: Identifying Netfilter-Related Performance Degradation",
+              "Where to Begin: Initial System-Level Network Performance Checks (CPU, Drops, Latency)",
+              "Profiling the Kernel: Unmasking Packet Filter Hotspots with `perf` and `ftrace`",
+              "Deep Dive into `iptables` & `nftables` Rule Optimization for Latency Reduction",
+              "Beyond Rules: Connection Tracking (conntrack) Performance and Tuning Strategies",
+              "Implementing Surgical Fixes: Leveraging eBPF for Dynamic, High-Speed Filtering",
+              "Operational Checklist: Step-by-Step Debugging and Verification of Netfilter Changes",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.272037,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.245562,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Linux Kernel Packet Filtering Performance",
+        "angle": "Understanding the low-level mechanics of network packet processing (iptables/nftables) and its impact on service latency. | alternate structure-1",
+        "persona": "Platform Engineer, Network Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "problem->kernel_path->netfilter_hooks->performance_implications->optimization_points",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [
+          "requires advanced networking knowledge"
+        ],
+        "why_new": "Explores low-level kernel network performance, distinct from Kubernetes networking or specific API performance topics.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "explanatory",
+            "argument_flow_motif": "problem->kernel_path->netfilter_hooks->performance_implications->optimization_points",
+            "headings": [
+              "Is Linux Kernel Packet Filtering Silently Degrading Your Service Latency?",
+              "The Packet's Odyssey: From Network Interface Card to Userspace Socket",
+              "Demystifying Netfilter Hooks: Where `iptables` and `nftables` Intervene",
+              "Conntrack and NAT: Unseen Performance Tax on Network Throughput",
+              "Profiling `nftables` Rule Traversal Cost with `perf` and `BPF`",
+              "Strategic `sysctl` Tuning for `netfilter` Performance and Concurrency",
+              "Operational Checklist for Kernel Network Performance Tuning",
+              "Evidence & References: Linux Kernel Source and Performance Studies",
+              "Quantify Your Kernel Latency Savings Today"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.275339,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.262542,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "comparison",
+            "hook_style": "problem_hook",
+            "cta_style": "diagnostic_cta",
+            "rhetorical_family": "comparative",
+            "argument_flow_motif": "problem_statement->legacy_solution_analysis->modern_solution_analysis->performance_comparison->migration_strategy->optimization",
+            "headings": [
+              "Beyond Basic Filtering: When `iptables` Becomes a Bottleneck",
+              "The `iptables` Chain: Understanding Linear Rule Processing and Stateful Inspection Overhead",
+              "`nftables` Architecture: Flexible Set Matching and JIT-Compiled Kernel Bytecode",
+              "Real-World Benchmarks: `iptables` vs. `nftables` for High-Volume Packet Processing",
+              "Gradual Migration Strategies from `iptables` to `nftables` Without Downtime",
+              "Leveraging `nftables` Maps and Verdicts for Scalable Filtering Policies",
+              "Operational Checklist for `nftables` Deployment and Performance Validation",
+              "Evidence & References: `nftables` Wiki and Migration Guides",
+              "Diagnose Your Current Packet Filtering Bottlenecks"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.85,
+            "reasons": [
+              "hook_style_overused:problem_hook:3"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.251837,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.254135,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 3,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "diagnostic",
+            "hook_style": "anecdote_hook",
+            "cta_style": "tool_cta",
+            "rhetorical_family": "investigative",
+            "argument_flow_motif": "symptom->diagnosis_tools->kernel_visibility->common_causes->remediation->proactive_monitoring",
+            "headings": [
+              "\"My Network is Slow, But `top` Shows Nothing\": Investigating Hidden Latency",
+              "Initial Network Stack Health Checks: `iproute2` and `ss` for Kernel Insights",
+              "Deep Dive with `BPF/eBPF`: Tracing Packet Path and `netfilter` Hook Latency",
+              "Identifying Common Kernel Packet Filtering Bottlenecks: Rule Complexity & Conntrack Limits",
+              "Optimizing `netfilter` and `network_queue` Parameters via `sysctl`",
+              "Building Observability: Exporting `nftables` Counters and `conntrack` Metrics",
+              "Operational Checklist for Diagnosing Kernel Network Latency",
+              "Evidence & References: `BPF` Performance Tools and `nftables` Manuals",
+              "Download Our `eBPF` Packet Tracing Script"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.300157,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.260736,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Linux Kernel Packet Filtering Performance",
+        "angle": "contrarian reframing of Linux Kernel Packet Filtering Performance",
+        "persona": "Platform Engineer, Network Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "problem->kernel_path->netfilter_hooks->performance_implications->optimization_points",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [
+          "requires advanced networking knowledge"
+        ],
+        "why_new": "Explores low-level kernel network performance, distinct from Kubernetes networking or specific API performance topics.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "argumentative",
+            "argument_flow_motif": "problem->kernel_path_details->netfilter_implications->optimization_reassessment",
+            "headings": [
+              "Is Your \"Optimized\" Packet Filter Hiding Latency?",
+              "Packet Traversal: A Kernel Tour from NIC to Application",
+              "Netfilter Hooks: The Silent Performance Interceptors",
+              "Conntrack & NAT: Beyond Simple Filtering Costs",
+              "eBPF's Promise vs. Its Contextual Overhead",
+              "Benchmarking Reality: Dissecting Micro-Latencies",
+              "Operational Checklist: Deep Kernel Packet Filter Tuning",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.182652,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.321337,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "argumentative",
+            "argument_flow_motif": "myth_dissection->mechanistic_explanation->redefined_best_practices",
+            "headings": [
+              "Myth vs. Reality: Challenging Your Packet Filtering Assumptions",
+              "Myth 1: \"Netfilter is a Performance Killer by Design\"",
+              "Unpacking `ip_rcv()` and `netif_receive_skb()`: The Ingress Path",
+              "Myth 2: \"eBPF Always Guarantees Zero-Copy Filtering\"",
+              "`sk_buff` Management & Cloning Costs in eBPF Programs",
+              "Hardware Offload & Driver Interaction: Beyond Software Filters",
+              "Operational Checklist: Validating Packet Filter Performance",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.216982,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-24-boosting-python-application-startup-time-with-pyston.md",
+              "heading_signature_similarity": 0.294643,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "argumentative",
+            "argument_flow_motif": "hidden_cost_identification->system_resource_impact->holistic_optimization",
+            "headings": [
+              "The Invisible Tax: Why Your Packet Filters Are Slower Than Expected",
+              "CPU Cache Misses & Memory Bandwidth: The True Filtering Bottlenecks",
+              "NAPI & Interrupt Storms: When Packet Filters Exacerbate Driver Load",
+              "`sk_buff` Allocation & Deallocation: Heap Pressure from Filtering Rules",
+              "Per-CPU Data Structures & Lock Contention: Scaling Filter Performance",
+              "Identifying Filtering Hotspots with `perf` and `ftrace`",
+              "Operational Checklist: Minimizing Kernel Packet Filtering Overheads",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.265898,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.271287,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "eBPF for Runtime Security and Observability",
+        "angle": "An analysis of how eBPF can be leveraged at the kernel level for advanced security monitoring, anomaly detection, and performance tracing without modifying applications.",
+        "persona": "Security Engineer, Platform Engineer, SRE",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "introduction->how_it_works->use_cases->advantages->limitations",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [
+          "requires examples of eBPF programs/tools"
+        ],
+        "why_new": "Explores eBPF for advanced runtime security and observability, a powerful and relatively new kernel-level technology not covered by previous posts.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "introduction->how_it_works->use_cases->advantages->limitations",
+            "headings": [
+              "Is Your Runtime Truly Observable? Bridging the Kernel Visibility Gap with eBPF",
+              "eBPF Architecture: Probing the Kernel Safely and Dynamically",
+              "Advanced Security Monitoring with eBPF: Specific Scenarios",
+              "Performance Tracing Without Overhead: Leveraging eBPF for SREs",
+              "The Trade-offs: Debugging Complex eBPF Programs and Tooling Maturity",
+              "Operational Checklist: Deploying and Managing eBPF Agents",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.316456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-02-pod-topology-spread-constraints-explained.md",
+              "heading_signature_similarity": 0.28673,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "instructional",
+            "hook_style": "problem_hook",
+            "cta_style": "resource_cta",
+            "rhetorical_family": "comparative",
+            "argument_flow_motif": "problem->solution_overview->deep_dive->benefits->implementation_considerations",
+            "headings": [
+              "The Agent Conundrum: Why Traditional Security Tools Fall Short at Runtime",
+              "eBPF as the Kernel-Native Solution for Observability and Threat Detection",
+              "Building Custom eBPF Security Policies: From Code to Kernel",
+              "Unpacking the Benefits: Non-Intrusive, Performant, and Granular Control",
+              "Overcoming Adoption Barriers: Learning Curve and Integration Strategies",
+              "Operational Checklist: Validating eBPF Program Integrity",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.85,
+            "reasons": [
+              "hook_style_overused:problem_hook:3"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.28754,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.298643,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 3,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "exploratory",
+            "hook_style": "future_hook",
+            "cta_style": "engagement_cta",
+            "rhetorical_family": "visionary",
+            "argument_flow_motif": "vision->how_it_enables->key_components->practical_applications->future_outlook",
+            "headings": [
+              "The Future of Runtime Security: A Glimpse into eBPF's Potential",
+              "eBPF's Foundational Role in Kernel-Level Telemetry Collection",
+              "Key eBPF Primitives for Advanced Observability",
+              "Transforming Security Operations: Real-time Incident Response with eBPF Data",
+              "The Road Ahead: Community, Tooling, and Kernel Evolution",
+              "Operational Checklist: Designing Resilient eBPF Deployment Pipelines",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.299644,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-02-pod-topology-spread-constraints-explained.md",
+              "heading_signature_similarity": 0.317848,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "eBPF for Runtime Security and Observability",
+        "angle": "An analysis of how eBPF can be leveraged at the kernel level for advanced security monitoring, anomaly detection, and performance tracing without modifying applications. | reasoning-shift-inversion",
+        "persona": "Security Engineer, Platform Engineer, SRE",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "",
+        "reasoning_path": "inversion",
+        "risk_flags": [
+          "requires examples of eBPF programs/tools"
+        ],
+        "why_new": "Explores eBPF for advanced runtime security and observability, a powerful and relatively new kernel-level technology not covered by previous posts.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "Problem-Solution, Technical Explanation",
+            "argument_flow_motif": "inversion",
+            "headings": [
+              "The Observability Blind Spots & Security Gaps of Traditional Agents",
+              "eBPF's Kernel-Native Revolution: Unfiltered Runtime Insights",
+              "Anatomy of an eBPF Program: From Source to Kernel Hook",
+              "Leveraging eBPF for Advanced Anomaly Detection & Threat Hunting",
+              "Performance Tracing with Zero-Overhead: Unmasking Latency Bottlenecks",
+              "Operational Checklist: Deploying eBPF for Production Readiness",
+              "Evidence & References: Further Reading and Community Resources"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.23338,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-02-pod-topology-spread-constraints-explained.md",
+              "heading_signature_similarity": 0.303297,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "Use Case Analysis, Exemplification",
+            "argument_flow_motif": "exemplification",
+            "headings": [
+              "Can You See Every Syscall? The eBPF Advantage in Process Auditing",
+              "Real-time Network Flow Monitoring without iptables Hacks",
+              "Deep Dive: Contextualizing Runtime Events with eBPF Maps & Kprobes",
+              "Beyond Metrics: Dynamic Tracing of User-Space and Kernel Functions",
+              "Navigating the eBPF Landscape: Essential Tools for Security & SREs",
+              "Operational Checklist: Integrating eBPF into Your Existing Toolchain",
+              "Evidence & References: Case Studies and Community Projects"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.29889,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-11-kubernetes-resource-requests-and-limits-masterclass.md",
+              "heading_signature_similarity": 0.298056,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "Strategic Analysis, Architectural Overview",
+            "argument_flow_motif": "systematic",
+            "headings": [
+              "The Kernel as Your Ultimate Sensor: Why eBPF Changes Everything for Runtime Security",
+              "eBPF Fundamentals: Secure, Programmable Kernel-Space Telemetry",
+              "Building a Unified Observability Plane with eBPF Data Streams",
+              "Proactive Threat Mitigation: eBPF for Behavioral Anomaly Detection & Enforcement",
+              "Best Practices for eBPF Program Lifecycle Management and Debugging",
+              "Evidence & References: Community Standards and Benchmarks",
+              "Operational Checklist: Hardening Your eBPF Deployment"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.390239,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-10-debug-container-networking-with-ephemeral-containers.md",
+              "heading_signature_similarity": 0.268191,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "eBPF for Runtime Security and Observability",
+        "angle": "contrarian reframing of eBPF for Runtime Security and Observability",
+        "persona": "Security Engineer, Platform Engineer, SRE",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "",
+        "reasoning_path": "inversion",
+        "risk_flags": [
+          "requires examples of eBPF programs/tools"
+        ],
+        "why_new": "Explores eBPF for advanced runtime security and observability, a powerful and relatively new kernel-level technology not covered by previous posts.",
+        "novelty_similarity": 0.047619,
+        "novelty_score": 0.952381
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "contrarian",
+            "argument_flow_motif": "unveiling_hidden_challenges",
+            "headings": [
+              "Is your eBPF runtime security truly robust, or are you sitting on a kernel-level configuration minefield?",
+              "Beyond the Hype: eBPF's Unseen Operational Footprint",
+              "Mapping Kernel Events to Security Context: The Semantic Gap",
+              "The Hidden Performance Costs of Complex eBPF Programs",
+              "Debugging & Tracing eBPF Failures: A Journey into the Kernel's Abyss",
+              "Hardening eBPF Program Loading and Management for Production",
+              "Operational Checklist: Sustaining eBPF-Powered Defenses",
+              "Evidence & References: Deep Dive into Kernel-Level Observability Challenges"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.364932,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.266423,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "contrarian",
+            "argument_flow_motif": "unveiling_hidden_challenges",
+            "headings": [
+              "Does more kernel data automatically translate to better runtime security, or just a louder siren?",
+              "The Illusion of Panoptic Kernel Visibility with eBPF",
+              "Stratifying eBPF Probes: Prioritizing Critical System Calls for Security",
+              "Compromising the Kernel via Malicious eBPF Program Injection",
+              "Correlation Engines: Bridging Raw eBPF Events to Threat Models",
+              "Runtime Attestation of eBPF Programs: Preventing Tampering",
+              "Evidence & References: Case Studies in eBPF Data Overload & Exploitation",
+              "Operational Checklist: Securing Your eBPF Deployment Lifecycle"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.282063,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-30-gitops-with-argocd-and-kubernetes.md",
+              "heading_signature_similarity": 0.258993,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "contrarian",
+            "argument_flow_motif": "unveiling_hidden_challenges",
+            "headings": [
+              "Is your team truly ready to harness eBPF's kernel superpowers, or are you just buying into the hype without the necessary expertise?",
+              "Deconstructing the \"Low Overhead\" Myth in Practice: Beyond CPU Cycles",
+              "Developing Secure eBPF Programs: Beyond C and BPF Verifier Nuances",
+              "Integrating eBPF Telemetry with Existing SIEM/Observability Pipelines",
+              "Incident Response with eBPF: Navigating Kernel Context in Real-Time",
+              "The Vendor Lock-in Vector: Open Source vs. Commercial eBPF Solutions",
+              "Operational Checklist: Bridging the eBPF Skill Gap for Production Readiness",
+              "Evidence & References: The Economics of eBPF Adoption and Training"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.343714,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.248025,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Microservices Architecture Justification",
+        "angle": "When to choose a monolith or a macro-service: Inverting the default assumption that microservices are always the answer.",
+        "persona": "Architect, Senior Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "contrarian_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "myth->evidence->inversion->practice",
+        "reasoning_path": "inversion",
+        "risk_flags": [
+          "could be perceived as opinionated without strong evidence"
+        ],
+        "why_new": "Challenges the microservices dogma, offering an inversion of common architectural advice, not covered by recent posts.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "contrarian_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "myth->evidence->inversion->practice",
+            "headings": [
+              "Microservices Architecture Signal Snapshot",
+              "Microservices Architecture Investigation Timeline",
+              "Microservices Architecture Root Cause Mechanism",
+              "Microservices Architecture Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.74,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.329736,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.709924,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "incident_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Microservices Architecture Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Microservices Architecture Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.517,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.789"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.788991,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Microservices Architecture Context and Failure Trigger",
+              "Microservices Architecture Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.431,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.820"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.819905,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Microservices Architecture Justification",
+        "angle": "When to choose a monolith or a macro-service: Inverting the default assumption that microservices are always the answer. | reframed opening-1",
+        "persona": "Architect, Senior Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "incident_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "myth->evidence->inversion->practice",
+        "reasoning_path": "inversion",
+        "risk_flags": [
+          "could be perceived as opinionated without strong evidence"
+        ],
+        "why_new": "Challenges the microservices dogma, offering an inversion of common architectural advice, not covered by recent posts.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "myth->evidence->inversion->practice",
+            "headings": [
+              "Microservices Architecture Signal Snapshot",
+              "Microservices Architecture Investigation Timeline",
+              "Microservices Architecture Root Cause Mechanism",
+              "Microservices Architecture Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.79,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.329736,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.709924,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Microservices Architecture Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Microservices Architecture Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.517,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.789"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.788991,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Microservices Architecture Context and Failure Trigger",
+              "Microservices Architecture Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.431,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.820"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.819905,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Microservices Architecture Justification",
+        "angle": "contrarian reframing of Microservices Architecture Justification",
+        "persona": "Architect, Senior Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "playbook",
+        "hook_style": "incident_hook",
+        "cta_style": "reflective_question",
+        "argument_flow_motif": "myth->evidence->inversion->practice",
+        "reasoning_path": "inversion",
+        "risk_flags": [
+          "could be perceived as opinionated without strong evidence"
+        ],
+        "why_new": "Challenges the microservices dogma, offering an inversion of common architectural advice, not covered by recent posts.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "playbook",
+            "argument_flow_motif": "myth->evidence->inversion->practice",
+            "headings": [
+              "Microservices Architecture Signal Snapshot",
+              "Microservices Architecture Investigation Timeline",
+              "Microservices Architecture Root Cause Mechanism",
+              "Microservices Architecture Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.79,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.329736,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.709924,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Microservices Architecture Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Microservices Architecture Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.517,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.789"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.788991,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Microservices Architecture Context and Failure Trigger",
+              "Microservices Architecture Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.431,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.820"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.819905,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 3,
+      "candidate": {
+        "topic": "RPC Framework Selection Trade-offs",
+        "angle": "A comparative analysis of RPC choices (REST, gRPC, custom binary) beyond common use cases, focusing on extreme performance or specific ecosystem needs.",
+        "persona": "Software Architect, Senior Backend Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "metric_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "problem->common_solutions->counterfactual_scenarios->alternative_evaluation->decision_matrix",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [
+          "requires balanced presentation of trade-offs"
+        ],
+        "why_new": "Broader and deeper RPC comparison, including counterfactual scenarios and custom protocols, distinct from a 'practical guide' to gRPC-Web.",
+        "novelty_similarity": 0.074074,
+        "novelty_score": 0.925926
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "problem->common_solutions->counterfactual_scenarios->alternative_evaluation->decision_matrix",
+            "headings": [
+              "Rpc Framework Signal Snapshot",
+              "Rpc Framework Investigation Timeline",
+              "Rpc Framework Root Cause Mechanism",
+              "Rpc Framework Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.761,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.739"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.393655,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.73913,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Rpc Framework Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Rpc Framework Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.506,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.875"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.875,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Rpc Framework Context and Failure Trigger",
+              "Rpc Framework Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.381,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.846"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.846154,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
