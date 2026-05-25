@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.832,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.19245,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-30-fixing-performance-degradation-in-ai-powered-python-microservices-after-automated-code-generation.md",
+    "intro_embedding_cosine": 0.339557,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+    "body_embedding_cosine": 0.76795,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "body_trigram_overlap": 0.019658,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "cta_style": "action_cta",
+    "hook_style": "incident_hook",
+    "argument_flow_motif": "symptom->root_cause->checklist->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}
