@@ -1,0 +1,1082 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Disaster Recovery Drill Postmortem",
+        "angle": "Beyond the Checklist: Real-World Lessons from Failed Disaster Recovery Drills",
+        "persona": "SRE, DevOps Lead, CTO",
+        "awareness_level": "solution-aware",
+        "format_family": "postmortem",
+        "hook_style": "story_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [
+          "untested_dr_plans",
+          "critical_dependency_gaps"
+        ],
+        "why_new": "Focuses on the process and challenges of *testing* disaster recovery plans, distinct from the implementation of DR itself or general incident reports.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "diagnostic",
+            "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+            "headings": [
+              "Introduction: The Illusion of Preparedness",
+              "The `[Service Name]` DR Test: Production Data Sync Failure",
+              "Unearthing the Gaps: Misconfigured Replication Lag & Network ACL Mismatch",
+              "Deep Dive into Root Causes: Obsolete Runbooks & IAM Permission Drift",
+              "The Path Forward: Automating Failover with IaC & Idempotent Scripts",
+              "Operational Checklist: Enhanced DR Drill Protocol",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.32015,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.320707,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "analytical",
+            "argument_flow_motif": "common_pitfalls->categorized_failures->systemic_solutions->future_proofing",
+            "headings": [
+              "Introduction: Beyond \"Green\": The Deceptive Success of DR Drills",
+              "Category 1: Infrastructure Drift & Unvalidated Snapshots",
+              "Category 2: Inter-Service Dependency Mapping Failures",
+              "Category 3: Human Factors: Skill Gaps in Manual Failover Execution",
+              "Building Resilience: Integrating Chaos Engineering for DR Validation",
+              "Operational Checklist: DR Maturity Model Assessment",
+              "Evidence & References",
+              "Strategic Overhaul: Immutable DR Environments & Automated Recovery"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.318075,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.298283,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "postmortem",
+            "hook_style": "story_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "persuasive",
+            "argument_flow_motif": "drill_failure_impact->critical_flaws_exposed->strategic_overhaul->continuous_improvement",
+            "headings": [
+              "Introduction: The Wake-Up Call: When Our DR Drill Collapsed",
+              "The Critical Flaws Exposed: Database Connection String Hardcoding & Secret Management Failures",
+              "Immediate Remediation: Rollback Procedures & Data Consistency Check Automation",
+              "Strategic Overhaul: Infrastructure-as-Code for DR Environments",
+              "Integrating DR into CI/CD: Automated RTO/RPO Validation Gates",
+              "Evidence & References",
+              "Operational Checklist: Post-Mortem Action Item Tracker",
+              "Measuring Readiness: SLOs for Recovery Time Objective (RTO) Validation"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.337352,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.278846,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Disaster Recovery Drill Postmortem",
+        "angle": "Beyond the Checklist: Real-World Lessons from Failed Disaster Recovery Drills | reframed opening-1",
+        "persona": "SRE, DevOps Lead, CTO",
+        "awareness_level": "solution-aware",
+        "format_family": "postmortem",
+        "hook_style": "contrarian_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [
+          "untested_dr_plans",
+          "critical_dependency_gaps"
+        ],
+        "why_new": "Focuses on the process and challenges of *testing* disaster recovery plans, distinct from the implementation of DR itself or general incident reports.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "contrarian_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "causal_analysis",
+            "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+            "headings": [
+              "The Myth of the \"Ready\" Disaster Recovery Plan",
+              "Drill Day Play-by-Play: The `us-east-1` Database Failover That Stalled",
+              "Emergent Failures: Unanticipated DNS Propagation Delays & Stale Secrets",
+              "Root Cause Analysis: Why Our Automated `Terraform Apply` Failed Idempotently",
+              "Engineering the Fix: Implementing Cross-Region Secrets Sync and DNS Pre-warming",
+              "Operational Checklist: Enhancing DR Drill Efficacy",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.317917,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.294664,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "educational",
+            "hook_style": "problem_solution_hook",
+            "cta_style": "framework_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "common_failure_patterns->technical_deep_dive_on_fixes->proactive_testing_framework",
+            "headings": [
+              "Beyond the Green Checkmark: Unmasking Hidden Flaws in Your DR Drills",
+              "Common DR Drill Antipatterns: Data Consistency Lapses, Network ACL Mismatches, & Identity Provider Drift",
+              "Architecting for Resilience: Strategies for Robust Cross-Region Data Replication & IAM Failover",
+              "Building a Continuous DR Validation Pipeline: Integrating Chaos Engineering & Synthetic Transaction Monitoring",
+              "Operational Checklist: Designing a Proactive DR Program",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.317936,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.292735,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "revelation_hook",
+            "cta_style": "roadmap_cta",
+            "rhetorical_family": "iterative_improvement",
+            "argument_flow_motif": "dr_drill_as_learning_tool->identifying_blind_spots->iterative_improvement_cycle",
+            "headings": [
+              "When Failure Becomes Your Best Teacher: Insights from Flawed DR Drills",
+              "Disaster Recovery Drills as System Diagnostics: Beyond Pass/Fail Metrics",
+              "Uncovering Latent Dependencies: Unmasking Inter-service Call Chains and Throttling Limits",
+              "Closing the Feedback Loop: Integrating Postmortem Findings into CI/CD and Architectural Review",
+              "Evidence & References",
+              "Operational Checklist: Maximizing DR Drill Insights"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.326819,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.298544,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Disaster Recovery Drill Postmortem",
+        "angle": "contrarian reframing of Disaster Recovery Drill Postmortem",
+        "persona": "SRE, DevOps Lead, CTO",
+        "awareness_level": "solution-aware",
+        "format_family": "postmortem",
+        "hook_style": "contrarian_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+        "reasoning_path": "causal_diagnosis",
+        "risk_flags": [
+          "untested_dr_plans",
+          "critical_dependency_gaps"
+        ],
+        "why_new": "Focuses on the process and challenges of *testing* disaster recovery plans, distinct from the implementation of DR itself or general incident reports.",
+        "novelty_similarity": 0.058824,
+        "novelty_score": 0.941176
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "postmortem",
+            "hook_style": "contrarian_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "causal_diagnosis",
+            "argument_flow_motif": "failed_drill_description->unexpected_issues->root_causes->revised_dr_strategy",
+            "headings": [
+              "Introduction: The Illusion of a 'Green' DR Report",
+              "Simulated Outage Scenario: Regional Zone Failure in AWS EKS",
+              "Unforeseen Failures: Database Connection Starvation & Service Mesh Deadlocks",
+              "Diagnosing Root Causes: Unaccounted Cross-Region Dependencies & Misconfigured HPA",
+              "Actionable Learnings: Implementing Active-Active Architectures & Enhanced Readiness Checks",
+              "Operational Checklist: DR Remediation & Verification Tasks",
+              "Evidence & References: Drill Logs, Runbooks, Post-Incident Review Documents"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.289137,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.304348,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "postmortem",
+            "hook_style": "contrarian_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "impact_analysis->drill_recap->systemic_issues->strategic_recalibration",
+            "headings": [
+              "Introduction: When DR Drills Lie: The Hidden Toll of 'Success'",
+              "The True Blast Radius: Uncontained Data Corruption & API Throttling",
+              "Recapping the Drill: Our Attempted Failover of the Payment Processing Service",
+              "Exposing Systemic Flaws: Stale Cache Invalidation Logic & Undocumented Manual Steps",
+              "Engineering for True Resilience: Re-architecting for Idempotency & Automated Validation",
+              "Operational Checklist: DR Program Audit & Improvement Plan",
+              "Evidence & References: Incident Reports, System Architecture Diagrams, Vendor SLAs"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.323814,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-20-understanding-kubernetes-networking-deep-dive.md",
+              "heading_signature_similarity": 0.286517,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "postmortem",
+            "hook_style": "contrarian_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "critique_and_reform",
+            "argument_flow_motif": "reframe_drill_purpose->vulnerability_exposure->process_gaps->dr_program_evolution",
+            "headings": [
+              "Introduction: Beyond Compliance: Why Your DR Drill Needs to Fail",
+              "Critical Vulnerabilities Exposed: Single Points of Failure in CI/CD Pipeline & Key Management",
+              "The Gaps in Our Drill Process: Outdated Runbooks & Inadequate Monitoring Coverage",
+              "Evolving Our DR Program: Integrating Chaos Engineering & Automated Recovery Playbooks",
+              "Redefining 'Success': Metrics for a Truly Resilient DR Strategy",
+              "Operational Checklist: Enhancing DR Drill Methodology",
+              "Evidence & References: Risk Assessments, Tooling POCs, Post-Drill Surveys"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.36085,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.29434,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "API Deprecation and Versioning Strategies",
+        "angle": "Sunset Safely: A Playbook for Gracefully Deprecating and Versioning Your Production APIs",
+        "persona": "Backend Lead, Staff Engineer, Product Manager (Technical)",
+        "awareness_level": "decision-ready",
+        "format_family": "playbook",
+        "hook_style": "contrarian_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Addresses the operational and communication challenges of API lifecycle management, distinct from API performance or design.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "contrarian_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "myth_busting",
+            "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+            "headings": [
+              "Challenging the \"Just Remove It\" Fallacy: Why API Deprecation Isn't Simple",
+              "The Peril of Unmanaged API End-of-Life: Operational Blowback",
+              "Phase 1: Strategic Planning for API Sunsetting (Pre-deprecation)",
+              "Phase 2: Implementing Graceful Degradation and Migration Paths (Active Deprecation)",
+              "Phase 3: Final Decommissioning and Post-Mortem Analysis",
+              "Versioning Best Practices: Semantic vs. Calendar-Based Strategies",
+              "Leveraging API Gateways and SDKs for Smoother Transitions",
+              "Operational Checklist: API Deprecation & Versioning Workflow",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.330615,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.332149,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "diagnostic_report",
+            "hook_style": "storytelling_hook",
+            "cta_style": "strategic_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "problem_identification->root_cause_analysis->solution_comparison->recommended_approach",
+            "headings": [
+              "The Hidden Costs of Neglecting API Lifecycle Management: A Post-Mortem",
+              "Diagnosing the Friction: Common Pitfalls in API Deprecation",
+              "Comparing Versioning Paradigms: URI, Header, and Content Negotiation",
+              "Implementing a Phased Rollout for API Version Updates",
+              "Strategies for Communicating API Changes to Developers and Consumers",
+              "Tools and Technologies for Managing API Lifecycle: Proxies, Registries, and Documentation Platforms",
+              "Operational Checklist: API Versioning and Deprecation Health Check",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.357731,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.331429,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "guide",
+            "hook_style": "future_gazing_hook",
+            "cta_style": "vision_cta",
+            "rhetorical_family": "best_practices",
+            "argument_flow_motif": "vision->principles->patterns->future_considerations",
+            "headings": [
+              "Beyond `v1`, `v2`: Architecting for Continuous API Evolution",
+              "Core Principles of Sustainable API Versioning and Deprecation",
+              "Designing Backward-Compatible API Changes: The Art of Non-Breaking Evolution",
+              "Implementing Concurrent API Versions with Router-Based Traffic Shifting",
+              "Automating Deprecation Notifications and Usage Monitoring",
+              "Measuring the Impact: Metrics for Successful API Transitions",
+              "Operational Checklist: Proactive API Lifecycle Management",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.293055,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.303719,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "API Deprecation and Versioning Strategies",
+        "angle": "Sunset Safely: A Playbook for Gracefully Deprecating and Versioning Your Production APIs | reframed opening-1",
+        "persona": "Backend Lead, Staff Engineer, Product Manager (Technical)",
+        "awareness_level": "decision-ready",
+        "format_family": "playbook",
+        "hook_style": "incident_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Addresses the operational and communication challenges of API lifecycle management, distinct from API performance or design.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "incident_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem-solution",
+            "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+            "headings": [
+              "The Silent Killer: When Unmanaged API Evolution Breaks Integrations",
+              "Debunking the 'Always Backward Compatible' Myth: The Reality of API Lifecycle",
+              "Phase 1: Strategic Planning for API Deprecation & Sunset Policies",
+              "Phase 2: Implementing a Robust Versioning Scheme (URI, Header, or Media Type)",
+              "Phase 3: Communication & Developer Relations for API Transitions",
+              "Phase 4: Technical Execution: Deprecation Headers and Endpoint Redirection",
+              "Best Practices for Maintaining Multiple API Versions",
+              "Essential Tooling for API Gateway Management and Usage Analytics",
+              "Operational Checklist: API Sunset Workflow",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.287421,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.304762,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "framework_guide",
+            "hook_style": "challenge_hook",
+            "cta_style": "framework_download",
+            "rhetorical_family": "analytical",
+            "argument_flow_motif": "problem-solution->framework->decision_matrix->case_study",
+            "headings": [
+              "Navigating the API Evolution Maze: The Costs of Poor Versioning",
+              "The API Lifecycle Management Framework: Plan, Communicate, Implement, Monitor",
+              "Choosing Your API Versioning Strategy: A Decision Matrix for REST vs. GraphQL",
+              "Defining a Clear Deprecation Policy: N-2 Version Support and Grace Periods",
+              "Implementing API Gateway Routing for Version Coexistence (e.g., AWS API Gateway, Kong)",
+              "Case Study: Seamless Migration from v1 to v2 for a Core Service",
+              "Automating Client Migration Support with SDKs and Migration Guides",
+              "Operational Checklist: API Versioning Best Practices",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.345724,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.310116,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "how_to_guide",
+            "hook_style": "pain_point_hook",
+            "cta_style": "code_examples",
+            "rhetorical_family": "instructive",
+            "argument_flow_motif": "problem->solution_techniques->implementation_details->monitoring",
+            "headings": [
+              "Preventing Client Outages: Mastering Tactical API Deprecation",
+              "Distinguishing Breaking vs. Non-Breaking Changes in API Contracts",
+              "Implementing Semantic Versioning for API Endpoints and Payloads",
+              "Graceful Deprecation with `Sunset` Headers and HTTP Status Codes",
+              "Redirecting Deprecated Endpoints: Nginx Configuration & Proxy Patterns",
+              "Monitoring API Usage on Older Versions for Migration Progress",
+              "Rolling Back a Versioned API Change: Emergency Procedures",
+              "Operational Checklist: Technical Deprecation Steps",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.284878,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.313433,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "API Deprecation and Versioning Strategies",
+        "angle": "contrarian reframing of API Deprecation and Versioning Strategies",
+        "persona": "Backend Lead, Staff Engineer, Product Manager (Technical)",
+        "awareness_level": "decision-ready",
+        "format_family": "playbook",
+        "hook_style": "incident_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Addresses the operational and communication challenges of API lifecycle management, distinct from API performance or design.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "playbook",
+            "hook_style": "incident_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "myth->process_stages->best_practices->tooling",
+            "headings": [
+              "The 2 AM Pager Alert: When a \"Minor\" API Change Broke Production",
+              "The Illusion of \"Easy\" API Deprecation",
+              "Myth Busting: Why \"Just Add a New Endpoint\" Fails Systematically",
+              "The API Lifecycle: From Conception to Sunset",
+              "Designing for Future Deprecation: Versioning from Day One",
+              "Communicating Changes: The Developer Relations Playbook",
+              "Implementing Phased Rollouts & Sunsets for API Versions",
+              "Best Practices for Graceful API Evolution",
+              "Backward Compatibility vs. Breaking Changes: A Pragmatic Approach",
+              "Monitoring Deprecated Endpoints for Usage Drop-off",
+              "Tooling the Deprecation Process: Automation & Visibility",
+              "Operational Checklist: API Deprecation & Versioning Readiness",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.337843,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.301273,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "framework_guide",
+            "hook_style": "challenge_hook",
+            "cta_style": "assessment_cta",
+            "rhetorical_family": "analytical_explanatory",
+            "argument_flow_motif": "problem->framework->case_study->advanced_considerations",
+            "headings": [
+              "The Hidden Costs of API Debt: Beyond Technical Implementation",
+              "Re-evaluating API Lifecycle Management as a Strategic Asset",
+              "The \"API Evolution Debt\" Problem: Technical & Organizational Friction",
+              "Introducing the \"API Contract & Sunset Framework\"",
+              "Defining API Stability Levels (e.g., Stable, Deprecated, End-of-Life)",
+              "Strategic Versioning Paradigms: Semantic, Calendar, URI-Based",
+              "Impact Assessment & Stakeholder Communication Matrix",
+              "Case Study: Migrating payment-service-v1 to payment-service-v2 with Minimal Disruption",
+              "Phase 1: Planning the v2 Release and Deprecation Schedule",
+              "Phase 2: Gradual Rollout and Observability of v1 Usage",
+              "Phase 3: Final Sunset and Client Migration Support",
+              "Advanced Considerations: Polyglot Clients & SDK Management",
+              "Operational Checklist: API Deprecation & Versioning Readiness",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.366162,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.280142,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "strategic_manifesto",
+            "hook_style": "contrarian_hook",
+            "cta_style": "decision_tree_cta",
+            "rhetorical_family": "argumentative_prescriptive",
+            "argument_flow_motif": "common_misconception->reframe->principles->decision_matrix",
+            "headings": [
+              "\"Versioning is a Crutch\": Challenging the Default API Versioning Paradigm",
+              "Why We Need to Rethink API Deprecation as an Opportunity",
+              "The Myth of \"Forever Stable\" APIs: Embracing Controlled Instability",
+              "Core Principles for Sustainable API Evolution",
+              "Principle 1: Intentional Breaking Changes as Design Refinements",
+              "Principle 2: Client Adaptability Over Server Stagnation",
+              "Principle 3: Automated Migration Paths and Tooling",
+              "A Decision Matrix for API Change Management",
+              "When to Version: Major API Overhauls vs. Incremental Changes",
+              "When to Deprecate: Feature Sunsetting & Architectural Shifts",
+              "When to Refactor In-Place: Minor Enhancements and Bug Fixes",
+              "Building an API Change Culture: Empowering Teams, Not Hindering Them",
+              "Operational Checklist: API Deprecation & Versioning Readiness",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.344157,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.291463,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Security Benefits of Immutable Infrastructure",
+        "angle": "Beyond Speed: How Immutable Infrastructure Becomes Your Strongest Security Guardrail",
+        "persona": "Security Engineer, DevOps Lead, Cloud Architect",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "metric_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "problem_drift->mutable_vs_immutable->security_mechanisms->practical_adoption",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Examines the security advantages of an infrastructure pattern, offering a unique security angle beyond traditional K8s hardening or secret management.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "problem_drift->mutable_vs_immutable->security_mechanisms->practical_adoption",
+            "headings": [
+              "Security Benefits Signal Snapshot",
+              "Security Benefits Investigation Timeline",
+              "Security Benefits Root Cause Mechanism",
+              "Security Benefits Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.778,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.722"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.721739,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "question_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Security Benefits Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Security Benefits Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.5,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.870"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.70014,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.87,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "story_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Security Benefits Context and Failure Trigger",
+              "Security Benefits Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.403,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.836"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.746602,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.835897,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Security Benefits of Immutable Infrastructure",
+        "angle": "Beyond Speed: How Immutable Infrastructure Becomes Your Strongest Security Guardrail | alternate structure-1",
+        "persona": "Security Engineer, DevOps Lead, Cloud Architect",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "metric_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "problem_drift->mutable_vs_immutable->security_mechanisms->practical_adoption",
+        "reasoning_path": "mechanistic",
+        "risk_flags": [],
+        "why_new": "Examines the security advantages of an infrastructure pattern, offering a unique security angle beyond traditional K8s hardening or secret management.",
+        "novelty_similarity": 0.076923,
+        "novelty_score": 0.923077
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "mechanistic",
+            "argument_flow_motif": "problem_drift->mutable_vs_immutable->security_mechanisms->practical_adoption",
+            "headings": [
+              "The Hidden Costs of Configuration Drift: Why Your Mutable Infrastructure is a Security Liability",
+              "Unpacking the Attack Surface Expansion in Mutable Environments",
+              "Mutable vs. Immutable Infrastructure: A Security Posture Showdown",
+              "Eliminating Configuration Drift: Enforcing Security Baselines",
+              "Strengthening Incident Response: Immutable Forensics and Rollbacks",
+              "Reducing Attack Vectors: Minimal Images and Predictable States",
+              "Strategies for Adopting Immutable Security Practices",
+              "Operational Checklist for Immutable Infrastructure Security",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.295452,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.336268,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "comparative_analysis",
+            "hook_style": "problem_hook",
+            "cta_style": "benefit_cta",
+            "rhetorical_family": "risk_mitigation",
+            "argument_flow_motif": "current_vulnerabilities->immutable_principles->threat_mapping->operational_shift",
+            "headings": [
+              "Beyond Reactive Patches: Proactively Shrinking Your Attack Surface with Immutability",
+              "The Perils of Runtime Changes: Exploitable Gaps in Dynamic Systems",
+              "Core Tenets of Immutable Infrastructure for Robust Security",
+              "Mitigating Supply Chain Attacks with Verifiable Base Images",
+              "Defending Against Runtime Tampering: The Read-Only Filesystem Advantage",
+              "Accelerating Incident Recovery: Instant Rollbacks to Known-Good States",
+              "Navigating the Operational Shift: Security Considerations for Immutable Adoption",
+              "Operational Checklist for Immutable Infrastructure Security",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.85,
+            "reasons": [
+              "hook_style_overused:problem_hook:3"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.311565,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.306914,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 3,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "architectural_guide",
+            "hook_style": "metaphorical_hook",
+            "cta_style": "strategic_cta",
+            "rhetorical_family": "prescriptive",
+            "argument_flow_motif": "metaphor_introduction->core_security_pillars->architectural_patterns->operational_adoption_considerations",
+            "headings": [
+              "Building Digital Fortresses: How Immutable Infrastructure Becomes Your Ultimate Security Guardrail",
+              "Immutable Infrastructure: The Unbreakable Security Paradigm",
+              "Ensuring System Integrity: The Cornerstone of Immutable Security",
+              "Streamlining Compliance and Audits with Predictable Environments",
+              "Automated Remediation: Self-Healing Infrastructure for Security Incidents",
+              "Hardening the Supply Chain: From Image Build to Deployment",
+              "Implementing Immutable Security: Golden Images, Containers, and IaC",
+              "Operational Checklist for Immutable Infrastructure Security",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.258884,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.310051,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
