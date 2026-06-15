@@ -1,0 +1,69 @@
+{
+  "structural": {
+    "name": "structural",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 1.0,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "factual": {
+    "name": "factual",
+    "passed": false,
+    "score": 0.15,
+    "threshold": 0.85,
+    "critical_errors": [
+      "critical_inaccuracies_present",
+      "too_many_uncertain_claims",
+      "factual_score_below_threshold"
+    ],
+    "warnings": [
+      "missing_context:{'description': 'The content of `reroute-s3-traffic.json` is critical for the `aws route53 change-resource-record-sets` command to be actionable and verifiable. Without an example or description of this JSON file, the command is incomplete and cannot be executed.', 'location': 'S3-LATENCY-SPIKE-RUNBOOK-V1.0 -> 5. Operational Mitigation -> Traffic Rerouting (if multi-region) -> Command (example for DNS)', 'remediation': 'Provide an example `reroute-s3-traffic.json` file, or explicitly state that this file needs to be pre-configured and maintained, detailing its expected structure and content for a typical S3 traffic reroute.'}",
+      "missing_context:{'description': \"The instructions for 'Rate Limiting' and 'Temporary Caching' are high-level and lack specific technical guidance. It's implicitly assumed the reader knows how to 'Implement client-side rate limiting' or 'Increase TTLs on application-level S3 caches'. Without concrete commands, configuration examples, or references to specific tools/libraries, these steps are not actionable for a technical runbook.\", 'location': 'S3-LATENCY-SPIKE-RUNBOOK-V1.0 -> 5. Operational Mitigation -> Rate Limiting; Temporary Caching', 'remediation': \"For 'Rate Limiting', suggest specific client-side mechanisms (e.g., AWS SDK retry/backoff configuration, application-level circuit breakers like Hystrix/Resilience4j). For 'Temporary Caching', provide examples of how to modify cache TTLs in common application frameworks (e.g., Spring Cache, Redis configuration, or specific CDN settings).\"}",
+      "missing_context:{'description': \"The initial bottleneck description at 03:15 UTC implies that checking application logs for internal errors was a 'waste of time'. While the runbook later prioritizes S3-specific diagnostics, the initial statement lacks nuance. Checking application logs is a valid first step to rule out application-side issues, but it should ideally be time-boxed or run in parallel with dependency checks.\", 'location': 'Dissecting the Chaos: The Incident Timeline & Diagnostic Bottlenecks -> 03:15 UTC -> Bottleneck', 'remediation': \"Add a caveat explaining that while application logs are important, for dependency-related alerts, parallel or prioritized dependency-specific checks are crucial to avoid delays. The runbook's structure correctly addresses this by placing S3-specific checks earlier.\"}"
+    ]
+  },
+  "seo": {
+    "name": "seo",
+    "passed": true,
+    "score": 0.95,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "link": {
+    "name": "link",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 0.9,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "authority": {
+    "name": "authority",
+    "passed": true,
+    "score": 0.85,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "novelty": {
+    "name": "novelty",
+    "passed": true,
+    "score": 0.836,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "red_team": {
+    "name": "red_team",
+    "passed": false,
+    "score": 0.12,
+    "threshold": 0.85,
+    "critical_errors": [
+      "hidden_similarity_score_high",
+      "reused_patterns_detected"
+    ],
+    "warnings": []
+  }
+}

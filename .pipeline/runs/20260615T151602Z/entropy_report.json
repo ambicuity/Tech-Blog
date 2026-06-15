@@ -1,0 +1,35 @@
+{
+  "entropy": {
+    "metrics": {
+      "H_structure": 0.212243,
+      "H_topic": 0.949245,
+      "H_angle": 0.337567,
+      "H_rhetoric": 0.647015,
+      "H_rhythm": 0.556749,
+      "H_vocab": 0.930812,
+      "H_argflow": 0.337567
+    },
+    "zscores": {
+      "H_structure": -0.474339,
+      "H_topic": 1.305157,
+      "H_angle": -0.316228,
+      "H_rhetoric": -0.609806,
+      "H_rhythm": 0.0,
+      "H_vocab": 0.275404,
+      "H_argflow": -0.316228
+    },
+    "alerts": [
+      "dominance_alert"
+    ]
+  },
+  "mutation": {
+    "mutated": false
+  },
+  "promotion": {
+    "promoted": false
+  },
+  "cooldowns": {
+    "cooled": []
+  },
+  "exploration_mode": true
+}
