@@ -1,0 +1,32 @@
+{
+  "hidden_similarity_score": 0.88,
+  "reused_patterns": [
+    "argument_flow_motif: symptom->analysis->mitigation",
+    "structure_family: deep_dive (incident report/post-mortem variant)",
+    "hook_style: problem_hook / incident_hook (narrative of a system failure)",
+    "rhetorical_template: Incident Timeline Progression (subtle start, escalation, breakthrough, recovery)",
+    "reasoning_path: Tracing a single component failure (e.g., cache eviction) through cascading effects (e.g., connection exhaustion, thread pool starvation) to a systemic root cause (e.g., lack of resilience patterns)",
+    "solution_family: Standard Resilience Patterns (Circuit Breakers, Graceful Degradation, Cache Warming, Connection Pool Tuning)",
+    "cta_style: Operational Checklist / Actionable Steps"
+  ],
+  "proof_snippets": [
+    "\"The Day Our Redis Cache Brought Down Everything: A Systemic Meltdown\" (Title, hook style)",
+    "\"A deep dive into how a seemingly minor Redis cache eviction event cascaded into a full system outage, detailing the propagation mechanisms, root cause, and essential mitigation strategies.\" (Description, motif & structure)",
+    "\"Incident Timeline: Tracing the Outage from First Alert to Recovery\" (Section title, symptom/narrative start)",
+    "\"The incident began subtly. At 09:15 UTC, our primary monitoring dashboard flagged a slight uptick in p99 latency... By 09:30 UTC, alerts escalated... A breakthrough came around 10:30 UTC...\" (Rhetorical template for incident progression)",
+    "\"The Redis Cache Eviction Event: `maxmemory-policy` in Action\" (Analysis of specific mechanism)",
+    "\"Propagation Mechanics: Database Connection Exhaustion & Thread Pool Starvation\" (Analysis of cascading effects)",
+    "\"Root Cause: Inadequate Cache Warm-up and the Thundering Herd Effect\" (Identification of systemic vulnerability)",
+    "\"To prevent recurrence, we've implemented several key strategies: 1. Circuit Breakers... 2. Graceful Degradation & Fallbacks... 3. Proactive Cache Management...\" (Mitigation strategies)",
+    "\"Operational Checklist\" (CTA style)"
+  ],
+  "why_similar": [
+    "The draft adheres almost perfectly to the `symptom->analysis->mitigation` argument flow motif, which is overwhelmingly dominant in the nearest history (e.g., 13 out of 15 nearest posts). This indicates a highly predictable narrative structure for problem-solving posts.",
+    "The structural family is a 'deep dive' or 'incident report,' a direct match for many historical posts, particularly those with 'incident_hook' or 'problem_hook' styles. The specific progression from 'Incident Timeline' to 'Root Cause' to 'Mitigation Strategies' is a well-worn path.",
+    "The rhetorical cadence for describing an incident, starting subtly and escalating, then identifying a breakthrough, is a recurring template. Phrases like 'The incident began subtly...', 'alerts escalated...', 'A breakthrough came...' are characteristic of this pattern.",
+    "The core reasoning path—identifying a specific technical trigger (cache eviction), explaining its propagation through common system components (database connection pools, application thread pools), and attributing it to a lack of standard resilience patterns (circuit breakers, cache warming)—is a highly reused problem-solving framework for reliability incidents.",
+    "The proposed mitigation strategies (circuit breakers, graceful degradation, proactive cache management, database connection tuning) are a standard playbook for addressing cascading failures, demonstrating a lack of novel solution exploration within this problem domain.",
+    "The problem domain itself (performance, reliability, caching, Kubernetes) is a frequent topic, and the specific failure modes (cascading failures, thundering herd) are common themes, suggesting a repetition of *what* problems are discussed, not just *how* they are discussed."
+  ],
+  "recommended_mutation_target": "angle"
+}

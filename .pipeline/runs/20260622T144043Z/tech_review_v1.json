@@ -1,0 +1,12 @@
+{
+  "factual_score": 0.9,
+  "critical_inaccuracies": [],
+  "uncertain_claims": [],
+  "missing_context": [],
+  "verified_claims": [
+    "[CLAIM:Failure mode under production load]",
+    "[CLAIM:Root-cause mechanism]",
+    "[CLAIM:Root-cause mechanism]",
+    "[CLAIM:Operational mitigation]"
+  ]
+}

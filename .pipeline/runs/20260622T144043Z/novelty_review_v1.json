@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.825,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.201008,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+    "intro_embedding_cosine": 0.307845,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-16-refactoring-ai-generated-python-services-for-production-reliability-on-kubernetes.md",
+    "body_embedding_cosine": 0.77498,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-01-26-boosting-web-app-performance-with-redis-caching-on-aws-elasticache.md",
+    "body_trigram_overlap": 0.021891,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "cta_style": "action_cta",
+    "hook_style": "incident_hook",
+    "argument_flow_motif": "symptom->checklist->root_cause->mitigation->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}
