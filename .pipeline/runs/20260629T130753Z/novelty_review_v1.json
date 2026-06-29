@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.804,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.177704,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-12-05-idempotent-operations-in-distributed-systems-a-practical-guide.md",
+    "intro_embedding_cosine": 0.303606,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-21-boosting-api-performance-with-grpc-web-a-practical-guide.md",
+    "body_embedding_cosine": 0.795557,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-24-troubleshooting-crashloopbackoff-errors.md",
+    "body_trigram_overlap": 0.064846,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "cta_style": "action_cta",
+    "hook_style": "question_hook",
+    "argument_flow_motif": "telemetry->telemetry->checklist->root_cause->telemetry",
+    "argument_flow_reuse": 0
+  }
+}

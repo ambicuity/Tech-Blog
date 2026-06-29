@@ -1,0 +1,538 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Unpacking hidden egress costs in multi-region or cross-cloud architectures",
+        "angle": "The quiet killer of cloud budgets: why you're paying too much for data transfer and how to fix it.",
+        "persona": "Cloud Architect|FinOps Engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Addresses *egress costs* as a specific and often overlooked cloud financial issue, going beyond general cloud cost optimization.",
+        "novelty_similarity": 0.038462,
+        "novelty_score": 0.961538
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "problem->mechanism->solution->measurement",
+            "headings": [
+              "The Quiet Killer: Why Your Cloud Egress Costs Are Skyrocketing",
+              "Decoding Inter-Region and Cross-Cloud Data Transfer Pricing Models",
+              "Identifying Egress Hotspots: Data Replication, Log Aggregation, and Cross-Service Calls",
+              "Architectural Strategies for Minimizing Data Movement: VPC Peering, Private Link, and Edge Caching",
+              "Implementing Data Compression and Smart Routing for Reduced Transfer Volumes",
+              "Monitoring and Alerting: Gaining Visibility into Egress Spending",
+              "Operational Checklist: Proactive Egress Cost Optimization",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.274501,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.309783,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "counterfactual",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "\"Our Multi-Cloud Setup Is Cost-Efficient!\" The Egress Illusion",
+              "The Counterfactual: Data Transfer *Isn't* Free Between Your Cloud Regions or Providers",
+              "Unmasking the True Cost of Data Gravity: Storage vs. Movement in Distributed Systems",
+              "Common Egress Cost Traps in Microservices and Serverless Architectures",
+              "Strategic Re-architecting: Leveraging Direct Connect, Interconnect, and Hybrid Cloud Egress Controls",
+              "Calculating Your Egress ROI: When to Optimize, When to Accept the Cost",
+              "Evidence & References",
+              "Operational Checklist: Egress Cost Governance"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.321246,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "heading_signature_similarity": 0.275492,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "guide",
+            "hook_style": "provocative_hook",
+            "cta_style": "adoption_cta",
+            "rhetorical_family": "strategic_guidance",
+            "argument_flow_motif": "challenge->framework->patterns->recommendations",
+            "headings": [
+              "Is Your Multi-Cloud Strategy a Budget Time Bomb? Unpacking Hidden Egress",
+              "The Architectural Imperative: Designing for Egress-Aware Distributed Systems",
+              "Deep Dive: The Impact of Cross-Cloud Database Replication on Your FinOps Budget",
+              "Advanced Egress Mitigation: Content Delivery Networks, Edge Compute, and Service Mesh Patterns",
+              "Building Egress Cost Transparency and Attribution into Your FinOps Workflows",
+              "Future-Proofing Your Architecture Against Evolving Cloud Egress Policies",
+              "Evidence & References",
+              "Operational Checklist: Strategic Egress Cost Management"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.285665,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.279152,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Unpacking hidden egress costs in multi-region or cross-cloud architectures",
+        "angle": "The quiet killer of cloud budgets: why you're paying too much for data transfer and how to fix it. | reasoning-shift-temporal",
+        "persona": "Cloud Architect|FinOps Engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Addresses *egress costs* as a specific and often overlooked cloud financial issue, going beyond general cloud cost optimization.",
+        "novelty_similarity": 0.038462,
+        "novelty_score": 0.961538
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "",
+            "headings": [
+              "Unpacking Hidden Signal Snapshot",
+              "Unpacking Hidden Investigation Timeline",
+              "Unpacking Hidden Root Cause Mechanism",
+              "Unpacking Hidden Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.728,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.722"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.721739,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "teardown",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Unpacking Hidden Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Unpacking Hidden Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.506,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.859"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.858586,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Unpacking Hidden Context and Failure Trigger",
+              "Unpacking Hidden Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.431,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.836"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.835897,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Unpacking hidden egress costs in multi-region or cross-cloud architectures",
+        "angle": "The quiet killer of cloud budgets: why you're paying too much for data transfer and how to fix it. | reasoning-shift-temporal | alternate structure-2",
+        "persona": "Cloud Architect|FinOps Engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "teardown",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "",
+        "reasoning_path": "temporal",
+        "risk_flags": [],
+        "why_new": "Addresses *egress costs* as a specific and often overlooked cloud financial issue, going beyond general cloud cost optimization.",
+        "novelty_similarity": 0.038462,
+        "novelty_score": 0.961538
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "teardown",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "teardown",
+            "argument_flow_motif": "",
+            "headings": [
+              "Unpacking Hidden Signal Snapshot",
+              "Unpacking Hidden Investigation Timeline",
+              "Unpacking Hidden Root Cause Mechanism",
+              "Unpacking Hidden Mitigation and Hardening",
+              "Operational Checklist",
+              "Evidence & References",
+              "Open Question"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.728,
+            "reasons": [
+              "heading_signature_too_similar:/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md:0.722"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.345262,
+              "nearest_outline_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "heading_signature_similarity": 0.721739,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "playbook",
+            "hook_style": "incident_hook",
+            "cta_style": "reflective_question",
+            "rhetorical_family": "analysis",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Unpacking Hidden Problem Surface",
+              "System Constraints",
+              "Competing Explanations",
+              "What the Metrics Actually Show",
+              "Unpacking Hidden Production Guidance",
+              "Operational Checklist",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.506,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md:0.859"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.694456,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "heading_signature_similarity": 0.858586,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "teardown",
+            "hook_style": "metric_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "deep_dive",
+            "argument_flow_motif": "surface->mechanism->failure_mode->redesign",
+            "headings": [
+              "Unpacking Hidden Context and Failure Trigger",
+              "Unpacking Hidden Design Teardown",
+              "Failure Modes Under Load",
+              "Safer Design Pattern",
+              "Operational Checklist",
+              "Evidence & References",
+              "Next Action"
+            ]
+          },
+          "check": {
+            "passed": false,
+            "score": 0.431,
+            "reasons": [
+              "heading_signature_too_similar:/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md:0.836"
+            ],
+            "metrics": {
+              "outline_embedding_cosine": 0.769231,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "heading_signature_similarity": 0.835897,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-01-19-mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Diagnosing performance regressions without full distributed tracing coverage",
+        "angle": "The critical gaps left by partial or improperly instrumented distributed tracing: what your dashboards aren't telling you.",
+        "persona": "SRE|Backend Engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "promise->blindspots->real_world_missed_insights->strategies->validation",
+        "reasoning_path": "inversion",
+        "risk_flags": [],
+        "why_new": "Explores the *limitations and failures of tracing implementations* (i.e., blind spots) rather than just 'how to use tracing'.",
+        "novelty_similarity": 0.041667,
+        "novelty_score": 0.958333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "promise->blindspots->real_world_missed_insights->strategies->validation",
+            "headings": [
+              "Is Your Distributed Tracing Lying to You About Performance Regressions?",
+              "The Promise and Peril of Partial Tracing Implementations",
+              "Unmasking the Blindspots: Gaps in Span Propagation and Service Mesh Integration",
+              "Case Study: The Elusive Database Deadlock Not Captured by Traces",
+              "Augmenting Diagnosis: High-Resolution Metrics and Log Aggregation for Latency Spikes",
+              "Leveraging Kernel Observability (eBPF) for Hidden OS-Level Bottlenecks",
+              "Operational Checklist: Holistic Regression Diagnosis Without Full Tracing",
+              "Validating Your Diagnosis: Synthetic Transactions and A/B Testing for Root Cause Confirmation",
+              "Evidence & References: Deep Dive Resources for Advanced Diagnosis"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.34901,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.270987,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "promise->blindspots->real_world_missed_insights->strategies->validation",
+            "headings": [
+              "What Critical Performance Regressions Are Hiding From Your Tracing Dashboards?",
+              "The Distributed Tracing Ideal: A Unified View of Request Flow (And Its Limitations)",
+              "The Silent Killers: Real-World Scenarios Where Tracing Fails to Deliver Insights",
+              "Architectural Gaps: Why Partial Tracing Creates Observability Holes",
+              "Building a Multi-Signal Diagnostic Path: Metrics, Logs, and Custom Probes for Deeper Visibility",
+              "Deep Dive: Using Process-Level Metrics (CPU, Memory, I/O) and Network Statistics for Bottleneck Identification",
+              "Evidence & References: Further Reading on Advanced Observability Techniques",
+              "Validating Hypotheses: Reproducing and Resolving the Regression with Non-Tracing Data",
+              "Operational Checklist: Post-Mortem Diagnostic Flow for Tracing-Deficient Incidents"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.334163,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.258023,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "promise->blindspots->real_world_missed_insights->strategies->validation",
+            "headings": [
+              "Beyond the Trace: How to Find Performance Bottlenecks When Spans Don't Tell the Full Story",
+              "The False Sense of Security: Why \"Partial\" Tracing Can Be Worse Than None",
+              "Categorizing Observability Gaps: Untraced Components, Missing Context, and Infrastructure Blindspots",
+              "Constructing a Hybrid Diagnostic Framework: Integrating Traces with System-Level Data",
+              "Practical Techniques: Correlating High-Cardinality Metrics with Application Logs for Regression Detection",
+              "Advanced Diagnostics: Utilizing OS-Level Tools (perf, strace) and Custom Application Probes",
+              "Operational Checklist: Diagnosing Without Complete Tracing Coverage",
+              "Real-World Impact: Identifying and Fixing Regressions Invisible to Traditional Tracing",
+              "Validating the Fix: Continuous Performance Monitoring and Alerting for Future Prevention",
+              "Evidence & References: Tools and Methodologies for Comprehensive Performance Analysis"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.387582,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.264214,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
