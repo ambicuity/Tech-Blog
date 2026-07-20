@@ -1,0 +1,526 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Database migration rollbacks that leave schema drift",
+        "angle": "tutorial framing of Database migration rollbacks that leave schema drift",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.066667,
+        "novelty_score": 0.933333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "forensic",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Your Database Rollback Isn't As Clean As You Think",
+              "The Silent Corruption: How Rollbacks Introduce Schema Drift",
+              "Ideal State vs. Reality: A Database Schema's Post-Rollback Expectations",
+              "Common Drift Vectors: DDL Changes, Index Drops, and Data Type Mismatches",
+              "Speed vs. Fidelity: The Trade-off of Rollback Approaches",
+              "Beyond `git revert`: Strategies for Database Schema Validation Post-Rollback",
+              "Operational Checklist: Ensuring Post-Rollback Schema Health",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.290637,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.305155,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "diagnostic",
+            "hook_style": "problem_solution_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "investigative",
+            "argument_flow_motif": "problem->symptoms->diagnosis->solution",
+            "headings": [
+              "When `ROLLBACK` Isn't Enough: Understanding Post-Migration Schema Drift",
+              "Deep Dive: Why Database Migration Tools Struggle with Rollback Fidelity",
+              "Case Studies: Dropped Constraints, Missing Indexes, and Type Mismatches",
+              "Detecting the Undetectable: Automated Schema Comparison for Drift",
+              "Engineering for Safety: Atomic Migrations and Idempotent Rollbacks",
+              "Operational Checklist: Post-Rollback Schema Validation Routine",
+              "Corrective Actions: Manual Intervention and Schema Reconciliation Tools",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.297757,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.290944,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "best_practices",
+            "hook_style": "cautionary_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "instructional",
+            "argument_flow_motif": "problem->prevention->best_practices->tooling",
+            "headings": [
+              "Beyond Undo: Architecting for Safe Database Migration Rollbacks",
+              "The Idempotency Imperative: Why Database Reversion is Hard",
+              "Immutable Schemas: Versioning Your Database as Code",
+              "Guard Rails: Integrating Schema Drift Detection into CI/CD",
+              "Advanced Tooling: Flyway, Liquibase, and Custom Rollback Scripts",
+              "Database Evolution: Designing for Forward and Backward Compatibility",
+              "Operational Checklist: Proactive Rollback Readiness",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.301822,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.292308,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Database migration rollbacks that leave schema drift",
+        "angle": "tutorial framing of Database migration rollbacks that leave schema drift | reframed opening-1",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.066667,
+        "novelty_score": 0.933333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem/solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The 3 AM Pager: When \"Rollback\" Meant \"New Problem\"",
+              "The Silent Killer: How Rollbacks Introduce Schema Drift",
+              "Beyond `DROP TABLE`: The Mechanics of Drifted Schemas",
+              "\"What If We Had...\" Envisioning a Resilient Rollback Strategy",
+              "Blueprint for Integrity: Designing Idempotent Migrations and Safe Rollbacks",
+              "Operational Checklist: Preventing Schema Drift Post-Rollback",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.307994,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.312183,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "tutorial",
+            "hook_style": "problem_statement_hook",
+            "cta_style": "tool_adoption_cta",
+            "rhetorical_family": "how-to",
+            "argument_flow_motif": "problem->diagnosis->solution->best practices",
+            "headings": [
+              "The Hidden Cost of \"Quick Fixes\": Schema Drift from Rollbacks",
+              "Unpacking the Drift: DDL Inconsistencies and Data Integrity Risks",
+              "Transactional Guarantees vs. Real-World Rollbacks: Why It Fails",
+              "Crafting Resilient Migrations: Strategies for Idempotency and Atomic Operations",
+              "Implementing a Safe Rollback Protocol: Tools and Techniques",
+              "Operational Checklist: Validating Schema Post-Rollback",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.35195,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.311213,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "risk_assessment",
+            "hook_style": "myth_busting_hook",
+            "cta_style": "audit_cta",
+            "rhetorical_family": "risk management",
+            "argument_flow_motif": "risk identification->impact analysis->mitigation strategies",
+            "headings": [
+              "The Rollback Illusion: Why Your \"Safety Net\" Might Be a Tripwire",
+              "Identifying Schema Drift Vectors: The Many Faces of Inconsistency",
+              "Impact Analysis: From Data Corruption to Application Downtime",
+              "Designing for Reversibility: Schema Versioning and Migration Tooling",
+              "Post-Rollback Validation: Automated Drift Detection and Remediation",
+              "Operational Checklist: Proactive Drift Prevention & Response",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.372461,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.322654,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Database migration rollbacks that leave schema drift",
+        "angle": "contrarian reframing of Database migration rollbacks that leave schema drift",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "incident_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.066667,
+        "novelty_score": 0.933333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "incident_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "argumentative",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The `customer_profiles` Rollback Nightmare: A Case Study in Hidden Schema Drift",
+              "The Illusion of Reversibility: Why `ALTER TABLE ... DROP COLUMN` isn't Truly Undone",
+              "What *Should* Have Happened: Idempotent DDL and Transactional Guarantees",
+              "Forensic Analysis: Unmasking Post-Rollback Data Anomalies and Index Corruption",
+              "The Cost of Safety: Balancing Rapid Rollback vs. Guaranteed Schema Integrity",
+              "Designing for Drift: Proactive Schema Validation and Dual-State Migrations",
+              "Operational Checklist: Validating Schema Consistency Post-Rollback",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.357175,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.319298,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "diagnostic",
+            "hook_style": "problem_solution_hook",
+            "cta_style": "tooling_cta",
+            "rhetorical_family": "explanatory",
+            "argument_flow_motif": "problem->causes->symptoms->solutions->best_practices",
+            "headings": [
+              "When `git revert` Isn't Enough: Decoding Schema Drift After a Database Rollback",
+              "The Architecture of Failure: Transactional Gaps and DDL Idempotency Issues",
+              "Silent Killers: Identifying Subtle Application Errors from Inconsistent Schemas",
+              "Atomic DDL & Versioned Schemas: Engineering Robust Rollback Strategies",
+              "Best Practices for Migration Frameworks: Blue/Green Database Deployments",
+              "Evidence & References",
+              "Operational Checklist: Pre-Flight Checks for Database Migrations"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.347354,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.291405,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "strategic_guide",
+            "hook_style": "bold_claim_hook",
+            "cta_style": "discussion_cta",
+            "rhetorical_family": "persuasive",
+            "argument_flow_motif": "myth->reality->implications->strategy->future",
+            "headings": [
+              "Your Database Rollback Button is a Lie: Embracing Forward-Only Schema Evolution",
+              "The Unseen State: How Schema Drift Persists Beyond a 'Successful' Rollback",
+              "Operationalizing Around Inevitability: The Hidden Costs of Schema Inconsistency",
+              "Strategic Shifts: Decoupling Data and Code for Resilient Schema Changes",
+              "Beyond Rollbacks: Designing for Zero-Downtime, Backward-Compatible Migrations",
+              "Operational Checklist: Mitigating Schema Drift Proactively",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.321836,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.303983,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "DNS propagation delays causing cascading API failures",
+        "angle": "contrarian framing of DNS propagation delays causing cascading API failures",
+        "persona": "senior platform engineer",
+        "awareness_level": "decision-ready",
+        "format_family": "analysis",
+        "hook_style": "question_hook",
+        "cta_style": "action_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.066667,
+        "novelty_score": 0.933333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "question_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "contrarian",
+            "argument_flow_motif": "claim_debunking->counterfactual_exploration->evidence_based_solution->tradeoff_analysis->actionable_decision",
+            "headings": [
+              "Are Your 'DNS Propagation' Outages Really DNS, Or Something Deeper?",
+              "The Myth of Unavoidable DNS Propagation Delays",
+              "Anatomy of a Cascading Failure: Beyond DNS TTLs",
+              "Service Discovery's Blind Spots: When Caching Becomes a Hazard",
+              "Implementing Client-Side DNS Resilience: Stale-While-Revalidate and Circuit Breakers",
+              "Proactive Health Checks: Detecting DNS Resolution Failures Early",
+              "Operational Checklist: Hardening Services Against DNS Instability",
+              "Evidence & References: Case Studies and Best Practices",
+              "Stop Blaming DNS: Actionable Steps to Architect for Resilient Service Discovery"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.297267,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.256757,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "narrative_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "incident_description->root_cause_analysis->architectural_patterns->mitigation_strategies",
+            "headings": [
+              "The Silent Killer: When a Simple DNS Update Brings Down Your Stack",
+              "Diagnosing the Symptom: Distributed API Failures Post-DNS Change",
+              "Beyond the TTL: Unpacking DNS Client Behavior and Resolver Caches",
+              "The Peril of Hardcoded Endpoints and Eager Service Discovery",
+              "Implementing Dynamic Service Discovery with Health-Aware DNS Clients",
+              "Designing for Degraded DNS States: Fallbacks and Circuit Breakers",
+              "Evidence & References: Industry Examples and Design Patterns",
+              "Operational Checklist: Validating DNS Resilience in Production",
+              "Re-architect Your Services: Don't Let DNS Propagation Dictate Your Uptime"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.305578,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.286656,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "bold_statement_hook",
+            "cta_style": "action_cta",
+            "rhetorical_family": "technical_deep_dive",
+            "argument_flow_motif": "challenge_current_approach->mechanism_breakdown->advanced_implementation->validation_through_testing->best_practices_consolidation",
+            "headings": [
+              "Your DNS Resilience Strategy: Is it Just Hope and a Prayer?",
+              "The Illusion of Immutability: Why DNS Records Aren't Always What They Seem",
+              "Deconstructing Client-Side DNS Resolution and Cache Invalidation",
+              "Implementing Adaptive DNS Client Libraries with Stale-While-Valid Semantics",
+              "Health-Checking Service Endpoints: Beyond DNS Resolution Success",
+              "Chaos Engineering for DNS: Simulating Propagation Delays and Resolver Failures",
+              "Operational Checklist: Hardening Your DNS Resolver Infrastructure",
+              "Evidence & References: Engineering Blogs and Open Source Libraries",
+              "Elevate Your Platform Reliability: Master Advanced DNS Resilience Patterns"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.286172,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.289269,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{"run_id": "20260720T114527Z", "step": "planner", "status": "passed", "confidence": 0.916667, "model": "", "error": ""}
+{"run_id": "20260720T114527Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260720T114527Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260720T114527Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260720T114527Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-3-flash-preview", "error": ""}
+{"run_id": "20260720T114527Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260720T114527Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-3-flash-preview", "error": ""}
+{"run_id": "20260720T114527Z", "step": "outliner", "status": "passed", "confidence": 0.82, "model": "gemini-2.5-flash", "error": ""}
+{"run_id": "20260720T114527Z", "step": "writer", "status": "passed", "confidence": 0.84, "model": "gemini-3-flash-preview", "error": ""}
+{"run_id": "20260720T114527Z", "step": "technical_reviewer", "status": "passed", "confidence": 0.9, "model": "", "error": ""}
+{"run_id": "20260720T114527Z", "step": "seo_reviewer", "status": "passed", "confidence": 0.95, "model": "", "error": ""}
+{"run_id": "20260720T114527Z", "step": "editor", "status": "passed", "confidence": 0.85, "model": "", "error": ""}
+{"run_id": "20260720T114527Z", "step": "novelty_reviewer", "status": "passed", "confidence": 0.815, "model": "", "error": ""}
+{"run_id": "20260720T114527Z", "step": "red_team_reviewer", "status": "failed", "confidence": 0.15, "model": "", "error": "hidden_similarity_or_reused_patterns"}
+{"run_id": "20260720T114527Z", "step": "publisher", "status": "failed", "confidence": 0.809, "model": "", "error": "gate_failure"}
