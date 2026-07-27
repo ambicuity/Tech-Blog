@@ -1,0 +1,13 @@
+{
+  "hidden_similarity_score": 0.760628,
+  "reused_patterns": [],
+  "proof_snippets": [
+    {
+      "post_path": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+      "similarity": 0.760628,
+      "argument_flow_motif": "symptom->telemetry->mitigation->checklist->telemetry"
+    }
+  ],
+  "why_similar": [],
+  "recommended_mutation_target": "angle"
+}

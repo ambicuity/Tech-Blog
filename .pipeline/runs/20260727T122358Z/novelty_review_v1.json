@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.839,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.199667,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-01-04-automating-database-migrations-with-flyway-and-docker-a-practical-guide.md",
+    "intro_embedding_cosine": 0.321341,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-03-23-rejecting-unsafe-ai-generated-kubernetes-manifests-with-opa-gatekeeper.md",
+    "body_embedding_cosine": 0.760628,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "body_trigram_overlap": 0.025922,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "cta_style": "action_cta",
+    "hook_style": "problem_hook",
+    "argument_flow_motif": "checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}

@@ -1,0 +1,911 @@
+{
+  "candidate_attempts": [
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "postmortem framing of Operational runbooks that reduce MTTR during incidents",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "counterfactual->claim->evidence->tradeoff->decision",
+            "headings": [
+              "The True Cost of Incident Archaeology: When Tribal Knowledge Fails",
+              "Beyond the Blame Game: Identifying Operational Gaps in Postmortems",
+              "From Reactive Chaos to Proactive Resolution: Architecting Effective Incident Runbooks",
+              "Dissecting MTTR Reduction: Quantifiable Impacts of Structured Playbooks",
+              "Maintaining Operational Readiness: Version Control and Validation Strategies for Runbooks",
+              "Operational Checklist: Evaluating Your Runbook's Efficacy",
+              "Evidence & References: Data-Driven Runbook Improvements",
+              "The Next Incident: Measuring Your Runbook ROI"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.353516,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.288288,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "process_driven",
+            "argument_flow_motif": "claim->evidence->tradeoff->counterfactual->decision",
+            "headings": [
+              "The Hidden Technical Debt: Unmanaged Incident Playbooks",
+              "Defining 'Operational Code': What Makes a Runbook Effective?",
+              "Implementing Runbook-as-Code: Versioning, Testing, and Deployment Pipelines",
+              "Quantifying the Impact: Benchmarking MTTR Before and After Runbook Standardization",
+              "The Cost of Inaction: How Outdated Runbooks Prolong Outages",
+              "Operational Checklist: Building Resilient Runbook Workflows",
+              "Evidence & References: Case Studies in Runbook Automation",
+              "Measure Your Incident Response Velocity: A Call to Action"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.321315,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.27619,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "comparative",
+            "argument_flow_motif": "decision->counterfactual->claim->evidence->tradeoff",
+            "headings": [
+              "The Postmortem Imperative: Why Every Incident Demands Better Operational Playbooks",
+              "Tracing Incident Escalation Paths: Where Missing Runbooks Amplify Impact",
+              "Engineering for Expedited Recovery: Core Principles of an MTTR-Reducing Runbook",
+              "Beyond the Steps: Integrating Diagnostics, Escalation, and Communication into Runbooks",
+              "The Iterative Runbook: Feedback Loops from Incident Review to Documentation Updates",
+              "Evidence & References: Validating Runbook Effectiveness with Post-Incident Data",
+              "Operational Checklist: Assessing Your Runbook's Readiness",
+              "Quantify Your Recovery Time: Start Measuring Runbook Impact Today"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.319557,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.286859,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "postmortem framing of Operational runbooks that reduce MTTR during incidents | alternate structure-1",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The 3 AM Pager: When Tribal Knowledge Fails",
+              "Incident X.Y.Z: A Postmortem of Unstructured Response",
+              "The MTTR Multiplier: How Ad-Hoc Steps Inflate Resolution Times",
+              "Architecting Clarity: Designing Incident-Specific Runbook Templates",
+              "Simulating Success: The Role of Runbook Drills in Reducing MTTR",
+              "Operational Checklist: Essential Elements for High-Impact Runbooks",
+              "The Runbook ROI: Balancing Investment in Documentation Against Downtime Costs",
+              "Evidence & References: Quantifying Runbook Effectiveness"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.292889,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.271654,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Beyond the Wiki: Why Your Current Runbooks Aren't Cutting It",
+              "Case Study: The `auth-service` Degradation & The Phantom Runbook",
+              "From Reactive Playbooks to Proactive Resilience: A Runbook Maturity Model",
+              "Embedding Diagnostics: Integrating Telemetry Context into Runbook Steps",
+              "Automated Remediation Triggers: Bridging Runbooks with Orchestration Tools",
+              "Operational Checklist: Maintaining Living Runbooks as Code",
+              "Evidence & References: Demonstrating MTTR Reduction Through Runbook Evolution",
+              "The Continuous Improvement Loop: Iterating on Runbooks Post-Incident"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.317823,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.263251,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "postmortem",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The Runbook Paradox: More Documentation, Longer MTTR?",
+              "Postmortem Analysis: When Generic Runbooks Extend the Blast Radius",
+              "Categorizing Incident Playbooks: Diagnostic vs. Remediation vs. Escalation",
+              "Crafting Diagnostic Runbooks: Leveraging Observability for Rapid Triage",
+              "Implementing Remediation Runbooks: Standardizing Recovery Procedures",
+              "Operational Checklist: Defining Runbook Scopes and Trigger Conditions",
+              "The Cost of Precision: Managing the Overhead of Granular Runbooks",
+              "Evidence & References: Correlating Runbook Type to MTTR Metrics",
+              "Strategic Deployment: Aligning Runbook Types with Service Criticality"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.232437,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.266881,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 0,
+      "candidate": {
+        "topic": "Operational runbooks that reduce MTTR during incidents",
+        "angle": "contrarian reframing of Operational runbooks that reduce MTTR during incidents",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0,
+        "novelty_score": 1.0
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The 3 AM Lie: Why Your Static Runbooks Inflate MTTR",
+              "The Illusion of Control: When 'Comprehensive' Becomes 'Obsolete'",
+              "Beyond Document Archives: Engineering for Dynamic Incident Response",
+              "Integrating Runbooks with Observability Pipelines: Contextualizing Alerts",
+              "Operational Checklist: Cultivating a Living Runbook Ecosystem",
+              "Measuring Runbook Efficacy: Quantifying MTTR Reduction & Team Confidence",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.273461,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.285714,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "Your Runbook Isn't a Manual, It's a Cognitive Overload Trap",
+              "From Cookbook to Compass: Redefining Runbooks as Decision Engines",
+              "Designing Branching Logic: Implementing State Machine Workflows for Incidents",
+              "Automating Remediation Triggers: Bridging Runbooks and Actionable Tools",
+              "Evidence & References",
+              "Operational Checklist: Validating Runbook Decision Paths & Trigger Points",
+              "Benchmarking Runbook-Driven Efficiency: A Measurement Framework for Incident Resolution"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.276705,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.273885,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The Best Runbook is the One You Stress-Tested: A Pre-Mortem Approach",
+              "Shifting Left on Incident Response: Proactive Runbook Engineering",
+              "Tabletop Exercises & Chaos Engineering: Validating Runbook Resilience",
+              "Integrating Runbook Updates into Post-Incident Reviews: Closing the Loop",
+              "Evidence & References",
+              "Quantifying Runbook Impact: Measuring Proactive MTTR Reduction & Prevention",
+              "Operational Checklist: Embedding Runbook Development in the SDLC"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.262436,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.272124,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "incident framing of Autoscaling misconfigurations that inflate cloud spend",
+        "persona": "senior platform engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "deep_dive",
+        "hook_style": "metric_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0625,
+        "novelty_score": 0.9375
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "deep_dive",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The $12,000 Surprise: Unpacking an HPA Aggression Incident",
+              "Misconfigured `targetAverageUtilization` and the Cost Cascade",
+              "Tracing the Anomaly: Identifying Spurious Metric Spikes",
+              "The Counterfactual: How Proactive Metric Baselines Could Have Saved $12,000",
+              "Tuning `HPAScaleUpStabilizationWindow` for Cost-Efficiency",
+              "Operational Checklist: Preventing Autoscaling Overprovisioning",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.277951,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.303922,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "deep_dive",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "diagnostic",
+            "argument_flow_motif": "problem->causes->impact->solution",
+            "headings": [
+              "The Silent Cloud Tax: When Autoscaling Becomes an Overprovisioning Engine",
+              "Under-resourced Pods and the HPA Threshing Problem",
+              "Cluster Autoscaler Gaps: Unreclaimed Empty Node Capacity",
+              "VPA vs. HPA Contention: The Resource Request Tug-of-War",
+              "Preventing Recurrence: Implementing Cost Anomaly Detection and Guardrails",
+              "Operational Checklist: Auditing Autoscaling for Cost Optimization",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.266577,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.311436,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "deep_dive",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "case_study",
+            "argument_flow_motif": "incident->diagnosis->tradeoff->decision->prevention",
+            "headings": [
+              "Post-Mortem: The Day Our Custom Autoscaler Broke the Bank",
+              "Root Cause Analysis: Flawed Custom Metric Aggregation Logic",
+              "The Performance vs. Cost Trade-off in Autoscaling Policy Design",
+              "Implementing Robust Metric Validation and Anomaly Detection for Scaling",
+              "Re-evaluating Cooldown Periods and Scale-Down Policies",
+              "Operational Checklist: Designing Resilient and Cost-Aware Autoscaling",
+              "Evidence & References"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.281373,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.329519,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "incident framing of Autoscaling misconfigurations that inflate cloud spend | alternate structure-1",
+        "persona": "senior platform engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "metric_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0625,
+        "novelty_score": 0.9375
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The $50,000 Surge: Unpacking Our `prod-api-gateway`'s Cost Anomaly",
+              "Post-Release Spike: The `payment-processor` Autoscaling Anomaly",
+              "The `targetCPUUtilization: 50` Blind Spot and Its Cost Multiplier",
+              "Reimagining `scale-in` Cooldown: How 5 Minutes Could Have Saved $X",
+              "Balancing `minReplicas` and Latency Targets: The Cost-Performance Tradeoff",
+              "Operational Checklist: Autoscaling Cost Guardrails",
+              "Evidence & References: Cloud Cost Explorer & Datadog Metrics"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.32052,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.298701,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "how-to",
+            "hook_style": "statement_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "problem->cause->solution->best_practices",
+            "headings": [
+              "Beyond `OOMKilled`: The Hidden Cloud Costs of Suboptimal Autoscaling",
+              "The Illusion of Elasticity: Why Default Autoscaling Settings Fail Financially",
+              "Inflated `minReplicas` and `maxReplicas` Ranges: Over-Provisioning by Design",
+              "Lagging `scale-in` Cooldowns: The Persistent Zombie Instance Problem",
+              "Inaccurate Custom Metrics: Scaling on Noise, Not Demand",
+              "Implementing Proactive Cost-Aware Autoscaling Policies",
+              "Operational Checklist: Autoscaling Policy Audit",
+              "Evidence & References: AWS Compute Optimizer & Kubernetes HPA Events"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.293785,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.280899,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "post-mortem",
+            "hook_style": "alert_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "incident_report",
+            "argument_flow_motif": "event->diagnosis->remediation->prevention",
+            "headings": [
+              "Critical Alert: `ClusterAutoscaler_OverageDetected` on `customer-data-svc`",
+              "The 02:00 UTC Cost Spike: Tracing the `data-ingest` Service Incident",
+              "Misconfigured `averageValue` for Request Queues in HPA",
+              "The `pod-anti-affinity` Trap: Forcing Node Bloat with `ClusterAutoscaler`",
+              "Ineffective `scale-down-delay-after-add` and `unneeded-time` Parameters",
+              "Hardening Kubernetes Autoscaling: From Reactive to Predictive Cost Management",
+              "Operational Checklist: Kubernetes Autoscaling Post-Mortem Review",
+              "Evidence & References: Prometheus HPA Metrics & `kube-state-metrics`"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.325483,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.268421,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "candidate": {
+        "topic": "Autoscaling misconfigurations that inflate cloud spend",
+        "angle": "contrarian reframing of Autoscaling misconfigurations that inflate cloud spend",
+        "persona": "senior platform engineer",
+        "awareness_level": "solution-aware",
+        "format_family": "analysis",
+        "hook_style": "metric_hook",
+        "cta_style": "checklist_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.0625,
+        "novelty_score": 0.9375
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "contrarian",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The Illusion of Elasticity: Why Default Autoscaling Costs More Than It Saves",
+              "When \"Scale Down\" Means \"Stay Up\": The Misunderstood Cooldown Period",
+              "Metric Selection Pitfalls: CPU Utilization vs. Request Queue Depth for True Cost Savings",
+              "Proactive Downscaling: Implementing Predictive Autoscaling for Cost Efficiency",
+              "Balancing Burst Capacity and Budget: The Performance-Cost Tradeoff Matrix",
+              "Operational Checklist: Auditing ASG & HPA Configurations for Cost Optimization",
+              "Evidence & References: Benchmarking & Real-World Case Studies"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.239511,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-28-kubernetes-cost-optimization-strategies.md",
+              "heading_signature_similarity": 0.303704,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "problem_solution",
+            "argument_flow_motif": "problem->diagnosis->solution->best_practice",
+            "headings": [
+              "Beyond Simple CPU: The Misguided Reliance on Default Scaling Metrics",
+              "The Cooldown Trap: How Aggressive Settings Prevent Elasticity and Inflate Bills",
+              "`MinSize` and `DesiredCapacity` Drift: Hard Limits Undermining Dynamic Scaling",
+              "Preventing Cost Overruns: Implementing Custom Scaling Policies with CloudWatch Alarms",
+              "Architecting for True Elasticity: Decoupling Compute from State for Efficient Autoscaling",
+              "Evidence & References: Cloud Provider Best Practices & Cost Reports",
+              "Operational Checklist: Advanced Autoscaling Optimization Strategies"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.298895,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.264973,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-02-20-python-metaclasses-what-why-and-how.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "analysis",
+            "hook_style": "metric_hook",
+            "cta_style": "checklist_cta",
+            "rhetorical_family": "myth_busting",
+            "argument_flow_motif": "myth->debunk->solution->future_state",
+            "headings": [
+              "Myth 1: Autoscaling Automatically Saves Money (The Cost of Overprovisioned `MinSize`)",
+              "Myth 2: Default Metrics Are Sufficient (Ignoring Request Latency and Queue Backlog)",
+              "Myth 3: Faster Scale-Up Always Wins (The Hidden Cost of Short Cooldown Periods)",
+              "Designing for True Cost-Efficiency: Granular Scaling Policies and Custom Metrics",
+              "Beyond Reactive Scaling: Leveraging Predictive AI for Infrastructure Right-Sizing",
+              "Evidence & References: Industry Benchmarks and Success Stories",
+              "Operational Checklist: A Step-by-Step Guide to Autoscaling Cost Optimization"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.302988,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.271277,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "candidate": {
+        "topic": "Database migration rollbacks that leave schema drift",
+        "angle": "contrarian framing of Database migration rollbacks that leave schema drift",
+        "persona": "senior platform engineer",
+        "awareness_level": "problem-aware",
+        "format_family": "analysis",
+        "hook_style": "contrarian_hook",
+        "cta_style": "measurement_cta",
+        "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+        "reasoning_path": "counterfactual",
+        "risk_flags": [],
+        "why_new": "Angle and structure intentionally rotated against recent posts.",
+        "novelty_similarity": 0.066667,
+        "novelty_score": 0.933333
+      },
+      "outline_checks": [
+        {
+          "outline": {
+            "outline_id": "o1",
+            "format_family": "analysis",
+            "hook_style": "contrarian_hook",
+            "cta_style": "measurement_cta",
+            "rhetorical_family": "argumentative",
+            "argument_flow_motif": "claim->counterfactual->evidence->tradeoff->decision",
+            "headings": [
+              "The Myth of the Clean Database Rollback: Why Your Schema Isn't What You Think It Is",
+              "The Illusion of Reversion: How Rollbacks Diverge from a Clean State",
+              "Anatomy of Drift: Specific Migration Patterns That Leave Scars",
+              "Operational Fallout: The Hidden Costs of Subtle Schema Inconsistencies",
+              "Strategies for Schema Drift Detection and Prevention After Rollback",
+              "Operational Checklist: Ensuring Schema Integrity During and After Rollbacks",
+              "Evidence & References: Further Reading and Tools for Schema Management"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 0.95,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.311722,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.291016,
+              "nearest_heading_post": "/Users/ritesh/Downloads/submission_folder/Tech-Blog/_posts/2026-05-01-garbage-collection-pauses-triggering-health-check-timeouts.md",
+              "hook_reuse_last5": 1,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o2",
+            "format_family": "guide",
+            "hook_style": "problem_solution_hook",
+            "cta_style": "tooling_cta",
+            "rhetorical_family": "expository",
+            "argument_flow_motif": "problem->cause->effect->solution->best_practices",
+            "headings": [
+              "The Unseen Aftermath: When Your Database Rollback Fails to Restore Schema Sanity",
+              "Defining Schema Drift: More Than Just a Mismatched Column",
+              "Root Causes of Post-Rollback Drift: Transactional Boundaries and DDL Atomicity",
+              "Impact on Application Reliability: From Silent Failures to Data Corruption",
+              "Designing Resilient Migration & Rollback Strategies: Achieving True Reversibility",
+              "Proactive Monitoring for Schema Divergence: Advanced Detection & Remediation",
+              "Operational Checklist: Preventing Schema Drift in Your Migration Pipeline",
+              "Evidence & References: Resources for Robust Database Change Management"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.291937,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.313115,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        },
+        {
+          "outline": {
+            "outline_id": "o3",
+            "format_family": "case_study_generalized",
+            "hook_style": "question_hook",
+            "cta_style": "engagement_cta",
+            "rhetorical_family": "persuasive",
+            "argument_flow_motif": "anti_pattern->impact->principle->prevention",
+            "headings": [
+              "When \"Undo\" Isn't Enough: Deconstructing Schema Drift After Database Rollbacks",
+              "Pitfall #1: The `DROP COLUMN` That Lingers and Causes Data Loss",
+              "Pitfall #2: Partially Reverted Constraints and Indexes Leading to Broken Relationships",
+              "Pitfall #3: Data Transformations That Can't Be Undone Post-Rollback",
+              "Understanding Transactional DDL Limitations: The Database Engine's Role in Rollback Semantics",
+              "Architecting for Reversible Database Changes: Principles for Safe Schema Evolution",
+              "Operational Checklist: Your Guide to Verifying Schema State Post-Rollback",
+              "Evidence & References: Deep Dives into Database Migration Safety"
+            ]
+          },
+          "check": {
+            "passed": true,
+            "score": 1.0,
+            "reasons": [],
+            "metrics": {
+              "outline_embedding_cosine": 0.332893,
+              "nearest_outline_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "heading_signature_similarity": 0.293461,
+              "nearest_heading_post": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+              "hook_reuse_last5": 0,
+              "argument_flow_motif_reuse": 0
+            }
+          },
+          "hard_constraint": {
+            "ok": true,
+            "reason": ""
+          }
+        }
+      ]
+    }
+  ]
+}
