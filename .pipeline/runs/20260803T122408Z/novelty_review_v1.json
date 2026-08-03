@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.823,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.2,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2026-02-09-fixing-event-loop-blocking-in-ai-assisted-python-services-causing-kubernetes-cpu-throttling.md",
+    "intro_embedding_cosine": 0.311451,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-01-22-boosting-python-performance-with-memoryview-and-zero-copy-techniques.md",
+    "body_embedding_cosine": 0.777214,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "body_trigram_overlap": 0.02654,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "cta_style": "action_cta",
+    "hook_style": "metric_hook",
+    "argument_flow_motif": "telemetry->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}
