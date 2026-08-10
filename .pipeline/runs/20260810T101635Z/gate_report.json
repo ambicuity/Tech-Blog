@@ -1,0 +1,58 @@
+{
+  "structural": {
+    "name": "structural",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 1.0,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "factual": {
+    "name": "factual",
+    "passed": true,
+    "score": 0.9,
+    "threshold": 0.85,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "seo": {
+    "name": "seo",
+    "passed": true,
+    "score": 0.95,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "link": {
+    "name": "link",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 0.9,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "authority": {
+    "name": "authority",
+    "passed": true,
+    "score": 0.85,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "novelty": {
+    "name": "novelty",
+    "passed": true,
+    "score": 0.813,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "red_team": {
+    "name": "red_team",
+    "passed": true,
+    "score": 0.213,
+    "threshold": 0.85,
+    "critical_errors": [],
+    "warnings": []
+  }
+}

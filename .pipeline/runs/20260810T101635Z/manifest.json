@@ -1,0 +1,8 @@
+{
+  "run_id": "20260810T101635Z",
+  "started_at": "2026-08-10T10:16:35.782809+00:00",
+  "status": "quarantined",
+  "reason": "aggregate_confidence_below_threshold",
+  "quarantine_path": "_drafts/20260810T101635Z.md",
+  "completed_at": "2026-08-10T10:25:53.092722+00:00"
+}
