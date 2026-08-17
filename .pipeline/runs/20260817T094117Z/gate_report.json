@@ -1,0 +1,68 @@
+{
+  "structural": {
+    "name": "structural",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 1.0,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "factual": {
+    "name": "factual",
+    "passed": false,
+    "score": 0.1,
+    "threshold": 0.85,
+    "critical_errors": [
+      "critical_inaccuracies_present",
+      "too_many_uncertain_claims",
+      "factual_score_below_threshold"
+    ],
+    "warnings": [
+      "missing_context:{'reason': \"There is an inconsistency in the reported `ThreadPoolExecutor` sizes and types. 'Initial Observations' mentions `TPS ThreadPoolExecutor Active Threads: 50/50` (maxed out), while 'Evidence & References' mentions `jvm_threads_current_active{service='tps-service',pool='http-nio'}` maxed out at `200`. It's unclear if these refer to the same or different thread pools, and what the actual configured limit for the HTTP request handling pool was. This ambiguity makes it difficult to fully understand the thread exhaustion scenario.\", 'fix': \"Clearly identify the specific thread pools involved (e.g., HTTP request handling pool, Kafka producer pool) and their respective configurations (max size, queue type) in both the 'Initial Observations' and 'Evidence' sections, ensuring consistency and clarity.\"}",
+      "missing_context:{'reason': \"The article states 'producer calls to `Kafka` from `TPS` (which are synchronous for batching) started blocking.' While `kafkaProducer.send()` can block, this behavior is heavily influenced by Kafka producer configurations such as `max.block.ms` and `buffer.memory`. Without specifying these configurations or their default values, the exact conditions under which the producer blocked are not fully explained, leaving an implicit assumption about Kafka's default blocking behavior.\", 'fix': 'Add a caveat or detail about the Kafka producer configuration (`max.block.ms` and `buffer.memory`) that led to the blocking behavior, or explicitly state that default configurations were in use and how they contributed to the issue.'}"
+    ]
+  },
+  "seo": {
+    "name": "seo",
+    "passed": true,
+    "score": 0.95,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "link": {
+    "name": "link",
+    "passed": true,
+    "score": 1.0,
+    "threshold": 0.9,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "authority": {
+    "name": "authority",
+    "passed": true,
+    "score": 0.85,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "novelty": {
+    "name": "novelty",
+    "passed": true,
+    "score": 0.806,
+    "threshold": 0.8,
+    "critical_errors": [],
+    "warnings": []
+  },
+  "red_team": {
+    "name": "red_team",
+    "passed": false,
+    "score": 0.12,
+    "threshold": 0.85,
+    "critical_errors": [
+      "hidden_similarity_score_high",
+      "reused_patterns_detected"
+    ],
+    "warnings": []
+  }
+}

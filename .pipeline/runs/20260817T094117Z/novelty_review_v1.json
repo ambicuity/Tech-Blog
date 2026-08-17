@@ -1,0 +1,18 @@
+{
+  "novelty_score": 0.806,
+  "reasons": [],
+  "metrics": {
+    "title_embedding_cosine": 0.189934,
+    "title_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2025-01-23-leveraging-pre-commit-hooks-for-python-code-quality-a-practical-guide.md",
+    "intro_embedding_cosine": 0.380143,
+    "intro_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "body_embedding_cosine": 0.794174,
+    "body_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2024-07-30-the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages.md",
+    "body_trigram_overlap": 0.03125,
+    "body_trigram_nearest": "/home/runner/work/Tech-Blog/Tech-Blog/_posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view.md",
+    "cta_style": "action_cta",
+    "hook_style": "incident_hook",
+    "argument_flow_motif": "mitigation->checklist->mitigation->checklist->telemetry",
+    "argument_flow_reuse": 0
+  }
+}
