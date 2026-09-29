@@ -16,7 +16,7 @@ Before diving into the implementation, let's define the key concepts:
 
 *   **Deployment:** In Kubernetes, a Deployment is a declarative way to update applications. It describes the desired state of your application and Kubernetes works to achieve that state.
 
-*   **Rollout:** Argo Rollouts is a Kubernetes controller that extends the functionality of standard Kubernetes Deployments to support advanced deployment strategies like canary and blue/green deployments. It manages the rollout process, providing fine-grained control over traffic shifting and analysis.
+*   **Rollout:** Argo Rollouts is a Kubernetes controller that extends the functionality of standard Kubernetes Deployments to support advanced deployment strategies like [canary and blue/green deployments](/posts/blue-green-deployments-on-kubernetes/). It manages the rollout process, providing fine-grained control over traffic shifting and analysis.
 
 *   **Canary Deployment:** A deployment strategy where a small portion of the user traffic is routed to the new version (the "canary") while the majority of the traffic remains routed to the stable version.  The canary version is closely monitored for errors, performance degradation, or other issues. If problems are detected, the canary deployment can be quickly rolled back to the stable version.
 
@@ -136,14 +136,28 @@ kubectl argo rollouts abort my-app-rollout                 # return all traffic 
 
 You will see the rollout progressing through the defined steps, gradually shifting traffic to the new version. `kubectl describe rollout my-app-rollout` shows the same state without the plugin.
 
+Here are the steps `my-app-rollout` walks through after `set image`, and where `promote` and `abort` act on them.
+
+```mermaid
+flowchart TD
+  accTitle: Here are the steps my-app-rollout walks through after set image, and where promote and abort act on them
+  accDescr: Flowchart of the canary steps: after setting the image to 2.0 the rollout moves through weights 10, 25, 50 and 75 with a one-minute pause each, advancing on timeout or promote, reaching 100 percent, while abort from any paused step returns all traffic to the stable version.
+  A["set image my-app:2.0"] --> S1["setWeight 10, pause 1m"]
+  S1 -->|"1m or promote"| S2["setWeight 25, pause 1m"]
+  S2 -->|"1m or promote"| S3["setWeight 50, pause 1m"]
+  S3 -->|"1m or promote"| S4["setWeight 75, pause 1m"]
+  S4 -->|"1m or promote"| S5["setWeight 100, 2.0 is stable"]
+  S1 & S2 & S3 & S4 -->|abort| X["All traffic back to stable 1.0"]
+```
+
 **6. Integrate with Traffic Management (Optional but recommended):**
 
-For finer-grained control and more advanced features, integrate Argo Rollouts with a service mesh like Istio or Linkerd or an ingress controller supporting weighted routing like Nginx Ingress.  This allows for more precise traffic shifting and allows for advanced routing scenarios. The specifics of integration depend on the traffic management solution used.  Argo Rollouts provides detailed documentation for integrating with various platforms. Example, for Istio, you would create a VirtualService and DestinationRule and point Argo Rollouts to update the weights.
+For finer-grained control and more advanced features, integrate Argo Rollouts with [a service mesh like Istio](/posts/service-mesh-with-istio-a-practical-guide/) or Linkerd or an ingress controller supporting weighted routing like Nginx Ingress.  This allows for more precise traffic shifting and allows for advanced routing scenarios. The specifics of integration depend on the traffic management solution used.  Argo Rollouts provides detailed documentation for integrating with various platforms. Example, for Istio, you would create a VirtualService and DestinationRule and point Argo Rollouts to update the weights.
 
 ## Common Mistakes
 
 *   **Forgetting to Update the Image Tag:**  A very common mistake is to forget to update the `image` field in the Rollout manifest to point to the new version of the application.
-*   **Insufficient Monitoring:**  Failing to adequately monitor the canary deployment can lead to undetected issues propagating to a larger user base.  Ensure you have robust monitoring in place, including metrics, logs, and alerting.
+*   **Insufficient Monitoring:**  Failing to adequately monitor the canary deployment can lead to undetected issues propagating to a larger user base.  Ensure you have [robust monitoring in place](/posts/monitoring-k8s-with-prometheus-and-grafana/), including metrics, logs, and alerting.
 *   **Unrealistic Traffic Shifts:**  Starting with too large of a traffic shift (e.g., 50% or more) can expose a larger number of users to potential problems.  Start with a small percentage (e.g., 5% or 10%) and gradually increase it.
 *   **Ignoring Performance Metrics:** Focusing solely on error rates can miss performance regressions that are not immediately apparent as errors. Monitor key performance indicators (KPIs) like latency and resource utilization.
 *   **Missing Rollback Strategy:** Always have a clear rollback strategy in place. If the canary deployment fails, you need to be able to quickly revert to the stable version.

@@ -23,7 +23,7 @@ Before diving into the implementation, let's clarify some fundamental concepts:
 
 *   **Container Runtime:** Kubernetes requires a container runtime to run containers. Popular choices include Containerd and CRI-O. We'll use Containerd in this guide.
 
-*   **Networking:** A crucial aspect of Kubernetes is the networking layer, enabling communication between Pods, Services, and the outside world. A Container Network Interface (CNI) plugin manages this networking. Popular choices include Calico, Flannel, and Cilium. We'll use Calico for its robustness and advanced features.
+*   **Networking:** A crucial aspect of Kubernetes is the networking layer, enabling communication between Pods, Services, and the outside world. A [Container Network Interface (CNI)](/posts/understanding-kubernetes-networking-deep-dive/) plugin manages this networking. Popular choices include Calico, Flannel, and Cilium. We'll use Calico for its robustness and advanced features.
 
 *   **Bare Metal Considerations:** Setting up on bare metal means you are responsible for the underlying infrastructure, including operating system installation, network configuration, and storage provisioning. This adds complexity compared to managed Kubernetes services but offers greater flexibility.
 
@@ -200,4 +200,4 @@ To access the Nginx service, find the NodePort assigned to the service (e.g., `3
 
 ## Conclusion
 
-Setting up a Kubernetes cluster on bare metal requires careful planning and execution. This guide provides a streamlined approach using `kubeadm` and Calico. While it covers the essential steps, remember that bare metal deployments introduce complexities related to infrastructure management. Thoroughly understanding Kubernetes concepts, network configuration, and storage provisioning is crucial for a successful and stable cluster. Consider exploring further topics like persistent storage, monitoring, and security hardening to optimize your bare metal Kubernetes environment. This setup provides you with a highly customizable and powerful platform for deploying and managing your containerized applications.
+Setting up a Kubernetes cluster on bare metal requires careful planning and execution. This guide provides a streamlined approach using `kubeadm` and Calico. While it covers the essential steps, remember that bare metal deployments introduce complexities related to infrastructure management. Thoroughly understanding Kubernetes concepts, network configuration, and storage provisioning is crucial for a successful and stable cluster. Consider exploring further topics like [persistent storage](/posts/managing-statefulsets-in-production/), monitoring, and [security hardening](/posts/kubernetes-security-best-practices-2026/) to optimize your bare metal Kubernetes environment. This setup provides you with a highly customizable and powerful platform for deploying and managing your containerized applications.

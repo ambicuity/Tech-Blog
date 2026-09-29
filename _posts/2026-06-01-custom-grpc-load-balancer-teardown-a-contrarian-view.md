@@ -20,7 +20,7 @@ The impetus for building a custom L7 gRPC load balancer stemmed from a perceived
 
 Our custom gRPC load balancer was built around an Envoy proxy core, extended with custom filters and a bespoke control plane. The data plane leveraged Envoy's HTTP/2 capabilities, treating gRPC streams as multiplexed HTTP/2 requests. Key customizations included:
 
-*   **Custom Envoy Filters**: We implemented a Lua filter to inspect gRPC `grpc-metadata` headers for routing decisions, enabling complex canary deployments and tenant-aware traffic steering. This filter would extract specific metadata (e.g., `x-tenant-id`, `x-service-version`) and modify the `x-envoy-upstream-alt-stat-name` header to influence upstream selection.
+*   **Custom Envoy Filters**: We implemented a Lua filter to inspect gRPC `grpc-metadata` headers for routing decisions, enabling [complex canary deployments](/posts/implementing-canary-deployments-with-argo-rollouts-and-kubernetes/) and tenant-aware traffic steering. This filter would extract specific metadata (e.g., `x-tenant-id`, `x-service-version`) and modify the `x-envoy-upstream-alt-stat-name` header to influence upstream selection.
 *   **Dynamic Control Plane**: A custom Go service served as the xDS server, dynamically configuring Envoy instances based on service discovery events from Kubernetes and an internal configuration store. This allowed for real-time updates to cluster membership, endpoint health, and routing rules.
 *   **Connection Affinity Logic**: For specific stateful services, we developed a custom hashing algorithm within the control plane to ensure requests from a particular client or session were consistently routed to the same backend instance. This was implemented via `RING_HASH` load balancing with a custom hash policy derived from gRPC metadata.
 
@@ -102,7 +102,7 @@ While optimized for latency, our custom control plane struggled with resource ex
 
 ## The Migration Path: Phased Rollout to a Managed Service Proxy
 
-Recognizing the unsustainable operational overhead, we initiated a phased migration away from our custom gRPC load balancer towards a managed service mesh solution (specifically, a cloud provider's managed Envoy offering). The migration strategy focused on minimizing blast radius and ensuring service continuity:
+Recognizing the unsustainable operational overhead, we initiated a phased migration away from our custom gRPC load balancer towards a [managed service mesh solution](/posts/service-mesh-with-istio-a-practical-guide/) (specifically, a cloud provider's managed Envoy offering). The migration strategy focused on minimizing blast radius and ensuring service continuity:
 
 1.  **Traffic Shadowing**: Initially, a small percentage of production traffic was shadowed to the new managed proxy environment. This involved duplicating requests at the custom LB and sending them to both the old and new paths, with only the old path's response being returned to the client. This allowed us to validate the new proxy's behavior without impacting users.
 2.  **Canary Rollout**: Once shadowing proved stable, a small percentage (e.g., 1-5%) of live traffic was gradually shifted to the managed proxy. This was carefully monitored using golden signals (latency, error rates, throughput, saturation) for both the proxy and the downstream services.

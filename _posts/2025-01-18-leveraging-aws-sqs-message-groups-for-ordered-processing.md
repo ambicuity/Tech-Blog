@@ -14,7 +14,7 @@ Amazon Simple Queue Service (SQS) is a fully managed message queuing service tha
 
 Before diving into the implementation, let's define the key concepts:
 
-*   **SQS Standard Queue:** Offers best-effort ordering and at-least-once delivery. Suitable for applications where occasional out-of-order processing or duplicate messages are acceptable.
+*   **SQS Standard Queue:** Offers best-effort ordering and [at-least-once delivery](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/). Suitable for applications where occasional out-of-order processing or duplicate messages are acceptable.
 *   **SQS FIFO Queue:** Guarantees that messages are delivered in the order they were sent, and that a message is delivered exactly once.  This is achieved using a deduplication ID or content-based deduplication.
 *   **Message Group ID:** A string that specifies the group that a message belongs to. Messages with the same Message Group ID are processed in FIFO order. FIFO queues support multiple Message Group IDs, allowing for parallel processing of messages belonging to different groups.
 *   **Message Deduplication ID:** A unique identifier for each message. Used by FIFO queues to prevent duplicate messages from being added to the queue. If content-based deduplication is enabled, SQS automatically generates the Message Deduplication ID based on the message body.
@@ -25,6 +25,23 @@ The crucial point is that FIFO queues, while guaranteeing order, are single-thre
 ## Practical Implementation
 
 Let's consider a scenario where we need to process customer orders in the order they were placed. Each customer order has a unique Customer ID. We can use the Customer ID as the Message Group ID to ensure that orders from the same customer are processed in the order they were placed, while allowing orders from different customers to be processed in parallel.
+
+Using the customer ID as the Message Group ID splits one FIFO queue into ordered groups that are processed in parallel.
+
+```mermaid
+flowchart TD
+  accTitle: Using the customer ID as the Message Group ID splits one FIFO queue into ordered groups that are processed in parallel
+  accDescr: Flowchart: send_message puts order1 and order3 into group customer123 and order2 and order4 into group customer456 of MyFIFOQueue.fifo, and each group is processed in its own strict order, independently of the other group.
+  P["send_message"]
+  subgraph Q["MyFIFOQueue.fifo"]
+    G1["Group customer123: order1, order3"]
+    G2["Group customer456: order2, order4"]
+  end
+  P -->|"MessageGroupId customer123"| G1
+  P -->|"MessageGroupId customer456"| G2
+  G1 -->|"strict FIFO"| C1["Process order1, then order3"]
+  G2 -->|"strict FIFO"| C2["Process order2, then order4"]
+```
 
 Here's a step-by-step implementation using Python and the Boto3 library:
 
@@ -141,7 +158,7 @@ Interviewers might ask you about the following regarding SQS FIFO queues and Mes
 *   **What are the benefits and drawbacks of FIFO queues?** Answer: Benefit: Guaranteed ordering and exactly-once delivery. Drawback: Lower throughput compared to standard queues (unless using message groups).  Higher cost per message.
 *   **Explain how Message Groups work in SQS FIFO queues.** Answer: Message Groups allow you to process messages in FIFO order within a specific group, while allowing for parallel processing of messages belonging to different groups, improving throughput.
 *   **How do you prevent duplicate messages in SQS FIFO queues?** Answer: By using a Message Deduplication ID, either provided explicitly or generated automatically using content-based deduplication.
-*   **How do you handle failures when processing messages from an SQS queue?** Answer: Implement error handling, retry mechanisms, and consider using a Dead-Letter Queue (DLQ) to store messages that cannot be processed after a certain number of retries.
+*   **How do you handle failures when processing messages from an SQS queue?** Answer: Implement error handling, retry mechanisms, and consider using a [Dead-Letter Queue (DLQ)](/posts/serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide/) to store messages that cannot be processed after a certain number of retries.
 *   **Describe a scenario where you would use SQS FIFO queues with Message Groups.** Answer: A common scenario is processing financial transactions or customer orders, where the order of events is crucial for data integrity.
 
 Key talking points: Ordering guarantees, throughput limitations, benefits of Message Groups for parallelism, Message Deduplication IDs, error handling, DLQs.

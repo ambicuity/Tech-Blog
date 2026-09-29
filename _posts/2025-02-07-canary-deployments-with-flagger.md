@@ -28,11 +28,11 @@ Before diving into Flagger, let's solidify our understanding of the fundamental 
 Flagger automates the canary release process, significantly reducing the manual effort and risk involved. Here's why you should consider using Flagger for your Kubernetes deployments:
 
 *   **Automated Canary Analysis:** Flagger continuously monitors your application's metrics and automatically determines whether to promote or rollback the canary release based on predefined criteria.
-*   **Integration with Metrics Providers:** Flagger seamlessly integrates with popular metrics providers such as Prometheus, Datadog, and New Relic, allowing you to leverage your existing monitoring infrastructure.
+*   **Integration with Metrics Providers:** Flagger seamlessly integrates with popular metrics providers such as Prometheus, Datadog, and New Relic, allowing you to leverage your [existing monitoring infrastructure](/posts/monitoring-k8s-with-prometheus-and-grafana/).
 *   **Progressive Traffic Shifting:** Flagger progressively shifts traffic to the canary version based on the analysis results, ensuring a gradual and controlled rollout.
 *   **Automated Rollbacks:** Flagger automatically rolls back the deployment to the previous stable version if the canary version fails, preventing further issues.
-*   **Kubernetes Native:** Flagger is designed specifically for Kubernetes and integrates seamlessly with your existing Kubernetes workflows. It leverages Custom Resource Definitions (CRDs) to define canary deployments, making it easy to manage and configure.
-*   **Multiple Deployment Strategies:** Flagger supports various deployment strategies beyond canary, including A/B testing and blue/green deployments, providing flexibility for different use cases.
+*   **Kubernetes Native:** Flagger is designed specifically for Kubernetes and integrates seamlessly with your existing Kubernetes workflows. It leverages [Custom Resource Definitions (CRDs)](/posts/kubernetes-operators-101-writing-your-own/) to define canary deployments, making it easy to manage and configure.
+*   **Multiple Deployment Strategies:** Flagger supports various deployment strategies beyond canary, including A/B testing and [blue/green deployments](/posts/blue-green-deployments-on-kubernetes/), providing flexibility for different use cases.
 
 ## Implementation: Canary Deployment with Flagger
 
@@ -236,6 +236,26 @@ kubectl -n test set image deployment/podinfo podinfo=ghcr.io/stefanprodan/podinf
 ```
 
 Flagger will detect the changes in the deployment and automatically start the canary analysis process. It will gradually increase traffic to the new version, monitoring the metrics and webhooks.  If the metrics fall outside the defined thresholds or the webhooks fail, Flagger will automatically rollback to the previous version.  If the metrics are within the thresholds and webhooks pass, Flagger will gradually promote the new version until it receives 100% of the traffic.
+
+This is the analysis loop Flagger runs every `1m` for the `podinfo` Canary, using the weights, thresholds and webhooks configured above.
+
+```mermaid
+flowchart TD
+  accTitle: This is the analysis loop Flagger runs every 1m for the podinfo Canary, using the weights, thresholds and webhooks configured above
+  accDescr: Flowchart of Flagger's canary analysis: after the image changes to 6.0.1 the acceptance-test webhook runs, then each interval the canary weight rises by 5 percent while success rate stays at or above 99 percent and p99 latency under 500 milliseconds; five failed checks trigger a rollback, and reaching the 50 percent maxWeight runs the load-test webhook, promotes the new version to all traffic and runs the confirm-rollout webhook.
+  T["set image podinfo:6.0.1"] --> PR["pre-rollout: acceptance-test"]
+  PR --> W["Raise canary weight by 5%"]
+  W --> M["Check success rate 99%+ and p99 under 500ms"]
+  M --> A{"Pass?"}
+  A -->|"yes, below maxWeight 50"| W
+  A -->|"no"| F["Failed checks +1"]
+  F -->|"fewer than 5, retry next 1m"| M
+  F -->|"threshold 5 reached"| RB["Rollback to previous version"]
+  A -->|"yes, at maxWeight 50"| LT["pre-promotion: load-test"]
+  LT --> PM["Promote 6.0.1 to 100% of traffic"]
+  PM --> PO["post-rollout: confirm-rollout"]
+  RB --> PO
+```
 
 **6. Verification**
 

@@ -17,7 +17,7 @@ Before we delve into the advanced tips, let's briefly recap some fundamental Kub
 
 *   **Resources:** Everything in Kubernetes is treated as a resource. Examples include Pods, Services, Deployments, ConfigMaps, Secrets, and Namespaces. Understanding these resource types is crucial for effective management.
 *   **Declarative Configuration:** Kubernetes relies on declarative configuration. You define the desired state of your resources in YAML or JSON files, and Kubernetes strives to achieve and maintain that state.
-*   **Strategic Merge Patch:** A patching strategy specific to Kubernetes, allowing you to selectively modify resources without replacing the entire resource definition. This is particularly useful for updates that only require changing specific fields.
+*   **Strategic Merge Patch:** [A patching strategy specific to Kubernetes](/posts/helm-vs-kustomize-a-comprehensive-comparison/), allowing you to selectively modify resources without replacing the entire resource definition. This is particularly useful for updates that only require changing specific fields.
 *   **JSONPath:** A query language for JSON data. We can use JSONPath to extract specific information from Kubernetes resource objects.
 *   **Labels and Selectors:** Kubernetes uses labels to attach metadata to resources and selectors to identify and group resources based on these labels. This is fundamental for targeting specific resources with commands.
 

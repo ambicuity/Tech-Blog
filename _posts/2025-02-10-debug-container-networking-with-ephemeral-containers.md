@@ -21,7 +21,7 @@ Before diving into the implementation, let's understand the key concepts behind 
 
 *   **Ephemeral Nature:** As the name suggests, ephemeral containers are temporary. They don't persist across pod restarts. They are intended for short-lived debugging sessions and are automatically removed when the debugging session is over.
 *   **Shared Namespaces:**  Ephemeral containers share the network, process, and IPC namespaces of the target pod. This is crucial because it allows you to use debugging tools within the ephemeral container to directly interact with the target container's network and processes. Any network calls from the ephemeral container will originate from the target pod's IP address and network interfaces.
-*   **No Resource Limits:** Ephemeral containers don't have resource limits (CPU, memory). This is because they are designed for debugging and not for running production workloads.  This also means you should be mindful of the resources they consume during the debugging session.
+*   **No Resource Limits:** Ephemeral containers don't have [resource limits (CPU, memory)](/posts/kubernetes-resource-requests-and-limits-masterclass/). This is because they are designed for debugging and not for running production workloads.  This also means you should be mindful of the resources they consume during the debugging session.
 *   **Attaching via `kubectl debug`:** The primary way to create and attach to an ephemeral container is using the `kubectl debug` command. This command provides a user-friendly interface for creating ephemeral containers and launching a shell within them.
 *   **Targeted Debugging:** You can target a specific container within a pod. This is particularly useful in multi-container pods where you need to focus your debugging efforts on a particular container.
 
@@ -56,7 +56,7 @@ Imagine you have two pods, `pod-a` and `pod-b`, and `pod-a` is unable to connect
 
 4.  **Diagnose the issue from within the ephemeral container.**  Once you have a shell within the ephemeral container, you can use the tools to investigate the connectivity problem.
 
-    *   **DNS Resolution:** Use `nslookup pod-b` (or `nslookup pod-b.default.svc.cluster.local` for fully qualified domain name) to check if the pod's hostname resolves to the correct IP address. If DNS resolution fails, you might have a DNS configuration issue in your cluster.
+    *   **DNS Resolution:** Use `nslookup pod-b` (or `nslookup pod-b.default.svc.cluster.local` for fully qualified domain name) to check if the pod's hostname resolves to the correct IP address. If DNS resolution fails, you might have a [DNS configuration issue](/posts/understanding-kubernetes-networking-deep-dive/) in your cluster.
 
         ```bash
         nslookup pod-b
@@ -126,7 +126,7 @@ kubectl debug -it pod/my-pod --image=nicolaka/netshoot --target=sidecar --contai
 *   **Use Minimal Images:**  Choose an image for your ephemeral container that contains only the necessary debugging tools. This minimizes the image size and reduces the attack surface. Images like `nicolaka/netshoot` or a customized `busybox` are good choices.
 *   **Clean Up After Debugging:** Ephemeral containers are designed to be temporary. Once you've finished debugging, exit the container and allow it to be automatically removed.
 *   **Avoid Sensitive Information:**  Be careful not to expose sensitive information, such as passwords or API keys, within the ephemeral container.
-*   **Consider Security Implications:** While ephemeral containers are a powerful debugging tool, they also introduce potential security risks. Ensure that you have appropriate RBAC policies in place to control who can create and access ephemeral containers.
+*   **Consider Security Implications:** While ephemeral containers are a powerful debugging tool, they also introduce potential security risks. Ensure that you have [appropriate RBAC policies](/posts/kubernetes-security-best-practices-2026/) in place to control who can create and access ephemeral containers.
 
 ## Conclusion
 

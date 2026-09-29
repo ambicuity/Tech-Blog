@@ -32,6 +32,20 @@ Before diving into the implementation, let's understand the core concepts of the
 
 Resilience4j provides all these features out-of-the-box, making it easy to integrate fault tolerance into your applications.
 
+Here is how the three states connect, using the thresholds configured in the example below.
+
+```mermaid
+stateDiagram-v2
+  accTitle: Here is how the three states connect, using the thresholds configured in the example below
+  accDescr: State diagram: the breaker starts CLOSED, opens when 50 percent of the last 10 calls fail or all are slower than 2 seconds, moves to HALF_OPEN on the next call after a 5 second wait, then closes if the 3 probe calls mostly succeed or reopens if 50 percent or more fail.
+  [*] --> CLOSED
+  CLOSED --> OPEN: 50 pct of last 10 calls fail
+  CLOSED --> OPEN: all of last 10 calls slower than 2s
+  OPEN --> HALF_OPEN: next call after 5s wait
+  HALF_OPEN --> CLOSED: under 50 pct of 3 probes fail
+  HALF_OPEN --> OPEN: 50 pct or more of 3 probes fail
+```
+
 ## Practical Implementation
 
 Let's walk through a practical example of implementing a Circuit Breaker using Resilience4j. We'll simulate a microservice (`ExternalService`) that may fail, and then use a Circuit Breaker to protect our main application (`MyApplication`).
@@ -179,7 +193,7 @@ The Circuit Breaker pattern is applicable in various real-world scenarios, inclu
 *   **External API Integrations:** Protecting an application from unreliable or slow external APIs.
 *   **Payment Processing:**  Isolating payment processing services from intermittent failures in external payment gateways.
 *   **E-commerce Platforms:**  Maintaining the availability of critical features like product catalogs and checkout processes, even when other components are experiencing issues.
-*   **Cloud Computing Environments:** Enhancing the resilience of applications deployed on cloud platforms, where transient failures are common.
+*   **Cloud Computing Environments:** Enhancing the resilience of applications deployed on cloud platforms, where [transient failures are common](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/).
 
 ## Conclusion
 

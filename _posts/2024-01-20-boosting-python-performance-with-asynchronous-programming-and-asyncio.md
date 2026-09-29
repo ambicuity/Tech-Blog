@@ -86,7 +86,7 @@ You should see that the program fetches the content from all the URLs in a relat
 
 ## Common Mistakes
 
-*   **Blocking the Event Loop:**  Avoid performing CPU-bound tasks directly within a coroutine.  This will block the event loop and negate the benefits of asynchronous programming.  For CPU-bound tasks, use `asyncio.to_thread` or a process pool executor.
+*   **Blocking the Event Loop:**  Avoid performing CPU-bound tasks directly within a coroutine.  This will [block the event loop](/posts/fixing-event-loop-blocking-in-ai-assisted-python-services-causing-kubernetes-cpu-throttling/) and negate the benefits of asynchronous programming.  For CPU-bound tasks, use `asyncio.to_thread` or a process pool executor.
 *   **Mixing Blocking and Asynchronous Code:** Carefully manage the interaction between blocking and asynchronous code. Using blocking calls within an asynchronous context can freeze the event loop. Consider using `asyncio.to_thread` to run blocking functions in a separate thread.
 *   **Forgetting `await`:**  Calling a coroutine without `await` will not execute the coroutine but instead return a coroutine object. This is a very common mistake.
 *   **Not Handling Exceptions:** Properly handle exceptions within coroutines. Unhandled exceptions can crash the event loop.
@@ -99,9 +99,9 @@ Interviewers often use questions about `asyncio` to assess a candidate's underst
 
 *   **Explain the difference between concurrency and parallelism.**
 *   **Describe the role of the event loop in `asyncio`.**
-*   **When is `asyncio` a good choice?  When is it not?** (`asyncio` is suitable for I/O-bound tasks. For CPU-bound tasks, multiprocessing or other techniques are more appropriate).
+*   **When is `asyncio` a good choice?  When is it not?** (`asyncio` is suitable for I/O-bound tasks. For CPU-bound tasks, [multiprocessing or other techniques](/posts/boosting-python-performance-with-multiprocessing-a-practical-guide/) are more appropriate).
 *   **How does `asyncio` compare to multithreading in Python?** (Explain the GIL and how it affects multithreading, and why `asyncio` can be more efficient for I/O-bound operations.)
-*   **Explain how to handle exceptions in asynchronous code.**
+*   **Explain how to [handle exceptions in asynchronous code](/posts/advanced-asyncio-patterns-in-python/).**
 *   **Explain potential deadlocks with asyncio.** (While less prone to deadlocks than threads, understanding the concept of waiting on tasks which themselves are waiting on the parent tasks can create circular dependencies, leading to deadlocks).
 *   **Can you provide a real-world example where you have used `asyncio`?**
 

@@ -106,7 +106,7 @@ def handle_upload():
 
 The AI's logic was to use `ThreadPoolExecutor` for concurrency, which is a common pattern. However, it failed to account for several critical points in a high-throughput, I/O-bound service:
 
-1.  **Blocking `requests` and `psycopg2`**: Both libraries are inherently blocking. While `ThreadPoolExecutor` helps by running these in separate threads, Python's Global Interpreter Lock (GIL) means true CPU-bound parallelism is limited. More importantly, for I/O-bound tasks, creating hundreds or thousands of threads (as implied by processing `data_chunks` rapidly without proper batching or limiting `max_workers`) leads to massive context switching overhead and memory consumption. Each thread requires its own stack and kernel resources.
+1.  **Blocking `requests` and `psycopg2`**: Both libraries are inherently blocking. While `ThreadPoolExecutor` helps by running these in separate threads, Python's [Global Interpreter Lock (GIL)](/posts/boosting-python-performance-with-multiprocessing-a-practical-guide/) means true CPU-bound parallelism is limited. More importantly, for I/O-bound tasks, creating hundreds or thousands of threads (as implied by processing `data_chunks` rapidly without proper batching or limiting `max_workers`) leads to massive context switching overhead and memory consumption. Each thread requires its own stack and kernel resources.
 2.  **Unbounded Concurrency**: The `ThreadPoolExecutor()` was instantiated without `max_workers`, defaulting to a value typically 5 times the number of CPU cores. When hit with a large file parsed into hundreds or thousands of `data_chunks`, it would attempt to spawn an equivalent number of threads, far exceeding safe operating limits for the pod's resources.
 3.  **Connection Pool Exhaustion**: While `psycopg2` `DB_CONNECTION_POOL` was used, the sheer number of concurrent blocking requests quickly exhausted the pool, leading to `Connection refused` errors.
 4.  **Resource Limits Exceeded**: With hundreds of threads trying to perform I/O and holding memory, the pod rapidly consumed its allocated memory, leading to Kubernetes terminating it with an `OOMKilled` event. The HPA would then try to scale up, but new pods would just repeat the cycle.
@@ -287,7 +287,7 @@ Key changes implemented:
 
 ### Kubernetes Configuration Adjustments
 
-With the Python service now efficiently handling I/O, we could tune the Kubernetes resource requests and limits more effectively. The service now uses CPU more consistently and memory far more predictably.
+With the Python service now efficiently handling I/O, we could tune the [Kubernetes resource requests and limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) more effectively. The service now uses CPU more consistently and memory far more predictably.
 
 ```yaml
 # Updated Kubernetes Deployment for ai-processor-v1

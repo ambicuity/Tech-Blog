@@ -9,7 +9,7 @@ author: ritesh
 
 ## Introduction
 
-Asynchronous programming in Python, powered by the `asyncio` library, offers a powerful paradigm for building concurrent and efficient applications. While basic `async` and `await` constructs are relatively straightforward to grasp, mastering advanced patterns is crucial for handling complex scenarios like managing large numbers of concurrent tasks, implementing robust error handling, and optimizing performance. This blog post delves into several advanced `asyncio` patterns, providing practical code examples to illustrate their usage and benefits. Whether you're building a high-performance web server, a data processing pipeline, or any other application that benefits from concurrency, understanding these patterns will significantly enhance your `asyncio` skillset.
+[Asynchronous programming in Python](/posts/boosting-python-performance-with-asynchronous-programming-and-asyncio/), powered by the `asyncio` library, offers a powerful paradigm for building concurrent and efficient applications. While basic `async` and `await` constructs are relatively straightforward to grasp, mastering advanced patterns is crucial for handling complex scenarios like managing large numbers of concurrent tasks, implementing robust error handling, and optimizing performance. This blog post delves into several advanced `asyncio` patterns, providing practical code examples to illustrate their usage and benefits. Whether you're building a high-performance web server, a data processing pipeline, or any other application that benefits from concurrency, understanding these patterns will significantly enhance your `asyncio` skillset.
 
 ## Core Concepts
 
@@ -62,7 +62,7 @@ In this example, even though `task2` raises a `ValueError`, `task1` and `task3` 
 
 ## 2. Semaphores for Rate Limiting
 
-When dealing with external resources or APIs, it's often necessary to implement rate limiting to avoid overloading the service or exceeding usage quotas. `asyncio.Semaphore` provides a mechanism for controlling the number of concurrent access to a shared resource.
+When dealing with external resources or APIs, it's often necessary to [implement rate limiting](/posts/implementing-rate-limiting-with-redis-and-python-for-api-protection/) to avoid overloading the service or exceeding usage quotas. `asyncio.Semaphore` provides a mechanism for controlling the number of concurrent access to a shared resource.
 
 ```python
 import asyncio

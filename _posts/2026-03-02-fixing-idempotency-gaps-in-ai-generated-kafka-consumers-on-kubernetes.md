@@ -11,7 +11,7 @@ The production alert came in at 03:17 UTC: `CRITICAL: Inventory Mismatch Alert f
 
 Initial investigation pointed to the `inventory-delta-processor` pods. These Python microservices are responsible for consuming inventory change events from a Kafka topic (`product-updates`) and applying them to our primary PostgreSQL inventory database.
 
-A quick look at Prometheus/Grafana dashboards for the `inventory-delta-processor` service showed several anomalies:
+A quick look at [Prometheus/Grafana dashboards](/posts/monitoring-k8s-with-prometheus-and-grafana/) for the `inventory-delta-processor` service showed several anomalies:
 *   `kafka_consumer_group_lag` for the `product-updates` topic was oscillating wildly. Instead of a steady low lag, we saw spikes followed by rapid drops, suggesting message reprocessing.
 *   `postgres_active_connections_total` from the `inventory-delta-processor` pods was higher than usual, indicating more frequent database interactions.
 *   A custom application metric, `inventory_update_attempts_total`, was significantly higher than `inventory_updates_successful_total`, with the delta corresponding to a new `inventory_update_rollback_total` metric that had recently appeared (and was, ironically, added by the AI for "robustness").
@@ -37,7 +37,7 @@ We observed lines like:
 
 Notice the `product_id: prod-123` being processed twice with the same offset 12345, leading to a `-10` change instead of `-5`. The "duplicate transaction detected" warning, a new addition, was the critical clue.
 
-The core issue was a fundamental misunderstanding of distributed systems idempotency by the AI model when "optimizing" the consumer logic. The AI focused on making the *local* database interaction robust (e.g., retries, error handling around DB calls) but failed to account for Kafka's at-least-once delivery semantics and the need for consumers to handle message redelivery without side effects.
+The core issue was a fundamental misunderstanding of [distributed systems idempotency](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/) by the AI model when "optimizing" the consumer logic. The AI focused on making the *local* database interaction robust (e.g., retries, error handling around DB calls) but failed to account for Kafka's at-least-once delivery semantics and the need for consumers to handle message redelivery without side effects.
 
 The problematic AI-generated code snippet for processing looked something like this (simplified):
 
@@ -100,6 +100,23 @@ def consume_loop(kafka_consumer: Consumer, db_conn):
 The issue was subtle: if `process_message` successfully updated the database (`db_conn.commit()`) but *then* encountered an exception *before* returning `True` (e.g., a network hiccup or unexpected data format error *after* the DB commit but *before* the `return True`), the `kafka_consumer.commit(msg)` would not be called. The message would be redelivered, and the database operation would be re-attempted, leading to a duplicate. The AI’s "robustness" around `db_conn.rollback()` was an attempt to recover, but only *after* a potential `UPDATE` had already gone through, leading to the `Duplicate transaction detected` warning.
 
 The fix required implementing true idempotency using the `message_id` present in the Kafka payload. We needed to ensure that each unique `message_id` was processed *only once* against the database.
+
+The patched consumer handles each message as shown below, recording the `message_id` in the same transaction as the stock update.
+
+```mermaid
+flowchart TD
+  accTitle: The patched consumer handles each message as shown below, recording the message_id in the same transaction as the stock update
+  accDescr: Flowchart: the consumer polls product-updates, skips and commits the offset if the message_id is already in processed_messages, otherwise updates stock and inserts the message_id in one transaction; on success or UniqueViolation it commits the offset, and on other errors it rolls back so the message is redelivered.
+  A["poll() from product-updates"] --> C{"Already processed?"}
+  C -->|"yes, skip"| K["Commit Kafka offset"]
+  C -->|no| D["UPDATE stock and INSERT message_id"]
+  D --> E{"Commit"}
+  E -->|success| K
+  E -->|UniqueViolation| U["Roll back"]
+  U --> K
+  E -->|"other error"| X["Roll back, no offset commit"]
+  X -->|redelivered| A
+```
 
 Here’s the refined `process_message` function:
 
@@ -181,7 +198,7 @@ CREATE TABLE processed_messages (
 );
 ```
 
-The key insight here is that while AI excels at generating syntactically correct and often locally optimized code, it often lacks the systemic understanding required for distributed systems. Concepts like idempotency, transaction boundaries across services, eventual consistency, and complex failure modes are inherently architectural. They demand human reasoning that understands not just *what* the code does, but *how* it behaves under adverse, asynchronous, and concurrent conditions across a network of services.
+The key insight here is that while AI excels at generating syntactically correct and often locally optimized code, it often lacks the systemic understanding required for distributed systems. Concepts like idempotency, [transaction boundaries across services](/posts/transactional-outbox-reliable-events-without-dual-writes/), eventual consistency, and complex failure modes are inherently architectural. They demand human reasoning that understands not just *what* the code does, but *how* it behaves under adverse, asynchronous, and concurrent conditions across a network of services.
 
 The incident was resolved within an hour of identifying the root cause. We deployed the patched `inventory-delta-processor` pods, observed the `kafka_consumer_group_lag` stabilize, and the `inventory_update_attempts_total` metric aligned with `inventory_updates_successful_total`. The `processed_messages` table quickly started filling up, logging unique message IDs.
 

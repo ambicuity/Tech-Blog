@@ -13,7 +13,7 @@ Here's how it unfolded. We had a microservice responsible for user authenticatio
 
 The initial pull request looked good. Unit tests passed, and the new feature worked as expected in our staging environment. We deployed to production. A few hours later, reports started coming in: users were unable to log in. Authentication was failing intermittently.
 
-Our monitoring system, based on Prometheus and Grafana, showed a spike in `500` errors for the `/auth/login` endpoint. CPU and memory usage for the authentication service remained normal. The logs, however, held the key.
+Our monitoring system, based on [Prometheus and Grafana](/posts/monitoring-k8s-with-prometheus-and-grafana/), showed a spike in `500` errors for the `/auth/login` endpoint. CPU and memory usage for the authentication service remained normal. The logs, however, held the key.
 
 ```
 2026-04-05 14:23:45,234 ERROR [auth_service.py:120] Authentication failed for user: testuser, error: 'NoneType' object is not subscriptable

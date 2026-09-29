@@ -125,7 +125,7 @@ When discussing Terraform in an interview, be prepared to address the following:
 *   **What is a Terraform Provider? Give examples.**
 *   **How do you handle state management in a team environment?** (Discuss remote backends, state locking, and versioning.)
 *   **Explain the use of Terraform modules.**
-*   **How do you handle sensitive data in Terraform configurations?** (Mention Terraform Vault integration and other secrets management solutions.)
+*   **How do you handle sensitive data in Terraform configurations?** (Mention Terraform Vault integration and [other secrets management solutions](/posts/securing-secrets-in-kubernetes-with-vault/).)
 *   **Describe your experience using Terraform to automate infrastructure.** Provide specific examples of projects you've worked on.
 
 ## Real-World Use Cases

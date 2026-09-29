@@ -29,7 +29,7 @@ Now let's examine concrete strategies for reducing your Kubernetes bill. These s
 
 ### 1. Right-Sizing Resources (CPU & Memory Requests/Limits)
 
-The foundation of cost optimization lies in accurately defining resource requests and limits for your pods.
+The foundation of cost optimization lies in accurately [defining resource requests and limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) for your pods.
 
 *   **Requests:** The minimum amount of CPU and memory guaranteed to a pod. Kubernetes uses requests for scheduling decisions.
 *   **Limits:** The maximum amount of CPU and memory a pod can consume. If a pod exceeds its memory limit, it might be OOMKilled (Out Of Memory Killed). If it exceeds CPU, it will be throttled.
@@ -41,7 +41,7 @@ The foundation of cost optimization lies in accurately defining resource request
 
 **Implementation:**
 
-*   **Monitoring:** Utilize Kubernetes monitoring tools (e.g., Prometheus with Grafana, Datadog, New Relic) to track resource usage of your pods over time.  Identify pods with consistently low resource utilization.
+*   **Monitoring:** Utilize Kubernetes monitoring tools (e.g., [Prometheus with Grafana](/posts/monitoring-k8s-with-prometheus-and-grafana/), Datadog, New Relic) to track resource usage of your pods over time.  Identify pods with consistently low resource utilization.
 *   **Vertical Pod Autoscaling (VPA):**  Consider using VPA to automatically adjust CPU and memory requests based on historical usage.  VPA can operate in different modes:
     *   `Auto`: VPA automatically updates the pod's resources.
     *   `Recreate`: VPA updates the pod's resources and recreates the pod.
@@ -129,7 +129,7 @@ Spot instances (AWS), preemptible VMs (Google Cloud), and low-priority VMs (Azur
 
 *   **Node Pools/Node Selectors:** Create separate node pools (or use node selectors and tolerations) for spot instances/preemptible VMs.
 *   **Tolerations:**  Configure your deployments with tolerations to allow them to be scheduled on these nodes.
-*   **Consider Pod Disruption Budgets (PDBs):**  Use PDBs to minimize disruptions during node terminations, ensuring a minimum number of replicas remain available.
+*   **Consider Pod Disruption Budgets (PDBs):**  [Use PDBs to minimize disruptions](/posts/upgrading-kubernetes-clusters-with-zero-downtime/) during node terminations, ensuring a minimum number of replicas remain available.
 *   **Suitable Workloads:**  Ideal for batch processing, non-critical services, and development/testing environments.
 
 ### 5. Scheduling and Resource Optimization
@@ -138,7 +138,7 @@ Kubernetes provides various scheduling features to optimize resource utilization
 
 *   **Resource Quotas:** Limit the total amount of resources that can be consumed by a namespace. This prevents resource hogging by individual teams or applications.
 *   **Limit Ranges:** Set default resource requests and limits for pods within a namespace.  Ensures that all pods have at least a minimum level of resource allocation.
-*   **Node Affinity/Anti-Affinity:** Control which nodes pods can be scheduled on, based on labels. Use affinity to co-locate pods that communicate frequently and anti-affinity to spread pods across different nodes for high availability.
+*   **Node Affinity/Anti-Affinity:** Control which nodes pods can be scheduled on, based on labels. Use affinity to co-locate pods that communicate frequently and anti-affinity to [spread pods across different nodes](/posts/pod-topology-spread-constraints-explained/) for high availability.
 *   **Taints and Tolerations:**  Taints are applied to nodes, while tolerations are applied to pods. A pod with a toleration can be scheduled on a node with a matching taint.  This is useful for dedicating nodes to specific workloads (e.g., GPU-intensive tasks).
 
 ### 6. Storage Optimization

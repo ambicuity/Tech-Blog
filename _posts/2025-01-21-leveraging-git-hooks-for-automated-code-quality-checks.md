@@ -103,7 +103,7 @@ If the hook is working correctly, you will see output indicating that `black` an
 *   **Forgetting to make the hook executable:** If the hook script is not executable, Git will ignore it.
 *   **Not handling errors properly:**  Ensure your hook scripts properly check the exit codes of the commands they run.  Failing to do so can lead to false positives (allowing commits with errors) or false negatives (blocking commits when there are no actual errors).
 *   **Not staging changes made by formatters:** If you use a formatter like `black`, remember to stage the changes it makes using `git add` in the hook script.
-*   **Overly complex hooks:**  Keep your hooks simple and focused. Complex hooks can be difficult to maintain and debug.  Consider using a dedicated tool like `pre-commit` (https://pre-commit.com/) for managing more complex hook setups.
+*   **Overly complex hooks:**  Keep your hooks simple and focused. Complex hooks can be difficult to maintain and debug.  Consider using a dedicated tool like `pre-commit` (https://pre-commit.com/) for [managing more complex hook setups](/posts/leveraging-pre-commit-hooks-for-python-code-quality-a-practical-guide/).
 *   **Ignoring performance:**  Hooks should be fast.  Slow hooks can significantly slow down the development workflow.  Optimize your scripts and avoid running computationally expensive tasks in hooks that run frequently.
 *   **Assuming global availability of tools:** Hooks run in the context of the repository, so ensure that any tools used in the hook (like flake8 and black) are installed in the repository's virtual environment or otherwise available in the PATH.
 

@@ -171,6 +171,24 @@ kubectl apply -f review-vs.yaml
 
 This `VirtualService` tells Istio to route all traffic destined for the `review` service (on port 80) to the actual `review` service.  In a real-world scenario, you would have more complex routing rules based on headers, paths, or other criteria.
 
+With injection enabled, a call from `product` to `review` passes through both pods' Envoy sidecars, which istiod configures from `review-vs`.
+
+```mermaid
+flowchart TD
+  accTitle: With injection enabled, a call from product to review passes through both pods' Envoy sidecars, which istiod configures from review-vs
+  accDescr: Flowchart showing the product container sending a request to its istio-proxy Envoy sidecar, which forwards it on port 80 to the review pod's Envoy sidecar and then to the review container, while istiod pushes configuration derived from the review-vs VirtualService to both sidecars.
+  subgraph PP["product pod"]
+    PA["product container"] --> PE["Envoy (istio-proxy)"]
+  end
+  subgraph RP["review pod"]
+    RE["Envoy (istio-proxy)"] --> RA["review container"]
+  end
+  PE -->|"review:80, routed per review-vs"| RE
+  VS["VirtualService review-vs"] --> I["istiod"]
+  I -.->|"config"| PE
+  I -.->|"config"| RE
+```
+
 **4. Test the Configuration:**
 
 You can now test that Istio is managing traffic correctly.  The way to test will depend on how your `product` service interacts with the `review` service. Assuming the `product` service sends HTTP requests to the `review` service at `http://review`, you can try accessing your `product` service (you might need to expose it with a Kubernetes Ingress or Port Forwarding).
@@ -185,15 +203,15 @@ kubectl logs -l app=review -c istio-proxy -f
 
 This basic example scratches the surface of Istio's capabilities. Here are a few more advanced features to explore:
 
-*   **Traffic Shifting (Canary Deployments):** Gradually roll out new versions of a service by shifting a percentage of traffic to the new version.
+*   **Traffic Shifting (Canary Deployments):** [Gradually roll out new versions](/posts/implementing-canary-deployments-with-argo-rollouts-and-kubernetes/) of a service by shifting a percentage of traffic to the new version.
 
-*   **Fault Injection:** Inject faults (e.g., delays, errors) into traffic to test the resilience of your services.
+*   **Fault Injection:** Inject faults (e.g., delays, errors) into traffic to [test the resilience of your services](/posts/boosting-microservice-resilience-implementing-circuit-breaker-pattern-with-resilience4j/).
 
 *   **Mutual TLS Authentication:** Enforce mutual TLS for secure service-to-service communication.
 
 *   **Authorization Policies:** Define granular authorization policies to control which services can access other services.
 
-*   **Observability with Prometheus, Grafana, and Jaeger:** Utilize Istio's built-in telemetry data to monitor and troubleshoot your services.
+*   **[Observability with Prometheus, Grafana, and Jaeger](/posts/monitoring-k8s-with-prometheus-and-grafana/):** Utilize Istio's built-in telemetry data to monitor and troubleshoot your services.
 
 ## Conclusion
 

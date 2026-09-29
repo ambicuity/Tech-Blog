@@ -167,6 +167,19 @@ You can now access the "Green" environment directly through the NodePort of `my-
 
 Once you're confident that the "Green" environment is stable, update the `my-app-service` to point to the "Green" environment. This is the critical step in the Blue-Green deployment process.  We'll use `kubectl edit service my-app-service` to modify the selector.
 
+Only the selector on `my-app-service` decides which Deployment gets production traffic; `my-app-green-test` reaches Green before the switch.
+
+```mermaid
+flowchart LR
+  accTitle: Only the selector on my-app-service decides which Deployment gets production traffic; my-app-green-test reaches Green before the switch
+  accDescr: Flowchart showing users reaching my-app-service, whose selector environment blue sends traffic to my-app-blue 1.0.0 until the switch changes it to environment green and my-app-green 1.1.0, while testers reach Green early through the my-app-green-test NodePort Service.
+  U["Users"] --> S["my-app-service"]
+  S -->|"before: environment=blue"| B["my-app-blue (1.0.0)"]
+  S -.->|"after switch: environment=green"| G["my-app-green (1.1.0)"]
+  Q["Testers"] --> T["my-app-green-test (NodePort)"]
+  T --> G
+```
+
 Run:
 ```bash
 kubectl edit service my-app-service
@@ -212,10 +225,10 @@ After a successful deployment and a sufficient observation period, you can optio
 
 ## Advanced Considerations:
 
-*   **Automated Traffic Switching:**  Tools like Helm, Argo CD, and Flux can automate the traffic switching process using canary deployments or more sophisticated strategies.  These tools often integrate with monitoring systems for automated rollback based on health checks.
-*   **Database Migrations:** Managing database schema changes in a Blue-Green deployment requires careful planning and execution. Consider using techniques like online schema migrations or feature flags to minimize downtime and ensure data consistency.
+*   **Automated Traffic Switching:**  Tools like Helm, Argo CD, and Flux can automate the traffic switching process using [canary deployments](/posts/canary-deployments-with-flagger/) or more sophisticated strategies.  These tools often integrate with monitoring systems for automated rollback based on health checks.
+*   **Database Migrations:** Managing database schema changes in a Blue-Green deployment requires careful planning and execution. Consider using techniques like online schema migrations or [feature flags](/posts/the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages/) to minimize downtime and ensure data consistency.
 *   **Session Management:** If your application relies on session data, ensure that sessions are properly replicated or persisted across both the "Blue" and "Green" environments to avoid data loss during the traffic switch. Sticky sessions, if used, need to be handled carefully.
-*   **Service Meshes:**  Service meshes like Istio and Linkerd can provide more granular control over traffic routing and offer features like traffic shadowing and A/B testing, which can be combined with Blue-Green deployments for enhanced control and observability.
+*   **Service Meshes:**  [Service meshes like Istio](/posts/service-mesh-with-istio-a-practical-guide/) and Linkerd can provide more granular control over traffic routing and offer features like traffic shadowing and A/B testing, which can be combined with Blue-Green deployments for enhanced control and observability.
 
 ## Conclusion: Mastering Blue-Green for Kubernetes
 

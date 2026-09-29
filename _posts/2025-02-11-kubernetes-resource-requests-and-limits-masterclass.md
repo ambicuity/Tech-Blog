@@ -9,7 +9,7 @@ author: ritesh
 
 ## Introduction
 
-In the dynamic world of Kubernetes, efficient resource management is crucial for application stability, performance, and cost optimization.  One of the most fundamental aspects of this management involves defining resource requests and limits for your Pods. Neglecting these configurations can lead to resource starvation, unpredictable application behavior, and ultimately, a compromised user experience. This comprehensive guide delves into the intricacies of Kubernetes resource requests and limits, providing practical examples and best practices to help you master resource allocation in your clusters. We will cover the core concepts, walk through practical implementations, and discuss strategies for effective monitoring and tuning.
+In the dynamic world of Kubernetes, efficient resource management is crucial for application stability, performance, and [cost optimization](/posts/kubernetes-cost-optimization-strategies/).  One of the most fundamental aspects of this management involves defining resource requests and limits for your Pods. Neglecting these configurations can lead to resource starvation, unpredictable application behavior, and ultimately, a compromised user experience. This comprehensive guide delves into the intricacies of Kubernetes resource requests and limits, providing practical examples and best practices to help you master resource allocation in your clusters. We will cover the core concepts, walk through practical implementations, and discuss strategies for effective monitoring and tuning.
 
 ## Core Concepts: Requests and Limits
 
@@ -122,7 +122,7 @@ Look for the "Resources" section in the output.  You should see the requests and
 
 5.  **Horizontal Pod Autoscaling (HPA):**  HPA can automatically scale the number of Pods in a deployment based on observed CPU utilization or other custom metrics.  However, HPA relies on accurate resource requests. If requests are significantly lower than actual usage, HPA might not trigger scaling when needed.
 
-6.  **Monitoring and Tuning:** Continuously monitor resource usage using tools like Prometheus, Grafana, or Kubernetes dashboard. Identify Pods that are consistently exceeding their limits or underutilizing their requested resources. Adjust requests and limits accordingly. It's an iterative process.
+6.  **Monitoring and Tuning:** Continuously monitor resource usage using [tools like Prometheus, Grafana](/posts/monitoring-k8s-with-prometheus-and-grafana/), or Kubernetes dashboard. Identify Pods that are consistently exceeding their limits or underutilizing their requested resources. Adjust requests and limits accordingly. It's an iterative process.
 
 7. **Consider QoS Classes**: Kubernetes uses QoS (Quality of Service) classes to prioritize Pods based on their resource requests and limits. The three QoS classes are:
 
@@ -136,7 +136,7 @@ Look for the "Resources" section in the output.  You should see the requests and
 
 ## Common Mistakes
 
-*   **CPU limits that throttle health checks:** a throttled container can answer liveness or readiness probes too slowly; the probes fail and the kubelet restarts a container that was only busy. Leave headroom above typical CPU usage, or give probes generous timeouts.
+*   **CPU limits that throttle health checks:** a throttled container can answer [liveness or readiness probes](/posts/mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses/) too slowly; the probes fail and the kubelet restarts a container that was only busy. Leave headroom above typical CPU usage, or give probes generous timeouts.
 *   **Confusing `M` and `Mi`:** `512M` and `512Mi` differ by about 24Mi, enough to turn a comfortable limit into repeated `OOMKilled` restarts.
 *   **Setting requests with no measurement behind them:** requests drive scheduling and HPA; values copied from another service lead to either wasted capacity or starved pods. Measure under load first.
 

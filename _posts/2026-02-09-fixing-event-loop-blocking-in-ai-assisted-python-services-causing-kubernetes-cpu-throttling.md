@@ -11,7 +11,7 @@ scenario: illustrative
 
 We recently encountered a recurring issue with a newly deployed data aggregation microservice in our Kubernetes cluster. The service, written in Python with FastAPI, had its core data processing and external API interaction logic heavily assisted by AI code generation. Initial development and local testing were rapid, and the service passed basic integration tests in staging environments. However, once deployed to production, we began seeing intermittent, severe latency spikes, followed by `CrashLoopBackOff` events for its pods during specific peak traffic windows.
 
-Our platform engineering team was paged frequently. The symptom was consistent: a sudden degradation in response times, then pods failing their `readinessProbe` or being `OOMKilled` or `Terminated` by Kubernetes, triggering a restart loop.
+Our platform engineering team was paged frequently. The symptom was consistent: a sudden degradation in response times, then pods failing their `readinessProbe` or being `OOMKilled` or `Terminated` by Kubernetes, [triggering a restart loop](/posts/troubleshooting-crashloopbackoff-errors/).
 
 Initial investigation using standard Kubernetes tooling revealed a pattern:
 
@@ -99,7 +99,7 @@ async def get_aggregated_data(item_id: str):
 
 This was the culprit. The `requests` library is synchronous. When `session.get()` is called within an `async def` function, it *blocks the entire `asyncio` event loop* until the HTTP request completes. In a highly concurrent web service like FastAPI, this means *all other pending requests and tasks* are stalled while one single request is waiting for the external API. This causes the event loop to become saturated, CPU utilization to skyrocket as `asyncio` tries to manage the backlog, and overall latency to increase dramatically. Our `livenessProbe` was timing out because the event loop was too busy processing pending tasks to respond to the health check endpoint.
 
-The fix involved refactoring the problematic code to use an asynchronous HTTP client, `httpx`, which is fully compatible with `asyncio`.
+The fix involved refactoring the problematic code to use [an asynchronous HTTP client](/posts/boosting-python-performance-with-asynchronous-programming-and-asyncio/), `httpx`, which is fully compatible with `asyncio`.
 
 First, update dependencies in `pyproject.toml` (or `requirements.txt`):
 
@@ -160,4 +160,4 @@ After deploying the refactored service, the results were immediate and positive.
 2.  **Asynchronous I/O is Critical:** In Python's `asyncio` ecosystem, any blocking I/O (file operations, synchronous HTTP calls, traditional database drivers) within an `async def` function will stall the entire event loop, severely impacting concurrency and performance. Tools like `py-spy` are indispensable for identifying these bottlenecks.
 3.  **Monitor CPU Throttling:** `container_cpu_cfs_throttled_periods_total` is an invaluable metric in Kubernetes for identifying applications that are bottlenecked by CPU limits. High throttling often indicates inefficient code or misconfigured resources, not necessarily just "not enough CPU."
 4.  **Robust Probes:** Our `livenessProbe` was too simplistic. A more robust probe might involve checking the `asyncio` event loop's backlog or processing time to proactively detect stalls before a hard timeout.
-5.  **Right-Sizing Resources:** Kubernetes resource requests and limits should be based on actual application profiling under realistic load, not just guesswork or initial development-phase observations. While the AI-generated code was the root cause here, correctly sized resources could have provided more headroom before catastrophic failure, but would not have solved the underlying inefficiency.
+5.  **Right-Sizing Resources:** [Kubernetes resource requests and limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) should be based on actual application profiling under realistic load, not just guesswork or initial development-phase observations. While the AI-generated code was the root cause here, correctly sized resources could have provided more headroom before catastrophic failure, but would not have solved the underlying inefficiency.

@@ -31,7 +31,7 @@ This section walks through a practical example of integrating Vault with Kuberne
 
 **1. Deploying Vault in Kubernetes:**
 
-First, we need to deploy Vault within our Kubernetes cluster.  While there are various ways to deploy Vault (Helm, manual manifests), a minimal Helm chart deployment provides a reasonable starting point.  Refer to the official HashiCorp documentation for the most up-to-date installation instructions, as they often change.
+First, we need to deploy Vault within our Kubernetes cluster.  While there are various ways to deploy Vault (Helm, manual manifests), [a minimal Helm chart deployment](/posts/helm-vs-kustomize-a-comprehensive-comparison/) provides a reasonable starting point.  Refer to the official HashiCorp documentation for the most up-to-date installation instructions, as they often change.
 
 ```bash
 helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -129,6 +129,26 @@ vault write auth/kubernetes/role/myapp-role \
 
 Finally, create a Kubernetes pod that uses the service account and retrieves a Vault token.
 
+The pod's command performs this login-then-read flow, using the `myapp-sa` token, the `myapp-role` role and `myapp-policy`.
+
+```mermaid
+sequenceDiagram
+  accTitle: The pod's command performs this login-then-read flow, using the myapp-sa token, the myapp-role role and myapp-policy
+  accDescr: Sequence diagram: myapp-pod sends its myapp-sa service account JWT and role myapp-role to Vault's Kubernetes auth method, Vault verifies the JWT with the Kubernetes API server using the vault-auth reviewer token, returns a client token with myapp-policy and a 30-minute TTL, and the pod uses that token to read secret/data/myapp/config from the KV secret engine.
+  participant P as myapp-pod (myapp-sa)
+  participant V as Vault auth/kubernetes
+  participant A as Kubernetes API server
+  participant S as Vault KV secret engine
+  P->>P: read service account JWT
+  P->>V: POST login with JWT and role myapp-role
+  V->>A: verify JWT using vault-auth token
+  A-->>V: valid, myapp-sa in default
+  V->>V: role matches, attach myapp-policy
+  V-->>P: client_token, ttl 30m
+  P->>S: read secret/data/myapp/config
+  S-->>P: secret data, read allowed by policy
+```
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -169,4 +189,4 @@ To use the Vault Agent, you'll need to enable the Vault Agent Injector (which we
 
 ## Conclusion
 
-Securing secrets in Kubernetes is a critical aspect of modern application development and deployment. Vault provides a powerful and flexible solution for managing secrets, enhancing the security of your Kubernetes environment. By leveraging Vault's features like encryption, access control, and audit logging, you can significantly reduce the risk of exposing sensitive information.  While the initial setup might seem complex, the long-term benefits of using Vault for secrets management far outweigh the initial effort.  Remember to always follow best practices and consult the official Vault documentation for the most up-to-date information and recommendations.  Also, consider exploring other authentication methods and secret engines based on your specific requirements.
+Securing secrets in Kubernetes is a critical aspect of modern application development and deployment. Vault provides a powerful and flexible solution for managing secrets, enhancing the [security of your Kubernetes environment](/posts/kubernetes-security-best-practices-2026/). By leveraging Vault's features like encryption, access control, and audit logging, you can significantly reduce the risk of exposing sensitive information.  While the initial setup might seem complex, the long-term benefits of using Vault for secrets management far outweigh the initial effort.  Remember to always follow best practices and consult the official Vault documentation for the most up-to-date information and recommendations.  Also, consider exploring other authentication methods and secret engines based on your specific requirements.

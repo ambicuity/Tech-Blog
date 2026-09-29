@@ -13,7 +13,7 @@ The initial hypothesis was network saturation, but after examining network metri
 
 The AI was *too* thorough. It was analyzing every single line of code in every file, resulting in thousands of individual API requests per pull request. This brute-force approach, while effective at finding issues, was clearly unsustainable.
 
-The first step was to understand the API usage pattern. We deployed a simple sidecar container using `nicolaka/netshoot` alongside the code review pod and used `tcpdump` to capture the API traffic.
+The first step was to understand the API usage pattern. We deployed a simple sidecar container using `nicolaka/netshoot` alongside the code review pod and used `tcpdump` to [capture the API traffic](/posts/debug-container-networking-with-ephemeral-containers/).
 
 ```yaml
 apiVersion: apps/v1
@@ -81,7 +81,7 @@ def should_analyze_file(filepath, max_file_size_kb=200):
     return file_size_kb <= max_file_size_kb
 ```
 
-3. **Caching**: We implemented a Redis cache to store the results of previous API calls. If the same code chunk was encountered again, we retrieved the analysis from the cache instead of making a new API request. This required adding a dependency to our `requirements.txt`:
+3. **Caching**: We implemented [a Redis cache](/posts/boosting-web-app-performance-with-redis-caching-on-aws-elasticache/) to store the results of previous API calls. If the same code chunk was encountered again, we retrieved the analysis from the cache instead of making a new API request. This required adding a dependency to our `requirements.txt`:
 
 ```
 redis==4.6.0
@@ -108,7 +108,7 @@ def analyze_code_with_cache(code_chunk, api_client):
         return result
 ```
 
-4. **Rate Limiting**: Finally, we implemented rate limiting on the client side to prevent overwhelming `CodeAnalyzerAPI`.  We used the `tenacity` library to handle retries with exponential backoff.  This required adding the library:
+4. **Rate Limiting**: Finally, we [implemented rate limiting](/posts/implementing-rate-limiting-with-redis-and-python-for-api-protection/) on the client side to prevent overwhelming `CodeAnalyzerAPI`.  We used the `tenacity` library to handle retries with exponential backoff.  This required adding the library:
 
 ```
 tenacity==8.3.0
@@ -129,7 +129,7 @@ def analyze_code_with_retry(code_chunk, api_client):
 
 ```
 
-We also adjusted our Kubernetes resource requests and limits for the code-review pods, increasing both CPU and memory.  We deployed the new code review service using a rolling update. After deploying these changes, we observed a dramatic improvement in performance. Build times decreased significantly, and our API usage dropped by over 70%. Monitoring dashboards, built using Prometheus and Grafana, now showed stable CPU utilization for the code review pods. The errors we saw previously disappeared from the logs:
+We also adjusted our [Kubernetes resource requests and limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) for the code-review pods, increasing both CPU and memory.  We deployed the new code review service using a rolling update. After deploying these changes, we observed a dramatic improvement in performance. Build times decreased significantly, and our API usage dropped by over 70%. Monitoring dashboards, built using Prometheus and Grafana, now showed stable CPU utilization for the code review pods. The errors we saw previously disappeared from the logs:
 
 ```
 2026-04-09T14:30:00Z CodeAnalyzerAPI: 429 Too Many Requests

@@ -86,13 +86,13 @@ Preventing and mitigating feature flag misconfigurations requires a deliberate, 
 
 ### Design for Failure
 
-*   **Kill Switches & Circuit Breakers**: Every significant feature flag, especially those gating access to new or experimental functionality, must have an easily accessible kill switch. Furthermore, integrate circuit breakers at the service level. If the `ai-inference-service` starts returning `5xx` errors above a defined threshold, the circuit should trip, preventing further requests and failing gracefully to a known good state (e.g., using a fallback AI model or disabling the feature entirely).
+*   **Kill Switches & Circuit Breakers**: Every significant feature flag, especially those gating access to new or experimental functionality, must have an easily accessible kill switch. Furthermore, [integrate circuit breakers](/posts/boosting-microservice-resilience-implementing-circuit-breaker-pattern-with-resilience4j/) at the service level. If the `ai-inference-service` starts returning `5xx` errors above a defined threshold, the circuit should trip, preventing further requests and failing gracefully to a known good state (e.g., using a fallback AI model or disabling the feature entirely).
 *   **Default-Off Principle**: New, high-impact features should default to `off` (or `false`) globally. Explicit rules should be used to enable them for specific segments. This prevents accidental broad exposure.
 *   **Clear Ownership & Documentation**: Ensure every flag has a clear owner, purpose, and lifecycle defined. Outdated or orphaned flags are a source of confusion and risk.
 
 ### Robust Testing & Deployment
 
-*   **Staged Rollouts & Canaries**: Never enable a significant flag for 100% of production traffic immediately. Implement phased rollouts (e.g., 1%, 10%, 50%, 100%) with automated canary analysis. Monitor key metrics (error rates, latency, resource utilization) for the canary group versus the control group. Roll back automatically if deviations exceed thresholds.
+*   **Staged Rollouts & Canaries**: Never enable a significant flag for 100% of production traffic immediately. Implement phased rollouts (e.g., 1%, 10%, 50%, 100%) with [automated canary analysis](/posts/canary-deployments-with-flagger/). Monitor key metrics (error rates, latency, resource utilization) for the canary group versus the control group. Roll back automatically if deviations exceed thresholds.
     *   *Artifact Example (Canary Configuration Snippet for a Feature Flag Platform)*:
         ```yaml
         feature_flag: enable-experimental-ai-v2

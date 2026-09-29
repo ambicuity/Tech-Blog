@@ -41,7 +41,7 @@ spec:
         # No securityContext, no resource limits/requests
 ```
 
-This manifest, if deployed, would create a container running as root and without defined resource boundaries, making it a prime candidate for privilege escalation or resource exhaustion issues within the cluster.
+This manifest, if deployed, would create a container running as root and [without defined resource boundaries](/posts/kubernetes-resource-requests-and-limits-masterclass/), making it a prime candidate for [privilege escalation](/posts/kubernetes-security-best-practices-2026/) or resource exhaustion issues within the cluster.
 
 ### Implementing OPA Gatekeeper for Automated Enforcement
 

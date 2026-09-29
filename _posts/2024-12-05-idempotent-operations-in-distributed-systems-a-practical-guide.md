@@ -29,6 +29,27 @@ In distributed systems, network calls are inherently unreliable. Retries are com
 
 Let's consider a scenario where we're building a payment processing system. We want to ensure that a user is charged only once, even if the payment request is sent multiple times due to network issues.  We can achieve this using an idempotent key and a database to track processed payments.
 
+The sequence below shows how the endpoint uses the idempotency key to decide whether to charge or to replay.
+
+```mermaid
+sequenceDiagram
+  accTitle: The sequence below shows how the endpoint uses the idempotency key to decide whether to charge or to replay
+  accDescr: Sequence diagram: the client posts a payment with an idempotency key, the Flask endpoint looks the key up in the payments table, inserts and commits a new payment if no row exists, returns 'already processed' if a processed row exists, and returns an inconsistent-state error if the row is not marked processed.
+  participant C as Client
+  participant A as Flask /payment
+  participant D as PostgreSQL payments
+  C->>A: POST /payment with idempotency_key
+  A->>D: SELECT processed by idempotency_key
+  alt no row found
+    A->>D: INSERT payment, processed true, COMMIT
+    A-->>C: Payment processed successfully
+  else row found, processed is true
+    A-->>C: Payment already processed
+  else row found, processed not true
+    A-->>C: Inconsistent state error
+  end
+```
+
 **Example (Python with Flask and PostgreSQL):**
 
 First, we'll set up a simple Flask application with a PostgreSQL database connection. (Assumes you have PostgreSQL installed and running.)
@@ -187,7 +208,7 @@ Send the same request again. You should see that the payment is not reprocessed 
 ## Common Mistakes
 
 *   **Not generating truly unique idempotent keys:** If the key is not truly unique, different operations might be treated as the same, leading to incorrect behavior. Use UUIDs or other suitable unique identifier generation methods.
-*   **Not handling database transactions correctly:** If the database update (marking the operation as completed) is not atomic with the actual operation, the system might end up in an inconsistent state if a failure occurs in between. Wrap the operations in a transaction.
+*   **Not handling database transactions correctly:** If the database update (marking the operation as completed) is [not atomic with the actual operation](/posts/transactional-outbox-reliable-events-without-dual-writes/), the system might end up in an inconsistent state if a failure occurs in between. Wrap the operations in a transaction.
 *   **Using weak idempotency:** Weak idempotency relies on assumptions about the ordering of operations. It's generally less robust than strong idempotency, which guarantees the same result regardless of the order or number of executions. Aim for strong idempotency whenever possible.
 *   **Ignoring edge cases:** Carefully consider all possible error scenarios and handle them gracefully. For example, what happens if the database is temporarily unavailable? Implement proper error handling and retry mechanisms.
 *   **Insufficient logging and monitoring:** Insufficient logging and monitoring can make it difficult to diagnose problems related to idempotency. Implement comprehensive logging to track the state of operations and monitor the system for unexpected behavior.
@@ -214,7 +235,7 @@ Key talking points:
 
 *   **Payment Gateways:** Ensure that a user is charged only once, even if the payment request is sent multiple times.
 *   **Order Management Systems:** Prevent duplicate order creation in the event of network failures.
-*   **Inventory Management Systems:** Ensure that inventory levels are updated correctly, even if update messages are delivered multiple times.
+*   **Inventory Management Systems:** Ensure that inventory levels are updated correctly, even if [update messages are delivered multiple times](/posts/fixing-idempotency-gaps-in-ai-generated-kafka-consumers-on-kubernetes/).
 *   **Cloud Infrastructure Management:** Guarantee that provisioning or deprovisioning operations are executed only once.
 *   **API Design:** Designing RESTful APIs to be idempotent can simplify client-side error handling and retry logic. For example, using PUT requests for updates makes the operation idempotent.
 

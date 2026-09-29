@@ -209,6 +209,34 @@ spec:
       terminationGracePeriodSeconds: 60
 ```
 
-By failing the readiness probe when `shutting_down` is set, Kubernetes' `kube-proxy` will remove the pod's IP from the service endpoint, stopping new requests from reaching it. This works in conjunction with the `503` rejection in `process_payment` and Gunicorn's `graceful-timeout`.
+By failing the readiness probe when `shutting_down` is set, Kubernetes' `kube-proxy` will remove the pod's IP from [the service endpoint](/posts/understanding-kubernetes-networking-deep-dive/), stopping new requests from reaching it. This works in conjunction with the `503` rejection in `process_payment` and Gunicorn's `graceful-timeout`.
+
+Put together, a terminating `payment-processor-v2` pod now goes through this sequence before Kubernetes would ever need to send `SIGKILL`.
+
+```mermaid
+sequenceDiagram
+  accTitle: Put together, a terminating payment-processor-v2 pod now goes through this sequence before Kubernetes would ever need to send SIGKILL
+  accDescr: Sequence diagram: the kubelet sends SIGTERM to Gunicorn, which forwards it to its Flask workers; a worker sets shutting_down, rejects new payment requests with 503 and fails the readiness probe so the pod leaves the Service endpoints; in-flight requests finish within Gunicorn's 30-second graceful timeout and the process exits, and only if it is still running after the 60-second grace period does the kubelet send SIGKILL.
+  participant C as Client
+  participant E as Endpoints
+  participant K as Kubelet
+  participant G as Gunicorn master
+  participant W as Flask worker
+  K->>G: SIGTERM, pod is Terminating
+  G->>W: SIGTERM
+  W->>W: set shutting_down
+  C->>W: new POST /process_payment
+  W-->>C: 503 Service unavailable
+  K->>W: readiness probe GET /ready
+  W-->>K: 503 NOT_READY
+  K->>E: pod marked not ready
+  Note over E: pod IP removed, no new traffic
+  W->>W: finish in-flight requests
+  W-->>G: exits within 30s graceful-timeout
+  G-->>K: container exits cleanly
+  opt still running at 60s grace period
+    K->>G: SIGKILL
+  end
+```
 
 With these changes, our `payment-processor-v2` service now gracefully handles `SIGTERM`. During deployments, pods cleanly stop accepting new traffic, complete in-flight transactions, and then exit, significantly reducing `5xx` errors and eliminating data inconsistency issues caused by abrupt terminations. While AI is a powerful tool for accelerating development, this incident reinforced that critical operational aspects of distributed systems still demand experienced engineering oversight.

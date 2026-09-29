@@ -135,9 +135,23 @@ Modify the `deployment.yaml` file in your Git repository, for example, by changi
 
 Commit and push the changes to your Git repository. ArgoCD will automatically detect the changes and start synchronizing the application.  You should see the number of replicas for your application increase to 5 in the Kubernetes cluster.
 
+That push feeds the reconcile loop behind the `my-app` Application: ArgoCD compares Git with the cluster and syncs any drift.
+
+```mermaid
+flowchart TD
+  accTitle: That push feeds the reconcile loop behind the my-app Application: ArgoCD compares Git with the cluster and syncs any drift
+  accDescr: Flowchart of the GitOps loop: a developer pushes manifests to the Git repository, ArgoCD compares the desired state at HEAD with the live state in the default namespace, and when they differ the automatic sync applies the manifests to the cluster.
+  D["Developer"] -->|"commit and push"| G["Git repo: deployment.yaml, service.yaml"]
+  G -->|"desired state at HEAD"| C{"ArgoCD: live matches Git?"}
+  K["Cluster, namespace default"] -->|"live state"| C
+  C -->|"no, drift"| S["Automatic sync applies manifests"]
+  S --> K
+  C -->|"yes"| OK["my-app Synced"]
+```
+
 **7.  Customization using Kustomize or Helm:**
 
-For more complex applications, you can leverage Kustomize or Helm to manage your Kubernetes manifests. ArgoCD seamlessly integrates with both. You can configure ArgoCD to use a Kustomize overlay or a Helm chart in your Git repository.  For instance, if you are using Helm, you would point ArgoCD to the directory containing your `Chart.yaml` and `values.yaml` files.  ArgoCD would then render the Helm chart and deploy the resulting manifests to Kubernetes.
+For more complex applications, you can [leverage Kustomize or Helm](/posts/helm-vs-kustomize-a-comprehensive-comparison/) to manage your Kubernetes manifests. ArgoCD seamlessly integrates with both. You can configure ArgoCD to use a Kustomize overlay or a Helm chart in your Git repository.  For instance, if you are using Helm, you would point ArgoCD to the directory containing your `Chart.yaml` and `values.yaml` files.  ArgoCD would then render the Helm chart and deploy the resulting manifests to Kubernetes.
 
 **Example with Kustomize:**
 
@@ -158,7 +172,7 @@ In the ArgoCD application configuration, you would still provide the Git reposit
 ArgoCD offers several advanced features that can further enhance your GitOps workflow:
 
 *   **Sync Windows:**  Define specific time windows during which ArgoCD is allowed to synchronize applications.  This can be useful for avoiding deployments during peak hours or maintenance windows.
-*   **Pre- and Post-Sync Hooks:**  Execute scripts or commands before or after a synchronization. This can be used for running database migrations, performing health checks, or triggering other automation tasks.
+*   **Pre- and Post-Sync Hooks:**  Execute scripts or commands before or after a synchronization. This can be used for [running database migrations](/posts/automating-database-migrations-with-flyway-and-docker-a-practical-guide/), performing health checks, or triggering other automation tasks.
 *   **Resource Health Checks:**  Configure custom health checks for your Kubernetes resources.  ArgoCD uses these health checks to determine the overall health of your application.
 *   **Rollback Strategies:** Define rollback strategies to automatically revert to a previous version of your application in case of failure.
 *   **Multi-Cluster Management:**  Manage deployments across multiple Kubernetes clusters from a single ArgoCD instance.
@@ -170,7 +184,7 @@ Implementing GitOps with ArgoCD requires careful consideration of security aspec
 
 *   **Git Repository Security:** Protect your Git repository with appropriate access controls.  Use branch protection rules to prevent unauthorized changes to the main branch.  Consider using signed commits to verify the authenticity of changes.
 *   **ArgoCD RBAC:** Configure Role-Based Access Control (RBAC) in ArgoCD to restrict access to sensitive resources and operations.  Grant users only the necessary permissions to manage applications.
-*   **Secrets Management:** Avoid storing sensitive information, such as passwords or API keys, directly in your Git repository. Use Kubernetes secrets or a dedicated secrets management solution like HashiCorp Vault to securely manage secrets. ArgoCD can integrate with these solutions to retrieve secrets at deployment time.
+*   **Secrets Management:** Avoid storing sensitive information, such as passwords or API keys, directly in your Git repository. Use Kubernetes secrets or a dedicated secrets management [solution like HashiCorp Vault](/posts/securing-secrets-in-kubernetes-with-vault/) to securely manage secrets. ArgoCD can integrate with these solutions to retrieve secrets at deployment time.
 *   **Image Scanning:** Integrate image scanning tools into your CI/CD pipeline to identify vulnerabilities in your container images.
 
 ## Conclusion

@@ -37,7 +37,7 @@ Here's a step-by-step guide to building a serverless image processing pipeline u
 *   Log into the AWS Management Console.
 *   Navigate to the SQS service.
 *   Click "Create queue."
-*   Choose "Standard" or "FIFO" queue type. For simple image processing, a standard queue is sufficient. If you require strict ordering, choose FIFO.
+*   Choose "Standard" or "FIFO" queue type. For simple image processing, a standard queue is sufficient. [If you require strict ordering](/posts/leveraging-aws-sqs-message-groups-for-ordered-processing/), choose FIFO.
 *   Name your queue (e.g., `image-processing-queue`).
 *   Set a dead-letter queue (a redrive policy with a `maxReceiveCount`, for example 5) so a message that keeps failing is set aside instead of retried forever.
 *   Configure queue settings as needed (e.g., visibility timeout, message retention period). The *Visibility Timeout* is the amount of time a message stays invisible to other consumers after it's retrieved from the queue.
@@ -119,6 +119,21 @@ def lambda_handler(event, context):
 ```
 
 Why `batchItemFailures` matters: if the handler caught an error and returned normally, Lambda would treat the whole batch as processed and delete every message, so the failed ones would be lost silently. Returning the failed message IDs (with "Report batch item failures" enabled on the trigger, step 5) retries just those messages.
+
+The flow below traces one message through the handler, including partial batch retries and the dead-letter queue.
+
+```mermaid
+flowchart TD
+  accTitle: The flow below traces one message through the handler, including partial batch retries and the dead-letter queue
+  accDescr: Flowchart: a message from image-processing-queue reaches the image-resizer Lambda, which processes each record; successes are uploaded to resized/ and deleted, failures are listed in batchItemFailures and return to the queue until maxReceiveCount is reached, after which SQS moves them to the dead-letter queue.
+  Q["image-processing-queue"] --> L["image-resizer: loop over Records"]
+  L --> P{"Succeeded?"}
+  P -->|yes| OK["Uploaded to resized/, message deleted"]
+  P -->|no| F["messageId added to batchItemFailures"]
+  F --> R{"5th receive?"}
+  R -->|"no, retry"| Q
+  R -->|yes| DLQ["Dead-letter queue"]
+```
 
 
 *   Upload this code to your Lambda function.  You will need to zip it first along with any libraries used (Pillow in this example). You can use a Lambda Layer to easily package dependencies.
