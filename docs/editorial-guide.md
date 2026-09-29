@@ -92,6 +92,10 @@ When a backlog topic is published, remove it from this table.
 
 ## Brief for Muse
 
+The full, detailed prompt (research, structure, code standards, adversarial review,
+output) is [article-generation-prompt.md](article-generation-prompt.md). Use it for
+every article; the short version below is a summary.
+
 > Write one article from the backlog in `docs/editorial-guide.md` (or propose a
 > topic that fills a gap listed there). Follow `docs/content-authoring.md` exactly.
 > Explain one idea completely: when to use it, how it works, how it fails, what to
