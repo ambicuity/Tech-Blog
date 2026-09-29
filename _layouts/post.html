@@ -26,6 +26,11 @@ layout: default
           {% include post-meta.html updated=true %}
         </div>
       </div>
+      {%- if page.cover_url %}
+      <figure class="article-head__cover">
+        <img src="{{ page.cover_url | relative_url }}" alt="{{ page.cover.alt | escape }}" width="1200" height="630" fetchpriority="high" decoding="async">
+      </figure>
+      {%- endif %}
     </div>
   </header>
 

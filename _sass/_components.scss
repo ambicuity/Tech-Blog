@@ -1100,3 +1100,44 @@
     }
   }
 }
+
+// ---- Cover images (article bundles with `cover:`) ------------------------------------
+
+.post-card__cover,
+.article-head__cover {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+  }
+}
+
+.post-card__cover {
+  order: -1;
+  margin-bottom: var(--sp-1);
+
+  img {
+    transition: transform var(--dur) var(--ease);
+  }
+}
+
+.post-card:hover .post-card__cover img {
+  transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card:hover .post-card__cover img {
+    transform: none;
+  }
+}
+
+.article-head__cover {
+  margin-top: var(--sp-6);
+}

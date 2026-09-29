@@ -140,6 +140,8 @@ google_analytics:
 # Never publish repository internals. Anything listed here is excluded from
 # _site. (Previously pipeline/ and server/ source was publicly downloadable.)
 exclude:
+  # Article bundles are loaded by _plugins/bundles.rb, not as plain pages.
+  - content/
   - scripts/
   - pipeline/
   - server/

@@ -5,7 +5,12 @@
 {%- assign _p = include.post -%}
 {%- assign _level = include.level | default: 3 -%}
 {%- assign _primary = _p.categories | first -%}
-<article class="post-card{% if include.variant %} post-card--{{ include.variant }}{% endif %}">
+<article class="post-card{% if include.variant %} post-card--{{ include.variant }}{% endif %}{% if _p.cover_url and include.variant != "compact" %} has-cover{% endif %}">
+  {%- if _p.cover_url and include.variant != "compact" %}
+  <figure class="post-card__cover">
+    <img src="{{ _p.cover_url | relative_url }}" alt="{{ _p.cover.alt | escape }}" width="1200" height="630" loading="lazy" decoding="async">
+  </figure>
+  {%- endif %}
   <div class="kicker">
     {%- if _primary %}{% include category-link.html name=_primary %}{% endif %}
     {%- if _p.kind %}{% if _primary %}<span class="kicker__sep" aria-hidden="true">/</span>{% endif %}<span>{{ _p.kind }}</span>{% endif %}
