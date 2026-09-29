@@ -183,6 +183,26 @@ class ContentContractTest < Minitest::Test
     assert_match(/leftover placeholder/, TechBlog::ContentContract.validate_legacy(@root, path).errors.join)
   end
 
+  SAFE_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><title>T</title><rect class="f-box" width="10" height="10"/></svg>'
+
+  def test_figure_svgs_must_be_safe_and_use_the_vocabulary
+    body = "Intro.\n\n![A figure](fig.svg \"Caption\"){: .figure}\n"
+    assert bundle("fig-ok", body: body, files: { "fig.svg" => SAFE_SVG }).ok?
+    {
+      "script" => '<svg viewBox="0 0 1 1"><title>T</title><script>alert(1)</script></svg>',
+      "style" => '<svg viewBox="0 0 1 1"><title>T</title><style>.x{}</style></svg>',
+      "handler" => '<svg viewBox="0 0 1 1" onload="x()"><title>T</title></svg>',
+      "external" => '<svg viewBox="0 0 1 1"><title>T</title><image href="https://evil.example/x.png"/></svg>',
+      "foreign" => '<svg viewBox="0 0 1 1"><title>T</title><foreignObject/></svg>'
+    }.each do |name, svg|
+      result = bundle("fig-#{name}", body: body, files: { "fig.svg" => svg })
+      assert_match(/fig\.svg/, result.errors.join, "#{name} should be rejected")
+    end
+    no_title = bundle("fig-notitle", body: body, files: { "fig.svg" => '<svg viewBox="0 0 1 1"><rect/></svg>' })
+    assert no_title.ok?
+    assert_match(/<title>/, no_title.warnings.join)
+  end
+
   def test_formulaic_titles_warn
     %w[Boosting Leveraging Unlocking Mastering].each do |opener|
       result = bundle("formula-#{opener.downcase}", GOOD.merge("title" => "#{opener} Kafka Consumers for Scale"))
@@ -368,6 +388,51 @@ class PublishArticleTest < Minitest::Test
     assert status.success?
     assert result["dry_run"]
     refute Dir.exist?(File.join(@root, "content", "posts", "kafka-rebalances-why-consumers-stall"))
+  end
+end
+
+class FiguresTest < Minitest::Test
+  def with_svg(svg)
+    Dir.mktmpdir do |dir|
+      File.write(File.join(dir, "fig.svg"), svg)
+      yield dir
+    end
+  end
+
+  def test_figure_is_inlined_sanitized_and_namespaced
+    svg = <<~SVG
+      <?xml version="1.0"?>
+      <svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" onload="evil()">
+        <title id="t">Outbox</title>
+        <defs><pattern id="hatch"><path class="f-hatch"/></pattern><marker id="arrow"/></defs>
+        <script>alert(1)</script><style>body{display:none}</style>
+        <rect class="f-frame" fill="url(#hatch)" data-step="1"/>
+        <line marker-end="url(#arrow)"/><a href="https://evil.example"><text>x</text></a>
+        <use href="#arrow"/>
+      </svg>
+    SVG
+    with_svg(svg) do |dir|
+      html = %(<p><img loading="lazy" src="fig.svg" alt="Alt text" title="The caption" class="figure" /></p>)
+      out = TechBlog::Figures.inline(html, dir, "post")
+      assert_match(%r{\A<figure class="figure" data-timeline><svg}, out)
+      assert_includes out, "<figcaption>The caption</figcaption>"
+      refute_match(/<script|<style|onload|evil|<\?xml|width="900"/, out)
+      assert_includes out, 'id="post-f1-hatch"'
+      assert_includes out, "url(#post-f1-hatch)"
+      assert_includes out, 'href="#post-f1-arrow"'
+      assert_includes out, 'role="img"'
+      assert_includes out, 'aria-label="Alt text"'
+      assert_includes out, 'class="figure__svg"'
+    end
+  end
+
+  def test_non_figure_images_and_missing_files_are_left_alone
+    with_svg('<svg viewBox="0 0 1 1"/>') do |dir|
+      plain = %(<p><img src="fig.svg" alt="x" /></p>)
+      missing = %(<p><img src="nope.svg" alt="x" class="figure" /></p>)
+      assert_equal plain, TechBlog::Figures.inline(plain, dir, "p")
+      assert_equal missing, TechBlog::Figures.inline(missing, dir, "p")
+    end
   end
 end
 

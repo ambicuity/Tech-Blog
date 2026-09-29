@@ -1,0 +1,203 @@
+// Figures: inline SVG diagrams (docs/figures.md, _plugins/figures.rb).
+//
+// A small drawing vocabulary so every figure looks like part of the site: grey
+// structure in hairlines, hatched containers, small-caps monospace labels, and
+// four accent hues (--fig-1..4) reserved for the data that moves. Everything is
+// drawn with tokens, so figures follow the light/dark theme automatically.
+
+.figure {
+  margin-block: var(--sp-6);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-x: auto;
+
+  figcaption {
+    margin-top: var(--sp-3);
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
+  }
+
+  &__svg {
+    display: block;
+    width: 100%;
+    min-width: 34rem; // below this, the box scrolls instead of shrinking the labels
+    height: auto;
+    overflow: visible;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--sp-2);
+  }
+
+  &__button {
+    padding: var(--sp-1) var(--sp-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text-muted);
+    font: 600 var(--fs-2xs) / 1 var(--font-mono);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+  }
+}
+
+// ---- Drawing vocabulary (classes used inside figure SVGs) ------------------------
+
+.figure__svg {
+  --fig-stroke: var(--text-muted);
+
+  text {
+    fill: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .f-title {
+    fill: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .f-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .f-code {
+    fill: var(--text);
+  }
+
+  .f-small {
+    font-size: 11px;
+  }
+
+  .f-end {
+    text-anchor: end;
+  }
+
+  .f-middle {
+    text-anchor: middle;
+  }
+
+  // Structure
+  .f-box {
+    fill: var(--surface);
+    stroke: var(--fig-stroke);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .f-frame {
+    stroke: var(--fig-stroke);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .f-hatch {
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+
+  .f-rule {
+    stroke: var(--border);
+    stroke-dasharray: 4 4;
+    fill: none;
+  }
+
+  .f-line {
+    stroke: var(--fig-stroke);
+    stroke-width: 1.25;
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .f-dashed {
+    stroke-dasharray: 5 4;
+  }
+
+  .f-arrowhead {
+    fill: var(--fig-stroke);
+  }
+
+  // Data: accent hues. .f-a1..4 on shapes = soft fill + solid outline; on text = hue.
+  @for $i from 1 through 4 {
+    .f-a#{$i} {
+      fill: color-mix(in srgb, var(--fig-#{$i}) 16%, var(--surface));
+      stroke: var(--fig-#{$i});
+      stroke-width: 1.25;
+      vector-effect: non-scaling-stroke;
+    }
+
+    text.f-a#{$i},
+    .f-a#{$i}-solid {
+      fill: var(--fig-#{$i});
+      stroke: none;
+    }
+
+    .f-a#{$i}-line {
+      stroke: var(--fig-#{$i});
+      stroke-width: 1.5;
+      fill: none;
+      vector-effect: non-scaling-stroke;
+    }
+  }
+}
+
+// ---- Timeline (assets/js/figures.js) ------------------------------------------------
+//
+// Without JavaScript, with reduced motion, and after a run, a figure shows its final
+// state: every [data-step] element visible, every [data-until] element hidden.
+// While a timeline runs, elements appear at their step (sliding in from
+// --from-x / --from-y) and [data-until] elements disappear at theirs.
+
+.figure__svg [data-step],
+.figure__svg [data-until] {
+  transition:
+    opacity 360ms var(--ease),
+    transform 700ms var(--ease);
+  transform-box: fill-box;
+}
+
+// Final state: [data-until] elements are gone.
+.figure__svg [data-until] {
+  opacity: 0;
+}
+
+// Running: order matters (same specificity, later wins). An element can have both
+// attributes: it is visible from data-step until data-until.
+.figure.is-running {
+  .figure__svg [data-until]:not(.is-off) {
+    opacity: 1;
+  }
+
+  .figure__svg [data-step]:not(.is-on) {
+    opacity: 0;
+    transform: translate(var(--from-x, 0), var(--from-y, 0));
+  }
+
+  .figure__svg [data-until].is-off {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure__svg [data-step],
+  .figure__svg [data-until] {
+    transition: none;
+  }
+}
