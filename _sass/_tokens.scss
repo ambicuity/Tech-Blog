@@ -69,6 +69,13 @@
   --accent: #0a6a61;
   --accent-hover: #07524b;
   --accent-contrast: #ffffff;
+
+  // Figures (docs/figures.md): four hues for the data that moves in a diagram.
+  // Structure stays in --text / --text-muted / --border.
+  --fig-1: #0a6a61;
+  --fig-2: #b4480c;
+  --fig-3: #2f6f2a;
+  --fig-4: #5b3fa8;
   --accent-soft: #e2f0ed;
   --focus: #0a6a61;
   --selection: #cfe8e3;
@@ -118,6 +125,11 @@
   --accent: #5ccfbf;
   --accent-hover: #8be1d5;
   --accent-contrast: #0a1614;
+
+  --fig-1: #5ccfbf;
+  --fig-2: #f39a5c;
+  --fig-3: #8fd07e;
+  --fig-4: #b8a2f0;
   --accent-soft: rgb(92 207 191 / 0.12);
   --focus: #8be1d5;
   --selection: rgb(92 207 191 / 0.28);

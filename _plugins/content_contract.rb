@@ -331,11 +331,36 @@ module TechBlog
 
         check_local_image(dir, src, "image", result)
       end
+      prose.scan(FIGURE_RE).flatten.uniq.each do |src|
+        file = File.join(dir, src.delete_prefix("./"))
+        check_svg(file, "figure", src, result) if !src.include?("..") && File.file?(file)
+      end
       prose.scan(HTML_IMG_RE).each do |(src)|
         next if src.start_with?("http://", "https://", "/", "data:")
 
         check_local_image(dir, src, "image", result)
       end
+    end
+
+    # SVGs used as figures ({: .figure}) are inlined into the page, so they must be
+    # inert markup. (An SVG shown through <img> cannot run anything.)
+    FIGURE_RE = /!\[[^\]]*\]\(\s*<?([^)\s>]+\.svg)>?(?:\s+"[^"]*")?\s*\)\{:\s*\.figure\s*\}/
+    SVG_FORBIDDEN = {
+      /<script\b/i => "a <script>",
+      /<style\b/i => "a <style> block (use the figure classes in docs/figures.md)",
+      /<foreignObject\b/i => "<foreignObject>",
+      /\son[a-z]+\s*=/i => "an event handler attribute",
+      /\s(?:xlink:)?href\s*=\s*["']\s*(?!#)/i => "a link or reference outside the file",
+      /javascript:/i => "a javascript: URL"
+    }.freeze
+
+    def check_svg(file, label, src, result)
+      svg = File.read(file)
+      SVG_FORBIDDEN.each do |pattern, what|
+        result.errors << "#{label} '#{src}' contains #{what}" if svg.match?(pattern)
+      end
+      result.warnings << "#{label} '#{src}' has no viewBox, so it cannot scale" unless svg.match?(/<svg\b[^>]*\sviewBox=/)
+      result.warnings << "#{label} '#{src}' has no <title> describing it" unless svg.include?("<title")
     end
 
     def check_local_image(dir, src, label, result)

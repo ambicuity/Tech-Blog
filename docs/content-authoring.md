@@ -124,7 +124,9 @@ Common languages: `python`, `go`, `rust`, `java`, `javascript`, `typescript`,
 copy button automatically. Keep lines under about 100 characters; longer lines
 scroll horizontally.
 
-For diagrams, a fenced `mermaid` block is rendered as a diagram.
+For diagrams, a fenced `mermaid` block is rendered as a diagram. For figures that
+show a system's state (tables, partitions, key ranges), draw an SVG and reference it
+with `{: .figure}`; see [figures.md](figures.md).
 
 ### Callouts
 
