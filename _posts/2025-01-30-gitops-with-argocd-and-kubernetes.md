@@ -37,10 +37,10 @@ First, you need a running Kubernetes cluster.  For demonstration, you can use Mi
 
 Install ArgoCD using `kubectl`:
 
-bash
+```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
+```
 
 This command creates a namespace called `argocd` and deploys the ArgoCD components within it.
 
@@ -48,17 +48,17 @@ This command creates a namespace called `argocd` and deploys the ArgoCD componen
 
 By default, the ArgoCD API server is not exposed externally.  You can access the UI using port forwarding:
 
-bash
+```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
-
+```
 
 Then, open your browser and navigate to `https://localhost:8080`.  You'll likely encounter a certificate warning since we're using a self-signed certificate.  Proceed with caution and accept the risk.
 
 To log in, the default username is `admin`.  The initial password is stored in a Kubernetes secret:
 
-bash
+```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
-
+```
 
 **3. Creating a Git Repository:**
 
@@ -66,7 +66,7 @@ Create a Git repository to store your Kubernetes manifests. This repository will
 
 *   **deployment.yaml:**
 
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -86,11 +86,11 @@ Create a Git repository to store your Kubernetes manifests. This repository will
             image: nginx:latest
             ports:
             - containerPort: 80
-    
+    ```
 
 *   **service.yaml:**
 
-    yaml
+    ```yaml
     apiVersion: v1
     kind: Service
     metadata:
@@ -103,7 +103,7 @@ Create a Git repository to store your Kubernetes manifests. This repository will
         port: 80
         targetPort: 80
       type: LoadBalancer
-    
+    ```
 
 **4. Creating an ArgoCD Application:**
 
@@ -128,10 +128,10 @@ ArgoCD will automatically start synchronizing the application.  You can monitor 
 
 Modify the `deployment.yaml` file in your Git repository, for example, by changing the number of replicas:
 
-yaml
+```yaml
     spec:
       replicas: 5 # Changed from 3 to 5
-
+```
 
 Commit and push the changes to your Git repository. ArgoCD will automatically detect the changes and start synchronizing the application.  You should see the number of replicas for your application increase to 5 in the Kubernetes cluster.
 
@@ -143,13 +143,13 @@ For more complex applications, you can leverage Kustomize or Helm to manage your
 
 Assuming you have a `kustomization.yaml` file in your repository:
 
-yaml
+```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-
+```
 
 In the ArgoCD application configuration, you would still provide the Git repository URL, but specify the path to the directory containing the `kustomization.yaml` file.
 

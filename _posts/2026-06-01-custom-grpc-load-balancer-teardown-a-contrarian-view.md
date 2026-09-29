@@ -19,7 +19,7 @@ The impetus for building a custom L7 gRPC load balancer stemmed from a perceived
 
 Our custom gRPC load balancer was built around an Envoy proxy core, extended with custom filters and a bespoke control plane. The data plane leveraged Envoy's HTTP/2 capabilities, treating gRPC streams as multiplexed HTTP/2 requests. Key customizations included:
 
-*   **Custom Envoy Filters**: We implemented a Lua filter to inspect gRPC `grpc-metadata` headers for routing decisions, enabling complex canary deployments and tenant-aware traffic steering [CLAIM:Root-cause mechanism]. This filter would extract specific metadata (e.g., `x-tenant-id`, `x-service-version`) and modify the `x-envoy-upstream-alt-stat-name` header to influence upstream selection.
+*   **Custom Envoy Filters**: We implemented a Lua filter to inspect gRPC `grpc-metadata` headers for routing decisions, enabling complex canary deployments and tenant-aware traffic steering. This filter would extract specific metadata (e.g., `x-tenant-id`, `x-service-version`) and modify the `x-envoy-upstream-alt-stat-name` header to influence upstream selection.
 *   **Dynamic Control Plane**: A custom Go service served as the xDS server, dynamically configuring Envoy instances based on service discovery events from Kubernetes and an internal configuration store. This allowed for real-time updates to cluster membership, endpoint health, and routing rules.
 *   **Connection Affinity Logic**: For specific stateful services, we developed a custom hashing algorithm within the control plane to ensure requests from a particular client or session were consistently routed to the same backend instance. This was implemented via `RING_HASH` load balancing with a custom hash policy derived from gRPC metadata.
 
@@ -84,7 +84,7 @@ Our custom gRPC load balancer, despite its sophistication, exhibited several cri
 
 ### Ungraceful Connection Draining
 
-When backend services scaled down or were redeployed, the custom Envoy instances often failed to gracefully drain existing gRPC streams. While Envoy has built-in draining mechanisms, our custom routing logic, combined with long-lived gRPC streams (e.g., bidirectional streaming for real-time updates), created scenarios where `drain_timeout` was insufficient. Clients would experience `UNAVAILABLE` errors or abrupt stream terminations, leading to application-level retries and increased upstream load [CLAIM:Failure mode under production load]. This was particularly evident when `SIGTERM` signals were not properly handled by our custom control plane in conjunction with Envoy's hot restart capabilities, leading to dropped connections rather than smooth transitions.
+When backend services scaled down or were redeployed, the custom Envoy instances often failed to gracefully drain existing gRPC streams. While Envoy has built-in draining mechanisms, our custom routing logic, combined with long-lived gRPC streams (e.g., bidirectional streaming for real-time updates), created scenarios where `drain_timeout` was insufficient. Clients would experience `UNAVAILABLE` errors or abrupt stream terminations, leading to application-level retries and increased upstream load. This was particularly evident when `SIGTERM` signals were not properly handled by our custom control plane in conjunction with Envoy's hot restart capabilities, leading to dropped connections rather than smooth transitions.
 
 ```log
 # Example log snippet from an affected client
@@ -105,7 +105,7 @@ Recognizing the unsustainable operational overhead, we initiated a phased migrat
 
 1.  **Traffic Shadowing**: Initially, a small percentage of production traffic was shadowed to the new managed proxy environment. This involved duplicating requests at the custom LB and sending them to both the old and new paths, with only the old path's response being returned to the client. This allowed us to validate the new proxy's behavior without impacting users.
 2.  **Canary Rollout**: Once shadowing proved stable, a small percentage (e.g., 1-5%) of live traffic was gradually shifted to the managed proxy. This was carefully monitored using golden signals (latency, error rates, throughput, saturation) for both the proxy and the downstream services.
-3.  **Feature Parity Mapping**: Our custom routing logic (e.g., tenant-based routing, canary deployments) was meticulously re-implemented using the managed proxy's native capabilities or standard Envoy features. For example, custom Lua filters were replaced with Envoy's `match` conditions on `grpc_metadata_match` or `header_match` within `RouteConfiguration` [CLAIM:Operational mitigation].
+3.  **Feature Parity Mapping**: Our custom routing logic (e.g., tenant-based routing, canary deployments) was meticulously re-implemented using the managed proxy's native capabilities or standard Envoy features. For example, custom Lua filters were replaced with Envoy's `match` conditions on `grpc_metadata_match` or `header_match` within `RouteConfiguration`.
     ```yaml
     # Example: Replaced custom Lua with native Envoy header matching
     # for tenant-based routing in the managed proxy setup.
@@ -148,7 +148,7 @@ Before embarking on building a custom gRPC L7 load balancer, critically evaluate
     *   Client-side `UNAVAILABLE` errors: Correlated with custom LB restarts or backend scaling events.
     *   Custom xDS server CPU/Memory utilization: Spikes during high-churn service discovery events.
 *   **Platform Vendor References**:
-    *   Google Cloud Load Balancing for gRPC: [https://cloud.google.com/load-balancing/docs/grpc](https://cloud.google.com/load-balancing/docs/grpc) (Example of managed solution capabilities)
+    *   Google Cloud Load Balancing, [gRPC support in the External Application Load Balancer](https://docs.cloud.google.com/load-balancing/docs/https#grpc-support) (Example of managed solution capabilities)
     *   AWS App Mesh for gRPC: [https://aws.amazon.com/app-mesh/](https://aws.amazon.com/app-mesh/) (Another managed option leveraging Envoy)
 *   **Official Docs**:
     *   Envoy Proxy HTTP/2 Configuration: [https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/Route.proto](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/Route.proto) (Details on `grpc_metadata_match` and routing options)

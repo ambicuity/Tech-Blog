@@ -42,7 +42,7 @@ Let's examine how these core concepts are implemented in practice.
 Let's walk through a basic example of deploying an application and exposing it using a Kubernetes service.
 
 1.  **Create a Deployment:**
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -64,10 +64,10 @@ Let's walk through a basic example of deploying an application and exposing it u
             image: nginx:latest
             ports:
             - containerPort: 80
-    
+    ```
 
 2.  **Create a Service:**
-    yaml
+    ```yaml
     apiVersion: v1
     kind: Service
     metadata:
@@ -80,19 +80,19 @@ Let's walk through a basic example of deploying an application and exposing it u
           port: 80
           targetPort: 80
       type: ClusterIP  # Exposes the service internally
-    
+    ```
 
 3.  **Apply the manifests:**
-    bash
+    ```bash
     kubectl apply -f deployment.yaml
     kubectl apply -f service.yaml
-    
+    ```
 
 4.  **Verify the deployment and service:**
-    bash
+    ```bash
     kubectl get deployments
     kubectl get services
-    
+    ```
 
 You can then access the application internally using the service's ClusterIP and port.
 
@@ -100,7 +100,7 @@ You can then access the application internally using the service's ClusterIP and
 
 Network policies allow you to control traffic flow within your cluster. Consider this example:
 
-yaml
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -114,7 +114,7 @@ spec:
     - namespaceSelector:
         matchLabels:
           name: my-namespace
-
+```
 
 This network policy allows traffic to pods labeled with `app: my-app` only from pods within the `my-namespace` namespace.
 
@@ -122,7 +122,7 @@ This network policy allows traffic to pods labeled with `app: my-app` only from 
 
 To expose the service externally using Ingress, you need an Ingress controller (e.g., Nginx Ingress Controller) installed in your cluster. Then, you can define an Ingress resource like this:
 
-yaml
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -141,7 +141,7 @@ spec:
             name: my-app-service
             port:
               number: 80
-
+```
 
 This Ingress resource routes traffic to `myapp.example.com` to the `my-app-service`. Remember to configure your DNS to point `myapp.example.com` to the Ingress controller's external IP.
 

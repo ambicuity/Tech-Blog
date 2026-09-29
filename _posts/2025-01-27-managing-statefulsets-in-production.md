@@ -31,7 +31,7 @@ The initial deployment of a StatefulSet is a critical step. Consider these point
 
 *   **Storage Class Selection:** Choose an appropriate storage class for your PVCs. Factors to consider include performance, cost, and availability. Different storage classes may offer different types of storage (e.g., SSD vs. HDD) and replication strategies. Example:
 
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: StatefulSet
     metadata:
@@ -65,11 +65,11 @@ The initial deployment of a StatefulSet is a critical step. Consider these point
           resources:
             requests:
               storage: 1Gi
-    
+    ```
 
 *   **Headless Service:** StatefulSets are typically associated with a Headless Service. A Headless Service doesn't perform load balancing; instead, it returns the individual IP addresses of the Pods in the StatefulSet. This allows applications to discover and communicate with each other directly.
 
-    yaml
+    ```yaml
     apiVersion: v1
     kind: Service
     metadata:
@@ -81,11 +81,11 @@ The initial deployment of a StatefulSet is a critical step. Consider these point
     ports:
     - port: 80
       name: web
-    
+    ```
 
 *   **Health Checks:** Implement robust health checks (liveness and readiness probes) to ensure that Kubernetes can properly monitor the health of your Pods. Liveness probes determine if a Pod needs to be restarted, while readiness probes determine if a Pod is ready to receive traffic.
 
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: StatefulSet
     metadata:
@@ -115,15 +115,15 @@ The initial deployment of a StatefulSet is a critical step. Consider these point
                 port: 80
               initialDelaySeconds: 10
               periodSeconds: 5
-    
+    ```
 
 ## Scaling StatefulSets
 
 Scaling a StatefulSet is generally straightforward using `kubectl scale`:
 
-bash
+```bash
 kubectl scale statefulset web --replicas=5
-
+```
 
 Kubernetes will then create two new Pods (`web-3` and `web-4`) in ordinal order. When scaling down, ensure your application handles node removals gracefully, particularly regarding data replication and consistency. Monitor the application logs and metrics during scaling operations to identify any potential issues.
 
@@ -136,7 +136,7 @@ Kubernetes will then create two new Pods (`web-3` and `web-4`) in ordinal order.
 
 Updating a StatefulSet requires careful planning to minimize downtime and ensure data integrity. The default update strategy is `RollingUpdate`, which updates Pods one at a time in reverse ordinal order.
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -146,7 +146,7 @@ spec:
   updateStrategy:
     type: RollingUpdate
     partition: 2 #Optional: Only update Pods with ordinal >= 2
-
+```
 
 **Best Practices for Updates:**
 

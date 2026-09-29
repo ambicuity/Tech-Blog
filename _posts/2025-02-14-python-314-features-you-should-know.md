@@ -21,7 +21,7 @@ Pattern matching (introduced in Python 3.10) is a powerful tool for deconstructi
 
 **Hypothetical Syntax:**
 
-python
+```python
 from typing import List, Tuple
 
 def process_data(data: List[Tuple[str, int]]):
@@ -39,7 +39,7 @@ process_data([("Alice", 30)])
 process_data([("Bob", 25), ("Charlie", 35)])
 process_data([])
 process_data([1, 2, 3])
-
+```
 
 **Explanation:**
 
@@ -53,7 +53,7 @@ Asynchronous programming is crucial for handling I/O-bound operations efficientl
 
 **Hypothetical Syntax:**
 
-python
+```python
 import asyncio
 import asyncio.debug
 
@@ -73,7 +73,7 @@ async def main():
 
 if __name__ == "__main__":
   asyncio.run(main())
-
+```
 
 **Explanation:**
 
@@ -87,7 +87,7 @@ Scientific computing heavily relies on NumPy for efficient array operations.  Le
 
 **Hypothetical Syntax (showing potential optimized function):**
 
-python
+```python
 import numpy as np
 
 def simd_add(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -106,7 +106,7 @@ result = simd_add(a, b)
 print(result)  # Output: [ 6.  8. 10. 12.]
 
 #Compare performance with standard numpy addition.
-
+```
 
 **Explanation:**
 
@@ -120,7 +120,7 @@ Python tracebacks are essential for debugging.  Imagine Python 3.14 introducing 
 
 **Hypothetical Example (showing additional traceback information):**
 
-python
+```python
 def divide(x, y):
   return x / y
 
@@ -147,7 +147,7 @@ except ZeroDivisionError as e:
   # ZeroDivisionError: division by zero
   # Possible Cause: Division by zero in the 'divide' function.
   # Suggestion: Check the value of 'y' before division. Consider adding error handling.
-
+```
 
 
 **Explanation:**

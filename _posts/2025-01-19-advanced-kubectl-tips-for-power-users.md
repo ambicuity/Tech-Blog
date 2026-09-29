@@ -31,10 +31,10 @@ Updating a Kubernetes resource often requires modifying specific fields without 
 
 **Example:**  Suppose you want to update the image of a container named `my-app` in a Deployment named `my-deployment`. Instead of replacing the entire Deployment YAML, you can use `kubectl patch`:
 
-bash
+```bash
 kubectl patch deployment my-deployment \
   -p '{"spec":{"template":{"spec":{"containers":[{"name":"my-app","image":"new-image:latest"}]}}}}'
-
+```
 
 Explanation:
 
@@ -46,20 +46,20 @@ This approach avoids unnecessary changes to other fields in your Deployment, red
 
 **Alternative using YAML:** You can also define the patch in a separate YAML file (e.g., `patch.yaml`):
 
-yaml
+```yaml
 spec:
   template:
     spec:
       containers:
       - name: my-app
         image: new-image:latest
-
+```
 
 Then apply the patch:
 
-bash
+```bash
 kubectl patch deployment my-deployment --patch "$(cat patch.yaml)"
-
+```
 
 ### 2. Leveraging JSONPath for Data Extraction
 
@@ -67,9 +67,9 @@ JSONPath allows you to query JSON data, making it incredibly useful for extracti
 
 **Example:**  Retrieve the names of all Pods in the `default` namespace:
 
-bash
+```bash
 kubectl get pods -o jsonpath='{.items[*].metadata.name}'
-
+```
 
 Explanation:
 
@@ -82,21 +82,21 @@ Explanation:
 
 This command outputs a space-separated list of Pod names.  To get a comma-separated list:
 
-bash
+```bash
 kubectl get pods -o jsonpath='{.items[*].metadata.name}{","}'
-
+```
 
 **Another Example:** Get the IP addresses of all running pods
 
-bash
+```bash
 kubectl get pods -o jsonpath='{.items[*].status.podIP}'
-
+```
 
 **Advanced JSONPath with Filters:**  You can also use JSONPath with filters for more targeted data extraction. For example, to get the name of all pods with the label `app=my-app`:
 
-bash
+```bash
 kubectl get pods -o jsonpath='{range .items[?(@.metadata.labels.app=="my-app")]}{.metadata.name}{"\n"}{end}'
-
+```
 
 ### 3. Custom Columns for Streamlined Output
 
@@ -104,9 +104,9 @@ The `-o wide` option provides more details about resources, but it can be overwh
 
 **Example:**  Display the name, status, and node of each Pod:
 
-bash
+```bash
 kubectl get pods -o custom-columns="NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName"
-
+```
 
 Explanation:
 
@@ -118,9 +118,9 @@ This command produces a table with three columns: `NAME`, `STATUS`, and `NODE`, 
 
 You can also save this custom column definition to a file and reuse it:
 
-bash
+```bash
 kubectl get pods -o custom-columns-file=my_custom_columns.txt
-
+```
 
 Where `my_custom_columns.txt` contains:
 
@@ -136,9 +136,9 @@ The `kubectl wait` command allows you to wait for a specific condition to be met
 
 **Example:** Wait for a Deployment to become available (i.e., all replicas are ready):
 
-bash
+```bash
 kubectl wait --for=condition=Available=true deployment/my-deployment --timeout=60s
-
+```
 
 Explanation:
 
@@ -155,19 +155,19 @@ Typing long `kubectl` commands repeatedly can be tedious. Aliases and shell func
 
 **Example:** Create an alias for getting Pods in wide format:
 
-bash
+```bash
 alias kgp='kubectl get pods -o wide'
-
+```
 
 Now, instead of typing `kubectl get pods -o wide`, you can simply type `kgp`.
 
 **Example:** Create a shell function to quickly switch between namespaces:
 
-bash
+```bash
 kns() {
   kubectl config set-context --current --namespace="$1"
 }
-
+```
 
 To switch to the `development` namespace, you can simply type `kns development`.
 
@@ -180,9 +180,9 @@ The `--dry-run=client` or `--dry-run=server` flags are very useful for testing c
 
 **Example:** Test applying a Deployment YAML file:
 
-bash
+```bash
 kubectl apply -f my-deployment.yaml --dry-run=server
-
+```
 
 This command will print the changes that *would* be made if the file was applied, allowing you to review them before actually applying the changes.
 

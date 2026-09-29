@@ -29,7 +29,7 @@ It's crucial to choose appropriate values for requests and limits. Under-request
 
 Let's look at how to configure resource requests and limits in a Kubernetes Pod specification.  We'll use a simple example of a web application.
 
-yaml
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -45,7 +45,7 @@ spec:
       limits:
         cpu: "500m"
         memory: "1Gi"
-
+```
 
 In this example:
 
@@ -63,17 +63,17 @@ In this example:
 
 Save the above YAML as `web-app.yaml` and apply it to your Kubernetes cluster using `kubectl`:
 
-bash
+```bash
 kubectl apply -f web-app.yaml
-
+```
 
 **Verifying Requests and Limits:**
 
 You can inspect the Pod to see the applied requests and limits:
 
-bash
+```bash
 kubectl describe pod web-app
-
+```
 
 Look for the "Resources" section in the output.  You should see the requests and limits you defined.
 
@@ -85,7 +85,7 @@ Look for the "Resources" section in the output.  You should see the requests and
 
 3.  **Namespace Default Resource Quotas:** Kubernetes allows you to define default resource quotas at the namespace level. This ensures that all Pods within a namespace have at least some basic resource constraints. This is especially useful in multi-tenant environments.
 
-    yaml
+    ```yaml
     apiVersion: v1
     kind: ResourceQuota
     metadata:
@@ -96,13 +96,13 @@ Look for the "Resources" section in the output.  You should see the requests and
         requests.memory: "4Gi"
         limits.cpu: "4"
         limits.memory: "8Gi"
-    
+    ```
 
     This quota defines the *total* requests and limits allowed for all Pods in the namespace. You can also define quotas for specific resource types.
 
 4.  **Limit Ranges:** Limit Ranges provide a way to enforce minimum and maximum resource constraints per Container or Pod within a namespace. This prevents users from creating Pods that are either too small (potentially unstable) or too large (potentially wasteful).
 
-    yaml
+    ```yaml
     apiVersion: v1
     kind: LimitRange
     metadata:
@@ -116,7 +116,7 @@ Look for the "Resources" section in the output.  You should see the requests and
           cpu: 250m
           memory: 512Mi
         type: Container
-    
+    ```
 
     This example sets default requests and limits for CPU and memory for all containers in the namespace.  It also defines minimum and maximum allowable values (not shown in this example). If a Pod does not specify a resource request/limit, the `defaultRequest` or `default` value will be applied.
 

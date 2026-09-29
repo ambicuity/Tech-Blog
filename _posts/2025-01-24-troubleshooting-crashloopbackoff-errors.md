@@ -31,15 +31,15 @@ Now, let's outline the steps you can take to effectively troubleshoot `CrashLoop
 
 The first step is to examine the pod's status using `kubectl`. This command provides valuable information about the pod's current state, restart count, and recent events.
 
-bash
+```bash
 kubectl get pods
-
+```
 
 This command will output a list of pods and their statuses. Look for pods in the `CrashLoopBackOff` state. Once identified, describe the pod for more details.
 
-bash
+```bash
 kubectl describe pod <pod-name>
-
+```
 
 The `kubectl describe pod` command provides a wealth of information including:
 
@@ -70,21 +70,21 @@ This indicates that the container is being created and started successfully, but
 
 The most crucial step is examining the container logs. Logs often contain valuable error messages and stack traces that pinpoint the cause of the crash.
 
-bash
+```bash
 kubectl logs <pod-name> -c <container-name>
-
+```
 
 If you only have one container in the pod, you can omit the `-c <container-name>` part.
 
-bash
+```bash
 kubectl logs <pod-name>
-
+```
 
 If the pod has previously crashed, you might need to view the logs from the previous instance:
 
-bash
+```bash
 kubectl logs <pod-name> -c <container-name> --previous
-
+```
 
 **Common Log Analysis Scenarios:**
 
@@ -109,7 +109,7 @@ Insufficient resource limits (CPU and memory) can lead to `CrashLoopBackOff` err
 
 Examine the pod's resource requests and limits defined in the deployment or pod specification:
 
-yaml
+```yaml
 resources:
   requests:
     cpu: 200m
@@ -117,7 +117,7 @@ resources:
   limits:
     cpu: 500m
     memory: 1Gi
-
+```
 
 *   **Requests:** The minimum amount of resources guaranteed to the pod.
 *   **Limits:** The maximum amount of resources the pod is allowed to consume.
@@ -134,7 +134,7 @@ Liveness and readiness probes are used by Kubernetes to determine the health and
 
 Review the probe configurations in your deployment or pod specification:
 
-yaml
+```yaml
 livenessProbe:
   httpGet:
     path: /healthz
@@ -147,7 +147,7 @@ readinessProbe:
     port: 8080
   initialDelaySeconds: 30
   periodSeconds: 10
-
+```
 
 Ensure that the probe endpoints are correct and that the application responds appropriately to the probe requests. If the probes are too sensitive or misconfigured, they might trigger unnecessary restarts.  For example, if the `initialDelaySeconds` is too short, the application might not have enough time to start up before the liveness probe starts checking, leading to failures and restarts.
 
@@ -167,9 +167,9 @@ Init containers are specialized containers that run before the application conta
 
 Check the logs of the init containers:
 
-bash
+```bash
 kubectl logs <pod-name> -c <init-container-name>
-
+```
 
 Ensure that the init containers are completing successfully. Errors in the init containers can prevent the application from starting correctly.
 

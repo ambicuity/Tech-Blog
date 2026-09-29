@@ -13,7 +13,7 @@ Many teams assume a "healthy" HTTP 200 response from a `/health` endpoint means 
 
 ## Garbage Collection Context and Failure Trigger
 
-The JVM's automatic memory management, while simplifying development, introduces a critical operational dependency: garbage collection (GC). While modern GCs are highly optimized, they are not without trade-offs, particularly concerning application responsiveness. A full stop-the-world (STW) GC pause can halt all application threads, rendering the service unresponsive for the duration of the pause. [CLAIM:Root-cause mechanism] This temporary unresponsiveness directly interferes with liveness and readiness probes configured with aggressive timeouts, leading to premature termination or traffic blackholing.
+The JVM's automatic memory management, while simplifying development, introduces a critical operational dependency: garbage collection (GC). While modern GCs are highly optimized, they are not without trade-offs, particularly concerning application responsiveness. A full stop-the-world (STW) GC pause can halt all application threads, rendering the service unresponsive for the duration of the pause. This temporary unresponsiveness directly interferes with liveness and readiness probes configured with aggressive timeouts, leading to premature termination or traffic blackholing.
 
 Consider a typical microservice deployed on Kubernetes. Its liveness probe might be configured to hit `/actuator/health/liveness` every 5 seconds with a 3-second timeout. If a JVM instance experiences a 4-second STW pause, the probe will fail. Kubernetes will then mark the pod as unhealthy and initiate a restart. For readiness probes, this failure means the pod is pulled from the service mesh, preventing new traffic from reaching it. While this might seem desirable, repeated failures can lead to a restart loop, effectively taking the service offline.
 
@@ -31,7 +31,7 @@ The choice of GC algorithm, heap size, and tuning parameters directly dictates t
 
 ## Failure Modes Under Load
 
-Under sustained production load, the probability and impact of GC-induced health check failures amplify significantly. [CLAIM:Failure mode under production load] Increased request volume, higher concurrent user counts, or data processing intensity often correlate with elevated memory allocation rates. This, in turn, pressures the GC to work harder and more frequently.
+Under sustained production load, the probability and impact of GC-induced health check failures amplify significantly. Increased request volume, higher concurrent user counts, or data processing intensity often correlate with elevated memory allocation rates. This, in turn, pressures the GC to work harder and more frequently.
 
 Consider a scenario where a service handles a burst of traffic, leading to rapid object allocation. If the GC cannot keep up concurrently, it may eventually trigger a full STW collection. During this pause, the service is effectively frozen. Any incoming HTTP requests will either queue up, time out at the load balancer, or fail health checks.
 
@@ -105,7 +105,7 @@ Monitor GC metrics alongside application latency and error rates. This allows co
     *   `jvm_memory_bytes_used{area="heap"}`: Heap memory usage.
     *   Application-specific metrics: request latency, error rates, throughput.
 
-Correlate spikes in `jvm_gc_pause_seconds_total` with corresponding increases in HTTP request latency (`http_request_duration_seconds_bucket`) and health check failures. This provides [CLAIM:Operational mitigation] for early detection and root cause analysis.
+Correlate spikes in `jvm_gc_pause_seconds_total` with corresponding increases in HTTP request latency (`http_request_duration_seconds_bucket`) and health check failures. This supports early detection and root cause analysis.
 
 ## Operational Checklist
 

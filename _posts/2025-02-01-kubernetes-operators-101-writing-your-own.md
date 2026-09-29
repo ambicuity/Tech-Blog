@@ -35,17 +35,17 @@ Let's walk through building a basic Operator that manages a simple application c
 
 We'll assume you have Go installed and configured. First, create a new Go module:
 
-bash
+```bash
 mkdir my-application-operator
 cd my-application-operator
 go mod init github.com/your-username/my-application-operator
-
+```
 
 **2. Define the CRD:**
 
 Create a file `api/v1alpha1/myapplication_types.go` with the following content:
 
-go
+```go
 package v1alpha1
 
 import (
@@ -90,14 +90,14 @@ type MyApplicationList struct {
 func init() {
 	SchemeBuilder.Register(&MyApplication{}, &MyApplicationList{})
 }
-
+```
 
 
 This code defines the `MyApplication` CRD, which has a `spec` containing the application's name and the desired number of replicas, and a `status` indicating the number of ready replicas.  The `//+kubebuilder:object:root=true` and `//+kubebuilder:subresource:status` markers are used by `controller-gen` to generate the CRD definition and enable status subresource functionality.
 
 **3. Install `controller-gen` and Generate CRD manifests:**
 
-bash
+```bash
 go install sigs.k8s.io/controller-tools/cmd/controller-gen@latest
 
 # Add this line to the root directory's 'go.mod' file:
@@ -106,7 +106,7 @@ go install sigs.k8s.io/controller-tools/cmd/controller-gen@latest
 
 # run this in the root dir
 controller-gen crd:generate paths=./api/v1alpha1/... output:crd:artifacts:config/crd/bases
-
+```
 
 This generates the CRD YAML manifest in `config/crd/bases`.  This manifest needs to be applied to your Kubernetes cluster before you can create `MyApplication` CRs.
 
@@ -115,7 +115,7 @@ This generates the CRD YAML manifest in `config/crd/bases`.  This manifest needs
 Create a file `controllers/myapplication_controller.go` with the following content:
 
 {% raw %}
-go
+```go
 package controllers
 
 import (
@@ -273,7 +273,7 @@ func (r *MyApplicationReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Owns(&appsv1.Deployment{}).
 		Complete(r)
 }
-
+```
 {% endraw %}
 This controller watches for changes to `MyApplication` resources.  When a new `MyApplication` resource is created, the controller creates a corresponding `Deployment`.  If the `MyApplication` resource is updated (e.g., the number of replicas changes), the controller updates the `Deployment` accordingly. It also updates the status of the custom resource reflecting the number of running pods.  It uses an Nginx image for simplicity.
 
@@ -281,7 +281,7 @@ This controller watches for changes to `MyApplication` resources.  When a new `M
 
 In `main.go`, register the CRD scheme and the controller with the manager.  Modify the `main.go` file (usually located in the root directory) to include the following:
 
-go
+```go
 import (
 	"flag"
 	"os"
@@ -374,15 +374,15 @@ func main() {
 		os.Exit(1)
 	}
 }
-
+```
 
 **6. Build and Deploy the Operator:**
 
 Build the operator:
 
-bash
+```bash
 go build -o bin/manager main.go
-
+```
 
 Then, deploy it to your Kubernetes cluster. You'll need to create a `config/manager/kustomization.yaml` file based on the controller-runtime documentation to define how to deploy the manager, and run `kubectl apply -k config/manager`. You also need to apply the CRD definition using `kubectl apply -f config/crd/bases/myapp.example.com_myapplications.yaml`. Finally, you'll need to create RBAC rules for the controller to function properly.  These are normally generated via the `controller-gen` tool and applied via `kubectl apply`.
 
@@ -390,7 +390,7 @@ Then, deploy it to your Kubernetes cluster. You'll need to create a `config/mana
 
 Create a YAML file (e.g., `config/samples/myapplication.yaml`) to define a `MyApplication` resource:
 
-yaml
+```yaml
 apiVersion: myapp.example.com/v1alpha1
 kind: MyApplication
 metadata:
@@ -398,13 +398,13 @@ metadata:
 spec:
   name: my-app
   replicas: 3
-
+```
 
 Apply this to your cluster:
 
-bash
+```bash
 kubectl apply -f config/samples/myapplication.yaml
-
+```
 
 You should see a Deployment named `my-app-instance` created with 3 replicas. The operator will automatically manage the deployment based on the custom resource you defined.
 

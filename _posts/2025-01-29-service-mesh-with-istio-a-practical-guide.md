@@ -47,7 +47,7 @@ First, deploy the `product` and `review` services to your Kubernetes cluster. Th
 
 Example `product` service deployment (`product.yaml`):
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -79,11 +79,11 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-
+```
 
 Example `review` service deployment (`review.yaml`):
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -115,29 +115,29 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-
+```
 
 Apply these manifests to your cluster:
 
-bash
+```bash
 kubectl apply -f product.yaml
 kubectl apply -f review.yaml
-
+```
 
 **2. Enable Istio Sidecar Injection:**
 
 To enable Istio to manage traffic for these services, we need to enable sidecar injection. You can do this at the namespace level or on individual deployments.  For simplicity, let's assume your services are in the `default` namespace.  If not, replace `default` with your actual namespace.
 
-bash
+```bash
 kubectl label namespace default istio-injection=enabled
-
+```
 
 This command tells Istio to automatically inject the Envoy proxy as a sidecar container into any new pods created in the `default` namespace. If the pods already exist, you need to restart them for the sidecar to be injected:
 
-bash
+```bash
 kubectl rollout restart deployment product
 kubectl rollout restart deployment review
-
+```
 
 **3. Define a VirtualService:**
 
@@ -145,7 +145,7 @@ A `VirtualService` is a key Istio configuration resource that defines how traffi
 
 Create a file named `review-vs.yaml` with the following content:
 
-yaml
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -161,13 +161,13 @@ spec:
         host: review
         port:
           number: 80
-
+```
 
 Apply this `VirtualService` to your cluster:
 
-bash
+```bash
 kubectl apply -f review-vs.yaml
-
+```
 
 This `VirtualService` tells Istio to route all traffic destined for the `review` service (on port 80) to the actual `review` service.  In a real-world scenario, you would have more complex routing rules based on headers, paths, or other criteria.
 
@@ -177,9 +177,9 @@ You can now test that Istio is managing traffic correctly.  The way to test will
 
 Examine the logs of the `review` service's Envoy proxy (the `istio-proxy` container). You should see entries related to the traffic being routed through the proxy.
 
-bash
+```bash
 kubectl logs -l app=review -c istio-proxy -f
-
+```
 
 ## Advanced Features
 

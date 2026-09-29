@@ -44,18 +44,18 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
 
 1.  **Create a Chart:**
 
-    bash
+    ```bash
     helm create nginx-chart
     cd nginx-chart
-    
+    ```
 
     This creates a directory structure with a basic chart.  Key files are `Chart.yaml`, `values.yaml`, and the `templates` directory.
 
 2.  **Customize Values:**  Edit the `values.yaml` file to configure Nginx.  For example, change the replica count:
 
-    yaml
+    ```yaml
     replicaCount: 3
-    
+    ```
 
 3.  **Modify Templates (Optional):**  You can modify the templates in the `templates` directory to further customize the deployment.  For example, to customize the service type to LoadBalancer, edit `templates/service.yaml`:
 
@@ -83,9 +83,9 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
 
 4.  **Install the Chart:**
 
-    bash
+    ```bash
     helm install my-nginx nginx-chart
-    
+    ```
 
     This command installs the `nginx-chart` into your Kubernetes cluster, creating a release named `my-nginx`.
 
@@ -93,24 +93,24 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
 
     To change the values, edit `values.yaml` and then upgrade the release:
 
-    bash
+    ```bash
     helm upgrade my-nginx nginx-chart
-    
+    ```
 
 **Kustomize Example: Customizing a Nginx Deployment**
 
 1.  **Create a Base Directory:**  Create a directory to hold your base Kubernetes configuration.
 
-    bash
+    ```bash
     mkdir nginx-base
     cd nginx-base
-    
+    ```
 
 2.  **Create Base YAML Files:** Create `deployment.yaml` and `service.yaml` with the base configuration.
 
     `deployment.yaml`:
 
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -130,11 +130,11 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
             image: nginx:latest
             ports:
             - containerPort: 80
-    
+    ```
 
     `service.yaml`:
 
-    yaml
+    ```yaml
     apiVersion: v1
     kind: Service
     metadata:
@@ -146,60 +146,60 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
         - protocol: TCP
           port: 80
           targetPort: 80
-    
+    ```
 
 3.  **Create a Kustomization File:**  Create a `kustomization.yaml` file in the `nginx-base` directory:
 
-    yaml
+    ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
     kind: Kustomization
     resources:
     - deployment.yaml
     - service.yaml
-    
+    ```
 
 4.  **Create an Overlay Directory:** Create a directory for your customizations.
 
-    bash
+    ```bash
     mkdir ../nginx-overlay
     cd ../nginx-overlay
-    
+    ```
 
 5.  **Create a Kustomization File in the Overlay:**  Create a `kustomization.yaml` file in the `nginx-overlay` directory:
 
-    yaml
+    ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
     kind: Kustomization
     bases:
     - ../nginx-base
     patchesStrategicMerge:
     - deployment-patch.yaml
-    
+    ```
 
 6.  **Create a Patch File:** Create a `deployment-patch.yaml` file to modify the number of replicas.
 
-    yaml
+    ```yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-deployment  # Important: Match the name in the base!
     spec:
       replicas: 5
-    
+    ```
 
 7.  **Build the Configuration:** Build the final configuration using Kustomize:
 
-    bash
+    ```bash
     kustomize build .
-    
+    ```
 
     This will output the merged YAML configuration.
 
 8.  **Apply the Configuration:** Apply the configuration to your cluster:
 
-    bash
+    ```bash
     kustomize build . | kubectl apply -f -
-    
+    ```
 
 ## Advantages and Disadvantages
 

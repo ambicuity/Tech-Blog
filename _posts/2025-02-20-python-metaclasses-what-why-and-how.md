@@ -15,21 +15,21 @@ Python, a language celebrated for its flexibility and dynamic nature, offers pow
 
 Before diving into metaclasses, it's crucial to understand the relationship between classes and objects in Python.  Consider this simple class definition:
 
-python
+```python
 class MyClass:
     attribute = "Hello"
 
     def method(self):
         return "World"
-
+```
 
 When you create an instance of `MyClass`, you're creating an *object*. The class itself acts as a blueprint or template for creating these objects.
 
-python
+```python
 instance = MyClass()
 print(instance.attribute)  # Output: Hello
 print(instance.method())   # Output: World
-
+```
 
 But where does the class itself come from? In Python, classes are also objects! They are instances of a *metaclass*. By default, if you don't specify a metaclass, Python uses the built-in `type` metaclass.  This is a critical understanding: `type` is the metaclass responsible for creating most of the classes you encounter in your daily Python programming.
 
@@ -40,10 +40,10 @@ Think of it this way:
 
 You can confirm this using the `type()` function:
 
-python
+```python
 print(type(MyClass))  # Output: <class 'type'>
 print(type(instance)) # Output: <class '__main__.MyClass'>
-
+```
 
 This reveals that `MyClass` is an object of type `type`. This is the heart of the metaclass concept. Because classes are objects, you can manipulate them just like any other object. Metaclasses provide the means to control *how* classes are created.
 
@@ -51,9 +51,9 @@ This reveals that `MyClass` is an object of type `type`. This is the heart of th
 
 The `type()` function isn't just for checking an object's type. It can also be used as a metaclass to dynamically create classes.  The syntax is:
 
-python
+```python
 type(class_name, bases_tuple, attributes_dict)
-
+```
 
 *   `class_name`: A string representing the name of the class.
 *   `bases_tuple`: A tuple containing the base classes (parent classes) of the new class.  If the class inherits from `object` only, this will be `(object,)`.
@@ -61,13 +61,13 @@ type(class_name, bases_tuple, attributes_dict)
 
 Let's recreate `MyClass` using `type()`:
 
-python
+```python
 MyClass = type('MyClass', (object,), {'attribute': 'Hello', 'method': lambda self: 'World'})
 
 instance = MyClass()
 print(instance.attribute)
 print(instance.method())
-
+```
 
 This code achieves the same result as the original `class` definition but demonstrates that classes can be created dynamically using the `type()` metaclass. The `lambda` function is used here to create an anonymous function for the method.
 
@@ -79,7 +79,7 @@ The `__new__` method is responsible for creating the class object itself (the in
 
 Here's an example of a metaclass that automatically adds an attribute to every class created with it:
 
-python
+```python
 class MyMeta(type):
     def __new__(cls, name, bases, attrs):
         attrs['added_attribute'] = "Added by MyMeta"
@@ -90,7 +90,7 @@ class MyClass(metaclass=MyMeta):
 
 instance = MyClass()
 print(instance.added_attribute)  # Output: Added by MyMeta
-
+```
 
 In this example:
 
@@ -113,7 +113,7 @@ Metaclasses are powerful, but they should be used judiciously. Overusing them ca
 
 Let's create a metaclass that enforces the types of certain attributes:
 
-python
+```python
 class Typed(type):
     def __new__(cls, name, bases, attrs):
         for key, value in attrs.items():
@@ -139,7 +139,7 @@ class MyClass(metaclass=Typed):
     def __init__(self, age, name):
         self._age = age
         self._name = name
-
+```
 
 instance = MyClass(25, "Alice")
 print(instance.age)
