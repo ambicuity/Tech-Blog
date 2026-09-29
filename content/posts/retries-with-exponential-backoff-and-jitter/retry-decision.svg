@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
+<title>Retry decision flow: four gates before any wait</title>
+<defs>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+</pattern>
+<marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+</marker>
+</defs>
+<text x="8" y="22" class="f-title">Four gates before any wait</text>
+<rect x="170" y="38" width="260" height="44" class="f-box"/>
+<text x="300" y="65" class="f-code f-middle">attempt raises</text>
+<path d="M300 108 L430 150 L300 192 L170 150 z" class="f-box"/>
+<text x="300" y="146" class="f-code f-middle">transient</text>
+<text x="300" y="162" class="f-code f-middle">or throttling?</text>
+<line x1="430" y1="150" x2="500" y2="150" class="f-line" marker-end="url(#arrow)"/>
+<text x="465" y="142" class="f-small f-middle">no</text>
+<rect x="500" y="128" width="200" height="44" class="f-box"/>
+<text x="600" y="155" class="f-code f-middle">raise RetryExhausted</text>
+<path d="M300 198 L430 240 L300 282 L170 240 z" class="f-box"/>
+<text x="300" y="236" class="f-code f-middle">idempotent</text>
+<text x="300" y="252" class="f-code f-middle">or keyed?</text>
+<line x1="430" y1="240" x2="500" y2="240" class="f-line" marker-end="url(#arrow)"/>
+<text x="465" y="232" class="f-small f-middle">no</text>
+<rect x="500" y="218" width="200" height="44" class="f-box"/>
+<text x="600" y="245" class="f-code f-middle">raise NonIdempotentError</text>
+<path d="M300 288 L430 330 L300 372 L170 330 z" class="f-box"/>
+<text x="300" y="326" class="f-code f-middle">wait fits in</text>
+<text x="300" y="342" class="f-code f-middle">deadline?</text>
+<line x1="430" y1="330" x2="500" y2="330" class="f-line" marker-end="url(#arrow)"/>
+<text x="465" y="322" class="f-small f-middle">no</text>
+<rect x="500" y="308" width="200" height="44" class="f-box"/>
+<text x="600" y="335" class="f-code f-middle">raise RetryExhausted</text>
+<path d="M300 378 L430 420 L300 462 L170 420 z" class="f-box"/>
+<text x="300" y="416" class="f-code f-middle">budget token?</text>
+<line x1="430" y1="420" x2="500" y2="420" class="f-line" marker-end="url(#arrow)"/>
+<text x="465" y="412" class="f-small f-middle">no</text>
+<rect x="500" y="398" width="200" height="44" class="f-box"/>
+<text x="600" y="425" class="f-code f-middle">raise RetryExhausted</text>
+<rect x="170" y="483" width="260" height="44" class="f-box"/>
+<text x="300" y="510" class="f-code f-middle">sleep full-jitter backoff, retry</text>
+<line x1="300" y1="82" x2="300" y2="108" class="f-line" marker-end="url(#arrow)"/>
+<text x="308" y="105" class="f-small">yes</text>
+<line x1="300" y1="192" x2="300" y2="198" class="f-line" marker-end="url(#arrow)"/>
+<text x="308" y="195" class="f-small">yes</text>
+<line x1="300" y1="282" x2="300" y2="288" class="f-line" marker-end="url(#arrow)"/>
+<text x="308" y="285" class="f-small">yes</text>
+<line x1="300" y1="372" x2="300" y2="378" class="f-line" marker-end="url(#arrow)"/>
+<text x="308" y="375" class="f-small">yes</text>
+<line x1="300" y1="462" x2="300" y2="483" class="f-line" marker-end="url(#arrow)"/>
+<text x="308" y="462" class="f-small">yes</text>
+<line x1="8" y1="536" x2="712" y2="536" class="f-rule"/>
+<text x="8" y="556" class="f-small">1 classify the error: code wins over status   2 require idempotency or a key   3 fit the wait in the deadline   4 spend budget only on real retries</text>
+</svg>
