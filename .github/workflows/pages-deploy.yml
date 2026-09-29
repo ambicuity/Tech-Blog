@@ -38,6 +38,9 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
+      - name: Test theme plugins
+        run: bundle exec ruby test/plugins_test.rb
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
@@ -47,12 +50,11 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Test site
+      - name: Test site (internal links, images, scripts)
         run: |
           bundle exec htmlproofer _site \
             --disable-external \
-            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/" \
-            --allow-missing-href || true
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
