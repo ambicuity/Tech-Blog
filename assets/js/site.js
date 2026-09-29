@@ -404,8 +404,11 @@
     if (!host || !("IntersectionObserver" in window)) return;
     // giscus reports failures (e.g. app not installed) via postMessage; show a
     // plain link to the repository's Discussions instead of an empty box.
+    // "Discussion not found" is not a failure: it is every article's state until
+    // its first comment, and giscus still shows a working comment box.
     window.addEventListener("message", (event) => {
-      if (event.origin !== "https://giscus.app" || !event.data?.giscus?.error) return;
+      const error = event.origin === "https://giscus.app" && event.data?.giscus?.error;
+      if (!error || /discussion not found/i.test(String(error))) return;
       $("iframe.giscus-frame")?.remove();
       reveal($$("[data-giscus-fallback]"));
     });
