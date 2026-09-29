@@ -39,31 +39,13 @@ kubectl create namespace argo-rollouts
 kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
 ```
 
-**2. Deploy a Sample Application:**
+Also install the `kubectl argo rollouts` plugin (for example `brew install argoproj/tap/kubectl-argo-rollouts`, or download the binary from the Argo Rollouts release page). The commands below use it.
 
-Let's assume you have a simple application containerized and available in a container registry.  We'll create a basic Kubernetes Deployment and Service for the initial, stable version.  Save this as `deployment.yaml`:
+**2. Create the Service:**
+
+Let's assume your application is containerized and available in a registry. Create the Service that will send traffic to its pods. Save this as `service.yaml`:
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-app
-spec:
-  selector:
-    matchLabels:
-      app: my-app
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: my-app
-    spec:
-      containers:
-      - name: my-app
-        image: your-docker-registry/my-app:1.0 # Replace with your image
-        ports:
-        - containerPort: 8080
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -78,15 +60,15 @@ spec:
   type: LoadBalancer # Or ClusterIP, depending on your environment
 ```
 
-Apply this manifest:
-
 ```bash
-kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
 ```
 
-**3. Create an Argo Rollout:**
+**3. Create the Rollout (instead of a Deployment):**
 
-Now, we'll define the Argo Rollout manifest that describes the canary deployment. Save this as `rollout.yaml`:
+A Rollout replaces a Deployment: it creates and owns the pods itself. Do not also run a Deployment with the same labels, or two controllers will manage overlapping pods behind the same Service. (To migrate an existing Deployment, reference it from the Rollout with `workloadRef`, or scale the Deployment down once the Rollout is healthy.)
+
+Save this as `rollout.yaml`, starting with the version that is currently live:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -117,7 +99,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: your-docker-registry/my-app:2.0 # Replace with the new image
+        image: your-docker-registry/my-app:1.0 # Replace with your image
         ports:
         - containerPort: 8080
   revisionHistoryLimit: 2
@@ -126,24 +108,33 @@ spec:
 **Explanation:**
 
 *   `apiVersion: argoproj.io/v1alpha1`:  Specifies that this is an Argo Rollout resource.
-*   `strategy.canary.steps`: Defines the steps for the canary deployment.  Each `setWeight` step shifts a percentage of traffic to the new version. `pause` introduces a delay for observation.
-*   `image: your-docker-registry/my-app:2.0`:  Specifies the container image for the new version of the application.  Make sure to replace it with your image tag.
-* `revisionHistoryLimit`: Keeps only the last two rollout revisions. This helps in cleaning up older resources.
+*   `strategy.canary.steps`: Defines the steps for the canary deployment. Each `setWeight` step shifts a percentage of traffic to the new version, and `pause` waits before the next step.
+*   `revisionHistoryLimit`: Keeps only the last two rollout revisions. This helps in cleaning up older resources.
 
-**4. Apply the Rollout:**
+> [!NOTE]
+> Without traffic routing (step 6), Argo Rollouts can only approximate weights with pod counts. With 3 replicas, a 10% step still needs one canary pod, so roughly a third of requests reach the new version. Use more replicas, or configure `trafficRouting` for exact percentages.
+
+**4. Apply the Rollout, then release a new version:**
 
 ```bash
 kubectl apply -f rollout.yaml
 ```
 
-**5. Monitor the Rollout:**
+The first version has nothing to be compared against, so it goes straight to 100%: canary steps only apply to updates. Release version 2.0 by changing the image, which starts the canary:
 
-You can monitor the rollout's progress using the Argo Rollouts CLI or the Kubernetes CLI.
+```bash
+kubectl argo rollouts set image my-app-rollout my-app=your-docker-registry/my-app:2.0
+```
 
-*   **Argo Rollouts CLI:** `kubectl argo rollouts get rollout my-app-rollout`
-*   **Kubernetes CLI:** `kubectl describe rollout my-app-rollout`
+**5. Monitor, promote or abort:**
 
-You will see the rollout progressing through the defined steps, gradually shifting traffic to the new version.
+```bash
+kubectl argo rollouts get rollout my-app-rollout --watch   # follow the steps
+kubectl argo rollouts promote my-app-rollout               # skip the current pause
+kubectl argo rollouts abort my-app-rollout                 # return all traffic to the stable version
+```
+
+You will see the rollout progressing through the defined steps, gradually shifting traffic to the new version. `kubectl describe rollout my-app-rollout` shows the same state without the plugin.
 
 **6. Integrate with Traffic Management (Optional but recommended):**
 

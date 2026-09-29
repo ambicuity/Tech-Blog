@@ -15,13 +15,13 @@ In the dynamic world of Kubernetes, efficient resource management is crucial for
 
 At the heart of Kubernetes resource management are two key parameters: **requests** and **limits**. Understanding the difference between these is vital for orchestrating resources effectively.
 
-*   **Requests:** A request specifies the *minimum* amount of resources (CPU and memory) that a Pod needs to function correctly. Kubernetes uses these requests to schedule Pods onto nodes that have sufficient available resources. In essence, it's a promise to the scheduler that the Pod requires at least this much to operate. If a node doesn't have the requested resources, the Pod won't be scheduled there.
+*   **Requests:** A request specifies the *minimum* amount of resources (CPU and memory) that a container needs to function correctly; a Pod's request is the sum of its containers' requests. Kubernetes uses these requests to schedule Pods onto nodes that have sufficient available resources. In essence, it's a promise to the scheduler that the Pod requires at least this much to operate. If a node doesn't have the requested resources, the Pod won't be scheduled there.
 
-*   **Limits:** A limit defines the *maximum* amount of resources that a Pod is allowed to consume.  It acts as a boundary, preventing a Pod from consuming excessive resources and potentially impacting other Pods running on the same node. When a Pod attempts to exceed its limit, Kubernetes intervenes to enforce it. The behavior depends on the resource type:
+*   **Limits:** A limit defines the *maximum* amount of resources that a container is allowed to consume.  It acts as a boundary, preventing a Pod from consuming excessive resources and potentially impacting other Pods running on the same node. When a Pod attempts to exceed its limit, Kubernetes intervenes to enforce it. The behavior depends on the resource type:
 
-    *   **CPU:** If a Pod exceeds its CPU limit, it will be *throttled*. This means the Pod will be allowed to run, but its CPU usage will be capped. This can lead to performance degradation.
+    *   **CPU** is *compressible*: if a container reaches its CPU limit, it is *throttled*. It keeps running, but its CPU time is capped, which can slow it down.
 
-    *   **Memory:** If a Pod exceeds its memory limit, it's highly likely to be *killed* (OOMKilled - Out Of Memory Killed). Kubernetes terminates the Pod to prevent it from destabilizing the entire node.
+    *   **Memory** is *incompressible*: it cannot be taken back without stopping the process. If a container exceeds its memory limit, the kernel's OOM killer ends it (status `OOMKilled`), and the kubelet restarts it according to the Pod's `restartPolicy`.
 
 It's crucial to choose appropriate values for requests and limits. Under-requesting can lead to scheduling issues and poor performance, while over-requesting can lead to wasted resources and inefficient cluster utilization. Similarly, under-limiting can lead to resource contention, and over-limiting can unnecessarily constrain your applications.
 
@@ -57,7 +57,7 @@ In this example:
 **Understanding Units:**
 
 *   **CPU:**  Expressed in CPU units (e.g., `1`) or millicores (e.g., `250m`).  A single CPU core is represented by `1`.
-*   **Memory:** Expressed in bytes with suffixes like `Ki`, `Mi`, `Gi` (kibibytes, mebibytes, gibibytes) or `K`, `M`, `G` (kilobytes, megabytes, gigabytes).  Note the difference: Ki is 1024 bytes, while K is 1000 bytes. Kubernetes uses the binary units (`Ki`, `Mi`, `Gi`).
+*   **Memory:** Expressed in bytes with suffixes like `Ki`, `Mi`, `Gi` (kibibytes, mebibytes, gibibytes) or `K`, `M`, `G` (kilobytes, megabytes, gigabytes).  Note the difference: Ki is 1024 bytes, while K is 1000 bytes. Kubernetes accepts both, and they are not interchangeable: `512M` is about 488Mi. Pick one convention (binary units are the usual choice) and use it everywhere.
 
 **Applying the Configuration:**
 
@@ -83,7 +83,7 @@ Look for the "Resources" section in the output.  You should see the requests and
 
 2.  **Limit Higher Than Request:** Generally, set the limit higher than the request. This allows the Pod to burst above its minimum resource requirement when needed, but prevents it from consuming excessive resources indefinitely. A common strategy is to set the limit to 1.5x to 2x the request.
 
-3.  **Namespace Default Resource Quotas:** Kubernetes allows you to define default resource quotas at the namespace level. This ensures that all Pods within a namespace have at least some basic resource constraints. This is especially useful in multi-tenant environments.
+3.  **Namespace Resource Quotas:** A ResourceQuota caps the *total* resources that all Pods in a namespace can request and use, which is especially useful in multi-tenant clusters. It does not give Pods defaults: once a quota covers `requests.cpu` or `limits.memory`, a Pod that omits those values is rejected. Pair it with a LimitRange (next), which fills in defaults.
 
     ```yaml
     apiVersion: v1
@@ -131,6 +131,14 @@ Look for the "Resources" section in the output.  You should see the requests and
     * **BestEffort:** The lowest priority QoS class. Assigned when neither CPU nor memory requests or limits are defined. These Pods are most likely to be killed when the node is under resource pressure.
 
     Knowing which QoS class your Pods belong to allows you to reason about their priority and potential for eviction. Aim for `Guaranteed` QoS for critical applications.
+
+8.  **Vertical Pod Autoscaler (VPA):** VPA is an add-on, installed separately rather than built into Kubernetes, that recommends or applies requests based on observed usage. It is a good way to find right-sized values. Don't let VPA and HPA act on the same CPU or memory metric for one workload, or they will work against each other.
+
+## Common Mistakes
+
+*   **CPU limits that throttle health checks:** a throttled container can answer liveness or readiness probes too slowly; the probes fail and the kubelet restarts a container that was only busy. Leave headroom above typical CPU usage, or give probes generous timeouts.
+*   **Confusing `M` and `Mi`:** `512M` and `512Mi` differ by about 24Mi, enough to turn a comfortable limit into repeated `OOMKilled` restarts.
+*   **Setting requests with no measurement behind them:** requests drive scheduling and HPA; values copied from another service lead to either wasted capacity or starved pods. Measure under load first.
 
 ## Conclusion
 

@@ -39,6 +39,7 @@ Here's a step-by-step guide to building a serverless image processing pipeline u
 *   Click "Create queue."
 *   Choose "Standard" or "FIFO" queue type. For simple image processing, a standard queue is sufficient. If you require strict ordering, choose FIFO.
 *   Name your queue (e.g., `image-processing-queue`).
+*   Set a dead-letter queue (a redrive policy with a `maxReceiveCount`, for example 5) so a message that keeps failing is set aside instead of retried forever.
 *   Configure queue settings as needed (e.g., visibility timeout, message retention period). The *Visibility Timeout* is the amount of time a message stays invisible to other consumers after it's retrieved from the queue.
 *   Create the queue.
 
@@ -47,11 +48,9 @@ Here's a step-by-step guide to building a serverless image processing pipeline u
 *   Navigate to the IAM service.
 *   Click "Roles" and then "Create role."
 *   Select "AWS service" and choose "Lambda" as the service that will use this role.
-*   Attach the following policies:
-    *   `AWSLambdaBasicExecutionRole`: Grants permissions to write logs to CloudWatch.
-    *   `AmazonSQSFullAccess`: Grants full access to SQS queues.
-    *   `AmazonS3ReadOnlyAccess`: Grants read-only access to S3. (Required if the lambda reads the image from S3).
-    *   `AmazonS3FullAccess`: Grants write access to S3. (Required if the lambda uploads the resized image to S3).
+*   Grant only what the function needs:
+    *   `AWSLambdaSQSQueueExecutionRole` (AWS managed): lets Lambda receive and delete messages from the queue and write logs to CloudWatch.
+    *   An inline policy allowing `s3:GetObject` and `s3:PutObject` on your bucket only (`arn:aws:s3:::your-s3-bucket-name/*`). Avoid `AmazonS3FullAccess` and `AmazonSQSFullAccess`: they grant access to every bucket and queue in the account.
 *   Name the role (e.g., `lambda-image-processing-role`).
 *   Create the role.
 
@@ -61,84 +60,66 @@ Here's a step-by-step guide to building a serverless image processing pipeline u
 *   Click "Create function."
 *   Choose "Author from scratch."
 *   Name your function (e.g., `image-resizer`).
-*   Select a runtime (e.g., "Python 3.9").
+*   Select a runtime (e.g., "Python 3.12").
 *   Under "Change default execution role," choose "Use an existing role" and select the IAM role you created in the previous step.
 *   Create the function.
 
 **4. Implement the Lambda Function Code:**
 
-Here's a Python example using the `Pillow` library to resize images.  First, install pillow using pip: `pip install pillow`.
+Here's a Python example using the `Pillow` library to resize images. Pillow contains compiled code, so it has to be built for Lambda's Linux environment rather than your laptop: `pip install --platform manylinux2014_x86_64 --only-binary=:all: --target package pillow` (use `manylinux2014_aarch64` for arm64 functions), or ship it as a Lambda layer.
 
 ```python
-import boto3
-import io
-from PIL import Image
+import json
 import os
+import uuid
 
-s3 = boto3.client('s3')
+import boto3
+from PIL import Image
+
+s3 = boto3.client("s3")
+THUMBNAIL_SIZE = (128, 128)
+
 
 def resize_image(image_path, resized_path, size):
-    """
-    Resizes an image and saves it to a new location.
-    """
+    """Resize an image and save it to a new location."""
+    with Image.open(image_path) as image:
+        image.resize(size, Image.LANCZOS).save(resized_path)
+
+
+def process(message_body):
+    """Download, resize and upload one image. Raises on any failure."""
+    message = json.loads(message_body)
+    bucket, key = message["bucket"], message["key"]
+    # Object keys can contain "/", so never use the key as a local file name.
+    suffix = os.path.splitext(key)[1]
+    download_path = f"/tmp/{uuid.uuid4()}{suffix}"
+    resized_path = f"/tmp/{uuid.uuid4()}{suffix}"
     try:
-        with Image.open(image_path) as image:
-            image = image.resize(size, Image.LANCZOS)
-            image.save(resized_path)
-    except Exception as e:
-        print(f"Error resizing image: {e}")
-        raise
+        s3.download_file(bucket, key, download_path)
+        resize_image(download_path, resized_path, THUMBNAIL_SIZE)
+        s3.upload_file(resized_path, bucket, f"resized/{key}")
+    finally:
+        for path in (download_path, resized_path):
+            if os.path.exists(path):
+                os.remove(path)
+
 
 def lambda_handler(event, context):
-    """
-    Handles SQS messages and resizes images.
-    """
-    for record in event['Records']:
-        message = record['body']
-        # Assume message is a JSON string containing S3 bucket and key
+    """Process a batch of SQS messages and report only the failures."""
+    failures = []
+    for record in event["Records"]:
         try:
-            import json
-            message_data = json.loads(message)
-            bucket = message_data['bucket']
-            key = message_data['key']
-        except (json.JSONDecodeError, KeyError) as e:
-            print(f"Error processing message: {e}")
-            continue
-
-        download_path = f'/tmp/{key}' # temporary file path
-        resized_path = f'/tmp/resized-{key}' # temporary file path for resized image
-
-        try:
-            s3.download_file(bucket, key, download_path)
-        except Exception as e:
-            print(f"Error downloading image: {e}")
-            continue
-
-        try:
-            resize_image(download_path, resized_path, (128, 128))  # Resize to 128x128
-        except Exception as e:
-            print("Error resizing image.")
-            continue
-
-        try:
-            s3.upload_file(resized_path, bucket, f'resized/{key}') # Saves to S3 in resized directory.
-            print("Image successfully resized and uploaded")
-        except Exception as e:
-            print("Error uploading resized image")
-            continue
-
-        # Clean up temporary files
-        try:
-            os.remove(download_path)
-            os.remove(resized_path)
-        except OSError as e:
-            print(f"Error deleting file: {e}")
-
-    return {
-        'statusCode': 200,
-        'body': 'Images processed successfully!'
-    }
+            process(record["body"])
+        except Exception as exc:
+            print(f"Failed to process message {record['messageId']}: {exc}")
+            failures.append({"itemIdentifier": record["messageId"]})
+    # Messages listed here return to the queue for another attempt; after
+    # maxReceiveCount attempts, SQS moves them to the dead-letter queue.
+    return {"batchItemFailures": failures}
 ```
+
+Why `batchItemFailures` matters: if the handler caught an error and returned normally, Lambda would treat the whole batch as processed and delete every message, so the failed ones would be lost silently. Returning the failed message IDs (with "Report batch item failures" enabled on the trigger, step 5) retries just those messages.
+
 
 *   Upload this code to your Lambda function.  You will need to zip it first along with any libraries used (Pillow in this example). You can use a Lambda Layer to easily package dependencies.
 *  Configure the Lambda timeout to be large enough to handle processing the images. Go to Configuration > General > Edit. Increase the Timeout value.
@@ -149,6 +130,7 @@ def lambda_handler(event, context):
 *   Select "SQS" as the trigger.
 *   Choose the SQS queue you created.
 *   Configure batch size (the number of messages the Lambda function will process at once).
+*   Turn on **Report batch item failures**, so the `batchItemFailures` response retries only the failed messages.
 *   Enable the trigger.
 
 **6. Test the Setup:**
@@ -172,7 +154,8 @@ def lambda_handler(event, context):
 *   **Insufficient Timeout:** If the Lambda function takes longer than the configured timeout, it will be terminated. Increase the timeout if necessary.
 *   **Error Handling:** Implement robust error handling in your Lambda function. Catch exceptions, log errors, and potentially retry failed operations. Consider dead-letter queues for failed messages.
 *   **Message Format Issues:** The Lambda function expects a specific message format. Ensure the messages sent to the SQS queue adhere to this format.
-*   **Visibility Timeout Too Short:** If the visibility timeout is shorter than the time it takes the Lambda function to process a message, the message might be processed multiple times. Adjust the visibility timeout accordingly.
+*   **Visibility Timeout Too Short:** If the visibility timeout is shorter than the time it takes the Lambda function to process a message, the message might be processed multiple times. AWS recommends a visibility timeout of at least six times the function timeout.
+*   **Ignoring Idempotency:** Standard queues deliver at least once, and failed messages are retried, so the same message can be processed more than once. Make processing safe to repeat. Re-uploading the same thumbnail is harmless; for side effects such as sending an email or charging a card, record the message ID or rely on a unique constraint so a duplicate becomes a no-op (see [Idempotent Operations in Distributed Systems](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/)).
 
 ## Interview Perspective
 
@@ -183,6 +166,7 @@ Interviewers often ask about using Lambda and SQS to evaluate your understanding
     *   Describe how Lambda functions can be triggered by SQS messages.
     *   Discuss the different SQS queue types (Standard and FIFO) and their trade-offs.
     *   Explain how to configure IAM roles and permissions for Lambda functions.
+    *   Explain how you make consumers idempotent (message IDs, conditional writes or unique constraints) and how partial batch failures and dead-letter queues handle poison messages.
     *   Describe how to handle errors and retries in Lambda functions.
     *   Discuss the importance of visibility timeout in SQS.
     *   Explain the concept of dead-letter queues.
