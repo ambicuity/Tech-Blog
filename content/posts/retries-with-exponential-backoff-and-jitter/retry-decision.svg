@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 576">
 <title>Retry decision flow: four gates before any wait</title>
 <defs>
 <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -39,7 +39,7 @@
 <rect x="500" y="398" width="200" height="44" class="f-box"/>
 <text x="600" y="425" class="f-code f-middle">raise RetryExhausted</text>
 <rect x="170" y="483" width="260" height="44" class="f-box"/>
-<text x="300" y="510" class="f-code f-middle">sleep full-jitter backoff, retry</text>
+<text x="300" y="510" class="f-code f-middle">sleep, then retry</text>
 <line x1="300" y1="82" x2="300" y2="108" class="f-line" marker-end="url(#arrow)"/>
 <text x="308" y="105" class="f-small">yes</text>
 <line x1="300" y1="192" x2="300" y2="198" class="f-line" marker-end="url(#arrow)"/>
@@ -51,5 +51,6 @@
 <line x1="300" y1="462" x2="300" y2="483" class="f-line" marker-end="url(#arrow)"/>
 <text x="308" y="462" class="f-small">yes</text>
 <line x1="8" y1="536" x2="712" y2="536" class="f-rule"/>
-<text x="8" y="556" class="f-small">1 classify the error: code wins over status   2 require idempotency or a key   3 fit the wait in the deadline   4 spend budget only on real retries</text>
+<text x="8" y="552" class="f-small">1 classify the error: code wins over status      2 require idempotency or a key</text>
+<text x="8" y="568" class="f-small">3 fit the wait in the deadline      4 spend budget only on real retries</text>
 </svg>
