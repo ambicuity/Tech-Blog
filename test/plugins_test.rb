@@ -13,6 +13,10 @@ require "json"
 require "tmpdir"
 require "yaml"
 require "date"
+require "base64"
+require "fileutils"
+require "open3"
+require "rbconfig"
 
 ROOT = File.expand_path("..", __dir__)
 Dir[File.join(ROOT, "_plugins", "*.rb")].sort.each { |f| require f }
@@ -59,43 +63,167 @@ class TaxonomyTest < Minitest::Test
   end
 end
 
-# Pre-deploy guard for posts written by the content pipeline. A post that fails
-# here would otherwise publish broken: invalid YAML silently drops the whole
-# front matter (empty title, date-prefixed URL, build date), and a model-invented
-# date publishes the post in the wrong year.
-class PostFrontMatterTest < Minitest::Test
-  # The pipeline names files with the authoritative date (today, or POST_DATE for
-  # backfills), so the front-matter date must agree. Posts before this date come
-  # from an older generator and are grandfathered.
-  DATE_CHECK_FROM = "2026-01-01"
-  AUTHORS = YAML.safe_load_file(File.join(ROOT, "_data", "authors.yml")).keys
+# Pre-deploy guard: every article in the repository satisfies the content
+# contract (_plugins/content_contract.rb, docs/content-authoring.md). A failure
+# here fails CI and the deploy, so a malformed article can never go live.
+class RepositoryContentTest < Minitest::Test
+  RESULTS = TechBlog::ContentContract.validate_all(ROOT)
 
-  Dir[File.join(ROOT, "_posts", "*.md")].sort.each do |path|
-    name = File.basename(path)
-
-    define_method("test_front_matter_#{name.tr('^a-zA-Z0-9', '_')}") do
-      source = File.read(path)
-      match = source.match(/\A---\s*\n(.*?)\n---\s*\n/m)
-      assert match, "#{name}: missing front matter block"
-
-      data = begin
-        YAML.safe_load(match[1], permitted_classes: [Date, Time])
-      rescue Psych::SyntaxError => e
-        flunk "#{name}: front matter is not valid YAML (quote titles that contain ': '): #{e.message}"
-      end
-
-      assert data["title"].is_a?(String) && !data["title"].strip.empty?, "#{name}: title is missing"
-      refute_nil data["date"], "#{name}: date is missing"
-      assert Array(data["categories"]).any?, "#{name}: categories are missing"
-      assert data.key?("tags"), "#{name}: tags are missing"
-      assert_includes AUTHORS, data["author"].to_s, "#{name}: unknown author" if data.key?("author")
-
-      file_date = name[0, 10]
-      if file_date >= DATE_CHECK_FROM
-        fm_date = data["date"].respond_to?(:strftime) ? data["date"].strftime("%Y-%m-%d") : data["date"].to_s[0, 10]
-        assert_equal file_date, fm_date, "#{name}: front-matter date does not match the file name"
-      end
+  RESULTS.each do |result|
+    define_method("test_contract_#{result.path.tr('^a-zA-Z0-9', '_')}") do
+      assert result.ok?, "#{result.path}:\n  #{result.errors.join("\n  ")}"
     end
+  end
+end
+
+# Contract rules, exercised against throwaway repositories.
+class ContentContractTest < Minitest::Test
+  GOOD = {
+    "title" => "Retry-safe consumers",
+    "description" => "How to make message consumers safe to retry with idempotency keys and a single transaction.",
+    "date" => "2026-09-01 10:00:00 +0000",
+    "author" => "ritesh",
+    "categories" => ["Distributed Systems"],
+    "tags" => %w[idempotency kafka reliability]
+  }.freeze
+
+  def setup
+    @root = Dir.mktmpdir("contract")
+    FileUtils.mkdir_p(File.join(@root, "_data"))
+    %w[taxonomy.yml authors.yml].each { |f| FileUtils.cp(File.join(ROOT, "_data", f), File.join(@root, "_data")) }
+  end
+
+  def teardown = FileUtils.remove_entry(@root)
+
+  def bundle(slug, front = GOOD, body: "Intro paragraph.\n\n## Section\n\nText.", files: {})
+    dir = File.join(@root, "content", "posts", slug)
+    FileUtils.mkdir_p(dir)
+    File.write(File.join(dir, "index.md"), "#{YAML.dump(front)}---\n\n#{body}\n")
+    files.each { |name, bytes| File.binwrite(File.join(dir, name), bytes) }
+    TechBlog::ContentContract.validate_bundle(@root, File.join(dir, "index.md"))
+  end
+
+  def test_valid_bundle_passes
+    result = bundle("retry-safe-consumers")
+    assert result.ok?, result.errors.inspect
+  end
+
+  def test_required_fields
+    %w[title description date author categories tags].each do |key|
+      result = bundle("missing-#{key}", GOOD.reject { |k, _| k == key })
+      refute result.ok?, "missing #{key} should fail"
+    end
+  end
+
+  def test_slug_rules
+    refute bundle("Bad_Slug").ok?
+    refute bundle("good-slug", GOOD.merge("slug" => "other-slug")).ok?, "front matter slug must match folder"
+  end
+
+  def test_invalid_dates
+    refute bundle("bad-date", GOOD.merge("date" => "yesterday-ish")).ok?
+    refute bundle("updated-before", GOOD.merge("updated" => "2025-01-01")).ok?
+  end
+
+  def test_unknown_category_and_author
+    refute bundle("unknown-cat", GOOD.merge("categories" => ["Astrology"])).ok?
+    refute bundle("unknown-author", GOOD.merge("author" => "Senior Staff Engineer")).ok?
+  end
+
+  def test_draft_must_be_boolean
+    assert bundle("draft-ok", GOOD.merge("draft" => true)).ok?
+    refute bundle("draft-bad", GOOD.merge("draft" => "yes")).ok?
+  end
+
+  def test_images_must_exist_and_cover_needs_alt
+    refute bundle("missing-image", body: "![Diagram](diagram.webp)").ok?
+    assert bundle("present-image", body: "![Diagram](diagram.webp)", files: { "diagram.webp" => "x" }).ok?
+    refute bundle("escape-folder", body: "![Diagram](../other/diagram.webp)").ok?
+    refute bundle("cover-no-alt", GOOD.merge("cover" => { "image" => "cover.webp" }), files: { "cover.webp" => "x" }).ok?
+    assert bundle("cover-ok", GOOD.merge("cover" => { "image" => "cover.webp", "alt" => "A diagram" }),
+                  files: { "cover.webp" => "x" }).ok?
+  end
+
+  def test_invalid_yaml_is_an_error
+    dir = File.join(@root, "content", "posts", "broken-yaml")
+    FileUtils.mkdir_p(dir)
+    File.write(File.join(dir, "index.md"), "---\ntitle: Kafka: Why Consumers Stall\n---\nBody\n")
+    result = TechBlog::ContentContract.validate_bundle(@root, File.join(dir, "index.md"))
+    assert_match(/not valid YAML/, result.errors.join)
+  end
+
+  def test_duplicate_slugs_across_bundles_and_posts
+    bundle("same-slug")
+    FileUtils.mkdir_p(File.join(@root, "_posts"))
+    File.write(File.join(@root, "_posts", "2026-01-05-same-slug.md"), "#{YAML.dump(GOOD)}---\nBody\n")
+    dupes = TechBlog::ContentContract.validate_all(@root).reject(&:ok?)
+    assert_equal 2, dupes.size
+    assert(dupes.all? { |r| r.errors.join.include?("duplicate slug") })
+  end
+end
+
+# scripts/publish_article.rb: JSON package -> validated bundle, or nothing.
+class PublishArticleTest < Minitest::Test
+  SCRIPT = File.join(ROOT, "scripts", "publish_article.rb")
+
+  def setup
+    @root = Dir.mktmpdir("publish")
+    %w[_data _posts].each { |d| FileUtils.cp_r(File.join(ROOT, d), @root) }
+  end
+
+  def teardown = FileUtils.remove_entry(@root)
+
+  def publish(package, *flags)
+    path = File.join(@root, "package.json")
+    File.write(path, JSON.generate(package))
+    out, status = Open3.capture2e({ "BLOG_ROOT" => @root }, RbConfig.ruby, SCRIPT, path, "--json", *flags)
+    [JSON.parse(out), status]
+  end
+
+  def package
+    {
+      "title" => "Kafka Rebalances: Why Consumers Stall",
+      "description" => "What happens to in-flight messages during a consumer-group rebalance, and how to keep processing safe.",
+      "date" => "2026-09-02",
+      "categories" => ["Distributed Systems"],
+      "tags" => %w[kafka reliability consumers],
+      "content" => "Rebalances pause consumption.\n\n## Why\n\n![Timeline](timeline.png)",
+      "images" => [{ "name" => "timeline.png", "base64" => Base64.strict_encode64("fake-png") }]
+    }
+  end
+
+  def test_creates_valid_bundle_with_safe_front_matter
+    result, status = publish(package)
+    assert status.success?, result.inspect
+    index = File.join(@root, "content", "posts", "kafka-rebalances-why-consumers-stall", "index.md")
+    assert File.exist?(index)
+    assert File.exist?(File.join(File.dirname(index), "timeline.png"))
+    data, = TechBlog::ContentContract.parse_front_matter(File.read(index))
+    assert_equal "Kafka Rebalances: Why Consumers Stall", data["title"], "colon in the title must survive as valid YAML"
+    assert_equal false, data["draft"]
+  end
+
+  def test_rejects_invalid_package_and_writes_nothing
+    result, status = publish(package.merge("categories" => ["Astrology"]))
+    refute status.success?
+    refute result["ok"]
+    refute Dir.exist?(File.join(@root, "content", "posts", "kafka-rebalances-why-consumers-stall"))
+  end
+
+  def test_refuses_to_overwrite_without_force
+    publish(package)
+    result, status = publish(package)
+    refute status.success?
+    assert_match(/already exists/, result["errors"].join)
+    _, forced = publish(package, "--force")
+    assert forced.success?
+  end
+
+  def test_dry_run_writes_nothing
+    result, status = publish(package, "--dry-run")
+    assert status.success?
+    assert result["dry_run"]
+    refute Dir.exist?(File.join(@root, "content", "posts", "kafka-rebalances-why-consumers-stall"))
   end
 end
 
@@ -194,6 +322,25 @@ class SiteBuildTest < Minitest::Test
   def read(path) = File.read(File.join(self.class.site_dir, path))
   def exist?(path) = File.exist?(File.join(self.class.site_dir, path))
 
+  def self.draft_bundles
+    Dir[File.join(ROOT, "content", "posts", "*", "index.md")].filter_map do |index|
+      data, = TechBlog::ContentContract.parse_front_matter(File.read(index))
+      File.basename(File.dirname(index)) if data && data["draft"] == true
+    end
+  end
+
+  def test_drafts_never_reach_production_outputs
+    drafts = self.class.draft_bundles
+    skip "no draft bundles in the repository" if drafts.empty?
+    feed, sitemap, search = read("feed.xml"), read("sitemap.xml"), read("assets/js/data/search.json")
+    drafts.each do |slug|
+      refute exist?("posts/#{slug}/index.html"), "draft #{slug} was rendered"
+      refute Dir.exist?(File.join(self.class.site_dir, "posts", slug)), "draft #{slug} assets were published"
+      [feed, sitemap, search].each { |out| refute_includes out, "/posts/#{slug}/" }
+    end
+    refute exist?("content"), "bundles must not also render as plain pages under /content/"
+  end
+
   def test_repository_internals_are_not_published
     %w[pipeline server venv scripts .pipeline].each { |d| refute exist?(d), "#{d}/ must not be published" }
   end
@@ -240,5 +387,44 @@ class SiteBuildTest < Minitest::Test
     %w[computer-science computer-networks system-design].each do |c|
       assert_includes read("courses/index.html"), "https://course-#{c}.riteshrana.engineer/"
     end
+  end
+end
+
+# `jekyll build --drafts`: draft bundles render completely, so authors (and
+# Muse) can preview an article before switching it to published.
+class DraftPreviewBuildTest < Minitest::Test
+  def self.site_dir
+    @site_dir ||= begin
+      dir = Dir.mktmpdir("tech-blog-drafts")
+      Minitest.after_run { FileUtils.remove_entry(dir) }
+      config = Jekyll.configuration("source" => ROOT, "destination" => dir, "quiet" => true, "show_drafts" => true)
+      Jekyll::Site.new(config).process
+      dir
+    end
+  end
+
+  def test_draft_bundles_render_with_assets_and_listings
+    drafts = SiteBuildTest.draft_bundles
+    skip "no draft bundles in the repository" if drafts.empty?
+    drafts.each do |slug|
+      page = File.join(self.class.site_dir, "posts", slug, "index.html")
+      assert File.exist?(page), "draft #{slug} did not render with --drafts"
+      html = File.read(page)
+      assert_includes html, 'class="article-head__title"'
+      assert_includes html, "data-toc-link"
+
+      bundle_dir = File.join(ROOT, "content", "posts", slug)
+      Dir.glob("**/*", base: bundle_dir).each do |asset|
+        next if asset == "index.md" || File.directory?(File.join(bundle_dir, asset))
+
+        assert File.exist?(File.join(self.class.site_dir, "posts", slug, asset)), "asset #{asset} not published"
+      end
+      assert_includes File.read(File.join(self.class.site_dir, "feed.xml")), "/posts/#{slug}/"
+    end
+  end
+
+  def test_bundle_categories_come_from_front_matter_only
+    refute Dir.exist?(File.join(self.class.site_dir, "categories", "content")), "folder names leaked into categories"
+    refute Dir.exist?(File.join(self.class.site_dir, "categories", "posts"))
   end
 end
