@@ -35,14 +35,15 @@
   stack: [TypeScript, BM25, Vector search, node-llama-cpp]
   repo: https://github.com/ambicuity/KINDX
 
-- name: Tech Blog publishing pipeline
-  category: AI engineering
+- name: Tech Blog
+  category: Publishing
   status: Live
   description: >-
-    The source for this publication, including the gated multi-agent
-    pipeline that plans, drafts, reviews and validates posts before they
-    can be published.
-  stack: [Python, Gemini API, Jekyll, GitHub Actions]
+    The source for this publication: an in-repo Jekyll theme with
+    build-time taxonomy, search and content tooling, deployed by CI that
+    tests every post before it can go live. Posts come from a gated,
+    multi-stage writing pipeline kept in a private repository.
+  stack: [Jekyll, Ruby, JavaScript, GitHub Actions]
   repo: https://github.com/ambicuity/Tech-Blog
   demo: https://blog.riteshrana.engineer/
 

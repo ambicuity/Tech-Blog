@@ -1,8 +1,0 @@
-{
-  "run_id": "20260504T110604Z",
-  "started_at": "2026-05-04T11:06:04.850904+00:00",
-  "status": "quarantined",
-  "reason": "gate_failure",
-  "quarantine_path": "_drafts/20260504T110604Z.md",
-  "completed_at": "2026-05-04T11:13:31.495750+00:00"
-}

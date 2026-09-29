@@ -18,7 +18,7 @@ This blog is a living repository of the challenges I've faced, the systems I've 
 - **Programming & software engineering** — Python, reliability patterns, code quality
 - **Development tools & best practices** — the tooling that keeps teams fast and safe
 
-Parts of the publishing workflow are automated: a gated, multi-stage pipeline drafts and reviews candidate posts before anything is published. The pipeline's source is [public on GitHub](https://github.com/ambicuity/Tech-Blog).
+Parts of the publishing workflow are automated: a gated, multi-stage pipeline drafts and reviews candidate posts before anything is published.
 
 ## Education
 

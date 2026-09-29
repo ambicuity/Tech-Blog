@@ -23,6 +23,7 @@ This site is statically generated using **Jekyll** and hosted on **GitHub Pages*
 - **Analytics**: Google Analytics 4
 - **Newsletter**: Custom PHP Integration (Self-Hosted)
 - **Deployment**: GitHub Actions
+- **Content pipeline**: lives in a separate private repository and publishes posts here; every post passes this repo's front-matter guard before it can deploy
 
 ## 💻 Local Development
 

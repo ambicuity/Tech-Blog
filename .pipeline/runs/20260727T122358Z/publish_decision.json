@@ -1,6 +1,0 @@
-{
-  "outcome": "REPAIR",
-  "confidence": 0.818,
-  "requires_sampling_review": false,
-  "reason": "aggregate_confidence_below_threshold"
-}
