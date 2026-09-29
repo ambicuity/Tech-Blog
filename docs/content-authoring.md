@@ -7,7 +7,8 @@ navigation or any other site code. The site discovers the article, lists it
 everywhere it belongs, and publishes it.
 
 What to write, and how to shape it (topic mix, titles, backlog), is in
-[editorial-guide.md](editorial-guide.md).
+[editorial-guide.md](editorial-guide.md); the full prompt for writing one article is
+[article-generation-prompt.md](article-generation-prompt.md).
 
 The rules below are enforced by `_plugins/content_contract.rb`. CI runs them on
 every pull request and before every deploy; an article that breaks a rule
