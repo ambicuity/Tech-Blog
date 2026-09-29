@@ -54,7 +54,7 @@ In this example, `npm install` is placed before copying the source code.  This e
 
 **2. Leverage Multi-Stage Builds:**
 
-Multi-stage builds help reduce the final image size and improve security by separating the build environment from the runtime environment. They also implicitly improve caching.
+[Multi-stage builds help reduce](/posts/effective-containerization-with-multi-stage-docker-builds/) the final image size and improve security by separating the build environment from the runtime environment. They also implicitly improve caching.
 
 ```dockerfile
 FROM maven:3.8.1-openjdk-17 AS builder

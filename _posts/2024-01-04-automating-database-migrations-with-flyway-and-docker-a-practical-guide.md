@@ -168,7 +168,7 @@ Verify that the `registration_date` column has been added to the `users` table u
 *   **Missing Dependencies in Dockerfile:** Include all necessary dependencies in the `Dockerfile`, such as `wget` and `unzip`, to ensure that Flyway can be downloaded and installed.
 *   **Network Connectivity Issues:**  When running Docker containers, ensure that the Flyway container can connect to the PostgreSQL container. Use Docker Compose to manage dependencies or ensure proper linking between containers.
 *   **Not using Version Control:**  Storing your migration scripts (and the `flyway.conf`) in version control is critical.  This allows tracking changes and collaborating effectively.
-*   **Not handling idempotent migrations:** Make sure to consider situations when the migrations are re-run.
+*   **Not handling [idempotent migrations](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/):** Make sure to consider situations when the migrations are re-run.
 
 ## Interview Perspective
 

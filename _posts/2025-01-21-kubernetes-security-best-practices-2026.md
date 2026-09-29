@@ -59,7 +59,7 @@ Robust IAM is the bedrock of Kubernetes security.
 
 ### 2. Network Policies
 
-Network policies control traffic flow between Pods, namespaces, and external networks. They provide a crucial layer of defense against lateral movement within the cluster.
+[Network policies control traffic flow](/posts/understanding-kubernetes-networking-deep-dive/) between Pods, namespaces, and external networks. They provide a crucial layer of defense against lateral movement within the cluster.
 
 *   **Default Deny:** Implement a default deny policy that blocks all traffic by default. This forces you to explicitly allow necessary communication, minimizing the attack surface.
 
@@ -129,7 +129,7 @@ Runtime security focuses on detecting and preventing malicious activity at runti
 
 Secrets, such as passwords, API keys, and certificates, require special handling to prevent unauthorized access.
 
-*   **Vault or External Secret Stores:** Store secrets in a secure, centralized vault like HashiCorp Vault or cloud provider secret stores (e.g., AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager). Avoid storing secrets directly in Kubernetes manifests or environment variables.
+*   **Vault or External Secret Stores:** Store secrets in [a secure, centralized vault](/posts/securing-secrets-in-kubernetes-with-vault/) like HashiCorp Vault or cloud provider secret stores (e.g., AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager). Avoid storing secrets directly in Kubernetes manifests or environment variables.
 
 *   **Secrets Encryption at Rest:** Ensure that secrets are encrypted at rest within Kubernetes using encryption providers like KMS.
 
@@ -151,7 +151,7 @@ Comprehensive auditing and logging are essential for detecting and responding to
 
 *   **Image Scanning:** Scan container images for vulnerabilities using tools like Trivy, Clair, or Anchore. Integrate image scanning into your CI/CD pipeline to prevent vulnerable images from being deployed to production.
 
-*   **Base Image Selection:** Choose minimal base images that contain only the necessary components for your application. This reduces the attack surface and improves security.
+*   **Base Image Selection:** [Choose minimal base images](/posts/effective-containerization-with-multi-stage-docker-builds/) that contain only the necessary components for your application. This reduces the attack surface and improves security.
 
 *   **Image Signing:** Sign container images using Docker Content Trust (DCT) or similar technologies to ensure their authenticity and integrity.
 
@@ -159,7 +159,7 @@ Comprehensive auditing and logging are essential for detecting and responding to
 
 *   **CIS Benchmarks:** Use the CIS Kubernetes Benchmark as a guide for hardening your Kubernetes cluster. The CIS benchmark provides a set of security configuration guidelines for Kubernetes.
 
-*   **Policy as Code:** Implement Policy as Code using tools like Kyverno or Open Policy Agent (OPA) to enforce security policies across your Kubernetes cluster. Policy as Code allows you to define and enforce security policies declaratively.
+*   **Policy as Code:** Implement Policy as Code using tools like [Kyverno or Open Policy Agent (OPA)](/posts/rejecting-unsafe-ai-generated-kubernetes-manifests-with-opa-gatekeeper/) to enforce security policies across your Kubernetes cluster. Policy as Code allows you to define and enforce security policies declaratively.
 
 ## Conclusion
 

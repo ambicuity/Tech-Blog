@@ -207,7 +207,7 @@ Interviewers often assess your understanding of containerization, orchestration,
 *   **Task definitions and their importance:** Describing the application's resource requirements and configurations.
 *   **Networking considerations for Fargate:**  VPC configuration, security groups, and subnet types.
 *   **Troubleshooting common Fargate deployment issues:** IAM permissions, networking problems, and resource constraints.
-*   **Difference between Fargate and Lambda:** Fargate is better suited for long-running containers, while Lambda is ideal for event-driven, short-lived functions.
+*   **Difference between Fargate and Lambda:** Fargate is better suited for long-running containers, while Lambda is ideal for [event-driven, short-lived functions](/posts/serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide/).
 *   **Scalability Strategies:** How you would scale a Fargate service based on application load.
 
 ## Real-World Use Cases

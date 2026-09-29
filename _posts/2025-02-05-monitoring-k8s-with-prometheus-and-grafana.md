@@ -27,7 +27,7 @@ Now, let's walk through the steps to set up Prometheus and Grafana for monitorin
 
 ### Step 1: Deploying Prometheus
 
-There are several ways to deploy Prometheus in Kubernetes, including using Helm, Operator, or manually applying Kubernetes manifests. We'll use Helm, which simplifies the deployment and management process.
+There are several ways to deploy Prometheus in Kubernetes, including using Helm, Operator, or manually applying Kubernetes manifests. [We'll use Helm](/posts/helm-vs-kustomize-a-comprehensive-comparison/), which simplifies the deployment and management process.
 
 First, add the Prometheus Helm repository:
 

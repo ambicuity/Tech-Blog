@@ -11,7 +11,7 @@ scenario: illustrative
 
 Yesterday morning, around 08:30 UTC, our on-call rotation received a flurry of alerts for the `customer-data-enrichment` service. Multiple pods in its Kubernetes Deployment were in a `CrashLoopBackOff` state, with the primary reason `OOMKilled`. Concurrently, response latencies for downstream services depending on `customer-data-enrichment` spiked, and our API gateway was reporting a high volume of `503 Service Unavailable` errors.
 
-This service is a critical component, handling high-volume, asynchronous processing of customer transaction records. It typically processes payloads up to 100MB, expanding them into internal data structures before sending them to a Kafka topic. Resource requests for this service were set conservatively at 512Mi memory and 500m CPU, with limits at 1Gi memory and 1 CPU core, which had been stable for months under peak load.
+This service is a critical component, handling high-volume, asynchronous processing of customer transaction records. It typically processes payloads up to 100MB, expanding them into internal data structures before sending them to a Kafka topic. [Resource requests for this service](/posts/kubernetes-resource-requests-and-limits-masterclass/) were set conservatively at 512Mi memory and 500m CPU, with limits at 1Gi memory and 1 CPU core, which had been stable for months under peak load.
 
 Initial `kubectl` investigation confirmed the OOMKills:
 
@@ -32,7 +32,7 @@ $ kubectl describe pod customer-data-enrichment-67c9c7f6b9-abcde -n data-platfor
     State:          Waiting
 ```
 
-Grafana dashboards for the `customer-data-enrichment` service showed a clear pattern: memory utilization would rapidly climb from its baseline to over 900Mi within minutes of a pod starting, then drop to zero as the pod was terminated and restarted. CPU utilization also showed brief, intense spikes during this period.
+[Grafana dashboards](/posts/monitoring-k8s-with-prometheus-and-grafana/) for the `customer-data-enrichment` service showed a clear pattern: memory utilization would rapidly climb from its baseline to over 900Mi within minutes of a pod starting, then drop to zero as the pod was terminated and restarted. CPU utilization also showed brief, intense spikes during this period.
 
 We recently rolled out a new feature, `transaction-metadata-enrichment`, a Python function designed to parse nested JSON within transaction records and add derived metadata. The implementation of this function had been significantly assisted by one of the newer AI coding agents, which generated the core parsing logic. During code review, the logic appeared sound and passed all unit and integration tests with sample data.
 

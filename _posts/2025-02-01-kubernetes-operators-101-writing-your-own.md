@@ -384,7 +384,7 @@ Build the operator:
 go build -o bin/manager main.go
 ```
 
-Then, deploy it to your Kubernetes cluster. You'll need to create a `config/manager/kustomization.yaml` file based on the controller-runtime documentation to define how to deploy the manager, and run `kubectl apply -k config/manager`. You also need to apply the CRD definition using `kubectl apply -f config/crd/bases/myapp.example.com_myapplications.yaml`. Finally, you'll need to create RBAC rules for the controller to function properly.  These are normally generated via the `controller-gen` tool and applied via `kubectl apply`.
+Then, deploy it to your Kubernetes cluster. You'll need to create a `config/manager/kustomization.yaml` file based on the controller-runtime documentation to define how to deploy the manager, and run `kubectl apply -k config/manager`. You also need to apply the CRD definition using `kubectl apply -f config/crd/bases/myapp.example.com_myapplications.yaml`. Finally, you'll need to [create RBAC rules for the controller](/posts/kubernetes-security-best-practices-2026/) to function properly.  These are normally generated via the `controller-gen` tool and applied via `kubectl apply`.
 
 **7. Create a `MyApplication` CR:**
 

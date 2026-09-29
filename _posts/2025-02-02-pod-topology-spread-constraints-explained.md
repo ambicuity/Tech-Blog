@@ -138,7 +138,7 @@ spec:
             app: my-app
 ```
 
-This configuration assumes your nodes are labeled with `topology.kubernetes.io/zone`. If you're using a cloud provider, this label is usually automatically applied. If you are running a bare metal cluster, you may have to apply these labels to the nodes yourself.
+This configuration assumes your nodes are labeled with `topology.kubernetes.io/zone`. If you're using a cloud provider, this label is usually automatically applied. If you are running a [bare metal cluster](/posts/setting-up-a-k8s-cluster-on-bare-metal/), you may have to apply these labels to the nodes yourself.
 
 **Scenario 4: Relaxing Constraints with `ScheduleAnyway`**
 
@@ -224,11 +224,11 @@ After implementing topology spread constraints, it's essential to monitor your p
 
 *   **Kubernetes Dashboard:** The Kubernetes dashboard provides a visual representation of your cluster's resources and pod distribution.
 
-*   **Metrics and Monitoring Tools:**  Use tools like Prometheus and Grafana to collect and visualize metrics related to pod distribution across different topology domains.
+*   **Metrics and Monitoring Tools:**  Use tools like [Prometheus and Grafana](/posts/monitoring-k8s-with-prometheus-and-grafana/) to collect and visualize metrics related to pod distribution across different topology domains.
 
 If you encounter issues, consider the following:
 
-*   **Insufficient Resources:** Make sure you have enough resources (CPU, memory) on your nodes to accommodate the pods.
+*   **Insufficient Resources:** Make sure you have [enough resources (CPU, memory)](/posts/kubernetes-resource-requests-and-limits-masterclass/) on your nodes to accommodate the pods.
 *   **Node Labels:** Verify that your nodes are correctly labeled with the topology keys you're using in your constraints.
 *   **Conflicting Constraints:** If you have multiple constraints, ensure they don't conflict with each other.
 

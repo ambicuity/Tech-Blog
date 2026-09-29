@@ -45,6 +45,8 @@ The outbox pattern splits publishing into two steps with different guarantees:
 
 ```mermaid
 flowchart LR
+    accTitle: Transactional outbox flow
+    accDescr: The service writes the order and its event to the orders and outbox tables in one transaction; a relay reads the outbox and publishes to the message broker.
     App["Service"] -->|"one transaction"| DB[("orders + outbox")]
     DB --> Relay["Relay"]
     Relay --> Broker["Message broker"]

@@ -230,7 +230,7 @@ First, you'll need to install Helm.  Follow the instructions on the official Hel
 ## Use Cases
 
 *   **Helm:**  Ideal for deploying complex applications with many configurable parameters, such as databases, message queues, or web applications with multiple microservices. Also well-suited for scenarios where you want to easily share and reuse application deployments.  A great example would be deploying Kafka with multiple brokers, Zookeeper nodes, and customizable storage.
-*   **Kustomize:**  Ideal for managing simple applications or customizing existing Kubernetes configurations in a declarative way.  Well-suited for customizing deployments across different environments (dev, staging, production) by applying different overlays to a common base. Great for customizing the resource requests/limits for a set of applications across different environments.
+*   **Kustomize:**  Ideal for managing simple applications or customizing existing Kubernetes configurations in a declarative way.  Well-suited for customizing deployments across different environments (dev, staging, production) by applying different overlays to a common base. Great for customizing the [resource requests/limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) for a set of applications across different environments.
 
 ## Conclusion
 

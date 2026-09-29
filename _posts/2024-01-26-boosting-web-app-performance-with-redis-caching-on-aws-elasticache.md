@@ -26,6 +26,22 @@ Let's define some essential concepts:
 
 We'll demonstrate how to integrate Redis caching using AWS ElastiCache with a Python Flask web application. This example focuses on caching database query results.
 
+The `get_data()` function in the example follows this cache-aside read path.
+
+```mermaid
+flowchart TD
+  accTitle: The get_data() function in the example follows this cache-aside read path
+  accDescr: Flowchart: a request to the / route checks Redis for the query's cache key; on a hit it returns the cached data, on a miss it queries PostgreSQL, stores the result with setex and a 60 second TTL, and returns it, or reports an error if the database returns nothing.
+  A["Request to / route"] --> B["redis_client.get(cache_key)"]
+  B --> C{"Cache hit?"}
+  C -->|yes| D["Return cached data"]
+  C -->|no| E["get_data_from_database(query)"]
+  E --> F{"Data returned?"}
+  F -->|yes| G["setex cache_key with 60s TTL"]
+  G --> H["Return data"]
+  F -->|no| I["Error fetching data"]
+```
+
 **Prerequisites:**
 
 *   An AWS account.
@@ -151,7 +167,7 @@ Run the Flask application (`python your_app_name.py`). Access the application in
     *   **Write-Through Cache:** The cache is updated synchronously with the database write operation.
 *   **Choosing the Wrong Cache Key:**  Cache keys should be unique and representative of the data being cached. Using generic keys can lead to incorrect data being served.
 *   **Ignoring Cache Size:** Redis has a limited amount of memory. If the cache fills up, Redis will evict (remove) data based on a configured eviction policy (e.g., Least Recently Used - LRU). Monitor cache usage and adjust the instance size or TTL values to prevent frequent evictions.
-*   **Not Handling Cache Failures Gracefully:** The cache might be unavailable (e.g., due to network issues). The application should be able to function correctly even if the cache is down. Implement fallback mechanisms to retrieve data directly from the database in such scenarios.
+*   **Not Handling Cache Failures Gracefully:** The cache might be unavailable (e.g., due to network issues). The application should be able to function correctly even if the cache is down. [Implement fallback mechanisms](/posts/boosting-microservice-resilience-implementing-circuit-breaker-pattern-with-resilience4j/) to retrieve data directly from the database in such scenarios.
 *   **Security Misconfiguration:** Ensure your ElastiCache cluster is properly secured. Place it within a VPC, configure security groups to restrict access, and use authentication mechanisms (e.g., Redis AUTH).  Never expose your Redis cluster directly to the public internet.
 
 ## Interview Perspective

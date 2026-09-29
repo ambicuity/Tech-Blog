@@ -3,10 +3,10 @@
 # Editorial choice — re-curate freely; entries that no longer match a post
 # are skipped at build time.
 - post: understanding-kubernetes-networking-deep-dive
-  why: The mental model for pods, Services and CNI that the rest of the Kubernetes writing builds on.
+  why: How pods, Services and CNI move packets — the model the rest of the Kubernetes writing assumes.
 - post: kubernetes-resource-requests-and-limits-masterclass
-  why: How requests and limits actually drive scheduling, throttling and OOM kills.
+  why: Once traffic reaches your pods, requests and limits decide scheduling, CPU throttling and OOM kills.
 - post: idempotent-operations-in-distributed-systems-a-practical-guide
-  why: The distributed-systems habit that prevents the most expensive class of retry bugs.
-- post: fixing-abrupt-pod-terminations-implementing-graceful-shutdown-in-ai-assisted-python-services-on-kubernetes
-  why: A representative “AI code in production” case study — what generated code misses and how to fix it.
+  why: Services that talk over a network retry. This is how to make retries safe.
+- post: transactional-outbox-reliable-events-without-dual-writes
+  why: Builds on idempotency — publish events reliably when a database write and a message must both happen.

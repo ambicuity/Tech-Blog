@@ -91,7 +91,7 @@ kubectl logs <pod-name> -c <container-name> --previous
 *   **Application Errors:** The logs may reveal errors within your application code, such as exceptions, database connection failures, or invalid input.
 *   **Missing Dependencies:** The application might be missing required libraries or dependencies.  Look for errors related to missing files or modules.
 *   **Configuration Errors:** Incorrect environment variables, misconfigured files, or invalid settings can cause the application to fail.
-*   **Resource Exhaustion:** The application might be running out of memory or CPU. This is less likely to show up directly in the logs but might correlate with specific application behaviors preceding the crash.
+*   **Resource Exhaustion:** The application might be [running out of memory or CPU](/posts/debugging-excessive-memory-usage-from-ai-authored-python-a-kubernetes-incident-report/). This is less likely to show up directly in the logs but might correlate with specific application behaviors preceding the crash.
 
 **Example:**
 
@@ -105,7 +105,7 @@ This clearly indicates a database connection problem.
 
 **3. Check Resource Limits:**
 
-Insufficient resource limits (CPU and memory) can lead to `CrashLoopBackOff` errors, especially if the application's resource requirements are underestimated.
+[Insufficient resource limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) (CPU and memory) can lead to `CrashLoopBackOff` errors, especially if the application's resource requirements are underestimated.
 
 Examine the pod's resource requests and limits defined in the deployment or pod specification:
 
@@ -126,7 +126,7 @@ If the application exceeds these limits, it might be killed by the Kubernetes sc
 
 **4. Check Liveness and Readiness Probes:**
 
-Liveness and readiness probes are used by Kubernetes to determine the health and availability of your application. Incorrectly configured probes can cause premature restarts and `CrashLoopBackOff` errors.
+Liveness and readiness probes are used by Kubernetes to determine the health and availability of your application. [Incorrectly configured probes](/posts/mitigating-health-check-timeouts-triggered-by-jvm-garbage-collection-pauses/) can cause premature restarts and `CrashLoopBackOff` errors.
 
 *   **Liveness Probe:** Determines if the container is still running. If the liveness probe fails, Kubernetes will restart the container.
 
@@ -175,7 +175,7 @@ Ensure that the init containers are completing successfully. Errors in the init 
 
 **7. Network Connectivity Issues:**
 
-In some cases, network connectivity problems can lead to `CrashLoopBackOff` errors. This can occur if the application is unable to connect to external services, such as databases or APIs. Check DNS resolution, firewall rules, and network policies to ensure that the pod can communicate with the necessary resources.
+In some cases, network connectivity problems can lead to `CrashLoopBackOff` errors. This can occur if the application is unable to connect to external services, such as databases or APIs. [Check DNS resolution, firewall rules](/posts/debug-container-networking-with-ephemeral-containers/), and network policies to ensure that the pod can communicate with the necessary resources.
 
 **8. Application Code Bugs:**
 

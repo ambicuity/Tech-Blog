@@ -96,6 +96,21 @@ Let's walk through a basic example of deploying an application and exposing it u
 
 You can then access the application internally using the service's ClusterIP and port.
 
+This is the path a request from another pod takes to reach one of the three `my-app` pods through `my-app-service`.
+
+```mermaid
+flowchart TD
+  accTitle: This is the path a request from another pod takes to reach one of the three my-app pods through my-app-service
+  accDescr: Flowchart showing a client pod resolving my-app-service through CoreDNS to its ClusterIP, sending to ClusterIP port 80, where kube-proxy rules on the node rewrite the destination to one of three my-app pod IPs reached over the CNI pod network.
+  C["Client pod"] -->|"resolve my-app-service"| D["CoreDNS"]
+  D -->|"returns ClusterIP"| C
+  C -->|"send to ClusterIP:80"| K["kube-proxy rules on node"]
+  K -->|"rewrite to a pod IP"| N["CNI pod network"]
+  N --> P1["my-app pod 1"]
+  N --> P2["my-app pod 2"]
+  N --> P3["my-app pod 3"]
+```
+
 **Network Policies in Action:**
 
 Network policies allow you to control traffic flow within your cluster. Consider this example:
@@ -147,11 +162,11 @@ This Ingress resource routes traffic to `myapp.example.com` to the `my-app-servi
 
 ## Advanced Topics: Beyond the Basics
 
-*   **Service Mesh:** Service meshes (e.g., Istio, Linkerd) provide an additional layer of abstraction over Kubernetes networking. They offer features like traffic management, security, and observability, often implemented using a sidecar proxy injected into each pod. Service meshes can simplify complex networking configurations and improve the resilience of microservices architectures.
+*   **Service Mesh:** [Service meshes (e.g., Istio, Linkerd)](/posts/service-mesh-with-istio-a-practical-guide/) provide an additional layer of abstraction over Kubernetes networking. They offer features like traffic management, security, and observability, often implemented using a sidecar proxy injected into each pod. Service meshes can simplify complex networking configurations and improve the resilience of microservices architectures.
 *   **DNS Resolution:** Kubernetes relies on a DNS service (usually CoreDNS) to resolve service names to IP addresses. Understanding how DNS works within Kubernetes is crucial for troubleshooting connectivity issues.
 *   **Troubleshooting:** When networking problems occur, common troubleshooting steps include:
     *   Checking pod logs for errors.
-    *   Using `kubectl exec` to access a pod and run network utilities like `ping`, `traceroute`, and `nslookup`.
+    *   Using `kubectl exec` to access a pod and [run network utilities like](/posts/debug-container-networking-with-ephemeral-containers/) `ping`, `traceroute`, and `nslookup`.
     *   Inspecting `kube-proxy` logs for rule updates.
     *   Verifying network policy configurations.
     *   Examining CNI plugin logs.

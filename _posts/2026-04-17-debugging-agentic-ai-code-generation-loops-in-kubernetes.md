@@ -67,7 +67,7 @@ The core problem was that the agent's logic for determining when to regenerate c
 
 To fix this, we implemented the following changes:
 
-1.  **Rate Limiting:** We introduced rate limiting on the code regeneration trigger.  The agent could only regenerate code for a given service a maximum of 3 times per hour. This prevented the runaway deployments.
+1.  **Rate Limiting:** We [introduced rate limiting](/posts/implementing-rate-limiting-with-redis-and-python-for-api-protection/) on the code regeneration trigger.  The agent could only regenerate code for a given service a maximum of 3 times per hour. This prevented the runaway deployments.
 
     ```go
     // Example Rate Limiter (using a simplified in-memory implementation)

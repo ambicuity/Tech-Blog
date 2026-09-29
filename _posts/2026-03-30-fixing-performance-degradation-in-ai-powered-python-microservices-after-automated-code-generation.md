@@ -9,7 +9,7 @@ scenario: illustrative
 
 We recently adopted an AI-powered code generation tool to accelerate the development of several new microservices. Initially, things looked promising - rapid prototyping and feature iteration. However, after pushing the generated code to our staging Kubernetes cluster, we observed significant performance degradation in some services under load. Latency increased dramatically, and CPU utilization spiked unexpectedly. This was particularly pronounced in our `recommendation-engine` service, written in Python using Flask and responsible for serving personalized content recommendations.
 
-Our baseline performance metrics, collected before the AI-assisted code generation, showed an average request latency of ~50ms with a CPU utilization hovering around 30% during peak hours. After deploying the AI-generated version, the average latency jumped to ~250ms, and CPU utilization consistently remained above 90%, triggering horizontal pod autoscaling (HPA) events.
+Our baseline performance metrics, collected before the AI-assisted code generation, showed an average request latency of ~50ms with a CPU utilization hovering around 30% during peak hours. After deploying the AI-generated version, the average latency jumped to ~250ms, and CPU utilization consistently remained above 90%, triggering [horizontal pod autoscaling](/posts/kubernetes-resource-requests-and-limits-masterclass/) (HPA) events.
 
 The first step was to isolate the issue. We suspected the AI-generated code might have introduced inefficiencies or subtle bugs. We started by reverting to the previous, human-written version of the service and redeploying it. Performance immediately returned to normal, confirming our suspicion. This pointed to a problem with the new codebase.
 
@@ -19,7 +19,7 @@ We then employed a combination of profiling and code review to pinpoint the root
 kubectl exec -it recommendation-engine-pod-74567d89b-xrt9s -- py-spy record -o profile.svg --duration 30
 ```
 
-After downloading `profile.svg`, we opened it in a browser and immediately noticed a hotspot: a particular function, `generate_personalized_recommendations`, was consuming a disproportionate amount of CPU time. Inspecting the code for this function revealed the issue. The AI-generated code, in an attempt to optimize for readability, had introduced redundant data copies and inefficient data structures.
+After downloading `profile.svg`, we opened it in a browser and immediately noticed a hotspot: a particular function, `generate_personalized_recommendations`, was consuming a disproportionate amount of CPU time. Inspecting the code for this function revealed the issue. The AI-generated code, in an attempt to optimize for readability, had introduced [redundant data copies](/posts/boosting-python-performance-with-memoryview-and-zero-copy-techniques/) and inefficient data structures.
 
 Here’s a simplified snippet of the problematic code:
 

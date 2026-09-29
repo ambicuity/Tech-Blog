@@ -122,9 +122,9 @@ To address these critical production gaps, we augmented the manifest with severa
 
 1.  **Liveness and Readiness Probes**: Essential for Kubernetes to understand the application's health and readiness to receive traffic. A `livenessProbe` restarts the container if it's unhealthy; a `readinessProbe` removes it from service endpoints until it's truly ready.
 
-2.  **Adjusted Resource Requests/Limits**: Based on profiling the application's actual startup and steady-state memory footprint, we increased the `requests` to ensure adequate guaranteed resources, and `limits` to prevent runaway consumption while allowing for initial spikes.
+2.  **[Adjusted Resource Requests/Limits](/posts/kubernetes-resource-requests-and-limits-masterclass/)**: Based on profiling the application's actual startup and steady-state memory footprint, we increased the `requests` to ensure adequate guaranteed resources, and `limits` to prevent runaway consumption while allowing for initial spikes.
 
-3.  **Pod Security Context**: While not directly causing the outage, this is a critical security hardening. We enforced running as a non-root user, disallowing privilege escalation, and using a defined `seccompProfile`.
+3.  **Pod Security Context**: While not directly causing the outage, this is a [critical security hardening](/posts/kubernetes-security-best-practices-2026/). We enforced running as a non-root user, disallowing privilege escalation, and using a defined `seccompProfile`.
 
 4.  **Pod Disruption Budget (PDB)**: To maintain high availability during voluntary disruptions (like node maintenance), a PDB ensures a minimum number of healthy pods are always running.
 
@@ -210,10 +210,10 @@ The larger takeaway is that while AI excels at generating functional code and ba
 
 To prevent similar issues, we are implementing a multi-pronged approach:
 
-*   **Policy-as-Code Enforcement**: Integrating tools like OPA Gatekeeper or Kyverno into our CI/CD pipelines. These tools enforce organizational standards for Kubernetes manifests, automatically rejecting deployments that lack required probes, security contexts, or appropriate resource declarations. This provides an automated guardrail against common configuration omissions.
+*   **Policy-as-Code Enforcement**: Integrating [tools like OPA Gatekeeper](/posts/rejecting-unsafe-ai-generated-kubernetes-manifests-with-opa-gatekeeper/) or Kyverno into our CI/CD pipelines. These tools enforce organizational standards for Kubernetes manifests, automatically rejecting deployments that lack required probes, security contexts, or appropriate resource declarations. This provides an automated guardrail against common configuration omissions.
 *   **Enhanced CI/CD Linting**: Adding more aggressive linting (e.g., `kube-lint`, `yamllint`) with custom rules to validate Kubernetes manifests for production best practices early in the development cycle.
 *   **Developer Training**: Educating development teams on the nuances of production-grade Kubernetes manifests and the specific operational requirements beyond basic functionality. This includes fostering a critical review mindset when integrating AI-generated outputs.
-*   **Standardized Base Templates/Helm Charts**: Providing developers with vetted, production-ready Helm chart templates or Kustomize bases that pre-include all necessary probes, security contexts, resource guidelines, and PDBs. This reduces the cognitive load and ensures a consistent baseline across all new services.
+*   **Standardized Base Templates/Helm Charts**: Providing developers with vetted, production-ready [Helm chart templates or Kustomize bases](/posts/helm-vs-kustomize-a-comprehensive-comparison/) that pre-include all necessary probes, security contexts, resource guidelines, and PDBs. This reduces the cognitive load and ensures a consistent baseline across all new services.
 
 AI is a powerful productivity multiplier, but it's a tool that requires human oversight, especially in critical infrastructure domains like Kubernetes. Its output serves as an excellent starting point, but the journey to production-readiness still demands a deep understanding of system reliability, security, and operational best practices.
 

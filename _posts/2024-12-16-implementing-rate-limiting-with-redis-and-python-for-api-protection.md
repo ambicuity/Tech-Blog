@@ -24,6 +24,22 @@ Before diving into the implementation, let's define the essential concepts:
 
 We'll focus on using a slightly modified version of the **Fixed Window Counter** with Redis for its simplicity and performance. We'll also set an expiration on the Redis key to automatically remove it after the rate limit window expires. This prevents Redis from filling up with unnecessary data.
 
+This is the path every request to a decorated endpoint takes through the fixed window counter.
+
+```mermaid
+flowchart TD
+  accTitle: This is the path every request to a decorated endpoint takes through the fixed window counter
+  accDescr: Flowchart: a request builds the key from the prefix and client IP, runs INCR, sets a 60 second EXPIRE if the count is 1, then returns 429 if the count is over 10 or runs the endpoint otherwise.
+  A["Request to /api/resource"] --> B["key = api_resource:client IP"]
+  B --> C["INCR key"]
+  C --> D{"count == 1?"}
+  D -->|yes| E["EXPIRE key 60s"]
+  D -->|no| F{"count > 10?"}
+  E --> F
+  F -->|yes| G["429 Rate limit exceeded"]
+  F -->|no| H["Run api_resource()"]
+```
+
 ## Practical Implementation
 
 We'll create a Python decorator that utilizes Redis to enforce rate limits. This decorator can be applied to any API endpoint or function that needs protection.
@@ -140,7 +156,7 @@ if __name__ == '__main__':
 *   **Discuss Different Rate Limiting Algorithms:** Be familiar with Token Bucket, Leaky Bucket, Fixed Window Counter, and Sliding Window Log. Discuss their pros and cons.
 *   **Describe Your Implementation Approach:**  Explain the data structures and algorithms you used, and why you chose them.  Explain how Redis is used and why it is a good choice.
 *   **Explain How to Handle Concurrent Requests:** Discuss the importance of atomic operations and how they prevent race conditions.
-*   **Discuss Scalability Concerns:**  How would you scale your rate limiting solution for a large number of users and requests? Consider using Redis Cluster for sharding and replication.
+*   **Discuss Scalability Concerns:**  How would you scale your rate limiting solution for a large number of users and requests? Consider using [Redis Cluster for sharding and replication](/posts/boosting-web-app-performance-with-redis-caching-on-aws-elasticache/).
 *   **Trade-offs:** Discuss the trade-offs between different rate limiting algorithms in terms of accuracy, performance, and complexity.
 *   **Monitoring and Alerting:** How would you monitor the effectiveness of your rate limiting solution and alert on potential abuse?
 

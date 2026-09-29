@@ -134,11 +134,11 @@ After upgrading all worker nodes, perform thorough validation to ensure that you
 
 ## Advanced Considerations
 
-*   **Canary Deployments:** For particularly sensitive applications, consider using canary deployments during the upgrade process. This involves gradually rolling out the upgraded version to a small subset of users before fully deploying it to the entire cluster.
+*   **Canary Deployments:** For particularly sensitive applications, consider [using canary deployments](/posts/implementing-canary-deployments-with-argo-rollouts-and-kubernetes/) during the upgrade process. This involves gradually rolling out the upgraded version to a small subset of users before fully deploying it to the entire cluster.
 
-*   **Blue/Green Deployments:** Another advanced strategy is to create a completely new, upgraded cluster (the "green" environment) and then switch traffic from the old cluster (the "blue" environment) to the new one. This provides a high degree of isolation and allows for easy rollback if any issues arise.
+*   **[Blue/Green Deployments](/posts/blue-green-deployments-on-kubernetes/):** Another advanced strategy is to create a completely new, upgraded cluster (the "green" environment) and then switch traffic from the old cluster (the "blue" environment) to the new one. This provides a high degree of isolation and allows for easy rollback if any issues arise.
 
-*   **Automated Upgrades:**  Consider using automation tools like Ansible or Terraform to streamline the upgrade process and reduce the risk of human error. Many managed Kubernetes services also provide automated upgrade options.
+*   **Automated Upgrades:**  Consider using automation tools like [Ansible or Terraform](/posts/automating-infrastructure-with-terraform-from-zero-to-production/) to streamline the upgrade process and reduce the risk of human error. Many managed Kubernetes services also provide automated upgrade options.
 
 *   **Kubernetes Version Skew Policy:** Be aware of Kubernetes' version skew policy, which defines the supported version differences between the control plane and worker nodes. Maintaining a supported version skew is crucial for cluster stability and functionality. Generally, the `kubelet` version can be one minor version older or newer than the `kube-apiserver`.
 

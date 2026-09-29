@@ -105,7 +105,7 @@ You should observe a noticeable reduction in startup time with Pyston. The "time
 
 *   **Incorrect Installation:** Ensure you download the correct version of Pyston for your operating system and architecture. Verify the installation by checking the Python version after activation.
 
-*   **Assuming Universal Performance Gains:** While Pyston often improves startup time and general performance, not all applications will benefit equally. CPU-bound applications are more likely to see significant gains than I/O-bound applications.  It's always best to profile your application to identify bottlenecks.
+*   **Assuming Universal Performance Gains:** While Pyston often improves startup time and general performance, not all applications will benefit equally. [CPU-bound applications are more](/posts/boosting-python-performance-with-multiprocessing-a-practical-guide/) likely to see significant gains than [I/O-bound applications](/posts/boosting-python-performance-with-asynchronous-programming-and-asyncio/).  It's always best to profile your application to identify bottlenecks.
 
 *   **Compatibility Issues:** Although Pyston aims for CPython compatibility, some obscure libraries or C extensions might not work perfectly. Always test your application thoroughly after switching to Pyston. Consider using the same versions of packages to best compare results.
 
