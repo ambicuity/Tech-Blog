@@ -41,6 +41,7 @@ htmlcov/
 
 # Jekyll
 _site/
+_preview/
 .jekyll-cache/
 .jekyll-metadata
 Gemfile.lock

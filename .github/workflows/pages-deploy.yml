@@ -38,7 +38,10 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
-      - name: Test theme plugins
+      - name: Validate content contract
+        run: bundle exec ruby scripts/validate_content.rb
+
+      - name: Test theme plugins and content
         run: bundle exec ruby test/plugins_test.rb
 
       - name: Setup Pages
