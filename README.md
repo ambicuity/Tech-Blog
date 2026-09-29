@@ -62,7 +62,7 @@ No theme gem and no JS framework — static HTML, one stylesheet, two small scri
 | `assets/js/site.js`, `search.js` | Theme toggle, dialogs, copy, scroll-spy, forms, filters; search is loaded on first use. |
 | `_data/` | `taxonomy`, `course_sites` (the standalone courses and which articles link to them), `start_here` (the home page reading path), `deep_dives` (in-blog notes), `projects`, `resources`, `nav`, `icons` (Lucide). |
 
-**Writing posts.** Front matter needs `title`, `date`, `categories` (1–2 from `_data/taxonomy.yml`, primary first) and `tags`. Quote titles that contain a colon. Optional: `description` (otherwise the first paragraph is used), `kind` (Guide, Case Study, Deep Dive, Comparison, Opinion — otherwise inferred from the title), `pin: true`, `last_modified_at`. Callouts: `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`, `> [!IMPORTANT]`, `> [!RESULT]`.
+**Writing posts.** New articles are folders under `content/posts/<slug>/` — see [docs/content-authoring.md](docs/content-authoring.md) for the full contract, the JSON publishing script and the draft workflow. Legacy `_posts/` front matter needs `title`, `date`, `categories` (1–2 from `_data/taxonomy.yml`, primary first) and `tags`. Quote titles that contain a colon. Optional: `description` (otherwise the first paragraph is used), `kind` (Guide, Case Study, Deep Dive, Comparison, Opinion — otherwise inferred from the title), `pin: true`, `last_modified_at`. Callouts: `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`, `> [!IMPORTANT]`, `> [!RESULT]`.
 
 ## 📬 Newsletter
 
