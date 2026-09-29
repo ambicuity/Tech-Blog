@@ -1,0 +1,15 @@
+{%- comment -%}
+  jekyll-seo-tag already emits BlogPosting / WebSite / WebPage JSON-LD.
+  This adds the Person behind the publication and a BreadcrumbList that
+  mirrors the visible breadcrumbs.
+{%- endcomment -%}
+{%- if page.url == '/' %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":{{ site.author.name | jsonify }},"url":{{ site.author.url | jsonify }},"image":{{ site.logo | absolute_url | jsonify }},"jobTitle":"Systems Engineer","sameAs":[{{ site.contact.github | jsonify }},{{ site.contact.linkedin | jsonify }},{{ site.contact.portfolio | jsonify }}]}
+</script>
+{%- endif %}
+{%- if page.breadcrumbs and page.breadcrumbs.size > 0 %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":{{ '/' | absolute_url | jsonify }}}{% for crumb in page.breadcrumbs %},{"@type":"ListItem","position":{{ forloop.index | plus: 1 }},"name":{{ crumb.title | jsonify }}{% if crumb.url %},"item":{{ crumb.url | absolute_url | jsonify }}{% endif %}}{% endfor %}]}
+</script>
+{%- endif %}

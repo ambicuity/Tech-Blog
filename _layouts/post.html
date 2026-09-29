@@ -1,0 +1,71 @@
+---
+layout: default
+---
+{%- assign _primary = page.categories | first -%}
+{%- assign _toc = content | toc_items -%}
+<div class="reading-progress" data-reading-progress hidden></div>
+{%- if _toc.size > 1 %}{% include toc.html html=content variant="bar" %}{% endif %}
+<article class="article{% if _toc.size > 1 %} has-toc{% endif %}" data-article>
+  <header class="article-head container">
+    <div class="article-head__inner">
+      {% include breadcrumbs.html %}
+      <div class="kicker article-head__kicker">
+        {%- if _primary %}{% include category-link.html name=_primary %}{% endif %}
+        {%- assign _second = page.categories[1] %}
+        {%- if _second %}<span class="kicker__sep" aria-hidden="true">/</span>{% include category-link.html name=_second %}{% endif %}
+        {%- if page.kind %}<span class="kind">{{ page.kind }}</span>{% endif %}
+      </div>
+      <h1 class="article-head__title">{{ page.title }}</h1>
+      {%- if page.description and page.description != page.summary %}
+      <p class="article-head__dek">{{ page.description }}</p>
+      {%- endif %}
+      <div class="article-head__byline">
+        <img src="{{ '/assets/img/avatar-192.webp' | relative_url }}" alt="" width="36" height="36" fetchpriority="low">
+        <div>
+          <span class="article-head__author">{{ site.data.authors[page.author].name | default: site.author.name }}</span>
+          {% include post-meta.html updated=true %}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="article-body container{% if _toc.size > 1 %} has-toc{% endif %}">
+    {%- if _toc.size > 1 %}
+    <aside class="article-body__aside" aria-label="Table of contents">
+      {% include toc.html html=content %}
+    </aside>
+    {%- endif %}
+    <div class="article-body__main">
+      {%- if _toc.size > 1 %}{% include toc.html html=content variant="inline" %}{% endif %}
+      <div class="prose" data-prose>
+        {{ content }}
+      </div>
+
+      <footer class="article-foot">
+        {%- if page.tags.size > 0 %}
+        <div class="article-foot__tags">
+          <p class="eyebrow">Tagged</p>
+          <ul class="tag-list">
+            {%- for t in page.tags %}
+            <li><a class="tag" href="{{ t | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ t }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+        {%- endif %}
+        <div class="article-foot__actions">
+          <a class="btn btn--ghost" href="{{ site.contact.repo }}/blob/main/{{ page.path }}" rel="noopener">{% include icon.html name="github" %} View source</a>
+          <a class="btn btn--ghost" href="#main">{% include icon.html name="arrow-up" %} Back to top</a>
+        </div>
+        {% include author-card.html %}
+        {% include pager.html prev=page.previous next=page.next label="article" %}
+      </footer>
+    </div>
+  </div>
+</article>
+
+<div class="container article-after">
+  {% include related-posts.html %}
+  {% include course-link.html %}
+  {% include newsletter-cta.html id="post-subscribe" %}
+  {% include comments.html %}
+</div>

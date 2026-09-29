@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+{%- comment -%}
+  Resolve the theme before first paint (no flash of the wrong theme). This is the
+  only inline script; the CSP below allows it by hash, computed at build time.
+{%- endcomment -%}
+{%- capture theme_init -%}
+(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")d.setAttribute("data-theme",t);d.setAttribute("data-effective-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));d.classList.add("js")})();
+{%- endcapture %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' {{ theme_init | csp_hash }} https://cdn.jsdelivr.net https://giscus.app https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://riteshrana.engineer https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.google.com; frame-src https://giscus.app; object-src 'none'; base-uri 'self'; form-action https://riteshrana.engineer">
+<script>{{ theme_init }}</script>
+<link rel="preload" href="{{ '/assets/fonts/plex-sans.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/newsreader.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{% seo %}
+{% feed_meta %}
+<link rel="icon" href="{{ '/assets/img/favicons/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/img/favicons/favicon-32x32.png' | relative_url }}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/assets/img/favicons/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+{%- if page.redirect_to %}
+<meta name="robots" content="noindex">
+{%- endif %}
+{% include json-ld.html %}

@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{%- comment -%}
+  Generic page. Front matter: title, lede (optional intro under the title),
+  eyebrow (optional label above it), wide: true for full-width content.
+{%- endcomment -%}
+<div class="container{% unless page.wide %} container--narrow{% endunless %}">
+  <header class="page-head">
+    {% include breadcrumbs.html %}
+    {%- if page.eyebrow %}<p class="eyebrow page-head__eyebrow">{{ page.eyebrow }}</p>{% endif %}
+    <h1 class="page-head__title">{{ page.title }}</h1>
+    {%- if page.lede %}<p class="page-head__lede">{{ page.lede }}</p>{% endif %}
+  </header>
+  <div class="{% if page.wide %}page-content{% else %}prose{% endif %}">
+    {{ content }}
+  </div>
+</div>

@@ -3,59 +3,49 @@ layout: page
 icon: fas fa-user
 order: 2
 title: About Me
+eyebrow: About
+lede: I'm Ritesh Rana, a systems engineer. This is my engineering notebook — a living record of the problems I've hit, the systems I've designed and the production-grade infrastructure I keep digging into.
 ---
 
-## 👋 Hello!
+For my full professional history, see my portfolio at **[riteshrana.engineer](https://riteshrana.engineer/)**.
 
-I'm Ritesh Rana, and this is my automated technical blog.
+## About this publication
 
-### 🌐 Visit My Portfolio
+This blog is a living repository of the challenges I've faced, the systems I've architected, and deep dives into production infrastructure. It covers:
 
-For more information about me and my work, please visit my main website:
+- **DevOps & Kubernetes** — cluster operations, delivery pipelines, GitOps
+- **Cloud computing & infrastructure** — AWS, serverless, infrastructure as code
+- **Programming & software engineering** — Python, reliability patterns, code quality
+- **Development tools & best practices** — the tooling that keeps teams fast and safe
 
-**[riteshrana.engineer](https://riteshrana.engineer/)**
+Parts of the publishing workflow are automated: a gated, multi-stage pipeline drafts and reviews candidate posts before anything is published. The pipeline's source is [public on GitHub](https://github.com/ambicuity/Tech-Blog).
 
----
+## Education
 
-## About This Blog
+**Boston University** — Master of Engineering, Systems Engineering
+Concentration: Data Analytics · January 2025
+Credential ID `266M-ZXH6-R5AM` — [validate credential](https://secure.cecredentialtrust.com/)
 
-This is my personal engineering notebook. It serves as a living repository of the challenges I've faced, the systems I've architected, and the deep-dives into production-grade infrastructure that I explore. It covers:
-
-- 🐳 DevOps & Kubernetes
-- ☁️ Cloud Computing & Infrastructure
-- 💻 Programming & Software Engineering
-- 🔧 Development Tools & Best Practices
-
-## 🎓 Education
-
-### **Boston University**
-**Master of Engineering, Systems Engineering**
-*Concentration: Data Analytics*
-*Jan 2025*
-*CeDiD: 266M-ZXH6-R5AM — [Validate Credential](https://secure.cecredentialtrust.com/)*
-
-## 🛠️ Tech Stack
-
-This blog (and my career) relies on a modern, robust set of tools:
+## Tech stack
 
 | Domain | Technologies |
 | :--- | :--- |
-| **Cloud Native** | Kubernetes, Docker, Helm, Istio, Prometheus, Grafana |
+| **Cloud native** | Kubernetes, Docker, Helm, Istio, Prometheus, Grafana |
 | **Infrastructure** | Terraform, Ansible, AWS, Azure, Google Cloud |
-| **Development** | Python, Go, Rust, JavaScript/TypeScript |
-| **CI/CD** | GitHub Actions, GitLab CI, ArgoCD, Jenkins |
-| **Data & AI** | Redis, PostgreSQL, Google Gemini API, Kafka |
+| **Development** | Python, Go, Rust, JavaScript / TypeScript |
+| **CI/CD** | GitHub Actions, GitLab CI, Argo CD, Jenkins |
+| **Data & AI** | Redis, PostgreSQL, Kafka, Google Gemini API |
 
-## 🚀 Engineering Philosophy
+## Engineering philosophy
 
-> "Built by engineer, for engineers."
+> Built by an engineer, for engineers.
 
-I believe in **automation first**, **observability always**, and **simplicity by design**. This blog serves as a living repository of the challenges I've faced and the solutions I've architected.
+I believe in **automation first**, **observability always**, and **simplicity by design**.
 
-### 📫 Connect With Me
+## Get in touch
 
-I'm always open to discussing complex systems, side projects, and new opportunities.
+I'm always open to discussing complex systems, side projects and new opportunities.
 
 - **GitHub:** [ambicuity](https://github.com/ambicuity)
-- **LinkedIn:** [ritesh-rana](https://www.linkedin.com/in/riteshengineer/)
-- **Email:** `contact@riteshrana.engineer`
+- **LinkedIn:** [riteshengineer](https://www.linkedin.com/in/riteshengineer/)
+- **Email:** [contact@riteshrana.engineer](mailto:contact@riteshrana.engineer)

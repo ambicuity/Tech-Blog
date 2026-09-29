@@ -1,0 +1,35 @@
+{%- comment -%} Table of contents from rendered HTML. include.html, include.variant (sidebar|inline) {%- endcomment -%}
+{%- assign _items = include.html | toc_items -%}
+{%- if _items.size > 1 %}
+{%- capture _list -%}
+<ol>
+  {%- for item in _items %}
+  <li{% if item.level == 3 %} class="toc__sub"{% endif %}><a href="#{{ item.id }}" data-toc-link>{{ item.text }}</a></li>
+  {%- endfor %}
+</ol>
+{%- endcapture -%}
+{%- if include.variant == "bar" %}
+<div class="section-bar" data-section-bar data-visible="false" hidden>
+  <div class="container section-bar__inner">
+    <button type="button" class="section-bar__toggle" aria-expanded="false" aria-controls="section-bar-toc">
+      <span class="section-bar__label">On this page</span>
+      <span class="section-bar__current" data-section-current></span>
+      {% include icon.html name="chevron-down" %}
+    </button>
+  </div>
+  <nav class="section-bar__panel" id="section-bar-toc" aria-label="Table of contents (current section)" hidden>
+    <div class="container">{{ _list }}</div>
+  </nav>
+</div>
+{%- elsif include.variant == "inline" %}
+<details class="toc toc--inline">
+  <summary>On this page {% include icon.html name="chevron-down" %}</summary>
+  <nav aria-label="Table of contents">{{ _list }}</nav>
+</details>
+{%- else %}
+<nav class="toc" aria-labelledby="toc-title" data-toc>
+  <p class="toc__title eyebrow" id="toc-title">On this page</p>
+  {{ _list }}
+</nav>
+{%- endif %}
+{%- endif %}

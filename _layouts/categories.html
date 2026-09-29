@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<div class="container">
+  <header class="page-head">
+    {% include breadcrumbs.html %}
+    <p class="eyebrow">Topics</p>
+    <h1 class="page-head__title">Browse by subject</h1>
+    <p class="page-head__lede">{{ site.data.taxonomy.categories.size }} subjects, each with a short brief and its most recent writing. Looking for something narrower? <a href="{{ '/tabs/tags/' | relative_url }}">Browse all tags</a>.</p>
+  </header>
+  <ul class="category-grid">
+    {%- for cat in site.data.taxonomy.categories %}
+    {%- assign _posts = site.categories[cat.name] %}
+    {%- if _posts and _posts.size > 0 %}
+    {%- assign _url = cat.name | slugify | prepend: '/categories/' | append: '/' | relative_url %}
+    <li>
+      <section class="category-card" aria-labelledby="cat-{{ cat.name | slugify }}">
+        <div class="category-card__head">
+          <h2 class="category-card__title" id="cat-{{ cat.name | slugify }}"><a href="{{ _url }}">{{ cat.title | default: cat.name }}</a></h2>
+          <span class="category-card__count">{{ _posts.size }} {% if _posts.size == 1 %}article{% else %}articles{% endif %}</span>
+        </div>
+        <p class="category-card__desc">{{ cat.description }}</p>
+        <ul class="category-card__recent" aria-label="Recent in {{ cat.title | default: cat.name }}">
+          {%- for p in _posts limit: 3 %}
+          <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <time class="muted" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %Y" }}</time></li>
+          {%- endfor %}
+        </ul>
+        <a class="arrow-link category-card__all" href="{{ _url }}">All {{ cat.title | default: cat.name }} articles {% include icon.html name="arrow-right" %}</a>
+      </section>
+    </li>
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+</div>

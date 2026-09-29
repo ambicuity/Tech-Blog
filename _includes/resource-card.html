@@ -1,0 +1,17 @@
+{%- comment -%} Free Dev Stuff entry. include.item (from _data/resources.yml) {%- endcomment -%}
+{%- assign r = include.item -%}
+<article class="resource-card" data-filter-item data-filter-text="{{ r.name | downcase }} {{ r.best_for | downcase }} {{ r.free_tier | downcase }}">
+  <h3 class="resource-card__name"><a href="{{ r.url }}" rel="noopener">{{ r.name }}<span class="visually-hidden"> (official pricing)</span> {% include icon.html name="external" %}</a></h3>
+  <p class="resource-card__best"><span class="eyebrow">Best for</span> {{ r.best_for }}</p>
+  <p class="resource-card__tier">{{ r.free_tier }}</p>
+  <dl class="resource-card__facts">
+    <div>
+      <dt>Self-host</dt>
+      <dd>{% case r.self_host %}{% when "yes" %}Yes{% when "partial" %}Partial{% else %}No{% endcase %}{% if r.self_host_note %}<span class="muted"> — {{ r.self_host_note }}</span>{% endif %}</dd>
+    </div>
+    <div>
+      <dt>Details as of</dt>
+      <dd><time datetime="{{ r.as_of | date: '%Y-%m-%d' }}">{{ r.as_of | date: "%b %Y" }}</time></dd>
+    </div>
+  </dl>
+</article>

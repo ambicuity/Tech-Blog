@@ -1,0 +1,28 @@
+{%- comment -%}
+  Article card. include.post, include.variant (compact|featured), include.level (default 3),
+  include.excerpt (default true), include.tags (max tags, default 3)
+{%- endcomment -%}
+{%- assign _p = include.post -%}
+{%- assign _level = include.level | default: 3 -%}
+{%- assign _primary = _p.categories | first -%}
+<article class="post-card{% if include.variant %} post-card--{{ include.variant }}{% endif %}">
+  <div class="kicker">
+    {%- if _primary %}{% include category-link.html name=_primary %}{% endif %}
+    {%- if _p.kind %}{% if _primary %}<span class="kicker__sep" aria-hidden="true">/</span>{% endif %}<span>{{ _p.kind }}</span>{% endif %}
+  </div>
+  <h{{ _level }} class="post-card__title"><a href="{{ _p.url | relative_url }}">{{ _p.title }}</a></h{{ _level }}>
+  {%- unless include.excerpt == false %}
+  <p class="post-card__excerpt">{{ _p.summary | default: _p.description | strip_html | normalize_whitespace | truncate: 240 }}</p>
+  {%- endunless %}
+  <div class="post-card__foot">
+    {% include post-meta.html post=_p %}
+    {%- assign _max = include.tags | default: 3 %}
+    {%- if _max > 0 and _p.tags.size > 0 %}
+    <ul class="tag-list" aria-label="Tags">
+      {%- for t in _p.tags limit: _max %}
+      <li><a class="tag" href="{{ t | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ t }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</article>

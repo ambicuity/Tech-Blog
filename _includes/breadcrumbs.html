@@ -1,0 +1,16 @@
+{%- comment -%} Visible breadcrumbs from page.breadcrumbs (or include.items). {%- endcomment -%}
+{%- assign _crumbs = include.items | default: page.breadcrumbs -%}
+{%- if _crumbs and _crumbs.size > 0 %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    {%- for c in _crumbs %}
+    {%- if c.url and forloop.last == false %}
+    <li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>
+    {%- else %}
+    <li><span aria-current="page">{{ c.title | truncate: 60 }}</span></li>
+    {%- endif %}
+    {%- endfor %}
+  </ol>
+</nav>
+{%- endif %}

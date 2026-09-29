@@ -1,0 +1,23 @@
+# Primary navigation. `match` is the URL prefix that marks the item current.
+primary:
+  - title: Articles
+    url: /tabs/archives/
+    match: [/tabs/archives/, /posts/, /page]
+  - title: Courses
+    url: /courses/
+    match: [/courses/]
+  - title: Topics
+    url: /tabs/categories/
+    match: [/tabs/categories/, /categories/, /tabs/tags/, /tags/]
+  - title: Projects
+    url: /tabs/projects/
+    match: [/tabs/projects/]
+  - title: Resources
+    url: /free-stuff/
+    match: [/free-stuff/]
+  - title: Newsletter
+    url: /newsletter/
+    match: [/newsletter/]
+  - title: About
+    url: /tabs/about/
+    match: [/tabs/about/]

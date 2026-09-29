@@ -1,0 +1,125 @@
+# Engineering portfolio (/tabs/projects/). Descriptions are taken from each
+# repository's own README/description; update them there first.
+#
+# status: Live (public deployment) | Active (under development) | Stable
+- name: New-Grad Jobs
+  category: Automation
+  status: Live
+  featured: true
+  description: >-
+    An automated pipeline that scrapes, aggregates and filters entry-level
+    engineering roles from many sources and publishes a static job board
+    every day. 150+ GitHub stars.
+  stack: [Python, BeautifulSoup, GitHub Actions]
+  repo: https://github.com/ambicuity/New-Grad-Jobs
+  demo: https://jobs.riteshrana.engineer/
+
+- name: terraform-aws-eks-ray
+  category: Infrastructure
+  status: Active
+  featured: true
+  description: >-
+    A Terraform module for AWS EKS clusters optimized for Ray ML workloads,
+    with GPU Spot Instances, IAM Roles for Service Accounts and day-2
+    KubeRay operator deployments.
+  stack: [Terraform, AWS EKS, KubeRay, IRSA]
+  repo: https://github.com/ambicuity/terraform-aws-eks-ray
+
+- name: KINDX
+  category: Search & AI tooling
+  status: Active
+  featured: true
+  description: >-
+    A local-first hybrid search CLI (BM25 + vector) for personal knowledge
+    bases and agentic workflows. Runs entirely on-device via node-llama-cpp.
+  stack: [TypeScript, BM25, Vector search, node-llama-cpp]
+  repo: https://github.com/ambicuity/KINDX
+
+- name: Tech Blog publishing pipeline
+  category: AI engineering
+  status: Live
+  description: >-
+    The source for this publication, including the gated multi-agent
+    pipeline that plans, drafts, reviews and validates posts before they
+    can be published.
+  stack: [Python, Gemini API, Jekyll, GitHub Actions]
+  repo: https://github.com/ambicuity/Tech-Blog
+  demo: https://blog.riteshrana.engineer/
+
+- name: shutdown-manager
+  category: Reliability
+  status: Active
+  description: >-
+    Zero-drama shutdown orchestration for production Node.js HTTP services:
+    drain connections, stop new traffic, run cleanup hooks and exit safely
+    across Docker, Kubernetes, Express, Fastify and Koa.
+  stack: [TypeScript, Node.js, Kubernetes]
+  repo: https://github.com/ambicuity/shutdown-manager
+
+- name: Distributed Deep Learning Benchmark Suite
+  category: ML infrastructure
+  status: Stable
+  description: >-
+    TorchScale: a benchmarking CLI for PyTorch Distributed Data Parallel
+    clusters that automates multi-GPU benchmarks, profiling and throughput
+    analysis.
+  stack: [Python, PyTorch DDP]
+  repo: https://github.com/ambicuity/Distributed-Deep-Learning-Benchmark-Suite
+
+- name: Limit Order Book Simulator
+  category: Systems
+  status: Stable
+  description: >-
+    A matching engine and limit order book implemented in C++20 with Python
+    bindings, designed for ultra-low latency, deterministic simulation and
+    strategy backtesting.
+  stack: [C++20, Python bindings]
+  repo: https://github.com/ambicuity/High-Performance-Limit-Order-Book-LOB-Simulator
+
+- name: Self-hosted home server
+  category: Infrastructure
+  status: Stable
+  description: >-
+    A home-server setup with 100+ services, fully containerized with Docker
+    and Docker Compose, to replace cloud services with self-hosted ones.
+  stack: [Docker, Docker Compose, Linux]
+  repo: https://github.com/ambicuity/self-hosted-home-server
+
+- name: System Design course
+  category: Education
+  status: Live
+  description: >-
+    A free, open-source System Design course — 22 phases and 263 lessons,
+    from DNS and databases to designing payments and stock exchanges.
+  stack: [HTML, Static site]
+  repo: https://github.com/ambicuity/course-system-design
+  demo: https://course-system-design.riteshrana.engineer
+
+- name: Computer Science course
+  category: Education
+  status: Live
+  description: >-
+    Build computer science from scratch — 421 lessons across 20 phases:
+    bootloader, B-tree, TCP stack, type-checker, Raft and more.
+  stack: [C, Rust, Go, Python, Haskell, RISC-V]
+  repo: https://github.com/ambicuity/course-computer-science
+  demo: https://course-computer-science.riteshrana.engineer/
+
+- name: Computer Networks course
+  category: Education
+  status: Live
+  description: >-
+    A packet-first Computer Networks course — 307 lessons across 20
+    phases, each with prose and runnable code.
+  stack: [Python]
+  repo: https://github.com/ambicuity/course-computer-networks
+  demo: https://course-computer-networks.riteshrana.engineer/
+
+- name: riteshrana.engineer
+  category: Portfolio
+  status: Live
+  description: >-
+    Personal engineering portfolio with full professional history and
+    skills matrix.
+  stack: [React, Next.js]
+  demo: https://riteshrana.engineer/

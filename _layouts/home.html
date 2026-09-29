@@ -1,143 +1,190 @@
 ---
 layout: default
 ---
+{%- comment -%}
+  Home. Page 1 is the editorial hub; /pageN/ are plain article listings.
+  Pinned posts (pin: true) take the featured slot, otherwise the newest post does.
+{%- endcomment -%}
+{%- assign _posts = paginator.posts -%}
 
-{% include lang.html %}
+{%- if paginator.page == 1 %}
+{%- assign _all = site.posts | where_exp: "p", "p.hidden != true" -%}
+{%- assign _pinned = _all | where: "pin", true -%}
+{%- assign _featured = _pinned | first | default: _all.first -%}
+{%- assign _lessons = 0 -%}{% for c in site.data.course_sites %}{% assign _lessons = _lessons | plus: c.lessons %}{% endfor -%}
+{%- assign _first_year = _all.last.date | date: "%Y" -%}
 
-{% assign all_pinned = site.posts | where: 'pin', 'true' %}
-{% assign all_normal = site.posts | where_exp: 'item', 'item.pin != true and item.hidden != true' %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Ritesh Rana Tech Blog</p>
+      <h1 class="hero__title" id="hero-title">Production-grade infrastructure, systems architecture, AI and distributed systems.</h1>
+      <p class="hero__lede">Engineering notes written from production: incident write-ups, architecture deep dives and the unglamorous work of making AI-assisted code survive on Kubernetes.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#latest">Read the latest {% include icon.html name="arrow-right" %}</a>
+        <a class="btn" href="{{ '/courses/' | relative_url }}">Courses</a>
+        <a class="btn btn--ghost" href="{{ '/newsletter/' | relative_url }}">{% include icon.html name="mail" %} Newsletter</a>
+      </div>
+    </div>
+    <div class="hero__index" role="group" aria-label="The publication at a glance">
+      <dl class="stat-list">
+        <div><dt>Articles</dt><dd>{{ _all.size }}</dd></div>
+        <div><dt>Course lessons</dt><dd>{{ _lessons }}</dd></div>
+        <div><dt>Topics</dt><dd>{{ site.data.taxonomy.categories.size }}</dd></div>
+        <div><dt>Writing since</dt><dd>{{ _first_year }}</dd></div>
+      </dl>
+      <p class="hero__index-note">
+        Latest: <a href="{{ _all.first.url | relative_url }}">{{ _all.first.title | truncate: 64 }}</a>
+        <span class="muted">· {{ _all.first.date | date: "%b %-d" }}</span>
+      </p>
+    </div>
+  </div>
+</section>
 
-{% assign posts = '' | split: '' %}
+<section class="section section--first" id="latest" aria-labelledby="latest-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title" id="latest-title">Latest articles</h2>
+      <a class="section__link arrow-link" href="{{ '/tabs/archives/' | relative_url }}">Full archive {% include icon.html name="arrow-right" %}</a>
+    </div>
+    <div class="lead-grid">
+      <div class="lead-grid__feature">
+        {% include post-card.html post=_featured variant="featured" level=3 tags=4 %}
+      </div>
+      <ol class="post-list lead-grid__side" aria-label="More recent articles">
+        {%- assign _shown = 0 %}
+        {%- for p in _posts %}
+          {%- if p.url == _featured.url %}{% continue %}{% endif %}
+          {%- if _shown >= 4 %}{% break %}{% endif %}
+          <li>{% include post-card.html post=p variant="compact" excerpt=false tags=0 %}</li>
+          {%- assign _shown = _shown | plus: 1 %}
+        {%- endfor %}
+      </ol>
+    </div>
 
-<!-- Get pinned posts on current page -->
+    <ol class="post-list post-list--grid more-posts" aria-label="Earlier articles">
+      {%- assign _skip = 0 %}
+      {%- for p in _posts %}
+        {%- if p.url == _featured.url %}{% continue %}{% endif %}
+        {%- assign _skip = _skip | plus: 1 %}
+        {%- if _skip <= 4 %}{% continue %}{% endif %}
+        <li>{% include post-card.html post=p %}</li>
+      {%- endfor %}
+    </ol>
+    {% include pagination.html %}
+  </div>
+</section>
 
-{% assign visible_start = paginator.page | minus: 1 | times: paginator.per_page %}
-{% assign visible_end = visible_start | plus: paginator.per_page %}
+{%- if site.data.start_here.size > 0 %}
+<section class="section" aria-labelledby="start-title">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title" id="start-title">New here? Start with these</h2>
+        <p class="section__desc">A short reading path through the core ideas the rest of the publication builds on.</p>
+      </div>
+    </div>
+    <ol class="start-path">
+      {%- assign _step = 0 %}
+      {%- for item in site.data.start_here %}
+      {%- assign _url = '/posts/' | append: item.post | append: '/' %}
+      {%- assign _p = site.posts | where: "url", _url | first %}
+      {%- if _p %}
+      {%- assign _step = _step | plus: 1 %}
+      {%- assign _cat = _p.categories | first %}
+      <li class="start-path__item">
+        <span class="start-path__step" aria-hidden="true">{{ _step | prepend: "0" | slice: -2, 2 }}</span>
+        <div class="kicker">{% include category-link.html name=_cat %}{% if _p.kind %}<span class="kicker__sep" aria-hidden="true">/</span><span>{{ _p.kind }}</span>{% endif %}</div>
+        <h3 class="start-path__title"><a href="{{ _p.url | relative_url }}">{{ _p.title }}</a></h3>
+        <p class="start-path__why">{{ item.why }}</p>
+        <p class="start-path__meta">{{ _p.word_count | reading_minutes }} min read</p>
+      </li>
+      {%- endif %}
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+{%- endif %}
 
-{% if all_pinned.size > visible_start %}
-{% if all_pinned.size > visible_end %}
-{% assign pinned_size = paginator.per_page %}
-{% else %}
-{% assign pinned_size = all_pinned.size | minus: visible_start %}
-{% endif %}
-
-{% for i in (visible_start..all_pinned.size) limit: pinned_size %}
-{% assign posts = posts | push: all_pinned[i] %}
-{% endfor %}
-{% else %}
-{% assign pinned_size = 0 %}
-{% endif %}
-
-<!-- Get normal posts on current page -->
-
-{% assign normal_size = paginator.posts | size | minus: pinned_size %}
-
-{% if normal_size > 0 %}
-{% if pinned_size > 0 %}
-{% assign normal_start = 0 %}
-{% else %}
-{% assign normal_start = visible_start | minus: all_pinned.size %}
-{% endif %}
-
-{% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
-
-{% for i in (normal_start..normal_end) %}
-{% assign posts = posts | push: all_normal[i] %}
-{% endfor %}
-{% endif %}
-
-<!-- Injected Hero Section -->
-{% include hero.html %}
-
-<div id="post-list" class="flex-grow-1 px-xl-1">
-    {% for post in posts %}
-    <article class="card-wrapper card">
-        <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
-            {% assign card_body_col = '12' %}
-
-            {% if post.image %}
-            {% assign src = post.image.path | default: post.image %}
-
-            {% if post.media_subpath %}
-            {% unless src contains '://' %}
-            {% assign src = post.media_subpath
-            | append: '/'
-            | append: src
-            | replace: '///', '/'
-            | replace: '//', '/'
-            %}
-            {% endunless %}
-            {% endif %}
-
-            {% if post.image.lqip %}
-            {% assign lqip = post.image.lqip %}
-
-            {% if post.media_subpath %}
-            {% unless lqip contains 'data:' %}
-            {% assign lqip = post.media_subpath
-            | append: '/'
-            | append: lqip
-            | replace: '///', '/'
-            | replace: '//', '/'
-            %}
-            {% endunless %}
-            {% endif %}
-
-            {% assign lqip_attr = 'lqip="' | append: lqip | append: '"' %}
-            {% endif %}
-
-            {% assign alt = post.image.alt | xml_escape | default: 'Preview Image' %}
-
-            <div class="col-md-5">
-                <img src="{{ src }}" alt="{{ alt }}" {{ lqip_attr }}>
-            </div>
-
-            {% assign card_body_col = '7' %}
-            {% endif %}
-
-            <div class="col-md-{{ card_body_col }}">
-                <div class="card-body d-flex flex-column">
-                    <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
-
-                    <div class="card-text content mt-0 mb-3">
-                        <p>{% include post-summary.html %}</p>
-                    </div>
-
-                    <div class="post-meta flex-grow-1 d-flex align-items-end">
-                        <div class="me-auto">
-                            <!-- posted date -->
-                            <i class="far fa-calendar fa-fw me-1"></i>
-                            {% include datetime.html date=post.date lang=lang %}
-
-                            <!-- categories -->
-                            {% if post.categories.size > 0 %}
-                            <i class="far fa-folder-open fa-fw me-1"></i>
-                            <span class="categories">
-                                {% for category in post.categories %}
-                                {{ category }}
-                                {%- unless forloop.last -%},{%- endunless -%}
-                                {% endfor %}
-                            </span>
-                            {% endif %}
-                        </div>
-
-                        {% if post.pin %}
-                        <div class="pin ms-1">
-                            <i class="fas fa-thumbtack fa-fw"></i>
-                            <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <!-- .post-meta -->
-                </div>
-                <!-- .card-body -->
-            </div>
+<section class="section" aria-labelledby="topics-title">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title" id="topics-title">Explore by topic</h2>
+        <p class="section__desc">Every article belongs to one primary subject. Start where your systems hurt.</p>
+      </div>
+      <a class="section__link arrow-link" href="{{ '/tabs/tags/' | relative_url }}">Browse all tags {% include icon.html name="arrow-right" %}</a>
+    </div>
+    <ul class="topic-grid">
+      {%- for cat in site.data.taxonomy.categories %}
+      {%- assign _count = site.categories[cat.name].size | default: 0 %}
+      {%- if _count > 0 %}
+      <li>
+        <a class="topic-tile" href="{{ cat.name | slugify | prepend: '/categories/' | append: '/' | relative_url }}">
+          <span class="topic-tile__name">{{ cat.title | default: cat.name }}</span>
+          <span class="topic-tile__count">{{ _count }} {% if _count == 1 %}article{% else %}articles{% endif %}</span>
+          <span class="topic-tile__desc">{{ cat.description }}</span>
         </a>
-    </article>
-    {% endfor %}
-</div>
-<!-- #post-list -->
+      </li>
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
 
-{% if paginator.total_pages > 1 %}
-{% include post-paginator.html %}
-{% endif %}
+<section class="section" aria-labelledby="courses-title">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title" id="courses-title">Courses</h2>
+        <p class="section__desc">Free, open-source courses built from first principles — hundreds of lessons with runnable code, each on its own site.</p>
+      </div>
+      <a class="section__link arrow-link" href="{{ '/courses/' | relative_url }}">All courses &amp; notes {% include icon.html name="arrow-right" %}</a>
+    </div>
+    <ul class="course-grid">
+      {%- for c in site.data.course_sites %}
+      <li>{% include course-card.html item=c compact=true %}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="projects-title">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title" id="projects-title">Engineering work</h2>
+        <p class="section__desc">Open-source tools and infrastructure behind the writing.</p>
+      </div>
+      <a class="section__link arrow-link" href="{{ '/tabs/projects/' | relative_url }}">All projects {% include icon.html name="arrow-right" %}</a>
+    </div>
+    <ul class="project-grid">
+      {%- assign _featured_projects = site.data.projects | where: "featured", true %}
+      {%- for proj in _featured_projects limit: 3 %}
+      <li>{% include project-card.html item=proj %}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<div class="container">
+  {% include newsletter-cta.html id="home-subscribe" %}
+</div>
+
+{%- else %}
+
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Articles</p>
+    <h1 class="page-head__title">All articles</h1>
+    <p class="page-head__lede">Page {{ paginator.page }} of {{ paginator.total_pages }} · newest first. Prefer a timeline? See the <a href="{{ '/tabs/archives/' | relative_url }}">archive</a>.</p>
+  </header>
+  <ol class="post-list post-list--single">
+    {%- for p in _posts %}
+    <li>{% include post-card.html post=p level=2 %}</li>
+    {%- endfor %}
+  </ol>
+  {% include pagination.html %}
+</div>
+
+{%- endif %}

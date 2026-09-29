@@ -1,0 +1,21 @@
+// Rouge token colors. Deliberately low-chroma: code should read like a
+// well-typeset listing, not a light show. All pairs meet WCAG AA on --code-bg.
+
+.highlight {
+  .c, .ch, .cd, .cm, .cpf, .c1, .cs { color: var(--syn-comment); font-style: italic; }
+  .k, .kc, .kd, .kn, .kp, .kr, .kv, .ow { color: var(--syn-keyword); }
+  .kt, .nc, .nn, .no, .ne { color: var(--syn-type); }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: var(--syn-string); }
+  .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: var(--syn-number); }
+  .nf, .fm, .nb, .bp, .nd { color: var(--syn-function); }
+  .nv, .vc, .vg, .vi, .vm, .na, .py, .nt { color: var(--syn-variable); }
+  .o, .p { color: var(--syn-operator); }
+  .err { color: var(--error); }
+  .gd { background: var(--syn-deleted-bg); color: var(--error); display: inline-block; min-width: 100%; }
+  .gi { background: var(--syn-inserted-bg); color: var(--success); display: inline-block; min-width: 100%; }
+  .gh, .gu { color: var(--syn-function); font-weight: 600; }
+  .ge { font-style: italic; }
+  .gs { font-weight: 600; }
+  .gp { color: var(--syn-comment); user-select: none; }
+  .go { color: var(--text-secondary); }
+}

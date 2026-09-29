@@ -1,0 +1,46 @@
+---
+layout: default
+---
+{%- assign _posts = site.posts | where_exp: "p", "p.hidden != true" -%}
+{%- assign _years = _posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+<div class="container container--narrow">
+  <header class="page-head">
+    {% include breadcrumbs.html %}
+    <p class="eyebrow">Archive</p>
+    <h1 class="page-head__title">Every article, in order</h1>
+    <p class="page-head__lede">{{ _posts.size }} articles since {{ _posts.last.date | date: "%B %Y" }}. Newest first; jump to a year or <button type="button" class="link-button" data-search-open hidden>search</button><noscript>browse by <a href="{{ '/tabs/categories/' | relative_url }}">topic</a></noscript>.</p>
+    <nav class="year-jump" aria-label="Jump to year">
+      <ul>
+        {%- for y in _years %}
+        <li><a href="#y{{ y.name }}">{{ y.name }} <span class="muted">{{ y.items.size }}</span></a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  {%- for y in _years %}
+  <section class="timeline-year" aria-labelledby="y{{ y.name }}">
+    <h2 class="timeline-year__title" id="y{{ y.name }}">{{ y.name }} <span class="timeline-year__count">{{ y.items.size }} {% if y.items.size == 1 %}article{% else %}articles{% endif %}</span></h2>
+    {%- assign _months = y.items | group_by_exp: "p", "p.date | date: '%B'" %}
+    {%- for m in _months %}
+    <div class="timeline-month">
+      <h3 class="timeline-month__title">{{ m.name }}</h3>
+      <ol class="timeline">
+        {%- for p in m.items %}
+        {%- assign _cat_name = p.categories | first %}
+        {%- assign _cat_meta = site.data.taxonomy.categories | where: "name", _cat_name | first %}
+        {%- assign _cat = _cat_meta.title | default: _cat_name %}
+        <li class="timeline__item">
+          <time class="timeline__date" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %d" }}</time>
+          <div class="timeline__body">
+            <a class="timeline__title" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+            <span class="timeline__meta">{% if _cat %}{{ _cat }} · {% endif %}{{ p.word_count | reading_minutes }} min read</span>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+    {%- endfor %}
+  </section>
+  {%- endfor %}
+</div>

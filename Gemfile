@@ -1,7 +1,13 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "jekyll-theme-chirpy", "~> 7.0"
+
+# The theme is maintained in-repo (_layouts, _includes, _sass, _plugins).
+# Standard libraries that are no longer default gems on Ruby 3.4+.
+gem "csv"
+gem "logger"
+gem "base64"
+gem "bigdecimal"
 
 group :jekyll_plugins do
   gem "jekyll-paginate"
@@ -30,3 +36,4 @@ gem "webrick", "~> 1.8"
 
 # Site testing
 gem "html-proofer", "~> 5.0"
+gem "minitest", "~> 5.25"

@@ -1,0 +1,23 @@
+{%- comment -%}
+  "Go deeper" link from an article to the most relevant full course
+  (_data/course_sites.yml related_tags, then related_categories).
+{%- endcomment -%}
+{%- assign _match = nil -%}
+{%- for c in site.data.course_sites %}{% unless _match %}
+  {%- for t in page.tags %}{% if c.related_tags contains t %}{% assign _match = c %}{% break %}{% endif %}{% endfor %}
+{%- endunless %}{% endfor -%}
+{%- unless _match -%}
+{%- for c in site.data.course_sites %}{% unless _match %}
+  {%- for cat in page.categories %}{% if c.related_categories contains cat %}{% assign _match = c %}{% break %}{% endif %}{% endfor %}
+{%- endunless %}{% endfor -%}
+{%- endunless -%}
+{%- if _match %}
+<aside class="go-deeper" aria-labelledby="go-deeper-title">
+  <div>
+    <p class="eyebrow">Go deeper</p>
+    <p class="go-deeper__title" id="go-deeper-title">The {{ _match.title }} course</p>
+    <p class="go-deeper__text">{{ _match.summary }} {{ _match.lessons }} free lessons across {{ _match.phases }} phases, with runnable code.</p>
+  </div>
+  <a class="btn" href="{{ _match.url }}" rel="noopener">Start the course {% include icon.html name="arrow-up-right" %}</a>
+</aside>
+{%- endif %}

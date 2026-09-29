@@ -1,0 +1,17 @@
+{%- comment -%} Previous/next links. include.prev / include.next: objects with title + url; include.label (e.g. "article", "chapter"). {%- endcomment -%}
+{%- if include.prev or include.next %}
+<nav class="pager" aria-label="{{ include.label | default: 'Article' | capitalize }} navigation">
+  {%- if include.prev %}
+  <a class="pager__prev" href="{{ include.prev.url | relative_url }}" rel="prev">
+    <span class="pager__label">← Previous {{ include.label | default: "article" }}</span>
+    <span class="pager__title">{{ include.prev.title }}</span>
+  </a>
+  {%- endif %}
+  {%- if include.next %}
+  <a class="pager__next" href="{{ include.next.url | relative_url }}" rel="next">
+    <span class="pager__label">Next {{ include.label | default: "article" }} →</span>
+    <span class="pager__title">{{ include.next.title }}</span>
+  </a>
+  {%- endif %}
+</nav>
+{%- endif %}

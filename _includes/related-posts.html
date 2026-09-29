@@ -1,0 +1,10 @@
+{%- if page.related and page.related.size > 0 %}
+<section class="related" aria-labelledby="related-title">
+  <h2 id="related-title" class="section__title">Keep reading</h2>
+  <ul class="post-list related__list">
+    {%- for p in page.related %}
+    <li>{% include post-card.html post=p variant="compact" excerpt=false tags=0 %}</li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}

@@ -1,0 +1,20 @@
+{%- comment -%} Deep Dive library card. include.item (from _data/deep_dives.yml), include.compact {%- endcomment -%}
+{%- assign dd = include.item -%}
+{%- assign _info = site.data.courses[dd.slug] -%}
+<article class="dd-card{% if include.compact %} dd-card--compact{% endif %}">
+  <p class="dd-card__source"><span class="visually-hidden">Source: </span>{% include icon.html name="book" %}<cite>{{ dd.source_short }}</cite></p>
+  <h3 class="dd-card__title"><a href="{{ '/courses/' | append: dd.slug | append: '/' | relative_url }}">{{ dd.title }}</a></h3>
+  <p class="dd-card__subject">{{ dd.subject }}</p>
+  {%- unless include.compact %}
+  <p class="dd-card__desc">{{ dd.description }}</p>
+  <ul class="dd-card__topics" aria-label="Topics covered">
+    {%- for t in dd.topics %}<li>{{ t }}</li>{% endfor %}
+  </ul>
+  {%- endunless %}
+  <dl class="dd-card__facts">
+    <div><dt>Format</dt><dd>{% if dd.format == "essay" %}Essay{% else %}{{ _info.chapter_count }} chapters{% endif %}</dd></div>
+    <div><dt>Status</dt><dd>{{ dd.status }}</dd></div>
+    {%- assign _updated = _info.updated | default: dd.updated %}
+    {%- if _updated %}<div><dt>Updated</dt><dd><time datetime="{{ _updated | date_to_xmlschema }}">{{ _updated | date: "%b %Y" }}</time></dd></div>{% endif %}
+  </dl>
+</article>

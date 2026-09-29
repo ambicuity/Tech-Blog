@@ -1,0 +1,17 @@
+{%- comment -%} Standalone course (external site). include.item from _data/course_sites.yml, include.compact {%- endcomment -%}
+{%- assign c = include.item -%}
+<article class="course-card{% if include.compact %} course-card--compact{% endif %}">
+  <p class="course-card__stats"><span>{{ c.lessons }} lessons</span><span>{{ c.phases }} phases</span><span>Free &amp; open source</span></p>
+  <h3 class="course-card__title"><a href="{{ c.url }}" rel="noopener">{{ c.title }}<span class="visually-hidden"> course (opens the course site)</span> {% include icon.html name="arrow-up-right" %}</a></h3>
+  <p class="course-card__summary">{{ c.summary }}</p>
+  {%- unless include.compact %}
+  <p class="course-card__desc">{{ c.description }}</p>
+  <ul class="course-card__topics" aria-label="Covers">
+    {%- for t in c.topics %}<li>{{ t }}</li>{% endfor %}
+  </ul>
+  {%- endunless %}
+  <p class="course-card__foot">
+    <span class="course-card__cta" aria-hidden="true">Start course {% include icon.html name="arrow-right" %}</span>
+    <a class="course-card__repo" href="{{ c.repo }}" rel="noopener">{% include icon.html name="github" %} Source<span class="visually-hidden"> for the {{ c.title }} course</span></a>
+  </p>
+</article>

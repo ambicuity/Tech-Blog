@@ -1,0 +1,24 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+---
+<div class="container container--narrow not-found">
+  <p class="not-found__code" aria-hidden="true">404</p>
+  <h1 class="page-head__title">This page doesn't exist</h1>
+  <p class="page-head__lede">The link may be outdated, or the article may have moved when topics and tags were reorganized. Search usually finds it.</p>
+  <div class="hero__actions">
+    <button type="button" class="btn btn--primary" data-search-open hidden>{% include icon.html name="search" %} Search the site</button>
+    <a class="btn" href="{{ '/' | relative_url }}">Go to the homepage</a>
+    <a class="btn btn--ghost" href="{{ '/tabs/archives/' | relative_url }}">Browse the archive</a>
+  </div>
+  <section class="not-found__recent" aria-labelledby="nf-recent">
+    <h2 class="eyebrow" id="nf-recent">Recent articles</h2>
+    <ul class="post-list">
+      {%- for p in site.posts limit: 4 %}
+      <li>{% include post-card.html post=p variant="compact" excerpt=false tags=0 %}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+</div>

@@ -1,38 +1,44 @@
-<!-- The Footer -->
-
-<footer aria-label="Site Info" class="
-    d-flex flex-column justify-content-center text-muted
-    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
-  ">
-    <!-- Left Side: Copyright -->
-    <p class="mb-2 mb-lg-0">
-        {{- '©' }}
-        <time>{{ 'now' | date: '%Y' }}</time>
-
-        {% if site.social.links %}
-        <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
-        {% else %}
-        <em class="fst-normal">{{ site.social.name }}</em>.
-        {% endif %}
-
-        {% if site.data.locales[include.lang].copyright.brief %}
-        <span data-bs-toggle="tooltip" data-bs-placement="top"
-            title="{{ site.data.locales[include.lang].copyright.verbose }}">
-            {{- site.data.locales[include.lang].copyright.brief -}}
-        </span>
-        {% endif %}
-    </p>
-
-    <!-- Right Side: Custom Info -->
-    <div class="text-center text-lg-end">
-        <div class="mb-1 fst-italic">Built by engineer, for engineers</div>
-        <div class="small">
-            Contact: <a href="mailto:contact@riteshrana.engineer">contact@riteshrana.engineer</a>
-        </div>
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__about">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} — home">
+        <span class="brand__mark" aria-hidden="true">rr</span>
+        <span class="brand__text"><span class="brand__name">Ritesh Rana</span><span class="brand__sub">Engineering notes</span></span>
+      </a>
+      <p>Field notes on production infrastructure, distributed systems and AI-assisted engineering. Built by an engineer, for engineers.</p>
     </div>
-    </div>
+    <nav aria-labelledby="footer-read">
+      <h2 id="footer-read">Read</h2>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Latest articles</a></li>
+        <li><a href="{{ '/tabs/archives/' | relative_url }}">Archive</a></li>
+        <li><a href="{{ '/courses/' | relative_url }}">Courses</a></li>
+        <li><a href="{{ '/tabs/categories/' | relative_url }}">Topics</a></li>
+        <li><a href="{{ '/tabs/tags/' | relative_url }}">Tags</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="footer-explore">
+      <h2 id="footer-explore">Explore</h2>
+      <ul>
+        <li><a href="{{ '/tabs/projects/' | relative_url }}">Projects</a></li>
+        <li><a href="{{ '/free-stuff/' | relative_url }}">Free Dev Stuff</a></li>
+        <li><a href="{{ '/newsletter/' | relative_url }}">Newsletter</a></li>
+        <li><a href="{{ '/tabs/about/' | relative_url }}">About</a></li>
+        <li><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="footer-connect">
+      <h2 id="footer-connect">Connect</h2>
+      <ul>
+        <li><a href="{{ site.contact.github }}" rel="me noopener">GitHub</a></li>
+        <li><a href="{{ site.contact.linkedin }}" rel="me noopener">LinkedIn</a></li>
+        <li><a href="{{ site.contact.portfolio }}" rel="me noopener">Portfolio</a></li>
+        <li><a href="mailto:{{ site.contact.email }}">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container site-footer__bar">
+    <span>© {{ site.time | date: '%Y' }} {{ site.author.name }}.</span>
+    <a href="{{ site.contact.repo }}">Source on GitHub</a>
+  </div>
 </footer>
-
-{% if page.layout == 'post' %}
-{% include reading-progress.html %}
-{% endif %}

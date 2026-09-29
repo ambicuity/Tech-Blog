@@ -1,0 +1,58 @@
+---
+layout: default
+---
+{%- comment -%} Deep Dive pages (courses/**). Structure is supplied by _plugins/courses.rb. {%- endcomment -%}
+{%- assign _course = page.course -%}
+{%- assign _toc = content | toc_items -%}
+{%- assign _meta = site.data.deep_dives | where: "slug", _course.slug | first -%}
+{%- assign _full = site.data.course_sites | where_exp: "c", "c.covers contains _course.slug" | first -%}
+<div class="reading-progress" data-reading-progress hidden></div>
+{%- if _toc.size > 1 %}{% include toc.html html=content variant="bar" %}{% endif %}
+<article class="article article--course{% if _toc.size > 1 %} has-toc{% endif %}" data-article>
+  <header class="article-head container">
+    <div class="article-head__inner">
+      {% include breadcrumbs.html %}
+      <div class="kicker article-head__kicker">
+        <a href="{{ _course.url | relative_url }}">{{ _course.title }}</a>
+        {%- if page.chapter_number %}<span class="kicker__sep" aria-hidden="true">/</span><span>Part {{ page.chapter_number }} of {{ _course.chapter_count }}</span>{% endif %}
+        {%- if page.course_index and _meta %}<span class="kind">{{ _meta.status }}</span>{% endif %}
+      </div>
+      {%- unless page.has_h1 %}
+      <h1 class="article-head__title">{{ page.title }}</h1>
+      {%- endunless %}
+      {%- if page.course_index and _meta %}
+      <dl class="course-facts">
+        <div><dt>Source</dt><dd><cite>{{ _meta.source }}</cite></dd></div>
+        <div><dt>Format</dt><dd>{% if _meta.format == "essay" %}Long-form essay{% else %}{{ _course.chapter_count }} chapters{% endif %}</dd></div>
+        {%- if _course.updated %}
+        <div><dt>Last updated</dt><dd><time datetime="{{ _course.updated | date_to_xmlschema }}">{{ _course.updated | date: "%b %Y" }}</time></dd></div>
+        {%- endif %}
+      </dl>
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="article-body container{% if _toc.size > 1 %} has-toc{% endif %}">
+    {%- if _toc.size > 1 %}
+    <aside class="article-body__aside" aria-label="Table of contents">
+      {% include toc.html html=content %}
+    </aside>
+    {%- endif %}
+    <div class="article-body__main">
+      {%- if _full %}
+      <aside class="full-course" aria-label="Full course available">
+        <p class="full-course__text"><strong>This is an early companion note.</strong> The complete, maintained version is the free <em>{{ _full.title }}</em> course — {{ _full.lessons }} lessons across {{ _full.phases }} phases.</p>
+        <a class="btn btn--primary" href="{{ _full.url }}" rel="noopener">Open the {{ _full.title }} course {% include icon.html name="arrow-up-right" %}</a>
+      </aside>
+      {%- endif %}
+      {%- if _toc.size > 1 %}{% include toc.html html=content variant="inline" %}{% endif %}
+      <div class="prose" data-prose>
+        {{ content }}
+      </div>
+      <footer class="article-foot">
+        {% include pager.html prev=page.prev_chapter next=page.next_chapter label="chapter" %}
+        <p class="article-foot__back"><a class="arrow-link" href="{% if page.course_index %}{{ '/courses/' | relative_url }}{% else %}{{ _course.url | relative_url }}{% endif %}">{% if page.course_index %}All courses{% else %}Back to the {{ _course.title }} syllabus{% endif %} {% include icon.html name="arrow-right" %}</a></p>
+      </footer>
+    </div>
+  </div>
+</article>

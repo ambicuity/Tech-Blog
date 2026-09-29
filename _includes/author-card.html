@@ -1,0 +1,15 @@
+{%- assign _author = site.data.authors[page.author] | default: site.data.authors.ritesh -%}
+<section class="author-card" aria-label="About the author">
+  <img src="{{ '/assets/img/avatar-192.webp' | relative_url }}" alt="" width="64" height="64" loading="lazy" decoding="async">
+  <div>
+    <p class="eyebrow">Written by</p>
+    <p class="author-card__name">{{ _author.name }}</p>
+    <p class="author-card__bio">Systems engineer (M.Eng., Boston University) writing about platform engineering, Kubernetes and making AI-assisted software survive production.</p>
+    <p class="author-card__links">
+      <a href="{{ '/tabs/about/' | relative_url }}">About</a>
+      <a href="{{ site.contact.github }}" rel="me noopener">GitHub</a>
+      <a href="{{ site.contact.linkedin }}" rel="me noopener">LinkedIn</a>
+      <a href="{{ _author.url }}" rel="me noopener">Portfolio</a>
+    </p>
+  </div>
+</section>

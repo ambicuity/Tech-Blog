@@ -1,0 +1,466 @@
+// Long-form reading: article + deep-dive body typography and technical blocks.
+
+.prose {
+  font-size: var(--fs-prose);
+  line-height: var(--lh-prose);
+  color: var(--text);
+  overflow-wrap: break-word;
+
+  > * + * {
+    margin-top: 1.25em;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  // Headings --------------------------------------------------------------
+  h1,
+  h2,
+  h3,
+  h4 {
+    position: relative; // anchor offset comes from html { scroll-padding-top }
+  }
+
+  // Deep-dive pages carry their own "# Title" in Markdown; styled as the page title.
+  > h1:first-child {
+    font-family: var(--font-display);
+    font-size: var(--fs-3xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--sp-5);
+  }
+
+  h2 {
+    margin-top: 2.4em;
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.2;
+  }
+
+  h3 {
+    margin-top: 2em;
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  h4 {
+    margin-top: 1.75em;
+    font-size: var(--fs-md);
+    font-weight: 600;
+  }
+
+  h2 + *,
+  h3 + *,
+  h4 + * {
+    margin-top: 0.75em;
+  }
+
+  .heading-anchor {
+    margin-left: 0.35em;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75em;
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+
+    &::before {
+      content: "#";
+    }
+
+    &:hover {
+      color: var(--accent);
+    }
+
+    &:focus-visible {
+      opacity: 1;
+    }
+  }
+
+  :is(h2, h3, h4):hover .heading-anchor {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .heading-anchor {
+      opacity: 0.6;
+    }
+  }
+
+  // Text ------------------------------------------------------------------
+  a {
+    color: var(--accent);
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+
+  // Off-site links get a small arrow so readers know they are leaving.
+  a[href^="http"]:not([href^="https://blog.riteshrana.engineer"])::after {
+    content: "";
+    display: inline-block;
+    width: 0.62em;
+    height: 0.62em;
+    margin-left: 0.18em;
+    vertical-align: 0.08em;
+    background: currentColor;
+    opacity: 0.7;
+    -webkit-mask: var(--icon-external) center / contain no-repeat;
+    mask: var(--icon-external) center / contain no-repeat;
+  }
+
+  // "Evidence & References" / "References" / "Sources" sections close most
+  // posts: numbered, quieter, easy to scan.
+  :is(h2, h3):is([id*="references"], [id*="sources"]) + :is(ul, ol) {
+    padding-left: 1.6em;
+    list-style: decimal;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
+
+    li + li {
+      margin-top: var(--sp-2);
+    }
+
+    li::marker {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  ul,
+  ol {
+    padding-left: 1.4em;
+  }
+
+  li + li,
+  li > ul,
+  li > ol {
+    margin-top: 0.45em;
+  }
+
+  li::marker {
+    color: var(--text-muted);
+  }
+
+  ol > li::marker {
+    font-variant-numeric: tabular-nums;
+  }
+
+  dt {
+    font-weight: 600;
+  }
+
+  dd {
+    margin-left: var(--sp-5);
+    color: var(--text-secondary);
+  }
+
+  hr {
+    margin: 3em auto;
+    width: 6rem;
+  }
+
+  blockquote {
+    padding-left: var(--sp-5);
+    border-left: 2px solid var(--border-strong);
+    color: var(--text-secondary);
+
+    > * + * {
+      margin-top: 0.75em;
+    }
+  }
+
+  // Inline code
+  :not(pre) > code {
+    padding: 0.12em 0.36em;
+    border-radius: var(--radius-sm);
+    background: var(--code-inline-bg);
+    color: var(--code-text);
+    font-size: 0.86em;
+    overflow-wrap: anywhere;
+  }
+
+  // Media -----------------------------------------------------------------
+  img {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface-sunken);
+  }
+
+  p > img:only-child {
+    margin-inline: auto;
+  }
+
+  figure {
+    margin-block: 2em;
+  }
+
+  figcaption {
+    margin-top: var(--sp-2);
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+    text-align: center;
+  }
+
+  // Tables ----------------------------------------------------------------
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
+    font-variant-numeric: tabular-nums;
+  }
+
+  th,
+  td {
+    padding: var(--sp-2) var(--sp-4);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--surface-sunken);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  tbody tr:hover td {
+    background: var(--surface-sunken);
+  }
+
+  // Footnotes -------------------------------------------------------------
+  .footnotes {
+    margin-top: 3em;
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+  }
+
+  sup a {
+    text-decoration: none;
+  }
+
+  // Math ------------------------------------------------------------------
+  .katex {
+    position: relative; // anchor KaTeX's visually hidden MathML layer to the formula
+    font-size: 1.05em;
+  }
+
+  // A long inline formula scrolls within its paragraph instead of the page.
+  :is(p, li):has(.katex) {
+    position: relative; // contains KaTeX's absolutely positioned MathML layer
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-block: var(--sp-2);
+  }
+
+  // Diagrams --------------------------------------------------------------
+  pre.mermaid {
+    display: flex;
+    justify-content: center;
+    padding: var(--sp-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    font-size: var(--fs-sm);
+    overflow-x: auto;
+  }
+}
+
+// ---- Callouts --------------------------------------------------------------
+
+.callout {
+  --callout-color: var(--note);
+  --callout-bg: var(--note-soft);
+  padding: var(--sp-4) var(--sp-5);
+  border-left: 3px solid var(--callout-color);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--callout-bg);
+  font-size: 0.95em;
+
+  > * + * {
+    margin-top: 0.6em;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--callout-color);
+    font-size: var(--fs-2xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      background: currentColor;
+      // Distinct shape per type so meaning never depends on color alone.
+      clip-path: var(--callout-shape, circle(50%));
+    }
+  }
+
+  &--tip {
+    --callout-color: var(--success);
+    --callout-bg: var(--success-soft);
+    --callout-shape: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  }
+
+  &--warning {
+    --callout-color: var(--warning);
+    --callout-bg: var(--warning-soft);
+    --callout-shape: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  &--important {
+    --callout-color: var(--important);
+    --callout-bg: var(--important-soft);
+    --callout-shape: inset(0);
+  }
+
+  &--result {
+    --callout-color: var(--accent);
+    --callout-bg: var(--accent-soft);
+    --callout-shape: inset(0 round 1px);
+  }
+}
+
+// ---- Code blocks --------------------------------------------------------------
+
+.code-block {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  overflow: hidden;
+
+  .prose > & {
+    margin-block: 1.5em;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    min-height: 2.25rem;
+    padding: 0 var(--sp-2) 0 var(--sp-4);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-sunken);
+  }
+
+  &__lang {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.04em;
+  }
+
+  &__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    height: 1.75rem;
+    padding: 0 var(--sp-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: var(--fs-2xs);
+    font-weight: 500;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+
+    &:hover {
+      border-color: var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    &[data-state="copied"] {
+      color: var(--success);
+    }
+
+    &[data-state="error"] {
+      color: var(--error);
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: var(--sp-4) var(--sp-5);
+    overflow-x: auto;
+    color: var(--code-text);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    tab-size: 4;
+    white-space: pre;
+    word-wrap: normal;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+
+    &:focus-visible {
+      outline-offset: -2px;
+      border-radius: 0;
+    }
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: inherit;
+    font-variant-ligatures: none;
+  }
+
+  // Terminal output reads as output, not source.
+  &[data-lang="text"] pre,
+  &[data-lang="console"] pre {
+    color: var(--text-secondary);
+  }
+}
+
+// Bare <pre> blocks (indented code without a language)
+.prose pre:not(.highlight, .mermaid) {
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}

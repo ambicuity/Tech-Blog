@@ -4,69 +4,34 @@ icon: fas fa-gift
 order: 9
 title: Free Dev Stuff
 permalink: /free-stuff/
+wide: true
+eyebrow: Resources
+lede: An opinionated shortlist of developer-first free tiers and self-hostable tools that work for prototypes, homelabs and MVPs — without surprise billing. Not a directory of 400 “maybe free” services.
 ---
+{%- assign _items = site.data.resources.items -%}
+<aside class="callout callout--warning resource-disclaimer" aria-label="Warning">
+  <p class="callout__label">Check before you build</p>
+  <p>Free tiers change without notice. Every entry shows when its details were written down — confirm limits on the official pricing page before depending on them.</p>
+</aside>
 
-## 🎁 Opinionated Free Tier Stack
+<div class="resource-toolbar" hidden data-resource-controls>
+  <label class="visually-hidden" for="resource-filter">Filter resources</label>
+  <input class="input input--sm" id="resource-filter" type="search" placeholder="Filter by name or use case…" autocomplete="off" data-resource-filter>
+  <p class="visually-hidden" role="status" aria-live="polite" data-resource-status></p>
+</div>
 
-As engineers, we don't need a directory of 400 "maybe free" services. We need the tools that actually work for prototypes, homelabs, and MVPs without surprise billing. 
+{%- for g in site.data.resources.groups %}
+{%- assign _group_items = _items | where: "group", g.id %}
+<section class="resource-group" aria-labelledby="res-{{ g.id }}" data-filter-group>
+  <h2 class="resource-group__title" id="res-{{ g.id }}">{% include icon.html name=g.icon %}{{ g.title }} <span class="muted">{{ _group_items.size }}</span></h2>
+  <ul class="resource-grid">
+    {%- for r in _group_items %}<li>{% include resource-card.html item=r %}</li>{% endfor %}
+  </ul>
+</section>
+{%- endfor %}
+<div data-resource-empty hidden>{% include state.html icon="search" title="Nothing matches that filter" body="Try a broader term such as “postgres” or “auth”." %}</div>
 
-Here is my highly curated, strictly opinionated list of the best developer-first free tiers and self-hostable tools available right now.
-
----
-
-### <i class="fas fa-server text-primary"></i> Compute & Hosting
-
-- **Fly.io**
-  - **Best For:** Containerized App Servers and Edge Compute
-  - **The Free Tier:** Up to 3 shared-cpu-1x VMs (2,340 hours/mo). Perfect for deploying Docker containers via CLI globally.
-- **Vercel**
-  - **Best For:** Serverless Next.js, React Frontends, and Edge Functions
-  - **The Free Tier:** Unlimited deployments, 100GB bandwidth. The easiest way to ship a frontend.
-- **Cloudflare Workers**
-  - **Best For:** Edge Compute and Serverless APIs
-  - **The Free Tier:** 100k requests/day. Excellent for fast, globally distributed stateless execution.
-
-### <i class="fas fa-database text-success"></i> Databases & State
-
-- **Supabase**
-  - **Best For:** All-in-one Postgres Backend & Authentication
-  - **The Free Tier:** 500MB database, 1GB storage, 50k MAU Auth. The ultimate open-source Firebase alternative.
-- **Neon**
-  - **Best For:** Serverless Postgres
-  - **The Free Tier:** 1 project, 3GiB storage, branching out of the box. Great developer experience for SQL.
-- **Upstash**
-  - **Best For:** Serverless Redis and Kafka
-  - **The Free Tier:** 10k commands per day. Unmatched for rate limiting, caching, and simple pub/sub in serverless apps.
-
-### <i class="fas fa-key text-warning"></i> Authentication
-
-- **Clerk**
-  - **Best For:** Drop-in Next.js/React Authentication
-  - **The Free Tier:** 10,000 Monthly Active Users. Ridiculously fast integration and polished UI components.
-- **Logto**
-  - **Best For:** Custom Identity Infrastructure
-  - **The Free Tier:** 50,000 MAU on cloud. Open-source friendly with great developer documentation.
-
-### <i class="fas fa-sync text-danger"></i> CI/CD & Deploy Orchestration
-
-- **GitHub Actions**
-  - **Best For:** Universal CI/CD Pipelines
-  - **The Free Tier:** 2,000 orchestration minutes/month. The industry standard limit.
-- **Earthly**
-  - **Best For:** Containerized Build Automation
-  - **The Free Tier:** 6,000 build minutes/month. Excellent for ensuring builds run exactly the same locally as in CI.
-
-### <i class="fas fa-chart-line text-secondary"></i> Observability
-
-- **Sentry**
-  - **Best For:** Error Tracking & Stack Trace Capturing
-  - **The Free Tier:** 5K errors/month. Crucial for catching unhandled exceptions in production MVPs.
-- **Grafana Cloud**
-  - **Best For:** Metrics, Logs, and Dashboards
-  - **The Free Tier:** 10k Prometheus metrics, 50GB logs, 50GB traces. A generous starting point for the LGTM stack.
-
----
-
-### 📝 Notice a discrepancy?
-
-Is a free tier dead? Did a company pull a bait-and-switch? [Open an issue](https://github.com/ambicuity/Tech-Blog/issues/new) to have it removed from this opinionated index.
+<section class="resource-report">
+  <h2 class="eyebrow">Notice a discrepancy?</h2>
+  <p>Is a free tier gone, or did a company pull a bait-and-switch? <a href="https://github.com/ambicuity/Tech-Blog/issues/new">Open an issue</a> and it will be corrected or removed.</p>
+</section>

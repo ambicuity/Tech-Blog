@@ -1,0 +1,66 @@
+---
+layout: default
+---
+{%- assign _tags = site.tags | sort -%}
+{%- assign _by_count = "" | split: "" -%}
+{%- for t in _tags %}{% capture _row %}{{ t[1].size | prepend: "0000" | slice: -4, 4 }}|{{ t[0] }}{% endcapture %}{% assign _by_count = _by_count | push: _row %}{% endfor -%}
+{%- assign _by_count = _by_count | sort | reverse -%}
+<div class="container">
+  <header class="page-head">
+    {% include breadcrumbs.html %}
+    <p class="eyebrow">Tags</p>
+    <h1 class="page-head__title">Tag index</h1>
+    <p class="page-head__lede">{{ _tags.size }} tags across {{ site.posts.size }} articles. Tags are normalized at build time, so <code>Kubernetes</code>, <code>k8s</code> and <code>kubernetes</code> all land in one place.</p>
+  </header>
+
+  <section class="tag-section" aria-labelledby="popular-tags">
+    <h2 class="eyebrow" id="popular-tags">Most used</h2>
+    <ul class="tag-list tag-list--lg">
+      {%- for row in _by_count limit: 16 %}
+      {%- assign _parts = row | split: "|" %}{% assign _n = _parts[0] | plus: 0 %}
+      <li><a class="tag" href="{{ _parts[1] | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ _parts[1] }}<span class="tag__count" aria-label="{{ _n }} articles">{{ _n }}</span></a></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="tag-explorer" aria-labelledby="all-tags" data-tag-explorer>
+    <div class="tag-explorer__bar">
+      <h2 class="eyebrow" id="all-tags">All tags, A–Z</h2>
+      <div class="tag-explorer__controls" hidden data-tag-controls>
+        <label class="visually-hidden" for="tag-filter">Filter tags</label>
+        <input class="input input--sm" id="tag-filter" type="search" placeholder="Filter tags…" autocomplete="off" data-tag-filter>
+        <label class="visually-hidden" for="tag-topic">Topic</label>
+        <select class="input input--sm" id="tag-topic" data-tag-topic>
+          <option value="">All topics</option>
+          {%- for cat in site.data.taxonomy.categories %}
+          <option value="{{ cat.name | slugify }}">{{ cat.title | default: cat.name }}</option>
+          {%- endfor %}
+        </select>
+      </div>
+    </div>
+    <p class="visually-hidden" role="status" aria-live="polite" data-tag-status></p>
+    {%- assign _letters = _tags | group_by_exp: "t", "t[0] | slice: 0 | upcase" %}
+    <nav class="letter-jump" aria-label="Jump to letter">
+      <ul>{% for g in _letters %}<li><a href="#letter-{{ g.name | slugify | default: 'num' }}">{{ g.name }}</a></li>{% endfor %}</ul>
+    </nav>
+    {%- for g in _letters %}
+    <div class="tag-group" id="letter-{{ g.name | slugify | default: 'num' }}" data-tag-group>
+      <h3 class="tag-group__letter">{{ g.name }}</h3>
+      <ul class="tag-rows">
+        {%- for t in g.items %}
+        {%- assign _cats = "" | split: "" %}
+        {%- for p in t[1] %}{% assign _c = p.categories | first | slugify %}{% assign _cats = _cats | push: _c %}{% endfor %}
+        {%- assign _cats = _cats | uniq %}
+        <li data-tag-name="{{ t[0] }}" data-tag-cats="{{ _cats | join: ' ' }}">
+          <a class="tag-row" href="{{ t[0] | slugify | prepend: '/tags/' | append: '/' | relative_url }}">
+            <span class="tag-row__name">{{ t[0] }}</span>
+            <span class="tag-row__count">{{ t[1].size }} {% if t[1].size == 1 %}article{% else %}articles{% endif %}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
+    <div data-tag-empty hidden>{% include state.html icon="hash" title="No tags match that filter" body="Try a shorter term, or clear the topic filter." %}</div>
+  </section>
+</div>

@@ -1,0 +1,65 @@
+{%- comment -%} Site header: brand, primary navigation, search, theme, mobile menu. {%- endcomment -%}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} — home">
+      <span class="brand__mark" aria-hidden="true">rr</span>
+      <span class="brand__text">
+        <span class="brand__name">Ritesh Rana</span>
+        <span class="brand__sub">Engineering notes</span>
+      </span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        {%- for item in site.data.nav.primary %}
+        {%- assign is_current = false %}
+        {%- for prefix in item.match %}
+          {%- assign head = page.url | slice: 0, prefix.size %}
+          {%- if head == prefix %}{% assign is_current = true %}{% endif %}
+        {%- endfor %}
+        <li><a href="{{ item.url | relative_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-keyshortcuts="Control+K Meta+K" hidden>
+        {% include icon.html name="search" %}<span>Search articles…</span><kbd data-shortcut-key>Ctrl K</kbd>
+      </button>
+      <button type="button" class="icon-btn search-trigger-mobile" data-search-open aria-label="Search" hidden>
+        {% include icon.html name="search" %}
+      </button>
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle color theme" hidden>
+        {% include icon.html name="moon" class="icon-moon" %}{% include icon.html name="sun" class="icon-sun" %}
+      </button>
+      <button type="button" class="icon-btn menu-toggle" data-menu-open aria-label="Open menu" aria-expanded="false" aria-haspopup="dialog" aria-controls="mobile-menu">
+        {% include icon.html name="menu" %}
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="mobile-menu" class="dialog mobile-menu" aria-label="Site menu">
+  <div class="mobile-menu__head">
+    <span class="mobile-menu__title">Menu</span>
+    <button type="button" class="icon-btn" data-dialog-close aria-label="Close menu" autofocus>{% include icon.html name="close" %}</button>
+  </div>
+  <nav aria-label="Primary (mobile)">
+    <ul>
+      <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a></li>
+      {%- for item in site.data.nav.primary %}
+      {%- assign is_current = false %}
+      {%- for prefix in item.match %}
+        {%- assign head = page.url | slice: 0, prefix.size %}
+        {%- if head == prefix %}{% assign is_current = true %}{% endif %}
+      {%- endfor %}
+      <li><a href="{{ item.url | relative_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ item.title }}{% include icon.html name="arrow-right" %}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="icon-btn" href="{{ site.contact.github }}" aria-label="GitHub" rel="me noopener">{% include icon.html name="github" %}</a>
+    <a class="icon-btn" href="{{ site.contact.linkedin }}" aria-label="LinkedIn" rel="me noopener">{% include icon.html name="linkedin" %}</a>
+    <a class="icon-btn" href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed">{% include icon.html name="rss" %}</a>
+  </div>
+</dialog>

@@ -1,0 +1,8 @@
+{%- comment -%} Empty / error state. include.icon, include.title, include.body, include.action_url, include.action_label {%- endcomment -%}
+{%- assign _icon = include.icon | default: "compass" -%}
+<div class="state"{% if include.role %} role="{{ include.role }}"{% endif %}>
+  <span class="state__icon">{% include icon.html name=_icon %}</span>
+  <p class="state__title">{{ include.title }}</p>
+  {%- if include.body %}<p>{{ include.body }}</p>{% endif %}
+  {%- if include.action_url %}<a class="btn" href="{{ include.action_url | relative_url }}">{{ include.action_label }}</a>{% endif %}
+</div>

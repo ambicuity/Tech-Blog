@@ -1,0 +1,73 @@
+---
+layout: default
+---
+{%- comment -%} jekyll-archives category + tag pages (/categories/:name/, /tags/:name/). {%- endcomment -%}
+{%- if page.type == "category" %}{% assign _is_cat = true %}{% else %}{% assign _is_cat = false %}{% endif -%}
+{%- assign _meta = site.data.taxonomy.categories | where: "name", page.title | first -%}
+{%- assign _name = _meta.title | default: page.title -%}
+{%- assign _count = page.posts.size -%}
+{%- comment -%} Co-occurring tags, ranked by frequency. {%- endcomment -%}
+{%- assign _co = "" | split: "" -%}
+{%- for p in page.posts %}{% for t in p.tags %}{% unless t == page.title %}{% assign _co = _co | push: t %}{% endunless %}{% endfor %}{% endfor -%}
+{%- assign _co_groups = _co | group_by_exp: "t", "t" | sort: "size" | reverse -%}
+{%- comment -%} Related topics: other categories on the same posts. {%- endcomment -%}
+{%- assign _rel = "" | split: "" -%}
+{%- for p in page.posts %}{% for c in p.categories %}{% unless _is_cat and c == page.title %}{% assign _rel = _rel | push: c %}{% endunless %}{% endfor %}{% endfor -%}
+{%- assign _rel_groups = _rel | group_by_exp: "c", "c" | sort: "size" | reverse -%}
+<div class="container">
+  <header class="page-head">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        {%- if _is_cat %}
+        <li><a href="{{ '/tabs/categories/' | relative_url }}">Topics</a></li>
+        {%- else %}
+        <li><a href="{{ '/tabs/tags/' | relative_url }}">Tags</a></li>
+        {%- endif %}
+        <li><span aria-current="page">{{ _name }}</span></li>
+      </ol>
+    </nav>
+    <p class="eyebrow">{% if _is_cat %}Topic{% else %}Tag{% endif %}</p>
+    <h1 class="page-head__title">{% unless _is_cat %}<span class="page-head__hash" aria-hidden="true">#</span>{% endunless %}{{ _name }}</h1>
+    {%- if _meta.description %}<p class="page-head__lede">{{ _meta.description }}</p>{% endif %}
+    <div class="page-head__meta">
+      <span>{{ _count }} {% if _count == 1 %}article{% else %}articles{% endif %}</span>
+      {%- if _count > 0 %}<span>Latest {{ page.posts.first.date | date: "%b %-d, %Y" }}</span>{% endif %}
+    </div>
+  </header>
+
+  <div class="taxonomy-layout">
+    <div>
+      {%- if _count > 0 %}
+      <ol class="post-list">
+        {%- for p in page.posts %}
+        <li>{% include post-card.html post=p level=2 %}</li>
+        {%- endfor %}
+      </ol>
+      {%- else %}
+      {% include state.html icon="folder" title="Nothing here yet" body="No articles use this label yet." action_url="/tabs/archives/" action_label="Browse the archive" %}
+      {%- endif %}
+    </div>
+    {%- if _co_groups.size > 0 or _rel_groups.size > 0 %}
+    <aside class="taxonomy-layout__aside" aria-label="Related">
+      {%- if _rel_groups.size > 0 %}
+      <h2 class="eyebrow" id="rel-topics">{% if _is_cat %}Related topics{% else %}Topics{% endif %}</h2>
+      <ul class="related-topics">
+        {%- for g in _rel_groups limit: 6 %}
+        {%- assign _m = site.data.taxonomy.categories | where: "name", g.name | first %}
+        <li><a href="{{ g.name | slugify | prepend: '/categories/' | append: '/' | relative_url }}">{{ _m.title | default: g.name }}</a><span class="muted">{{ g.size }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- if _co_groups.size > 0 %}
+      <h2 class="eyebrow" id="co-tags">{% if _is_cat %}Common tags{% else %}Often tagged with{% endif %}</h2>
+      <ul class="tag-list">
+        {%- for g in _co_groups limit: 14 %}
+        <li><a class="tag" href="{{ g.name | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ g.name }}<span class="tag__count" aria-label="{{ g.size }} articles">{{ g.size }}</span></a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </aside>
+    {%- endif %}
+  </div>
+</div>

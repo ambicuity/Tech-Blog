@@ -1,0 +1,34 @@
+// Print: articles should print like a paper, not a web page.
+@media print {
+  .site-header,
+  .site-footer,
+  .article-body__aside,
+  .toc--inline,
+  .reading-progress,
+  .article-after,
+  .article-foot__actions,
+  .pager,
+  .code-block__copy,
+  .heading-anchor,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #444;
+  }
+
+  .code-block,
+  pre,
+  table,
+  figure {
+    break-inside: avoid;
+  }
+}

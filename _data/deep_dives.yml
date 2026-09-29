@@ -1,0 +1,140 @@
+# Deep Dives library (/courses/).
+#
+# Chapter counts and "last updated" dates are computed at build time from the
+# pages under courses/<slug>/ and their git history (_plugins/courses.rb);
+# `updated` below is only a fallback for builds without git history.
+#
+# listed: false keeps a course reachable at its URL but off the library page —
+# per the library's own policy, a course is listed once the theory has been
+# bridged to production practice.
+#
+# format: essay  -> a single long-form document
+#         course -> a chaptered course with a syllabus
+
+- slug: system-design
+  title: System Design for AI
+  subject: Distributed data systems
+  source: Designing Data-Intensive Applications
+  source_short: DDIA
+  format: essay
+  status: Living document
+  updated: 2026-02-01
+  listed: true
+  description: >-
+    Deconstructing the data-intensive application for modern LLM
+    architectures: caching layers, high-throughput pipelines and the
+    consistency trade-offs behind them.
+  topics: [Replication, Partitioning, Caching, Stream processing, LLM serving]
+
+- slug: os
+  title: OS for Cloud Engineers
+  subject: Operating systems & Linux internals
+  source: Linux kernel internals (beyond Silberschatz)
+  source_short: Linux internals
+  format: essay
+  status: Living document
+  updated: 2026-01-01
+  listed: true
+  description: >-
+    The kernel primitives that power Kubernetes and containerd: cgroups,
+    namespaces, scheduling and memory management, explained from the
+    production side.
+  topics: [cgroups, Namespaces, Scheduling, Memory, Containers]
+
+- slug: dbms
+  title: DBMS for the AI Era
+  subject: Database systems
+  source: Database Management Systems (the "Cow Book")
+  source_short: Cow Book
+  format: essay
+  status: Living document
+  updated: 2025-12-01
+  listed: true
+  description: >-
+    Bridging relational fundamentals with vector databases (Pinecone,
+    Milvus) and advanced PostgreSQL internals.
+  topics: [Storage engines, Indexing, Query planning, Vector search, PostgreSQL]
+
+- slug: networking
+  title: Cloud Networking
+  subject: Computer networks
+  source: Computer Networks (Tanenbaum)
+  source_short: Tanenbaum
+  format: essay
+  status: Living document
+  updated: 2025-11-01
+  listed: true
+  description: >-
+    Packet captures, Wireshark analysis and BGP routing — Tanenbaum's
+    theory observed across distributed service-mesh networks.
+  topics: [TCP/IP, BGP, Packet analysis, Service mesh, DNS]
+
+- slug: ai
+  title: Artificial Intelligence
+  subject: Artificial intelligence
+  source: "Artificial Intelligence: A Modern Approach"
+  source_short: AIMA
+  format: course
+  status: In progress
+  updated: 2026-01-22
+  listed: false
+  description: >-
+    From classical search and logic to probabilistic reasoning,
+    reinforcement learning and deep learning.
+  topics: [Search, Logic, Probabilistic reasoning, Reinforcement learning, Deep learning]
+
+- slug: architecture
+  title: Computer Architecture
+  subject: Computer organization
+  source: "Computer Organization and Design"
+  source_short: Patterson & Hennessy
+  format: course
+  status: In progress
+  updated: 2026-01-22
+  listed: false
+  description: >-
+    Abstractions, instruction sets, arithmetic, the processor pipeline,
+    memory hierarchy and parallelism.
+  topics: [ISA, Pipelining, Caches, Parallelism]
+
+- slug: compilers
+  title: Compilers
+  subject: Programming language implementation
+  source: "Compilers: Principles, Techniques, and Tools"
+  source_short: Dragon Book
+  format: course
+  status: In progress
+  updated: 2026-01-22
+  listed: false
+  description: >-
+    How source code becomes machine code: lexing, parsing, intermediate
+    representations, code generation and optimization.
+  topics: [Lexing, Parsing, IR, Code generation, Optimization]
+
+- slug: dsa
+  title: Data Structures & Algorithms
+  subject: Algorithms
+  source: Introduction to Algorithms
+  source_short: CLRS
+  format: course
+  status: In progress
+  updated: 2026-01-22
+  listed: false
+  description: >-
+    Chapter-by-chapter notes on CLRS: analysis, sorting, data structures,
+    and graph algorithms.
+  topics: [Complexity, Sorting, Trees, Hashing, Graphs]
+
+- slug: leetcode
+  title: LeetCode Top 150
+  subject: Interview problem solving
+  source: LeetCode Top Interview 150
+  source_short: LeetCode 150
+  format: course
+  status: In progress
+  updated: 2026-01-22
+  listed: false
+  description: >-
+    Each problem broken down with the approach, pseudo-code, an optimal
+    solution and complexity analysis.
+  topics: [Arrays, Two pointers, Graphs, Dynamic programming]

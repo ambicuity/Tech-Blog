@@ -1,44 +1,71 @@
-# The Site Configuration
+# Site configuration
+#
+# The theme lives in this repository (_layouts, _includes, _sass, _plugins,
+# assets). It replaced the jekyll-theme-chirpy gem; every public URL that the
+# gem produced is preserved (see _plugins/ and the redirect stubs it emits).
 
-# Import the theme
-theme: jekyll-theme-chirpy
-
-# Site settings
 title: Ritesh Rana Tech Blog
-tagline: Production-grade infrastructure, systems architecture, and DevOps.
-description: Technical insights on Kubernetes, Distributed Systems, and Platform Engineering.
+tagline: Production-grade infrastructure, systems architecture, AI, and distributed systems.
+description: >-
+  An engineering publication on production infrastructure, Kubernetes,
+  distributed systems, platform engineering, and the realities of shipping
+  AI-assisted software — written by Ritesh Rana.
 url: https://blog.riteshrana.engineer
 baseurl: ""
+lang: en
+
+author:
+  name: Ritesh Rana
+  url: https://riteshrana.engineer
 
 github:
   username: ambicuity
 
 social:
   name: Ritesh Rana
-  image: /assets/img/og-image.png
+  image: /assets/img/og-card.png
+  links:
+    - https://github.com/ambicuity
+    - https://www.linkedin.com/in/riteshengineer/
+    - https://riteshrana.engineer
+
+# Used by jekyll-seo-tag for the default Open Graph image.
+logo: /assets/img/avatar-192.webp
+
+# Contact + external profiles, used by the header/footer/author block.
+contact:
+  email: contact@riteshrana.engineer
+  github: https://github.com/ambicuity
+  linkedin: https://www.linkedin.com/in/riteshengineer/
+  portfolio: https://riteshrana.engineer
+  repo: https://github.com/ambicuity/Tech-Blog
+
+newsletter:
+  endpoint: https://riteshrana.engineer/subscribe.php
 
 # Build settings
 markdown: kramdown
 kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
   footnote_backlink: "&#8617;&#xfe0e;"
+  math_engine: mathjax # emits \( \) / \[ \] delimiters; rendered client-side by KaTeX only when present
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
     span:
       line_numbers: false
     block:
-      line_numbers: true
-      start_line: 1
-permalink: /posts/:title/
+      line_numbers: false
 
-# Timezone
+permalink: /posts/:title/
 timezone: UTC
 
-# Pagination
-paginate: 10
+# Pagination (home page archive list)
+paginate: 11 # page 1 = 1 featured + 4 recent + a 6-card grid
 paginate_path: "/page:num/"
 
-# Jekyll plugins
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -51,43 +78,51 @@ jekyll-archives:
     - categories
     - tags
   layouts:
-    category: archives
-    tag: archives
+    category: taxonomy
+    tag: taxonomy
   permalinks:
     category: /categories/:name/
     tag: /tags/:name/
 
-# Exclude from processing
-exclude:
-  - scripts/
-  - requirements.txt
-  - README.md
-  - .gitignore
-  - .github/
-  - posts/
-  - "*.gem"
-  - "*.gemspec"
-  - docs
-  - node_modules
-  - package*.json
+feed:
+  path: feed.xml
+  posts_limit: 30
 
-# Chirpy theme settings
-theme_mode: dark # [light|dark]
+sass:
+  style: compressed
+  sass_dir: _sass
 
-# The CDN endpoint for media resources.
-# Notice that once it is assigned, the CDN url
-# will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
-#
-# e.g. 'https://cdn.com'
-cdn:
+collections:
+  tabs:
+    output: true
+    sort_by: order
 
-# The avatar on sidebar, support local or CORS resources
-avatar: /assets/img/RR.webp
-
-toc: true
+defaults:
+  # Default share image (Open Graph / Twitter). A page's own `image:` wins.
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/og-card.png
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: ritesh
+      comments: true
+      toc: true
+  - scope:
+      path: "_tabs"
+    values:
+      layout: page
+  - scope:
+      path: "courses"
+    values:
+      layout: course
+      toc: true
 
 comments:
-  active: giscus
+  provider: giscus
   giscus:
     repo: ambicuity/Tech-Blog
     repo_id: R_kgDOQMkdDQ
@@ -101,16 +136,29 @@ comments:
 
 google_analytics:
   id: G-FSTNSBY5ZH
-  
-assets:
-  self_host:
-    enabled: false
 
-pwa:
-  enabled: true
-
-collections:
-  tabs:
-    output: true
-    sort_by: order
-
+# Never publish repository internals. Anything listed here is excluded from
+# _site. (Previously pipeline/ and server/ source was publicly downloadable.)
+exclude:
+  - scripts/
+  - pipeline/
+  - server/
+  - venv/
+  - docs/
+  - test/
+  - tests/
+  - .pipeline/
+  - .playwright-mcp/
+  - requirements.txt
+  - README.md
+  - task.md
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  - .github/
+  - posts/
+  - "*.gem"
+  - "*.gemspec"
+  - node_modules
+  - package*.json
+  - vendor/

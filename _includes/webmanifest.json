@@ -1,0 +1,15 @@
+{
+  "name": {{ site.title | jsonify }},
+  "short_name": "RR Tech Blog",
+  "description": {{ site.description | strip | jsonify }},
+  "start_url": "{{ '/' | relative_url }}",
+  "scope": "{{ '/' | relative_url }}",
+  "display": "standalone",
+  "background_color": "#0e0f11",
+  "theme_color": "#0e0f11",
+  "icons": [
+    { "src": "{{ '/assets/img/favicons/android-chrome-192x192.png' | relative_url }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ '/assets/img/favicons/android-chrome-512x512.png' | relative_url }}", "sizes": "512x512", "type": "image/png" },
+    { "src": "{{ '/assets/img/favicons/favicon.svg' | relative_url }}", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

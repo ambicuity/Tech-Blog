@@ -1,0 +1,3 @@
+{%- comment -%} Renders a category as a link, using the display title from _data/taxonomy.yml. {%- endcomment -%}
+{%- assign _cat = site.data.taxonomy.categories | where: "name", include.name | first -%}
+<a href="{{ include.name | slugify | prepend: '/categories/' | append: '/' | relative_url }}">{{ _cat.title | default: include.name }}</a>

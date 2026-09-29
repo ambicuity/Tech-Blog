@@ -1,0 +1,18 @@
+{%- comment -%} Project card. include.item (from _data/projects.yml) {%- endcomment -%}
+{%- assign proj = include.item -%}
+{%- assign _primary_url = proj.repo | default: proj.demo -%}
+<article class="project-card">
+  <div class="project-card__top">
+    <span class="eyebrow">{{ proj.category }}</span>
+    <span class="status status--{{ proj.status | slugify }}">{{ proj.status }}</span>
+  </div>
+  <h3 class="project-card__title"><a href="{{ _primary_url }}" rel="noopener">{{ proj.name }}</a></h3>
+  <p class="project-card__desc">{{ proj.description }}</p>
+  <ul class="project-card__stack" aria-label="Technology stack">
+    {%- for s in proj.stack %}<li>{{ s }}</li>{% endfor %}
+  </ul>
+  <p class="project-card__links">
+    {%- if proj.repo %}<a href="{{ proj.repo }}" rel="noopener">{% include icon.html name="github" %} Source<span class="visually-hidden"> code for {{ proj.name }}</span></a>{% endif %}
+    {%- if proj.demo %}<a href="{{ proj.demo }}" rel="noopener">{% include icon.html name="external" %} Live<span class="visually-hidden"> site for {{ proj.name }}</span></a>{% endif %}
+  </p>
+</article>

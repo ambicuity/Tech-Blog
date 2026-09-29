@@ -1,0 +1,31 @@
+{%- comment -%} Numbered pagination for jekyll-paginate. {%- endcomment -%}
+{%- if paginator.total_pages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  <ul>
+    <li>
+      {%- if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" rel="prev" aria-label="Previous page">{% include icon.html name="arrow-left" %}</a>
+      {%- else %}
+      <span class="is-disabled" aria-hidden="true">{% include icon.html name="arrow-left" %}</span>
+      {%- endif %}
+    </li>
+    {%- for n in (1..paginator.total_pages) %}
+    {%- if n == 1 %}{% assign _href = '/' %}{% else %}{% assign _href = site.paginate_path | replace: ':num', n %}{% endif %}
+    <li>
+      {%- if n == paginator.page %}
+      <span aria-current="page">{{ n }}<span class="visually-hidden"> (current page)</span></span>
+      {%- else %}
+      <a href="{{ _href | relative_url }}">{{ n }}<span class="visually-hidden"> — page {{ n }}</span></a>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+    <li>
+      {%- if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" rel="next" aria-label="Next page">{% include icon.html name="arrow-right" %}</a>
+      {%- else %}
+      <span class="is-disabled" aria-hidden="true">{% include icon.html name="arrow-right" %}</span>
+      {%- endif %}
+    </li>
+  </ul>
+</nav>
+{%- endif %}

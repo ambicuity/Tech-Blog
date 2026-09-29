@@ -1,0 +1,19 @@
+{%- comment -%}
+  Newsletter signup. Posts {"email"} as JSON to site.newsletter.endpoint
+  (server/subscribe.php). Without JavaScript the form is replaced by an email link,
+  because the endpoint only accepts JSON.
+{%- endcomment -%}
+{%- assign _id = include.id | default: "subscribe" -%}
+<form class="subscribe-form" data-subscribe action="{{ site.newsletter.endpoint }}" method="post" novalidate hidden>
+  <label for="{{ _id }}-email">Email address</label>
+  <div class="subscribe-form__row">
+    <input class="input" id="{{ _id }}-email" name="email" type="email" inputmode="email" autocomplete="email"
+      placeholder="you@company.com" required aria-describedby="{{ _id }}-status {{ _id }}-fine">
+    <button class="btn btn--primary" type="submit">Subscribe</button>
+  </div>
+  <p class="subscribe-form__status" id="{{ _id }}-status" role="status" aria-live="polite"></p>
+  <p class="subscribe-form__fine" id="{{ _id }}-fine">No spam, no tracking pixels. One-click unsubscribe in every email.</p>
+</form>
+<noscript>
+  <p class="subscribe-form__fine">To subscribe without JavaScript, email <a href="mailto:{{ site.contact.email }}?subject=Subscribe">{{ site.contact.email }}</a>.</p>
+</noscript>

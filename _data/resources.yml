@@ -1,0 +1,115 @@
+# Free Dev Stuff (/free-stuff/). Free tiers change without notice: `as_of`
+# records when an entry's details were last written, not a guarantee.
+# Update `as_of` whenever you re-check an entry against the official pricing.
+#
+# self_host: yes | no | partial   (can you run it on your own infrastructure?)
+
+groups:
+  - id: compute
+    title: Compute & hosting
+    icon: server
+  - id: data
+    title: Databases & state
+    icon: database
+  - id: auth
+    title: Authentication
+    icon: key
+  - id: cicd
+    title: CI/CD & builds
+    icon: workflow
+  - id: observability
+    title: Observability
+    icon: activity
+
+items:
+  - name: Fly.io
+    group: compute
+    best_for: Containerized app servers and edge compute
+    free_tier: Up to 3 shared-cpu-1x VMs (2,340 hours/month). Deploy Docker containers globally from the CLI.
+    self_host: no
+    url: https://fly.io/docs/about/pricing/
+    as_of: 2026-02-22
+  - name: Vercel
+    group: compute
+    best_for: Next.js / React frontends and edge functions
+    free_tier: Unlimited deployments and 100 GB bandwidth on the Hobby plan.
+    self_host: no
+    url: https://vercel.com/pricing
+    as_of: 2026-02-22
+  - name: Cloudflare Workers
+    group: compute
+    best_for: Edge compute and serverless APIs
+    free_tier: 100k requests/day for globally distributed, stateless execution.
+    self_host: partial
+    self_host_note: The workerd runtime is open source.
+    url: https://developers.cloudflare.com/workers/platform/pricing/
+    as_of: 2026-02-22
+
+  - name: Supabase
+    group: data
+    best_for: All-in-one Postgres backend with authentication
+    free_tier: 500 MB database, 1 GB file storage, 50k monthly active users for auth.
+    self_host: yes
+    url: https://supabase.com/pricing
+    as_of: 2026-02-22
+  - name: Neon
+    group: data
+    best_for: Serverless Postgres with branching
+    free_tier: 1 project and 3 GiB storage, with database branching included.
+    self_host: yes
+    url: https://neon.tech/pricing
+    as_of: 2026-02-22
+  - name: Upstash
+    group: data
+    best_for: Serverless Redis and Kafka
+    free_tier: 10k commands/day — enough for rate limiting, caching and simple pub/sub.
+    self_host: no
+    url: https://upstash.com/pricing
+    as_of: 2026-02-22
+
+  - name: Clerk
+    group: auth
+    best_for: Drop-in Next.js / React authentication
+    free_tier: 10,000 monthly active users with prebuilt UI components.
+    self_host: no
+    url: https://clerk.com/pricing
+    as_of: 2026-02-22
+  - name: Logto
+    group: auth
+    best_for: Custom identity infrastructure
+    free_tier: 50,000 monthly active users on Logto Cloud; open-source core.
+    self_host: yes
+    url: https://logto.io/pricing
+    as_of: 2026-02-22
+
+  - name: GitHub Actions
+    group: cicd
+    best_for: General-purpose CI/CD pipelines
+    free_tier: 2,000 minutes/month for private repositories on the Free plan.
+    self_host: partial
+    self_host_note: Self-hosted runners are supported.
+    url: https://github.com/features/actions
+    as_of: 2026-02-22
+  - name: Earthly
+    group: cicd
+    best_for: Containerized, reproducible builds
+    free_tier: 6,000 build minutes/month; builds run the same locally and in CI.
+    self_host: partial
+    self_host_note: The Earthly CLI is open source.
+    url: https://earthly.dev/
+    as_of: 2026-02-22
+
+  - name: Sentry
+    group: observability
+    best_for: Error tracking and stack-trace capture
+    free_tier: 5k errors/month — enough to catch unhandled exceptions in an MVP.
+    self_host: yes
+    url: https://sentry.io/pricing/
+    as_of: 2026-02-22
+  - name: Grafana Cloud
+    group: observability
+    best_for: Metrics, logs, traces and dashboards
+    free_tier: 10k Prometheus metrics, 50 GB logs and 50 GB traces.
+    self_host: yes
+    url: https://grafana.com/pricing/
+    as_of: 2026-02-22

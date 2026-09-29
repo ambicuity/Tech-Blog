@@ -1,0 +1,13 @@
+{%- comment -%} giscus, loaded only when the reader scrolls near it. {%- endcomment -%}
+{%- assign g = site.comments.giscus -%}
+{%- if site.comments.provider == "giscus" and page.comments != false %}
+<section class="comments" aria-labelledby="comments-title">
+  <h2 id="comments-title" class="section__title">Discussion</h2>
+  <p class="muted comments__note">Comments are powered by GitHub Discussions.</p>
+  <p class="comments__fallback" data-giscus-fallback hidden>Comments can't load right now. Join the conversation on <a href="https://github.com/{{ g.repo }}/discussions" rel="noopener">GitHub Discussions</a>.</p>
+  <div class="giscus" data-giscus
+    data-repo="{{ g.repo }}" data-repo-id="{{ g.repo_id }}" data-category="{{ g.category }}"
+    data-category-id="{{ g.category_id }}" data-mapping="{{ g.mapping }}" data-strict="{{ g.strict }}"
+    data-reactions-enabled="{{ g.reactions_enabled }}" data-input-position="{{ g.input_position }}" data-lang="{{ g.lang }}"></div>
+</section>
+{%- endif %}

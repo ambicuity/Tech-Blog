@@ -1,0 +1,9 @@
+{%- comment -%} Date + reading time (+ optional updated date). include.post {%- endcomment -%}
+{%- assign _p = include.post | default: page -%}
+<div class="meta">
+  <time datetime="{{ _p.date | date_to_xmlschema }}">{{ _p.date | date: "%b %-d, %Y" }}</time>
+  {%- if include.updated and _p.last_modified_at %}
+  <span>Updated <time datetime="{{ _p.last_modified_at | date_to_xmlschema }}">{{ _p.last_modified_at | date: "%b %-d, %Y" }}</time></span>
+  {%- endif %}
+  <span>{{ _p.word_count | reading_minutes }} min read</span>
+</div>

@@ -3,39 +3,22 @@ layout: page
 icon: fas fa-code
 order: 7
 title: Projects
+wide: true
+eyebrow: Engineering portfolio
+lede: Open-source tools, infrastructure modules and experiments. Everything here links to real source code; live deployments are marked.
 ---
-
-## 🏗️ Engineering Portfolio
-
-A collection of open-source tools, infrastructure scripts, and experimental projects.
-
-### 🤖 Automation & CI/CD
-
-
-#### [Job Board Scraper](https://github.com/ambicuity/New-Grad-Jobs)
-*Python, BeautifulSoup, GitHub Actions*
-an automated pipeline that scrapes, aggregates, and filters entry-level engineering jobs from multiple sources, updating a static job board daily.
-[**Live Website**](https://jobs.riteshrana.engineer)
-
-
----
-
-### ☁️ Cloud Native & DevOps
-
-#### [Kubernetes Lab](https://github.com/ambicuity)
-*Kubernetes, Helm, ArgoCD*
-A complete local Kubernetes environment providing a playground for testing service mesh configurations (Istio), monitoring stacks (Prometheus), and GitOps workflows.
-
-#### [Infrastructure as Code Repos](https://github.com/ambicuity)
-*Terraform, Ansible*
-Various modules and playbooks for provisioning reproducible infrastructure on AWS and DigitalOcean.
-
----
-
-### 📦 Tools & Utilities
-
-#### [RiteshRana.engineer](https://riteshrana.engineer)
-*React, Next.js*
-My personal engineering portfolio and landing page, showcasing my full professional history and skills matrix.
-
-> **Explore more on my [GitHub Profile](https://github.com/ambicuity)**
+{%- assign _featured = site.data.projects | where: "featured", true -%}
+{%- assign _rest = site.data.projects | where_exp: "p", "p.featured != true" -%}
+<section class="section section--flush" aria-labelledby="featured-projects">
+  <h2 class="section__title" id="featured-projects">Featured</h2>
+  <ul class="project-grid project-grid--featured">
+    {%- for proj in _featured %}<li>{% include project-card.html item=proj %}</li>{% endfor %}
+  </ul>
+</section>
+<section class="section" aria-labelledby="more-projects">
+  <h2 class="section__title" id="more-projects">More projects</h2>
+  <ul class="project-grid">
+    {%- for proj in _rest %}<li>{% include project-card.html item=proj %}</li>{% endfor %}
+  </ul>
+  <p class="section__more"><a class="arrow-link" href="{{ site.contact.github }}" rel="me noopener">Everything else on GitHub {% include icon.html name="arrow-right" %}</a></p>
+</section>

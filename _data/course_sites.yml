@@ -1,0 +1,58 @@
+# Standalone courses, each hosted on its own site. These are the primary
+# entries on /courses/ and the home page. Lesson/phase counts come from each
+# course site's own description — update them here when a course grows.
+#
+# related_categories / related_tags: articles in these categories (or with
+# these tags) show a "Go deeper" link to this course. First match wins, in
+# file order, tags checked before categories. Keep these to subjects the
+# course actually teaches — no link is better than an irrelevant one.
+# covers: slugs of in-blog notes under courses/ that this course supersedes.
+# Those pages stay online (existing links keep working) and show a banner
+# pointing to the full course.
+- slug: computer-science
+  title: Computer Science
+  url: https://course-computer-science.riteshrana.engineer/
+  repo: https://github.com/ambicuity/course-computer-science
+  lessons: 421
+  phases: 20
+  summary: Build computer science from scratch.
+  description: >-
+    From discrete math to distributed systems, built by hand: algorithms,
+    memory models, operating systems, compilers, networks, databases and
+    distributed systems — a bootloader, a B-tree, a TCP stack, a
+    type-checker and Raft along the way.
+  topics: [C, C++, Rust, Go, Python, Haskell, SQL, RISC-V, TLA+]
+  covers: [os, dbms, architecture, compilers, dsa]
+  related_categories: [Python, Performance]
+  related_tags: [concurrency, memory, garbage-collection, jvm, interpreter, jit, multiprocessing, memoryview, zero-copy, asyncio, event-loop]
+- slug: computer-networks
+  title: Computer Networks
+  url: https://course-computer-networks.riteshrana.engineer/
+  repo: https://github.com/ambicuity/course-computer-networks
+  lessons: 307
+  phases: 20
+  summary: A deep, packet-first networks course.
+  description: >-
+    Learn networks through protocols, packet traces, measurements and
+    failure analysis — signals, frames, packets, TCP behaviour, DNS, HTTP,
+    streaming and network security. Every lesson ships prose, runnable code
+    and a quiz.
+  topics: [TCP/IP, DNS, HTTP, Packet traces, Network security]
+  covers: [networking]
+  related_categories: []
+  related_tags: [networking, cni, service-mesh, istio, grpc, grpc-web, load-balancing, envoy, protobuf, latency]
+- slug: system-design
+  title: System Design
+  url: https://course-system-design.riteshrana.engineer/
+  repo: https://github.com/ambicuity/course-system-design
+  lessons: 263
+  phases: 22
+  summary: System design from first principles.
+  description: >-
+    Networking, databases, caching, queues and distributed-systems theory —
+    then the classic design problems that build on them, from YouTube to
+    payments and stock exchanges.
+  topics: [Databases, Caching, Queues, Distributed systems, Design problems]
+  covers: [system-design]
+  related_categories: [Distributed Systems, Reliability, Database, Cloud Computing, Platform Engineering]
+  related_tags: [idempotency, message-ordering, rate-limiting, caching, kafka, sqs, event-driven, circuit-breaker, resilience]
