@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-labelledby="t d">
+  <title id="t">Idempotent webhook handling flow</title>
+  <desc id="d">The provider delivers an event to the handler. The handler records the event ID in a deduplication table inside the same transaction as the side effect, then acknowledges. A redelivered event hits the unique constraint and is acknowledged without repeating the side effect.</desc>
+  <style>
+    .box{fill:#ffffff;stroke:#1b1a17;stroke-width:1.5}
+    .accent{fill:#e2f0ed;stroke:#0a6a61;stroke-width:1.5}
+    .t{font:600 17px 'IBM Plex Sans',Arial,sans-serif;fill:#1b1a17}
+    .s{font:14px 'IBM Plex Sans',Arial,sans-serif;fill:#46433c}
+    .m{font:13px 'JetBrains Mono',Menlo,monospace;fill:#0a6a61}
+    .l{stroke:#46433c;stroke-width:1.5;fill:none;marker-end:url(#a)}
+    .dash{stroke:#b3261e;stroke-dasharray:5 4}
+  </style>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#46433c"/></marker></defs>
+  <rect width="960" height="300" fill="#fbfaf7"/>
+  <rect class="box" x="24" y="96" width="176" height="92" rx="6"/>
+  <text class="t" x="112" y="134" text-anchor="middle">Provider</text>
+  <text class="s" x="112" y="158" text-anchor="middle">at-least-once delivery</text>
+  <rect class="box" x="276" y="96" width="196" height="92" rx="6"/>
+  <text class="t" x="374" y="134" text-anchor="middle">Webhook handler</text>
+  <text class="s" x="374" y="158" text-anchor="middle">verify signature, parse</text>
+  <rect class="accent" x="548" y="40" width="388" height="204" rx="6"/>
+  <text class="t" x="742" y="72" text-anchor="middle">One database transaction</text>
+  <rect class="box" x="572" y="92" width="340" height="56" rx="4"/>
+  <text class="m" x="742" y="126" text-anchor="middle">INSERT processed_events … ON CONFLICT DO NOTHING</text>
+  <rect class="box" x="572" y="164" width="340" height="56" rx="4"/>
+  <text class="m" x="742" y="198" text-anchor="middle">apply side effect (only if inserted)</text>
+  <path class="l" d="M200 142h72"/>
+  <path class="l" d="M472 142h72"/>
+  <path class="l dash" d="M112 188v64h630v-28"/>
+  <text class="s" x="330" y="272" fill="#b3261e">redelivery → unique constraint → acknowledge, no repeat</text>
+</svg>
