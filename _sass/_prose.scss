@@ -292,7 +292,8 @@
   // Diagrams --------------------------------------------------------------
   pre.mermaid {
     display: flex;
-    justify-content: center;
+    // "safe" keeps a wider-than-box diagram scrollable from its left edge.
+    justify-content: safe center;
     padding: var(--sp-5);
     border: 1px solid var(--border);
     border-radius: var(--radius);
