@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+<title>Retry amplification: one user action becomes 64 database attempts</title>
+<defs>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+</pattern>
+<marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+</marker>
+</defs>
+<text x="8" y="22" class="f-title">One user action, three layers of retries</text>
+<g data-step="1" style="--from-x: -24px">
+<rect x="15" y="40" width="150" height="150" class="f-box"/>
+<text x="90" y="66" class="f-label f-middle">JavaScript client</text>
+<line x1="15" y1="78" x2="165" y2="78" class="f-rule"/>
+<text x="90" y="140" class="f-code f-middle f-a1">1 call</text>
+</g>
+<g data-step="2" style="--from-x: -24px">
+<line x1="165" y1="115" x2="195" y2="115" class="f-line" marker-end="url(#arrow)"/>
+<text x="180" y="104" class="f-small f-middle">x4</text>
+</g>
+<g data-step="2" style="--from-x: -24px">
+<rect x="195" y="40" width="150" height="150" class="f-box"/>
+<text x="270" y="66" class="f-label f-middle">Frontend</text>
+<line x1="195" y1="78" x2="345" y2="78" class="f-rule"/>
+<text x="270" y="140" class="f-code f-middle f-a2">4 attempts</text>
+</g>
+<g data-step="3" style="--from-x: -24px">
+<line x1="345" y1="115" x2="375" y2="115" class="f-line" marker-end="url(#arrow)"/>
+<text x="360" y="104" class="f-small f-middle">x4</text>
+</g>
+<g data-step="3" style="--from-x: -24px">
+<rect x="375" y="40" width="150" height="150" class="f-box"/>
+<text x="450" y="66" class="f-label f-middle">Backend</text>
+<line x1="375" y1="78" x2="525" y2="78" class="f-rule"/>
+<text x="450" y="140" class="f-code f-middle f-a3">16 attempts</text>
+</g>
+<g data-step="4" style="--from-x: -24px">
+<line x1="525" y1="115" x2="555" y2="115" class="f-line" marker-end="url(#arrow)"/>
+<text x="540" y="104" class="f-small f-middle">x4</text>
+</g>
+<g data-step="4" style="--from-x: -24px">
+<rect x="555" y="40" width="150" height="150" class="f-box"/>
+<text x="630" y="66" class="f-label f-middle">Database</text>
+<line x1="555" y1="78" x2="705" y2="78" class="f-rule"/>
+<text x="630" y="140" class="f-code f-middle f-a4">64 attempts</text>
+</g>
+<line x1="8" y1="330" x2="712" y2="330" class="f-rule"/>
+<text x="8" y="352" class="f-small">1 one call leaves the browser</text>
+<text x="8" y="372" class="f-small">2 the frontend retries 3 times: 4 attempts 3 the backend retries each of those: 16 attempts</text>
+<text x="8" y="392" class="f-small">4 the database sees 4 x 4 x 4 = 64 attempts for one user action (SRE book)</text>
+</svg>
