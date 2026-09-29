@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330">
+  <title>An order and its event, from commit to acknowledgement</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <!-- PostgreSQL: orders and outbox tables -->
+  <text x="8" y="20" class="f-title">PostgreSQL</text>
+  <rect x="8" y="30" width="384" height="206" fill="url(#hatch)" class="f-frame"/>
+
+  <rect x="22" y="44" width="172" height="178" class="f-box"/>
+  <text x="34" y="64" class="f-label">orders</text>
+  <line x1="22" y1="74" x2="194" y2="74" class="f-rule"/>
+  <text x="34" y="100">1041  paid</text>
+  <line x1="22" y1="112" x2="194" y2="112" class="f-rule"/>
+
+  <rect x="206" y="44" width="172" height="178" class="f-box"/>
+  <text x="218" y="64" class="f-label">outbox</text>
+  <line x1="206" y1="74" x2="378" y2="74" class="f-rule"/>
+  <text x="218" y="100">1041 v2</text>
+  <text x="366" y="100" class="f-small f-end">sent</text>
+  <line x1="206" y1="112" x2="378" y2="112" class="f-rule"/>
+
+  <!-- 1. One transaction writes both rows -->
+  <g data-step="1" style="--from-y: 8px">
+    <rect x="26" y="116" width="164" height="30" rx="2" class="f-a1"/>
+    <text x="34" y="136" class="f-code">1042  placed</text>
+    <rect x="210" y="116" width="164" height="30" rx="2" class="f-a1"/>
+    <text x="218" y="136" class="f-code">1042 v1</text>
+    <path d="M26 156 v6 h348 v-6" class="f-a1-line"/>
+    <circle cx="140" cy="180" r="8" class="f-a1"/>
+    <text x="140" y="184" class="f-small f-middle f-a1">1</text>
+    <text x="154" y="184" class="f-label f-a1">one transaction</text>
+  </g>
+  <text x="366" y="136" class="f-small f-end" data-step="1" data-until="5">pending</text>
+  <text x="366" y="136" class="f-small f-end f-a1" data-step="5">sent</text>
+
+  <!-- 2. The relay locks the pending row -->
+  <rect x="207" y="113" width="170" height="36" rx="3" class="f-a1-line f-dashed" data-step="2" data-until="5"/>
+  <g data-step="2" style="--from-x: -10px">
+    <line x1="378" y1="131" x2="434" y2="131" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="390" cy="113" r="8" class="f-a1"/>
+    <text x="390" y="117" class="f-small f-middle f-a1">2</text>
+    <text x="401" y="117" class="f-label f-small">lock</text>
+  </g>
+
+  <rect x="436" y="110" width="76" height="46" class="f-box"/>
+  <text x="474" y="138" class="f-label f-middle">relay</text>
+
+  <!-- Kafka: three partitions of orders.events -->
+  <text x="566" y="20" class="f-title">Kafka</text>
+  <rect x="566" y="30" width="146" height="206" fill="url(#hatch)" class="f-frame"/>
+  <rect x="578" y="44" width="122" height="48" class="f-box"/>
+  <text x="588" y="64" class="f-label f-small">p0</text>
+  <rect x="588" y="72" width="12" height="12" class="f-box"/>
+  <rect x="604" y="72" width="12" height="12" class="f-box"/>
+  <rect x="620" y="72" width="12" height="12" class="f-box"/>
+
+  <rect x="578" y="100" width="122" height="48" class="f-box"/>
+  <text x="588" y="120" class="f-label f-small">p1</text>
+  <rect x="588" y="128" width="12" height="12" class="f-box"/>
+  <rect x="604" y="128" width="12" height="12" class="f-box"/>
+
+  <rect x="578" y="156" width="122" height="48" class="f-box"/>
+  <text x="588" y="176" class="f-label f-small">p2</text>
+  <rect x="588" y="184" width="12" height="12" class="f-box"/>
+  <text x="578" y="222" class="f-small">orders.events</text>
+
+  <!-- 3. Send, keyed by order id, into one partition -->
+  <g data-step="3">
+    <line x1="512" y1="124" x2="576" y2="124" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="524" cy="104" r="8" class="f-a1"/>
+    <text x="524" y="108" class="f-small f-middle f-a1">3</text>
+    <text x="535" y="108" class="f-label f-small">send</text>
+  </g>
+  <rect x="620" y="128" width="12" height="12" class="f-a1-solid" data-step="3" style="--from-x: -110px"/>
+  <text x="640" y="138" class="f-small f-a1" data-step="3">1042</text>
+
+  <!-- 4. The broker acknowledges that record -->
+  <g data-step="4" style="--from-x: 10px">
+    <line x1="576" y1="146" x2="514" y2="146" class="f-line f-dashed" marker-end="url(#arrow)"/>
+    <circle cx="524" cy="166" r="8" class="f-a1"/>
+    <text x="524" y="170" class="f-small f-middle f-a1">4</text>
+    <text x="535" y="170" class="f-label f-small">ack</text>
+  </g>
+
+  <!-- 5. Mark the row sent -->
+  <g data-step="5">
+    <circle cx="318" cy="131" r="8" class="f-a1"/>
+    <text x="318" y="135" class="f-small f-middle f-a1">5</text>
+  </g>
+
+  <!-- Legend: the whole story, readable without the animation -->
+  <line x1="8" y1="252" x2="712" y2="252" class="f-rule"/>
+  <text x="8" y="276" class="f-small">1 commit the order and its event row together</text>
+  <text x="372" y="276" class="f-small">2 relay locks the pending row</text>
+  <text x="8" y="298" class="f-small">3 send, keyed by order id: one partition per order</text>
+  <text x="372" y="298" class="f-small">4 broker acknowledges that record</text>
+  <text x="8" y="320" class="f-small">5 only now mark it sent; a crash before 5 sends it again, never loses it</text>
+</svg>

@@ -47,22 +47,7 @@ Retrying the failed half narrows the window but never closes it: a crash can alw
 
 The service commits the order and its event row together. A relay then moves committed events to Kafka, and only records a row as published once the broker has acknowledged it. The one remaining crash window, after the broker acknowledged but before the rows were marked, produces a duplicate, never a loss:
 
-```mermaid
-sequenceDiagram
-    accTitle: Transactional outbox, including its crash window
-    accDescr: The service commits the order and the outbox row in one transaction. The relay locks pending rows, sends each event to Kafka, waits for each acknowledgement, then marks those rows published. A crash before marking leaves the rows pending, so they are sent again.
-    participant S as Order service
-    participant DB as PostgreSQL
-    participant R as Relay
-    participant K as Kafka
-    S->>DB: BEGIN, insert order and outbox row, COMMIT
-    Note over S,DB: The event exists exactly when the order does
-    R->>DB: lock pending rows (FOR UPDATE SKIP LOCKED)
-    R->>K: send each event, key = order id
-    K-->>R: acknowledgement per record
-    Note over R,K: Crash here: rows stay pending and are sent again
-    R->>DB: mark acknowledged rows published, COMMIT
-```
+![An order row and its outbox row are committed in one transaction. The relay locks the pending outbox row, sends the event to Kafka keyed by order ID so it lands in partition p1, waits for the broker to acknowledge that record, and only then marks the row sent. A crash before that last step sends the event again; it never loses it.](outbox-flow.svg "The relay's five steps. Until step 5 the row stays pending, so a crash can only cause a resend."){: .figure}
 
 ## The outbox table
 
