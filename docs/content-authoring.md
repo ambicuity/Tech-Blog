@@ -166,14 +166,31 @@ relevant internal links per article is a good target.
 ### References
 
 End with a `## References` section listing primary sources: official docs,
-RFCs, specifications, postmortems, papers. Links to other sites get an
-"external" indicator automatically.
+RFCs, specifications, postmortems, papers. Write each one as a Markdown link —
+a bare URL renders as plain, unclickable text:
+
+```markdown
+## References
+
+- Chris Richardson, [Pattern: Transactional outbox](https://microservices.io/patterns/data/transactional-outbox.html), *microservices.io*
+- [PostgreSQL: The locking clause](https://www.postgresql.org/docs/current/sql-select.html#SQL-FOR-UPDATE-SHARE)
+```
+
+Only cite pages you have opened, and only for what they actually say. Every
+external link in a changed article is requested in CI: a page that returns 404
+or 410, or a host that does not exist, fails the pull request. Links to other
+sites get an "external" indicator automatically.
 
 ### Accuracy
 
 Do not invent measurements, incidents, quotations or sources. If a number is
 illustrative, say so. Every claim a reader could check should link to the
-source that supports it.
+source that supports it. Code and prose must agree: if the text says events
+are keyed by order ID, the code must key them by order ID.
+
+Never leave placeholders for later in the text — `[CLAIM:...]`, `[TODO]`,
+`[TBD]`, `[INSERT ...]`, `[FIXME]` fail validation. (Placeholders inside code,
+such as `YOUR_QUEUE_URL`, are fine.)
 
 ## 5. Categories and tags
 
@@ -269,6 +286,8 @@ bundle install                                   # once
 ruby scripts/validate_content.rb                 # every article: errors fail, warnings don't
 ruby scripts/validate_content.rb content/posts/my-article
 ruby scripts/validate_content.rb --json          # machine-readable
+ruby scripts/check_external_links.rb content/posts/my-article   # request every external link
+ruby scripts/check_external_links.rb --changed-since origin/main
 
 bundle exec ruby test/plugins_test.rb            # full test suite
 bundle exec jekyll build                         # production build (drafts excluded)
@@ -286,12 +305,19 @@ bundle exec jekyll serve --drafts                # local preview including draft
 - A referenced image that is missing, outside the article folder, of an
   unsupported type, or over 5 MiB
 - `cover` without `image` or `alt`
+- A leftover placeholder in the text (`[CLAIM:...]`, `[TODO]`, `[INSERT ...]`, …)
+- A code block that lost its ``` fences (a line that reads only `yaml`, `bash`, …)
 - A broken internal link (checked on the built site)
+- In pull requests: an external link in a changed article that returns 404/410
+  or whose host does not exist (`scripts/check_external_links.rb`)
 
 ### What only warns
 
 Description or title length, tag count, non-canonical tags, images without
-alt text, images over 500 KiB, a level-1 heading in the body.
+alt text, images over 500 KiB, a level-1 heading in the body, no
+`## References` section, bare URLs under References, no links to other
+articles, and external links that could not be verified (403, 429, 5xx,
+timeouts — often bot protection, so check them by hand).
 
 ## 9. Checklist
 
@@ -300,6 +326,8 @@ alt text, images over 500 KiB, a level-1 heading in the body.
 - [ ] Categories from the list; 3–8 canonical tags
 - [ ] Sections start at `##`; code fences have languages
 - [ ] Images in the folder, referenced relatively, with alt text
-- [ ] 2–4 internal links; a References section with primary sources
-- [ ] No invented numbers, incidents or quotes
+- [ ] 2–4 internal links; a References section of `[Title](url)` links to primary sources
+- [ ] No invented numbers, incidents or quotes; code matches what the text says
+- [ ] No `[CLAIM:...]` / `[TODO]` placeholders left in the text
 - [ ] `ruby scripts/validate_content.rb` passes
+- [ ] `ruby scripts/check_external_links.rb content/posts/<slug>` reports no broken links

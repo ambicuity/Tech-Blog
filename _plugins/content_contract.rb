@@ -22,6 +22,14 @@ module TechBlog
     # Legacy files in _posts/ written by the previous generator are only
     # checked for the essentials; stricter rules apply from this date.
     LEGACY_STRICT_FROM = "2026-01-01"
+    # Placeholders a writer or generator left for itself, e.g. [CLAIM:ROOT_CAUSE],
+    # [TODO], [INSERT diagram]. Checked outside code, in every article; link
+    # text such as [INSERT statements](/posts/...) is not a marker.
+    LEFTOVER_MARKER_RE = /\[(?:CLAIM|TODO|TBD|FIXME|INSERT|CITATION)(?:[:\s][^\]\n]*)?\](?!\()/
+    # A line that is only a language name: a code block whose ``` fences were
+    # stripped, which then renders (and is Liquid-processed) as prose.
+    LOST_FENCE_RE = /^[ \t]*(?:yaml|bash|python|json|go|sh|shell|javascript|typescript|dockerfile|sql|hcl|terraform|console|promql|java|rust|toml)[ \t]*$/
+    REFERENCES_HEADING_RE = /^##\s+(?:References|Sources|Further reading)\s*$/i
 
     Result = Struct.new(:path, :slug, :errors, :warnings) do
       def ok? = errors.empty?
@@ -139,13 +147,14 @@ module TechBlog
       name = File.basename(path)
       result = Result.new(rel, name.sub(/\A\d{4}-\d{2}-\d{2}-/, "").delete_suffix(".md"), [], [])
 
-      data, _body, error = parse_front_matter(File.read(path))
+      data, body, error = parse_front_matter(File.read(path))
       if error
         result.errors << error
         return result
       end
 
       check_common(root, data, result)
+      check_markers(prose(body), result)
       check_categories(root, data, result, strict: false)
       result.errors << "tags are required" unless data.key?("tags")
       check_tags(data, result, required: false)
@@ -260,8 +269,42 @@ module TechBlog
     IMAGE_RE = /!\[([^\]]*)\]\(\s*<?([^)\s>]+)>?(?:\s+"[^"]*")?\s*\)/
     HTML_IMG_RE = /<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/i
 
+    # Markdown without fenced code blocks or inline code spans.
+    def prose(body)
+      body.gsub(/^(```|~~~).*?^\1/m, "").gsub(/`[^`\n]*`/, "")
+    end
+
+    def check_markers(prose, result)
+      lost = prose.scan(LOST_FENCE_RE).map(&:strip).uniq
+      result.errors << "a code block lost its ``` fences (a line reads only '#{lost.join("', '")}'); wrap the code in ```lang ... ```" if lost.any?
+
+      markers = prose.scan(LEFTOVER_MARKER_RE).uniq
+      return if markers.empty?
+
+      result.errors << "leftover placeholder(s) in the text: #{markers.join(', ')} (remove them or write the missing content)"
+    end
+
+    def check_sources(prose, result)
+      result.warnings << "no links to other articles (aim for 2-4, e.g. [title](/posts/<slug>/))" unless prose.include?("](/posts/")
+
+      heading = prose.match(REFERENCES_HEADING_RE)
+      unless heading
+        result.warnings << "no ## References section (list the primary sources that support the article)"
+        return
+      end
+
+      section = heading.post_match.split(/^##\s/, 2).first
+      linked = section.gsub(/\[[^\]]*\]\([^)]*\)/, "").gsub(%r{<https?://[^>]+>}, "")
+      bare = linked.scan(%r{https?://[^\s)>\]]+}).size
+      return if bare.zero?
+
+      result.warnings << "References: #{bare} bare URL(s) render as plain, unclickable text; write [Title](https://...)"
+    end
+
     def check_body(dir, body, result)
-      prose = body.gsub(/^(```|~~~).*?^\1/m, "") # ignore fenced code
+      prose = prose(body)
+      check_markers(prose, result)
+      check_sources(prose, result)
       result.warnings << "body contains a level-1 heading; the title already renders as <h1> (start sections at ##)" if prose.match?(/^#\s/)
 
       prose.scan(IMAGE_RE).each do |alt, src|

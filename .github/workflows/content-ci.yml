@@ -34,6 +34,13 @@ jobs:
       - name: Validate content contract
         run: bundle exec ruby scripts/validate_content.rb
 
+      # Only articles changed by the pull request: a dead reference (404/410,
+      # unknown host) fails; pages that block bots or time out only warn.
+      - name: Check external references in changed articles
+        run: >-
+          bundle exec ruby scripts/check_external_links.rb
+          --changed-since "${{ github.event.pull_request.base.sha || 'origin/main' }}"
+
       - name: Test theme plugins and content
         run: bundle exec ruby test/plugins_test.rb
 

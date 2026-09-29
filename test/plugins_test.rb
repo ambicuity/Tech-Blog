@@ -17,9 +17,11 @@ require "base64"
 require "fileutils"
 require "open3"
 require "rbconfig"
+require "socket"
 
 ROOT = File.expand_path("..", __dir__)
 Dir[File.join(ROOT, "_plugins", "*.rb")].sort.each { |f| require f }
+require_relative "../scripts/support/external_links"
 
 class TaxonomyTest < Minitest::Test
   CONFIG = YAML.safe_load_file(File.join(ROOT, "_data", "taxonomy.yml"))
@@ -159,6 +161,129 @@ class ContentContractTest < Minitest::Test
     dupes = TechBlog::ContentContract.validate_all(@root).reject(&:ok?)
     assert_equal 2, dupes.size
     assert(dupes.all? { |r| r.errors.join.include?("duplicate slug") })
+  end
+
+  def test_leftover_generator_markers_fail
+    %w[[CLAIM:ROOT_CAUSE] [TODO] [TODO:\ add\ numbers] [INSERT\ diagram] [TBD] [FIXME]].each_with_index do |marker, i|
+      result = bundle("marker-#{i}", body: "The cause was a bad rule #{marker}.\n\n## Section\n\nText.")
+      assert_match(/leftover placeholder/, result.errors.join, marker)
+    end
+  end
+
+  def test_markers_in_code_and_ordinary_brackets_are_fine
+    body = "Use `[TODO]` in comments.\n\n```python\n# [CLAIM:X] is fine in code\n```\n\n" \
+           "> [!NOTE]\n> A callout.\n\nSee the [TODO list](/posts/x/) and [INSERT statements](/posts/y/)."
+    assert bundle("markers-ok", body: body).ok?
+  end
+
+  def test_leftover_markers_fail_in_legacy_posts_too
+    FileUtils.mkdir_p(File.join(@root, "_posts"))
+    path = File.join(@root, "_posts", "2024-07-30-old-post.md")
+    File.write(path, "#{YAML.dump(GOOD)}---\nA partial outage [CLAIM:FAILURE_MODE].\n")
+    assert_match(/leftover placeholder/, TechBlog::ContentContract.validate_legacy(@root, path).errors.join)
+  end
+
+  def test_code_block_that_lost_its_fences_fails
+    result = bundle("lost-fence", body: "Apply it:\n\nyaml\napiVersion: v1\nkind: Service\n\n\nDone.")
+    assert_match(/lost its ``` fences/, result.errors.join)
+    in_list = bundle("lost-fence-list", body: "*   Drain the node:\n\n    bash\n    kubectl drain node-1\n    \n")
+    assert_match(/lost its ``` fences/, in_list.errors.join)
+    assert bundle("kept-fence", body: "Apply it:\n\n```yaml\napiVersion: v1\n```\n\nWe use yaml\nfor config.").ok?
+  end
+
+  def test_references_and_internal_links_are_encouraged
+    bare = bundle("bare-refs", body: "Text.\n\n## References\n\n- Pattern docs — https://example.org/pattern\n")
+    assert bare.ok?, "reference style is a warning, not an error"
+    assert_match(/bare URL/, bare.warnings.join)
+    assert_match(/no links to other articles/, bare.warnings.join)
+
+    missing = bundle("no-refs", body: "Text with [a link](/posts/other/).\n\n## Section\n\nMore.")
+    assert_match(/References section/, missing.warnings.join)
+
+    good = bundle("good-refs", body: "See [related](/posts/other/).\n\n## References\n\n" \
+                                     "- [Pattern docs](https://example.org/pattern)\n- <https://example.org/spec>\n")
+    assert_empty good.warnings.grep(/References|bare URL|other articles/)
+  end
+end
+
+# scripts/support/external_links.rb: the external-reference check for changed articles.
+class ExternalLinksTest < Minitest::Test
+  Links = TechBlog::ExternalLinks
+
+  # A tiny HTTP server so the checker is tested without the internet.
+  def setup
+    @server = TCPServer.new("127.0.0.1", 0)
+    @base = "http://127.0.0.1:#{@server.addr[1]}"
+    @thread = Thread.new { loop { serve(@server.accept) } }
+  end
+
+  def teardown
+    @thread.kill
+    @server.close
+  end
+
+  def serve(client)
+    method, path = client.gets.to_s.split
+    nil until client.gets.to_s.strip.empty?
+    status, headers = case path
+                      when "/ok" then ["200 OK", {}]
+                      when "/moved" then ["301 Moved Permanently", { "Location" => "/ok" }]
+                      when "/moved-to-gone" then ["302 Found", { "Location" => "#{@base}/gone" }]
+                      when "/gone" then ["404 Not Found", {}]
+                      when "/no-head" then method == "HEAD" ? ["405 Method Not Allowed", {}] : ["200 OK", {}]
+                      when "/blocked" then ["403 Forbidden", {}]
+                      when "/busy" then ["503 Service Unavailable", {}]
+                      else ["404 Not Found", {}]
+                      end
+    head = headers.merge("Content-Length" => "0", "Connection" => "close").map { |k, v| "#{k}: #{v}\r\n" }.join
+    client.write("HTTP/1.1 #{status}\r\n#{head}\r\n")
+  ensure
+    client&.close
+  end
+
+  def verdict(path) = Links.check("#{@base}#{path}", timeout: 3).verdict
+
+  def test_classifies_responses
+    assert_equal :ok, verdict("/ok")
+    assert_equal :ok, verdict("/moved")
+    assert_equal :ok, verdict("/no-head"), "falls back to GET when HEAD is refused"
+    assert_equal :broken, verdict("/gone")
+    assert_equal :broken, verdict("/moved-to-gone")
+    assert_equal :unverified, verdict("/blocked"), "bot-blocking is not proof the page is gone"
+    assert_equal :unverified, verdict("/busy")
+  end
+
+  def test_unreachable_host_is_broken
+    port = TCPServer.open("127.0.0.1", 0) { |s| s.addr[1] } # closed port
+    assert_equal :broken, Links.check("http://127.0.0.1:#{port}/", timeout: 3).verdict
+  end
+
+  def test_extracts_links_outside_code
+    markdown = <<~MD
+      Read [the pattern](https://microservices.io/patterns/data/transactional-outbox.html) and
+      <https://kafka.apache.org/documentation/>. Also https://debezium.io/documentation/.
+      Local [post](/posts/other/) and [section](#refs) are not external.
+
+      ```bash
+      curl https://api.example.net/in-code
+      ```
+
+      Run `curl https://inline.example.net/x` too. [Same](https://kafka.apache.org/documentation/)
+    MD
+    assert_equal %w[
+      https://microservices.io/patterns/data/transactional-outbox.html
+      https://kafka.apache.org/documentation/
+      https://debezium.io/documentation/
+    ], Links.extract(markdown)
+  end
+
+  def test_skips_placeholder_and_local_hosts
+    %w[http://localhost:8080/x http://127.0.0.1/ https://example.com/a https://api.example.org
+       http://my-svc.default.svc.cluster.local/ http://host.internal/ http://10.x.x.x:8080/health
+       http://10.0.0.12/].each do |url|
+      refute Links.checkable?(url), url
+    end
+    assert Links.checkable?("https://kafka.apache.org/documentation/")
   end
 end
 
