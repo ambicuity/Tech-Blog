@@ -43,8 +43,10 @@ articles, and no more than 3 on Kubernetes.
    source (official docs, RFCs, papers, public postmortems). At least 3 references.
 3. **Correct code.** Code runs as shown and matches the prose. No placeholder
    variables in prose, no `[TODO]`.
-4. **A diagram** when the idea is a flow, a sequence or a state machine (a fenced
-   `mermaid` block).
+4. **Figures** that show the system's state and how it changes: about one per
+   400-600 words of explanation, hand-drawn SVG per [figures.md](figures.md), animated
+   when order matters. A fenced `mermaid` block is fine for a simple flowchart or
+   sequence where layout carries no meaning.
 5. **Connected.** 2–4 links to related articles on the blog, on phrases already in
    the text.
 6. **Honest.** No invented incidents presented as real, no invented numbers, no
@@ -73,7 +75,7 @@ cite what it actually uses.
 
 | Topic | Category · kind | Links to | Start from |
 | :--- | :--- | :--- | :--- |
-| Retries with exponential backoff and jitter | Distributed Systems · Guide | idempotent operations, circuit breaker | [AWS Builders' Library: Timeouts, retries and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/) |
+| Retries with exponential backoff and jitter | Distributed Systems · Guide | idempotent operations, circuit breaker | [AWS Builders' Library: Timeouts, retries and backoff with jitter](https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter), [AWS Architecture Blog: Exponential backoff and jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/), [SRE Book: Addressing cascading failures](https://sre.google/sre-book/addressing-cascading-failures/), [AWS SDKs: Retry behavior](https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html) |
 | PostgreSQL connection pooling with PgBouncer: session vs transaction mode | Database · Guide | transactional outbox, resource requests and limits | [PgBouncer features](https://www.pgbouncer.org/features.html), [PostgreSQL connection settings](https://www.postgresql.org/docs/current/runtime-config-connection.html) |
 | Partial and covering indexes in PostgreSQL | Database · Deep Dive | transactional outbox | [Partial indexes](https://www.postgresql.org/docs/current/indexes-partial.html), [Index-only scans](https://www.postgresql.org/docs/current/indexes-index-only-scans.html) |
 | Zero-downtime schema changes with expand and contract | Database · Guide | Flyway migrations, blue-green deployments | [Martin Fowler: Parallel Change](https://martinfowler.com/bliki/ParallelChange.html) |
@@ -100,8 +102,9 @@ every article; the short version below is a summary.
 > topic that fills a gap listed there). Follow `docs/content-authoring.md` exactly.
 > Explain one idea completely: when to use it, how it works, how it fails, what to
 > do instead. Cite at least 3 primary sources you actually opened, as
-> `[Title](url)` links under `## References`. Include a Mermaid diagram if the idea
-> is a flow or a state machine, and link 2–4 related articles on this blog. Code
+> `[Title](url)` links under `## References`. Draw SVG figures per
+> `docs/figures.md` wherever the idea is a flow, a state change or a data layout,
+> and link 2–4 related articles on this blog. Code
 > must run as shown and match the prose. Use a plain, specific title without the
 > openers Boosting, Leveraging, Unlocking or Mastering. Do not invent incidents,
 > measurements or quotes; if you narrate a made-up situation, set
