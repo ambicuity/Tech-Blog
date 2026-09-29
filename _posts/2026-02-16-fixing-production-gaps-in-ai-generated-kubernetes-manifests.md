@@ -6,6 +6,7 @@ categories: [AI, Kubernetes]
 tags: [kubernetes, ai-code-generation, production-readiness, reliability, security]
 description: "Production gaps found in AI-generated Kubernetes manifests: missing resource limits, security contexts, and anti-affinity rules that caused a service outage."
 author: ritesh
+scenario: illustrative
 ---
 
 ## The Outage

@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "Fixing Unexpected Code Regression with AI-Assisted Development: A Case Study"
+title: "Fixing Unexpected Code Regressions from AI-Assisted Development"
 date: 2026-04-06 10:10:47 +0000
 categories: [AI, Software Engineering]
 tags: [ai-assisted-development, code-regression, software-engineering, debugging, testing]
+scenario: illustrative
 ---
 
-Our team recently adopted an AI-assisted coding tool, Claude Code, to accelerate feature development. Initial results were promising; velocity increased noticeably. However, we soon encountered a subtle but critical issue: seemingly unrelated code modifications, introduced by the AI tool, were causing regressions in existing functionality.
+Our team recently adopted an AI-assisted coding tool to accelerate feature development. Initial results were promising; velocity increased noticeably. However, we soon encountered a subtle but critical issue: seemingly unrelated code modifications, introduced by the AI tool, were causing regressions in existing functionality.
 
 Here's how it unfolded. We had a microservice responsible for user authentication, written in Python and deployed on Kubernetes. A new feature required modifying the user profile update endpoint to include phone number validation. We tasked Claude Code with generating the necessary validation logic and integrating it into the existing function.
 
@@ -75,6 +76,6 @@ We implemented the following changes to our development process:
 mypy auth_service.py --strict
 ```
 
-4. **AI Tool Configuration:** We configured Claude Code to adhere more strictly to our team's coding conventions and to avoid assumptions about data types. We also provided examples of how our data models are structured.
+4. **AI Tool Configuration:** We configured the AI coding tool to adhere more strictly to our team's coding conventions and to avoid assumptions about data types. We also provided examples of how our data models are structured.
 
 This incident served as a valuable lesson. AI-assisted coding tools can significantly increase development velocity, but they are not a replacement for careful code review, robust testing, and a deep understanding of the underlying codebase. We must treat AI-generated code with the same scrutiny as human-written code, and continuously adapt our processes to mitigate the risks of regressions. Failing to do so can lead to unexpected outages and a loss of user trust.
