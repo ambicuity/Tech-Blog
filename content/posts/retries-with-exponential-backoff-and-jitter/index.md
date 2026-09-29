@@ -5,7 +5,7 @@ description: >-
   a blip into an outage. Tested Python code: error classification, capped
   backoff, full jitter, server-directed delays, retry budgets, and deadlines.
 date: 2026-09-29 16:30:00 +0000
-updated: 2026-09-29 17:04:08 +0000
+updated: 2026-09-29 17:22:40 +0000
 author: ritesh
 categories: [Distributed Systems, Reliability]
 tags: [retries, exponential-backoff, jitter, resilience, python]
@@ -203,7 +203,7 @@ def classify(exc: BaseException) -> str:
     return "permanent"
 ```
 
-The idempotency gate belongs with classification because it answers the same question: is repeating this call safe? A retried non-idempotent operation can execute its side effect twice. The helper therefore never retries a non-idempotent operation unless the caller supplies an idempotency key, which moves the deduplication responsibility to the receiver, the same contract [idempotent webhook handlers](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/) rely on. If you cannot make the operation idempotent and you have no key, the call runs exactly once and is never retried: a failure raises `RetryExhausted` with reason `"not_idempotent"` instead of risking a second execution.
+The idempotency gate belongs with classification because it answers the same question: is repeating this call safe? A retried non-idempotent operation can execute its side effect twice. The helper therefore never retries a non-idempotent operation unless the caller supplies an idempotency key, which moves the deduplication responsibility to the receiver, the contract described in [Idempotent Operations in Distributed Systems](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/). If you cannot make the operation idempotent and you have no key, the call runs exactly once and is never retried: a failure raises `RetryExhausted` with reason `"not_idempotent"` instead of risking a second execution.
 
 ## Honor server-directed delays
 
