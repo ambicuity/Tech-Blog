@@ -27,7 +27,8 @@ publish something subtly wrong.
 ASSIGNMENT
 Topic: {TOPIC, e.g. "Retries with exponential backoff and jitter"}
 Angle / reader problem: {ONE SENTENCE, e.g. "Why naive retries turn a blip into an outage, and how to retry safely"}
-If no topic is given, pick the highest-value unwritten topic from docs/editorial-guide.md.
+If no topic is given, choose one as "Choosing topics" in docs/editorial-guide.md describes
+(web search, primary sources, scoring), and send the plan before writing.
 
 READ FIRST (these are binding)
 - docs/content-authoring.md: bundle layout, front matter, validation, references, accuracy.
