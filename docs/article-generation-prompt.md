@@ -51,6 +51,11 @@ PHASE 1: RESEARCH (do not write prose yet)
    especially error handling, defaults and return values.
 4. Identify the three most common ways engineers get this topic wrong in production.
    The article must address all three.
+5. Establish what is current (see "Staying current" in docs/editorial-guide.md): the
+   latest release of each technology you cover, what changed in its last two releases,
+   its deprecation notices, and any security fix in the latest release. Teach the
+   current recommended approach, say what it replaced, label beta/alpha features as
+   such, and state near the top of the article which versions it targets.
 
 PHASE 2: DESIGN THE ARTICLE
 Structure (adapt headings to the topic; keep the order of ideas):

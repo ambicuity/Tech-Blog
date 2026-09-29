@@ -67,30 +67,50 @@ Avoid the openers *Boosting*, *Leveraging*, *Unlocking*, *Mastering*, and the
 "… in AI-generated … on Kubernetes" pattern; the content validator warns about
 them. Aim for under 70 characters.
 
+## Staying current
+
+Engineers read this blog to learn how to do things *now*, so every article is written
+against the current release of what it covers, not the version most tutorials assume.
+
+- **Name the versions.** State the versions the article and its code target (for
+  example "PostgreSQL 18, PgBouncer 1.26") near the top, and pin them in the code.
+- **Read the recent release notes before writing.** At least the last two major or
+  minor releases of each main technology, plus its deprecation notices. If the
+  recommended approach changed, teach the new one and say what it replaced.
+- **Say what is not ready.** Beta, alpha and preview features can be mentioned, but
+  labelled as such and never used as the default recommendation. Name a release that
+  is imminent (a beta or release candidate) if it changes the advice.
+- **Security first.** If the latest release of a covered tool fixes a vulnerability,
+  tell readers which version to run.
+- **Keep it current.** When a covered release changes the advice, update the article
+  and its `updated:` date rather than letting it drift.
+
 ## Backlog
 
-Topics that fill gaps and connect to existing articles. Each lists primary sources
-to start from (all verified reachable in September 2026); the article must still
-cite what it actually uses.
+Ordered by how much the topic has changed recently and how time-sensitive it is.
+Current state verified against official sources on 2026-09-29; re-check the release
+notes before writing, since these move. The article must still cite what it actually
+uses.
 
-| Topic | Category · kind | Links to | Start from |
-| :--- | :--- | :--- | :--- |
-| Retries with exponential backoff and jitter | Distributed Systems · Guide | idempotent operations, circuit breaker | [AWS Builders' Library: Timeouts, retries and backoff with jitter](https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter), [AWS Architecture Blog: Exponential backoff and jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/), [SRE Book: Addressing cascading failures](https://sre.google/sre-book/addressing-cascading-failures/), [AWS SDKs: Retry behavior](https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html) |
-| PostgreSQL connection pooling with PgBouncer: session vs transaction mode | Database · Guide | transactional outbox, resource requests and limits | [PgBouncer features](https://www.pgbouncer.org/features.html), [PostgreSQL connection settings](https://www.postgresql.org/docs/current/runtime-config-connection.html) |
-| Partial and covering indexes in PostgreSQL | Database · Deep Dive | transactional outbox | [Partial indexes](https://www.postgresql.org/docs/current/indexes-partial.html), [Index-only scans](https://www.postgresql.org/docs/current/indexes-index-only-scans.html) |
-| Zero-downtime schema changes with expand and contract | Database · Guide | Flyway migrations, blue-green deployments | [Martin Fowler: Parallel Change](https://martinfowler.com/bliki/ParallelChange.html) |
-| Kafka consumer rebalances: what happens to in-flight messages | Distributed Systems · Deep Dive | idempotent Kafka consumers, transactional outbox | [Kafka documentation](https://kafka.apache.org/documentation/), [KIP-429 incremental rebalancing](https://cwiki.apache.org/confluence/display/KAFKA/KIP-429%3A+Kafka+Consumer+Incremental+Rebalance+Protocol) |
-| PodDisruptionBudgets: surviving node drains | Kubernetes · Guide | cluster upgrades, graceful shutdown, topology spread | [Disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/), [Configure a PDB](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) |
-| Autoscaling on queue depth with KEDA | Platform Engineering · Guide | requests and limits, SQS message groups | [KEDA concepts](https://keda.sh/docs/latest/concepts/) |
-| NetworkPolicies from default-deny to least privilege | Security · Guide | Kubernetes networking, security best practices | [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) |
-| Signing container images with Sigstore cosign | Security · Guide | multi-stage builds, OPA Gatekeeper | [cosign signing overview](https://docs.sigstore.dev/cosign/signing/overview/) |
-| SLOs and error budgets for one service | Reliability · Guide | Prometheus and Grafana, canary deployments | [SRE Workbook: Implementing SLOs](https://sre.google/workbook/implementing-slos/) |
-| Load shedding and backpressure in asyncio services | Performance · Guide | asyncio basics, advanced asyncio, rate limiting | [asyncio queues](https://docs.python.org/3/library/asyncio-queue.html), [SRE Book: Handling overload](https://sre.google/sre-book/handling-overload/) |
-| Cache stampedes, stale reads and TTL jitter | Performance · Guide | Redis caching | [AWS caching best practices](https://aws.amazon.com/caching/best-practices/) |
-| Tracing a Python service with OpenTelemetry | Reliability · Guide | Prometheus and Grafana, graceful shutdown | [OpenTelemetry for Python](https://opentelemetry.io/docs/languages/python/) |
-| Argo Rollouts vs Flagger | DevOps · Comparison | both canary articles, blue-green deployments | [Argo Rollouts](https://argoproj.github.io/argo-rollouts/), [Flagger](https://docs.flagger.app/) |
+| # | Topic and 2026 angle | Category · kind | What changed (verified 2026-09-29) | Links to | Start from |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Kafka consumer rebalances with the new protocol.** What happens to in-flight records when the broker assigns partitions incrementally | Distributed Systems · Deep Dive | Kafka 4.3.1 current. KIP-848 protocol GA since 4.0 but opt-in (`group.protocol=consumer`); planned default in 5.0. Share groups (KIP-932, "Queues for Kafka") production-ready in 4.2 | idempotent Kafka consumers, transactional outbox, retries | [Consumer rebalance protocol](https://kafka.apache.org/43/operations/consumer-rebalance-protocol/), [Kafka upgrade notes](https://kafka.apache.org/43/getting-started/upgrade/) |
+| 2 | **PgBouncer transaction mode in 2026.** Prepared statements work now; what still needs session mode | Database · Guide | PgBouncer 1.26.0 (2026-09-23) fixes CVE-2026-19888 (SCRAM login crash); tracks `search_path` on PostgreSQL 18+. Protocol-level prepared statements in transaction mode since 1.21 (`max_prepared_statements`) | transactional outbox, resource requests and limits | [PgBouncer changelog](https://www.pgbouncer.org/changelog.html), [PgBouncer configuration](https://www.pgbouncer.org/config.html) |
+| 3 | **Verifying signed images at admission.** cosign v3 keyless signing, verified by Kyverno's CEL policies or policy-controller | Security · Guide | cosign 3.1.3: bundle format on by default. Kyverno `ClusterPolicy`/`Policy` (and `verifyImages`) deprecated in 1.19, removed in 1.20: use `ImageValidatingPolicy`. Rekor v2 GA, but the public instance still defaults to Rekor v1 | OPA Gatekeeper, multi-stage builds, security best practices | [cosign changelog](https://github.com/sigstore/cosign/blob/main/CHANGELOG.md), [Kyverno policy types](https://kyverno.io/docs/policy-types/cluster-policy/overview/), [policy-controller](https://docs.sigstore.dev/policy-controller/overview/) |
+| 4 | **Surviving node drains.** PodDisruptionBudgets, native sidecars and the new node drain conditions | Kubernetes · Guide | Kubernetes 1.37 current. `unhealthyPodEvictionPolicy` stable since 1.31 (default `IfHealthyBudget`; prefer `AlwaysAllow`). Native sidecars stable since 1.33. 1.37 adds `DrainInProgress`/`Drained` node conditions (check maturity) | cluster upgrades, graceful shutdown, topology spread | [Configure a PDB](https://kubernetes.io/docs/tasks/run-application/configure-pdb/), [Sidecar containers](https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/), [Kubernetes 1.37 release](https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/) |
+| 5 | **PostgreSQL 18 indexes.** When skip scan replaces an index, and when partial and covering indexes still win | Database · Deep Dive | PostgreSQL 18.6 current; 19 in beta. PG 18 adds B-tree skip scan (multicolumn indexes without a leading `=` condition); PG 17 improved `IN` lookups | transactional outbox | [PostgreSQL 18 release](https://www.postgresql.org/about/news/postgresql-18-released-3142/), [PG 18 release notes](https://www.postgresql.org/docs/18/release-18.html), [Partial indexes](https://www.postgresql.org/docs/current/indexes-partial.html) |
+| 6 | **Zero-downtime schema changes on PostgreSQL 18.** Expand and contract with the new constraint options | Database · Guide | PG 18: `NOT NULL` constraints can be added `NOT VALID` and validated later; `CHECK`/foreign keys can be `NOT ENFORCED`; virtual generated columns are the default. PG 19 (beta) adds `REPACK` without an exclusive lock: mention, do not recommend | Flyway migrations, blue-green deployments | [PG 18 release notes](https://www.postgresql.org/docs/18/release-18.html), [Martin Fowler: Parallel Change](https://martinfowler.com/bliki/ParallelChange.html) |
+| 7 | **Autoscaling on queue depth: KEDA or the HPA?** | Platform Engineering · Guide | KEDA 2.21.0 (2026-09-23) fixes CVE-2026-77524; per-trigger fallback with `scalingModifiers`. Kubernetes 1.37: HPA scale-to-zero is beta and on by default | requests and limits, SQS message groups, retries | [KEDA releases](https://github.com/kedacore/keda/releases), [KEDA SQS scaler](https://keda.sh/docs/2.21/scalers/aws-sqs/), [Kubernetes 1.37 release](https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/) |
+| 8 | **Tracing a Python service with OpenTelemetry.** Zero-code first, then manual spans, on the stable conventions | Reliability · Guide | opentelemetry-python 1.45.0 (2026-09-25): traces and metrics stable, logs in development. HTTP and (for PostgreSQL/MySQL) database semantic conventions stable; opt in with `OTEL_SEMCONV_STABILITY_OPT_IN`. Profiles signal alpha, no Python SDK | Prometheus and Grafana, graceful shutdown | [OTel Python](https://opentelemetry.io/docs/languages/python/), [Zero-code Python](https://opentelemetry.io/docs/zero-code/python/), [HTTP span conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/) |
+| 9 | **Backpressure and load shedding in asyncio on Python 3.14/3.15** | Performance · Guide | Python 3.14.7 current; 3.15.0 due 2026-10-01 (adds `TaskGroup.cancel`). 3.14: free-threading officially supported, `python -m asyncio ps`/`pstree`. `Queue.shutdown` since 3.13 | asyncio basics, advanced asyncio, rate limiting, retries | [What's new in 3.14](https://docs.python.org/3/whatsnew/3.14.html), [What's new in 3.15](https://docs.python.org/3.15/whatsnew/3.15.html), [asyncio queues](https://docs.python.org/3/library/asyncio-queue.html), [SRE Book: Handling overload](https://sre.google/sre-book/handling-overload/) |
+| 10 | **NetworkPolicies from default-deny to least privilege** | Security · Guide | `networking.k8s.io/v1` NetworkPolicy unchanged. AdminNetworkPolicy/BaselineAdminNetworkPolicy merged into `ClusterNetworkPolicy` (network-policy-api v0.2.0, `v1alpha2`, alpha; limited CNI support): sidebar only | Kubernetes networking, security best practices | [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), [network-policy-api v0.2.0](https://github.com/kubernetes-sigs/network-policy-api/releases/tag/v0.2.0), [Implementations](https://network-policy-api.sigs.k8s.io/implementations/) |
+| 11 | **SLOs and error budgets for one service** | Reliability · Guide | Multiwindow, multi-burn-rate alerts (14.4 / 6 / 1 for a 99.9% SLO) remain the reference; OpenSLO lists v1 and v2alpha schemas | Prometheus and Grafana, canary deployments | [SRE Workbook: Implementing SLOs](https://sre.google/workbook/implementing-slos/), [SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/), [OpenSLO](https://openslo.com/) |
+| 12 | **Cache stampedes, stale reads and TTL jitter** | Performance · Guide | Redis 8.10 (AGPLv3 available again since Redis 8) and Valkey 9.1 (BSD fork). Per-field expiry (`HEXPIRE`, since 7.4); client-side caching with its documented stale-read race | Redis caching, rate limiting | [Client-side caching](https://redis.io/docs/latest/develop/reference/client-side-caching/), [HEXPIRE](https://redis.io/docs/latest/commands/hexpire/), [AWS caching best practices](https://aws.amazon.com/caching/best-practices/) |
+| 13 | **Argo Rollouts vs Flagger** | DevOps · Comparison | Argo Rollouts 1.10.0: Gateway API through a plugin (plugin system alpha). Flagger 1.45.0: Gateway API built in | both canary articles, blue-green deployments | [Argo Rollouts plugins](https://argoproj.github.io/argo-rollouts/features/traffic-management/plugins/), [Flagger Gateway API](https://docs.flagger.app/tutorials/gatewayapi-progressive-delivery) |
 
-When a backlog topic is published, remove it from this table.
+Published from this list: Retries with exponential backoff and jitter (2026-09-29).
+When a topic is published, move it to that line. When fewer than five topics remain,
+propose new ones from the target mix above, each with a 2026 angle and verified sources.
 
 ## Brief for Muse
 
