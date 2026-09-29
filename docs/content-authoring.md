@@ -6,6 +6,9 @@ agent): if you follow this document, you never need to touch layouts, CSS,
 navigation or any other site code. The site discovers the article, lists it
 everywhere it belongs, and publishes it.
 
+What to write, and how to shape it (topic mix, titles, backlog), is in
+[editorial-guide.md](editorial-guide.md).
+
 The rules below are enforced by `_plugins/content_contract.rb`. CI runs them on
 every pull request and before every deploy; an article that breaks a rule
 cannot go live.
@@ -324,7 +327,7 @@ bundle exec jekyll serve --drafts                # local preview including draft
 Description or title length, tag count, non-canonical tags, images without
 alt text, images over 500 KiB, a level-1 heading in the body, no
 `## References` section, bare URLs under References, no links to other
-articles, and external links that could not be verified (403, 429, 5xx,
+articles, a formulaic title (see [editorial-guide.md](editorial-guide.md#titles)), and external links that could not be verified (403, 429, 5xx,
 timeouts — often bot protection, so check them by hand).
 
 ## 9. Checklist
