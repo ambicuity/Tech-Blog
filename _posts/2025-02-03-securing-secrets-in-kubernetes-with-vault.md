@@ -33,7 +33,7 @@ This section walks through a practical example of integrating Vault with Kuberne
 
 First, we need to deploy Vault within our Kubernetes cluster.  While there are various ways to deploy Vault (Helm, manual manifests), a minimal Helm chart deployment provides a reasonable starting point.  Refer to the official HashiCorp documentation for the most up-to-date installation instructions, as they often change.
 
-bash
+```bash
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install vault hashicorp/vault -n vault --create-namespace \
   --set "injector.enabled=false" \
@@ -41,7 +41,7 @@ helm install vault hashicorp/vault -n vault --create-namespace \
   --set "server.ha.replicas=3" \
   --set "server.ha.storage.accessMode=ReadWriteOnce" \
   --set "server.ha.storage.size=10Gi"
-
+```
 
 **Important Considerations:**
 
@@ -55,19 +55,19 @@ After deploying Vault, you need to initialize and unseal it.  This is a one-time
 
 Next, we enable the Kubernetes authentication method in Vault and configure it to trust our Kubernetes cluster.
 
-bash
+```bash
 vault auth enable kubernetes
-
+```
 
 Then, configure the Kubernetes authentication method, providing the necessary information about your cluster.
 
-bash
+```bash
 vault write auth/kubernetes/config \
   token_reviewer_jwt="$(kubectl get serviceaccount vault-auth -n vault -o jsonpath='{.secrets[0].name}' | xargs kubectl get secret -n vault -o jsonpath='{.data.token}' | base64 --decode)" \
   kubernetes_host="https://${KUBERNETES_HOST}" \
   kubernetes_ca_cert="$(kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' | base64 --decode)" \
   issuer="https://kubernetes.default.svc.cluster.local"
-
+```
 
 **Explanation:**
 
@@ -82,41 +82,41 @@ Now, we create a Vault policy that defines which secrets a particular Kubernetes
 
 Create a file named `myapp-policy.hcl` with the following content:
 
-hcl
+```hcl
 path "secret/data/myapp/config" {
   capabilities = ["read"]
 }
-
+```
 
 Then, upload the policy to Vault:
 
-bash
+```bash
 vault policy write myapp-policy myapp-policy.hcl
-
+```
 
 **4. Creating a Kubernetes Service Account and Role Binding:**
 
 Create a Kubernetes Service Account in the `default` namespace that your application will use.  Then, create a Vault role associated with this service account and the policy you just created.
 
-yaml
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: myapp-sa
   namespace: default
-
+```
 
 Apply this manifest using `kubectl apply -f myapp-sa.yaml`.
 
 Now, create the Vault role:
 
-bash
+```bash
 vault write auth/kubernetes/role/myapp-role \
   bound_service_account_names=myapp-sa \
   bound_service_account_namespaces=default \
   policies=myapp-policy \
   ttl=30m
-
+```
 
 **Explanation:**
 
@@ -129,7 +129,7 @@ vault write auth/kubernetes/role/myapp-role \
 
 Finally, create a Kubernetes pod that uses the service account and retrieves a Vault token.
 
-yaml
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -141,7 +141,7 @@ spec:
   - name: myapp-container
     image: busybox:latest
     command: ['sh', '-c', 'apk add curl && curl -s -X POST -d \'{"jwt": "$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)", "role": "myapp-role"}\' http://vault:8200/v1/auth/kubernetes/login | jq -r .auth.client_token > /tmp/vault_token && export VAULT_TOKEN=$(cat /tmp/vault_token) && export VAULT_ADDR=http://vault:8200 && vault kv get secret/data/myapp/config']
-
+```
 
 **Explanation:**
 

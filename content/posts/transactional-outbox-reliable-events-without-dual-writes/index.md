@@ -5,6 +5,7 @@ description: >-
   transactional outbox closes that gap: write events to an outbox table in the
   same transaction, then relay them to the broker.
 date: 2026-09-29 03:18:23 +0000
+updated: 2026-09-29 04:00:00 +0000
 author: ritesh
 categories: [Distributed Systems, Reliability]
 tags: [outbox-pattern, event-driven, postgresql, kafka, microservices]
@@ -57,6 +58,7 @@ Because the event row is written in the same transaction as the order, an event 
 CREATE TABLE outbox (
     id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     aggregate    text NOT NULL,
+    aggregate_id text NOT NULL,
     event_type   text NOT NULL,
     payload      jsonb NOT NULL,
     created_at   timestamptz NOT NULL DEFAULT now(),
@@ -68,7 +70,7 @@ CREATE INDEX outbox_unpublished_idx
     WHERE published_at IS NULL;
 ```
 
-The partial index keeps the relay's "what is unpublished?" query fast even as published history accumulates. The `aggregate` column names the entity the event belongs to (here, `order`); it doubles as a partitioning key later.
+The partial index keeps the relay's "what is unpublished?" query fast even as published history accumulates. The `aggregate` column names the kind of entity the event belongs to (here, `order`) and `aggregate_id` identifies which one. The relay uses `aggregate_id` as the message key, which is what keeps each order's events in order (see [Ordering and partitioning](#ordering-and-partitioning)).
 
 > [!NOTE]
 > Keep the payload self-contained: include everything a consumer needs, not just an ID. Consumers that must query back into your database to understand an event inherit your availability.
@@ -90,10 +92,10 @@ def place_order(conn: psycopg.Connection, order: dict) -> None:
         )
         conn.execute(
             """
-            INSERT INTO outbox (aggregate, event_type, payload)
-            VALUES (%s, %s, %s)
+            INSERT INTO outbox (aggregate, aggregate_id, event_type, payload)
+            VALUES (%s, %s, %s, %s)
             """,
-            ("order", "OrderPlaced", json.dumps(order)),
+            ("order", str(order["id"]), "OrderPlaced", json.dumps(order)),
         )
     # Both rows committed together, or neither did. Delivery happens later.
 ```
@@ -115,21 +117,21 @@ def relay_batch(conn) -> int:
     with conn.transaction():
         rows = conn.execute(
             """
-            SELECT id, event_type, payload FROM outbox
+            SELECT id, aggregate_id, event_type, payload FROM outbox
             WHERE published_at IS NULL
             ORDER BY created_at
             LIMIT 100
             FOR UPDATE SKIP LOCKED
             """
         ).fetchall()
-        for event_id, event_type, payload in rows:
+        for event_id, aggregate_id, event_type, payload in rows:
             producer.send(
                 "orders.events",
-                key=str(event_id).encode(),
+                key=aggregate_id.encode(),  # same order -> same partition
                 value={"type": event_type, "data": payload},
             )
         producer.flush()
-        for event_id, _, _ in rows:
+        for event_id, *_ in rows:
             conn.execute(
                 "UPDATE outbox SET published_at = now() WHERE id = %s",
                 (event_id,),
@@ -140,8 +142,8 @@ def relay_batch(conn) -> int:
 > [!IMPORTANT]
 > The relay delivers at-least-once, not exactly-once. A crash between `flush()` and the `UPDATE` redelivers those events on restart. Consumers must tolerate duplicates — the standard answer is idempotent handlers, as described in [Idempotent Operations in Distributed Systems](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/).
 
-> [!TIP]
-> `FOR UPDATE SKIP LOCKED` lets several relay workers poll the same table without blocking each other: each worker skips rows another worker already locked.
+> [!WARNING]
+> `FOR UPDATE SKIP LOCKED` lets several relay workers poll the same table without blocking each other, but it gives up ordering: two workers can pick up different events for the same order and publish them in either order. If per-aggregate ordering matters, run one active relay (for example, guarded by a PostgreSQL advisory lock) or give each worker a fixed share of aggregates, such as a hash of `aggregate_id`.
 
 Polling every few seconds is easy to operate and easy to reason about; its cost is a constant trickle of queries and a small delivery delay. When that delay matters, the alternative is log tailing.
 
@@ -171,7 +173,8 @@ A relay is a small piece of infrastructure with a short checklist:
 
 ## References
 
-- Chris Richardson, "Transactional outbox", *microservices.io* — https://microservices.io/patterns/communication-with-rollback/transactional-outbox.html
-- Debezium documentation — https://debezium.io/documentation/reference/stable/
-- Apache Kafka documentation — https://kafka.apache.org/documentation/
-- PostgreSQL documentation, `LISTEN` / `NOTIFY` — https://www.postgresql.org/docs/current/sql-notify.html
+- Chris Richardson, [Pattern: Transactional outbox](https://microservices.io/patterns/data/transactional-outbox.html), *microservices.io*
+- Debezium documentation, [Outbox Event Router](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html)
+- PostgreSQL documentation, [The locking clause (`FOR UPDATE … SKIP LOCKED`)](https://www.postgresql.org/docs/current/sql-select.html#SQL-FOR-UPDATE-SHARE)
+- PostgreSQL documentation, [Advisory lock functions](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS)
+- [Apache Kafka documentation](https://kafka.apache.org/documentation/)

@@ -42,29 +42,29 @@ Let's walk through a practical example of implementing a canary deployment using
 
 First, add the Flagger Helm repository:
 
-bash
+```bash
 helm repo add flagger https://flagger.app
 helm repo update
-
+```
 
 Next, install Flagger into the `flagger-system` namespace:
 
-bash
+```bash
 kubectl create namespace flagger-system
 helm install flagger flagger/flagger -n flagger-system
-
+```
 
 **2. Deploy a Sample Application:**
 
 For this example, we'll deploy a simple "podinfo" application.  Create a namespace called `test`:
 
-bash
+```bash
 kubectl create namespace test
-
+```
 
 Now, create a deployment and service for the podinfo application within the `test` namespace.  You can use a YAML file (e.g., `podinfo.yaml`) with the following content:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -112,19 +112,20 @@ spec:
       targetPort: 9898
       name: http
   type: LoadBalancer
-
+```
 
 Apply this YAML file:
 
-bash
+```bash
 kubectl apply -f podinfo.yaml
-
+```
 
 **3. Define the Canary Resource:**
 
 Now, we define the `Canary` resource that tells Flagger how to manage the canary deployment. Create a file named `podinfo-canary.yaml` with the following content:
 
-yaml
+{% raw %}
+```yaml
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
@@ -189,7 +190,8 @@ spec:
         timeout: 5s
         metadata:
           cmd: "echo 'confirm rollout'"
-
+```
+{% endraw %}
 
 Let's break down the `Canary` resource:
 
@@ -205,33 +207,33 @@ Let's break down the `Canary` resource:
 
 Apply the `Canary` resource:
 
-bash
+```bash
 kubectl apply -f podinfo-canary.yaml
-
+```
 
 **4. Monitor the Canary Deployment:**
 
 You can monitor the progress of the canary deployment using the `kubectl get canary` command:
 
-bash
+```bash
 kubectl -n test get canary podinfo -w
-
+```
 
 This command will display the current status of the canary deployment, including the traffic weight assigned to the canary version, the results of the analysis, and any events that occur during the deployment process.
 
 You can also view Flagger's logs using:
 
-bash
+```bash
 kubectl -n flagger-system logs -f deployment/flagger
-
+```
 
 **5. Trigger a Canary Release:**
 
 To trigger a canary release, update the `podinfo` deployment. For example, you can change the image version:
 
-bash
+```bash
 kubectl -n test set image deployment/podinfo podinfo=ghcr.io/stefanprodan/podinfo:6.0.1
-
+```
 
 Flagger will detect the changes in the deployment and automatically start the canary analysis process. It will gradually increase traffic to the new version, monitoring the metrics and webhooks.  If the metrics fall outside the defined thresholds or the webhooks fail, Flagger will automatically rollback to the previous version.  If the metrics are within the thresholds and webhooks pass, Flagger will gradually promote the new version until it receives 100% of the traffic.
 

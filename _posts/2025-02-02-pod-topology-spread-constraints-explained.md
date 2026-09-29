@@ -40,7 +40,7 @@ Let's illustrate how to use Pod Topology Spread Constraints with some practical 
 
 First, let's define a basic deployment without any topology spread constraints:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -60,7 +60,7 @@ spec:
       containers:
       - name: my-container
         image: nginx:latest
-
+```
 
 If you apply this deployment, Kubernetes will schedule the three replicas wherever it finds available resources. There's no guarantee they'll be spread across different nodes or availability zones.  This is the default, simplest scenario, but also the least resilient.
 
@@ -68,7 +68,7 @@ If you apply this deployment, Kubernetes will schedule the three replicas wherev
 
 Now, let's add a Pod Topology Spread Constraint to ensure the pods are spread across different nodes:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -95,7 +95,7 @@ spec:
         labelSelector:
           matchLabels:
             app: my-app
-
+```
 
 In this example:
 
@@ -109,7 +109,7 @@ If you have only two nodes and this deployment is applied, two pods will be on o
 
 To spread pods across availability zones, we can modify the `topologyKey`:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -136,7 +136,7 @@ spec:
         labelSelector:
           matchLabels:
             app: my-app
-
+```
 
 This configuration assumes your nodes are labeled with `topology.kubernetes.io/zone`. If you're using a cloud provider, this label is usually automatically applied. If you are running a bare metal cluster, you may have to apply these labels to the nodes yourself.
 
@@ -144,7 +144,7 @@ This configuration assumes your nodes are labeled with `topology.kubernetes.io/z
 
 Sometimes, strict adherence to the constraint might prevent pods from being scheduled, especially during resource shortages.  In such cases, you can use `whenUnsatisfiable: ScheduleAnyway`:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -171,7 +171,7 @@ spec:
         labelSelector:
           matchLabels:
             app: my-app
-
+```
 
 With this configuration, Kubernetes will try to spread pods across nodes, but if it cannot satisfy the `maxSkew` constraint (e.g., due to insufficient nodes or resource constraints), it will still schedule the pod on any available node. This prioritizes availability over perfect distribution.
 
@@ -179,7 +179,7 @@ With this configuration, Kubernetes will try to spread pods across nodes, but if
 
 You can combine multiple topology spread constraints to achieve more granular control over pod distribution. For example, you might want to spread pods across both nodes and availability zones:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -212,7 +212,7 @@ spec:
         labelSelector:
           matchLabels:
             app: my-app
-
+```
 
 In this case, Kubernetes will attempt to satisfy both constraints: spreading pods across nodes and availability zones.  The scheduler will attempt to satisfy all constraints, in order.
 

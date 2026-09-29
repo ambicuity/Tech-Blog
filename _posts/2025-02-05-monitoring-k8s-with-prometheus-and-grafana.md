@@ -31,38 +31,38 @@ There are several ways to deploy Prometheus in Kubernetes, including using Helm,
 
 First, add the Prometheus Helm repository:
 
-bash
+```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-
+```
 
 Next, install Prometheus using Helm:
 
-bash
+```bash
 helm install prometheus prometheus-community/prometheus
-
+```
 
 This command deploys Prometheus with its default configuration. For more customized installations, you can create a `values.yaml` file to override the default settings. For example, you might want to configure persistent storage:
 
-yaml
+```yaml
 # values.yaml
 server:
   persistentVolume:
     enabled: true
     size: 10Gi
-
+```
 
 Then, install Prometheus with your custom configuration:
 
-bash
+```bash
 helm install prometheus prometheus-community/prometheus -f values.yaml
-
+```
 
 To access the Prometheus UI, you can use port forwarding:
 
-bash
+```bash
 kubectl port-forward svc/prometheus-server 9090:80
-
+```
 
 Then, open your browser and navigate to `http://localhost:9090`.
 
@@ -72,22 +72,22 @@ Similarly, we can deploy Grafana using Helm.
 
 First, add the Grafana Helm repository:
 
-bash
+```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-
+```
 
 Next, install Grafana using Helm:
 
-bash
+```bash
 helm install grafana grafana/grafana
-
+```
 
 To access the Grafana UI, use port forwarding:
 
-bash
+```bash
 kubectl port-forward svc/grafana 3000:3000
-
+```
 
 Open your browser and navigate to `http://localhost:3000`. The default username is `admin` and the default password is `admin`. You'll be prompted to change the password upon first login.
 
@@ -122,15 +122,15 @@ To get detailed metrics about your nodes and Kubernetes resources, you'll need t
 
 **Node Exporter:** This exporter exposes hardware and OS metrics from each node in your cluster. Deploy it as a DaemonSet to ensure it runs on every node.
 
-bash
+```bash
 helm install prometheus-node-exporter prometheus-community/prometheus-node-exporter
-
+```
 
 **Kube-State-Metrics:** This exporter generates metrics based on the state of Kubernetes objects (pods, deployments, services, etc.).
 
-bash
+```bash
 helm install kube-state-metrics prometheus-community/kube-state-metrics
-
+```
 
 Prometheus will automatically discover these exporters if they're deployed within the same Kubernetes cluster and configured to be scraped using service discovery.  The default Helm charts are typically configured to allow this auto-discovery via labels on the services.
 

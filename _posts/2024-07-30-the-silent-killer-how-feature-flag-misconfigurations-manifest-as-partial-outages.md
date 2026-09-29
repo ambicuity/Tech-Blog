@@ -15,7 +15,7 @@ Many engineers champion feature flags as a panacea for agile releases and risk m
 
 Feature flags are touted for their ability to decouple deployment from release, enabling dark launches, A/B testing, and instant rollbacks. However, this power introduces a new, often underestimated, attack surface for system stability. A misconfigured flag can subtly alter execution paths, resource consumption, or data flows in ways that are not immediately obvious, leading to a partial outage. This isn't a full system collapse, but a degradation affecting a subset of users, geographies, or specific functionalities, making diagnosis challenging.
 
-Consider a scenario where a feature flag governs access to an experimental AI inference pipeline. If this flag, intended for a small internal testing group, is inadvertently configured to `true` for `region=all` due to a typo or logical error in its targeting rules, the impact can be severe. The root-cause mechanism is often a simple logical misstep in flag definition or rollout strategy [CLAIM:ROOT_CAUSE]. For instance, a conditional rule like `user_group IN ['beta-testers']` being overridden by a broader `environment == 'production'` rule, or a default `else` block unintentionally enabling a resource-intensive path for all traffic. This creates an unexpected load profile on downstream services, leading to resource contention or saturation that only affects specific request patterns, manifesting as a partial outage.
+Consider a scenario where a feature flag governs access to an experimental AI inference pipeline. If this flag, intended for a small internal testing group, is inadvertently configured to `true` for `region=all` due to a typo or logical error in its targeting rules, the impact can be severe. The root-cause mechanism is often a simple logical misstep in flag definition or rollout strategy. For instance, a conditional rule like `user_group IN ['beta-testers']` being overridden by a broader `environment == 'production'` rule, or a default `else` block unintentionally enabling a resource-intensive path for all traffic. This creates an unexpected load profile on downstream services, leading to resource contention or saturation that only affects specific request patterns, manifesting as a partial outage.
 
 ## System Constraints
 
@@ -41,7 +41,7 @@ The critical juncture in diagnosing feature flag misconfigurations is the abilit
 
 Consider the following observations from our monitoring stack:
 
-1.  **Application Error Rates**: We observed a localized spike in `HTTP 503 Service Unavailable` errors from the `user-facing-api` service, specifically affecting endpoints that internally called the `ai-inference-service`. Crucially, this error rate was not uniform across all traffic but concentrated within requests originating from specific geographic regions *outside* `us-east-1` [CLAIM:FAILURE_MODE].
+1.  **Application Error Rates**: We observed a localized spike in `HTTP 503 Service Unavailable` errors from the `user-facing-api` service, specifically affecting endpoints that internally called the `ai-inference-service`. Crucially, this error rate was not uniform across all traffic but concentrated within requests originating from specific geographic regions *outside* `us-east-1`.
 
     ```promql
     sum by (status_code, region) (rate(http_requests_total{job="user-facing-api", status_code=~"5xx"}[5m]))
@@ -77,7 +77,7 @@ Consider the following observations from our monitoring stack:
     ```
     This log entry confirmed that the `default_else_rule` was incorrectly configured to enable the feature globally, bypassing the explicit `region == 'us-east-1'` rule when it didn't match.
 
-These specific metric patterns and log entries collectively pinpointed the feature flag as the culprit, directly refuting the database, network, or generic resource exhaustion theories. The failure mode under production load was a targeted exhaustion of specific downstream resources, triggered by an unexpected increase in traffic to a new, unoptimized code path [CLAIM:FAILURE_MODE].
+These specific metric patterns and log entries collectively pinpointed the feature flag as the culprit, directly refuting the database, network, or generic resource exhaustion theories. The failure mode under production load was a targeted exhaustion of specific downstream resources, triggered by an unexpected increase in traffic to a new, unoptimized code path.
 
 ## Feature Flag Production Guidance
 
@@ -85,13 +85,13 @@ Preventing and mitigating feature flag misconfigurations requires a deliberate, 
 
 ### Design for Failure
 
-*   **Kill Switches & Circuit Breakers**: Every significant feature flag, especially those gating access to new or experimental functionality, must have an easily accessible kill switch. Furthermore, integrate circuit breakers at the service level. If the `ai-inference-service` starts returning `5xx` errors above a defined threshold, the circuit should trip, preventing further requests and failing gracefully to a known good state (e.g., using a fallback AI model or disabling the feature entirely) [CLAIM:MITIGATION].
+*   **Kill Switches & Circuit Breakers**: Every significant feature flag, especially those gating access to new or experimental functionality, must have an easily accessible kill switch. Furthermore, integrate circuit breakers at the service level. If the `ai-inference-service` starts returning `5xx` errors above a defined threshold, the circuit should trip, preventing further requests and failing gracefully to a known good state (e.g., using a fallback AI model or disabling the feature entirely).
 *   **Default-Off Principle**: New, high-impact features should default to `off` (or `false`) globally. Explicit rules should be used to enable them for specific segments. This prevents accidental broad exposure.
 *   **Clear Ownership & Documentation**: Ensure every flag has a clear owner, purpose, and lifecycle defined. Outdated or orphaned flags are a source of confusion and risk.
 
 ### Robust Testing & Deployment
 
-*   **Staged Rollouts & Canaries**: Never enable a significant flag for 100% of production traffic immediately. Implement phased rollouts (e.g., 1%, 10%, 50%, 100%) with automated canary analysis. Monitor key metrics (error rates, latency, resource utilization) for the canary group versus the control group. Roll back automatically if deviations exceed thresholds [CLAIM:MITIGATION].
+*   **Staged Rollouts & Canaries**: Never enable a significant flag for 100% of production traffic immediately. Implement phased rollouts (e.g., 1%, 10%, 50%, 100%) with automated canary analysis. Monitor key metrics (error rates, latency, resource utilization) for the canary group versus the control group. Roll back automatically if deviations exceed thresholds.
     *   *Artifact Example (Canary Configuration Snippet for a Feature Flag Platform)*:
         ```yaml
         feature_flag: enable-experimental-ai-v2
@@ -144,9 +144,9 @@ This checklist provides actionable steps for production and platform teams to ha
     *   Application logs (e.g., from Splunk, ELK, Datadog) containing `ConnectionPoolExhaustedError`, specific `5xx` error messages, and detailed request tracing.
     *   Feature flag provider's audit and evaluation logs (e.g., LaunchDarkly audit log, Optimizely data export, internal flag service logs) clearly showing rule evaluations and overrides.
 *   **Platform Vendor References**:
-    *   [LaunchDarkly Documentation: Best Practices for Feature Flags](https://docs.launchdarkly.com/home/best-practices) - Covers aspects of flag lifecycle, naming, and rollout.
+    *   [LaunchDarkly Documentation: Reducing technical debt from feature flags](https://launchdarkly.com/docs/guides/flags/technical-debt) - Covers flag lifecycle and cleanup.
     *   [OpenFeature Specification](https://openfeature.dev/specification/) - An open standard for feature flagging, highlighting the importance of consistent evaluation contexts.
-    *   [Google SRE Workbook: Release Engineering](https://sre.google/workbook/release-engineering/) - Discusses progressive rollouts and risk mitigation strategies applicable to feature flags.
+    *   [Google SRE Workbook: Canarying Releases](https://sre.google/workbook/canarying-releases/) - Discusses progressive rollouts and risk mitigation strategies applicable to feature flags.
 *   **Official Docs**:
     *   Service documentation detailing connection pool limits, rate limits for external APIs, and resource consumption profiles for various code paths (e.g., AI model versions).
 

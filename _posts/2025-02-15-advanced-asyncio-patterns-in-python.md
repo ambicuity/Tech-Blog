@@ -27,7 +27,7 @@ With these concepts in mind, let's explore the advanced patterns.
 
 Introduced in Python 3.11, `asyncio.TaskGroup` provides a structured and reliable way to manage multiple asynchronous tasks.  It simplifies error handling and ensures all tasks within the group complete before the group itself finishes, even if some tasks raise exceptions.  This prevents dangling tasks and improves the overall robustness of asynchronous programs.
 
-python
+```python
 import asyncio
 
 async def my_task(task_id):
@@ -52,7 +52,7 @@ async def main():
 
   except Exception as e:
     print(f"An exception occurred: {type(e).__name__}: {e}")
-
+```
 
 if __name__ == "__main__":
   asyncio.run(main())
@@ -64,7 +64,7 @@ In this example, even though `task2` raises a `ValueError`, `task1` and `task3` 
 
 When dealing with external resources or APIs, it's often necessary to implement rate limiting to avoid overloading the service or exceeding usage quotas. `asyncio.Semaphore` provides a mechanism for controlling the number of concurrent access to a shared resource.
 
-python
+```python
 import asyncio
 
 async def access_resource(semaphore, resource_id):
@@ -82,7 +82,7 @@ async def main():
 
 if __name__ == "__main__":
   asyncio.run(main())
-
+```
 
 In this example, the `Semaphore` is initialized with a value of 3, meaning only three coroutines can access the "resource" concurrently. When a coroutine tries to enter the `async with semaphore:` block and the semaphore's counter is zero, it will wait until another coroutine releases the semaphore. This effectively limits the rate at which the resource is accessed.
 
@@ -90,7 +90,7 @@ In this example, the `Semaphore` is initialized with a value of 3, meaning only 
 
 Proper cancellation handling is essential for building resilient asynchronous applications. `asyncio` provides mechanisms to cancel tasks gracefully.
 
-python
+```python
 import asyncio
 
 async def long_running_task():
@@ -119,7 +119,7 @@ async def main():
 
 if __name__ == "__main__":
   asyncio.run(main())
-
+```
 
 Here, the `long_running_task` checks for `asyncio.CancelledError` inside its `try...except` block. When the task is cancelled using `task.cancel()`, a `CancelledError` is raised within the coroutine. The `finally` block ensures that cleanup operations are always performed, regardless of whether the task completed normally or was cancelled. Re-raising the `CancelledError` within the `except` block is crucial for propagating the cancellation signal up the call stack.  The `await task` in `main()` waits for the cancellation to be fully processed.
 
@@ -127,7 +127,7 @@ Here, the `long_running_task` checks for `asyncio.CancelledError` inside its `tr
 
 `asyncio` supports asynchronous context managers, allowing you to manage resources (like file handles or network connections) within `async with` blocks. This ensures proper resource acquisition and release, even in asynchronous code.
 
-python
+```python
 import asyncio
 
 class AsyncFile:
@@ -152,7 +152,7 @@ async def main():
 
 if __name__ == "__main__":
   asyncio.run(main())
-
+```
 
 The `AsyncFile` class implements the `__aenter__` and `__aexit__` methods, making it an asynchronous context manager. When the `async with` block is entered, `__aenter__` is called, opening the file. When the block is exited (either normally or due to an exception), `__aexit__` is called, closing the file.
 
@@ -162,7 +162,7 @@ The `AsyncFile` class implements the `__aenter__` and `__aexit__` methods, makin
 
 `asyncio.Queue` provides a thread-safe (or rather, coroutine-safe) way for coroutines to communicate and exchange data. It's useful for implementing producer-consumer patterns or distributing work among multiple tasks.
 
-python
+```python
 import asyncio
 
 async def producer(queue, num_items):
@@ -196,7 +196,7 @@ async def main():
 
 if __name__ == "__main__":
   asyncio.run(main())
-
+```
 
 The `producer` coroutine puts items into the queue, and the `consumer` coroutine retrieves and processes them.  The `queue.put(None)` signal is used to indicate the end of the stream to the consumer.  The `queue.join()` method ensures that the main program waits until all items in the queue have been processed before exiting.
 

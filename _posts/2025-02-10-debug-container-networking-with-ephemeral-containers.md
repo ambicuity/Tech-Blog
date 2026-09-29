@@ -35,20 +35,20 @@ Imagine you have two pods, `pod-a` and `pod-b`, and `pod-a` is unable to connect
 
 1.  **Create a target pod.** For demonstration purposes, let's deploy a simple `nginx` pod.
 
-    bash
+    ```bash
     kubectl run pod-b --image=nginx --expose --port=80
-    
+    ```
 
 2.  **Identify the problem pod.** Let's assume we have a `pod-a` which is supposed to connect to this `pod-b`. It could be another `nginx` pod or a microservice.
 
 3. **Create an ephemeral container in `pod-a` with networking tools.**
     Use the `kubectl debug` command to create an ephemeral container within `pod-a` with the necessary tools like `curl`, `netcat`, and `dnsutils`.  We'll use the `--image` flag to specify an image that includes these tools. A popular choice is `nicolaka/netshoot`, which is specifically designed for network troubleshooting.  If you do not have a preferred image, a lightweight image like `busybox` with `nslookup` can be used.
 
-    bash
+    ```bash
     kubectl debug -it pod/pod-a --image=nicolaka/netshoot --target=pod-a
     # OR
     kubectl debug -it pod/pod-a --image=busybox --target=pod-a --command sh
-    
+    ```
 
     If the `--target` flag is specified as the name of the pod, then the ephemeral container will join the network namespace of the first container in the Pod.
 
@@ -58,25 +58,25 @@ Imagine you have two pods, `pod-a` and `pod-b`, and `pod-a` is unable to connect
 
     *   **DNS Resolution:** Use `nslookup pod-b` (or `nslookup pod-b.default.svc.cluster.local` for fully qualified domain name) to check if the pod's hostname resolves to the correct IP address. If DNS resolution fails, you might have a DNS configuration issue in your cluster.
 
-        bash
+        ```bash
         nslookup pod-b
         # OR
         nslookup pod-b.default.svc.cluster.local
-        
+        ```
 
     *   **Connectivity:** Use `curl` or `netcat` to attempt a connection to `pod-b` on the expected port (e.g., 80).  If the connection fails, check the network policies or firewall rules that might be blocking the traffic.
 
-        bash
+        ```bash
         curl pod-b:80
         # OR
         nc -vz pod-b 80
-        
+        ```
 
     *   **Ping:** While less informative than `curl` or `netcat`, `ping` can quickly verify basic network reachability.
 
-        bash
+        ```bash
         ping pod-b
-        
+        ```
 
 **Scenario 2: Troubleshooting Service Discovery**
 
@@ -97,15 +97,15 @@ Sometimes, you need to inspect the network traffic flowing in and out of a pod t
 
 1.  **Create an ephemeral container with `tcpdump`.**  Use `kubectl debug` with an image that includes `tcpdump`.
 
-    bash
+    ```bash
     kubectl debug -it pod/pod-a --image=nicolaka/netshoot --target=pod-a
-    
+    ```
 
 2.  **Capture network traffic using `tcpdump`.**  Within the ephemeral container, use `tcpdump` to capture network packets. You can filter the traffic based on IP addresses, ports, or protocols.
 
-    bash
+    ```bash
     tcpdump -i any -n -s 0 host pod-b and port 80
-    
+    ```
 
     This command captures all traffic on any interface (`-i any`), displays IP addresses and port numbers numerically (`-n`), captures the entire packet (`-s 0`), and filters for traffic to or from `pod-b` on port 80.
 
@@ -117,9 +117,9 @@ If your pod contains multiple containers and you want to debug the networking of
 
 For example, if your pod `my-pod` has containers named `app` and `sidecar`, you can debug the `sidecar` container's networking with:
 
-bash
+```bash
 kubectl debug -it pod/my-pod --image=nicolaka/netshoot --target=sidecar --container=sidecar
-
+```
 
 ## Best Practices
 

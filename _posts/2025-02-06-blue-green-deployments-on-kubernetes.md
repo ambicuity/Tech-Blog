@@ -32,7 +32,7 @@ First, create two Deployment manifests, one for the "Blue" environment and one f
 
 **blue-deployment.yaml:**
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -57,11 +57,11 @@ spec:
         image: your-docker-registry/my-app:1.0.0 # Original version
         ports:
         - containerPort: 8080
-
+```
 
 **green-deployment.yaml:**
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -86,7 +86,7 @@ spec:
         image: your-docker-registry/my-app:1.1.0 # New version
         ports:
         - containerPort: 8080
-
+```
 
 **Important:** Notice the distinct labels `environment: blue` and `environment: green`. These labels are crucial for directing traffic correctly. Also, make sure you replace `your-docker-registry/my-app:1.0.0` and `your-docker-registry/my-app:1.1.0` with your actual Docker image repository and tags.
 
@@ -96,7 +96,7 @@ Next, define a Service that acts as a single entry point for your application. I
 
 **blue-service.yaml:**
 
-yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -110,16 +110,16 @@ spec:
     port: 80
     targetPort: 8080
   type: LoadBalancer # Or NodePort, depending on your cluster setup
-
+```
 
 **3. Deploy Initial State:**
 
 Apply these manifests to your Kubernetes cluster to deploy the "Blue" environment and the initial Service configuration:
 
-bash
+```bash
 kubectl apply -f blue-deployment.yaml
 kubectl apply -f blue-service.yaml
-
+```
 
 At this point, your application (version 1.0.0) should be running and accessible through the `my-app-service`.
 
@@ -127,9 +127,9 @@ At this point, your application (version 1.0.0) should be running and accessible
 
 Now, deploy the "Green" environment, containing the new version of your application (1.1.0):
 
-bash
+```bash
 kubectl apply -f green-deployment.yaml
-
+```
 
 The "Green" deployment will start, but it won't receive any traffic yet because the Service is still pointing to the "Blue" environment.
 
@@ -139,7 +139,7 @@ Before switching traffic, it's crucial to thoroughly test the "Green" environmen
 
 **green-test-service.yaml:**
 
-yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -153,13 +153,13 @@ spec:
     port: 8081 # Use a different port for testing
     targetPort: 8080
   type: NodePort # NodePort is suitable for internal testing
-
+```
 
 Apply this manifest:
 
-bash
+```bash
 kubectl apply -f green-test-service.yaml
-
+```
 
 You can now access the "Green" environment directly through the NodePort of `my-app-green-test` and perform necessary tests.
 
@@ -168,18 +168,18 @@ You can now access the "Green" environment directly through the NodePort of `my-
 Once you're confident that the "Green" environment is stable, update the `my-app-service` to point to the "Green" environment. This is the critical step in the Blue-Green deployment process.  We'll use `kubectl edit service my-app-service` to modify the selector.
 
 Run:
-bash
+```bash
 kubectl edit service my-app-service
-
+```
 
 In the editor, change the `selector` section to:
 
-yaml
+```yaml
 spec:
   selector:
     app: my-app
     environment: green # Now points to Green
-
+```
 
 Save the changes and exit the editor. Kubernetes will automatically update the Service and redirect traffic to the "Green" environment. Your application is now running version 1.1.0.
 
@@ -191,18 +191,18 @@ After switching traffic, closely monitor the "Green" environment for any errors 
 
 If you encounter problems with the "Green" environment, rolling back is simple.  Edit the `my-app-service` again and revert the selector back to the "Blue" environment:
 
-bash
+```bash
 kubectl edit service my-app-service
-
+```
 
 Change the `selector` to:
 
-yaml
+```yaml
 spec:
   selector:
     app: my-app
     environment: blue # Rollback to Blue
-
+```
 
 This immediately redirects traffic back to the "Blue" environment.
 

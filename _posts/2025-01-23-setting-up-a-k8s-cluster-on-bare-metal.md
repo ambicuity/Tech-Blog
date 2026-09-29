@@ -37,7 +37,7 @@ On all machines (control plane and worker nodes), perform the following steps:
 
 1.  **Install Containerd:**
 
-    bash
+    ```bash
     # Install dependencies
     sudo apt-get update
     sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
@@ -59,11 +59,11 @@ On all machines (control plane and worker nodes), perform the following steps:
     # Restart Containerd
     sudo systemctl restart containerd
     sudo systemctl enable containerd
-    
+    ```
 
 2.  **Install kubeadm, kubelet, and kubectl:**
 
-    bash
+    ```bash
     sudo apt-get update
     sudo apt-get install -y apt-transport-https ca-certificates curl
 
@@ -76,22 +76,22 @@ On all machines (control plane and worker nodes), perform the following steps:
     sudo apt-get update
     sudo apt-get install -y kubelet kubeadm kubectl
     sudo apt-mark hold kubelet kubeadm kubectl
-    
+    ```
 
 3.  **Disable Swap:** Kubernetes requires swap to be disabled for proper operation.
 
-    bash
+    ```bash
     sudo swapoff -a
     sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
-    
+    ```
 
 **Step 2: Initialize the Control Plane**
 
 On the designated control plane machine, execute the following:
 
-bash
+```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
-
+```
 
 *   `--pod-network-cidr`:  Specifies the IP address range for Pods.  Choose a CIDR block that doesn't overlap with your existing network.  `192.168.0.0/16` is a common example.
 
@@ -103,25 +103,25 @@ kubeadm join <control-plane-ip>:<port> --token <token> --discovery-token-ca-cert
 
 Also, the output will display instructions to configure `kubectl`. Run these commands on the control plane node to be able to manage the cluster:
 
-bash
+```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
+```
 
 **Step 3: Install a Network Plugin (Calico)**
 
 On the control plane machine, install a CNI plugin. We'll use Calico:
 
-bash
+```bash
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-
+```
 
 This command applies a Kubernetes manifest file that sets up Calico in your cluster. Verify that the Calico pods are running correctly:
 
-bash
+```bash
 kubectl get pods -n kube-system
-
+```
 
 You should see pods related to Calico with a status of "Running".
 
@@ -129,17 +129,17 @@ You should see pods related to Calico with a status of "Running".
 
 On each worker node, execute the `kubeadm join` command that you copied from the control plane node's output. For example:
 
-bash
+```bash
 sudo kubeadm join <control-plane-ip>:<port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
-
+```
 
 **Step 5: Verify the Cluster**
 
 Back on the control plane machine, verify that the worker nodes have joined the cluster:
 
-bash
+```bash
 kubectl get nodes
-
+```
 
 You should see the control plane node and all worker nodes listed, with a status of "Ready".
 
@@ -147,7 +147,7 @@ You should see the control plane node and all worker nodes listed, with a status
 
 Now that the cluster is set up, let's deploy a simple application to verify its functionality. We'll deploy a basic Nginx deployment:
 
-yaml
+```yaml
 # nginx-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -181,20 +181,20 @@ spec:
       port: 80
       targetPort: 80
   type: NodePort
-
+```
 
 Deploy the application:
 
-bash
+```bash
 kubectl apply -f nginx-deployment.yaml
-
+```
 
 Check the status of the deployment and service:
 
-bash
+```bash
 kubectl get deployments
 kubectl get services
-
+```
 
 To access the Nginx service, find the NodePort assigned to the service (e.g., `30080`) and access it through any worker node's IP address and that port (e.g., `http://<worker-node-ip>:30080`).
 

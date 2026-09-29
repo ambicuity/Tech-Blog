@@ -44,13 +44,13 @@ Before initiating the upgrade, perform thorough checks to identify potential iss
 
 *   **Health Checks:**  Ensure all your applications are healthy and responding correctly.  Monitor metrics like CPU usage, memory consumption, and error rates.
 
-    bash
+    ```bash
     kubectl get deployments -n your-namespace
     kubectl get pods -n your-namespace
     # Check pod status, restart counts, and logs
     kubectl describe pod <pod-name> -n your-namespace
     kubectl logs <pod-name> -n your-namespace
-    
+    ```
 
 *   **Compatibility:** Review the Kubernetes release notes for the target version to understand any breaking changes or deprecated features that might affect your applications.
 
@@ -62,7 +62,7 @@ Before initiating the upgrade, perform thorough checks to identify potential iss
 
 PDBs are critical for guaranteeing application availability during voluntary disruptions. Define PDBs for each of your deployments, specifying the minimum number of replicas that must remain available.
 
-yaml
+```yaml
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
@@ -73,19 +73,19 @@ spec:
   selector:
     matchLabels:
       app: my-app
-
+```
 
 Apply the PDB:
 
-bash
+```bash
 kubectl apply -f my-app-pdb.yaml
-
+```
 
 Verify the PDB's status:
 
-bash
+```bash
 kubectl get pdb -n your-namespace
-
+```
 
 **Step 3: Upgrade Worker Nodes (Rolling Upgrade)**
 
@@ -93,30 +93,30 @@ The recommended approach is to upgrade worker nodes one at a time using a rollin
 
 *   **Select a Node:** Choose a node to upgrade.
 
-    bash
+    ```bash
     kubectl get nodes
-    
+    ```
 
 *   **Drain the Node:**  Safely evict all pods from the node using `kubectl drain`.  The `--ignore-daemonsets` flag is crucial to prevent draining DaemonSet-managed pods, as these are typically required for cluster functionality. `--delete-emptydir-data` will delete pods using emptyDir volumes. `--force` can be necessary if a pod is stuck and can't be gracefully terminated.
 
-    bash
+    ```bash
     kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data --force
-    
+    ```
     Monitor the drain process. `kubectl get pods -o wide` will show the node where the pods are running.
 
 *   **Upgrade the Node:**  The method for upgrading a node depends on your Kubernetes provider and infrastructure.  For example, in GKE, you might use the `gcloud` command-line tool or the Google Cloud Console to upgrade the node pool.  Refer to your provider's documentation for specific instructions.  This step could involve re-imaging the node with a newer Kubernetes version or applying updates to the existing operating system and Kubernetes components.
 
 *   **Uncordon the Node:** Once the node is upgraded, mark it as schedulable again using `kubectl uncordon`.
 
-    bash
+    ```bash
     kubectl uncordon <node-name>
-    
+    ```
 
 *   **Verify the Node:**  Check the node's status and version to ensure the upgrade was successful.
 
-    bash
+    ```bash
     kubectl get node <node-name> -o wide
-    
+    ```
 
 *   **Repeat:** Repeat the draining, upgrading, and uncordoning steps for each worker node in your cluster.
 

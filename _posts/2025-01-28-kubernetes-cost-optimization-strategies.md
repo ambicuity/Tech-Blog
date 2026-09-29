@@ -49,7 +49,7 @@ The foundation of cost optimization lies in accurately defining resource request
     *   `Off`: VPA does not take any action.
 *   **Example VPA manifest:**
 
-yaml
+```yaml
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
@@ -61,7 +61,7 @@ spec:
     name: my-app-deployment
   updatePolicy:
     updateMode: "Auto"
-
+```
 
 *   **Manual Adjustment:**  Based on monitoring data, manually adjust the resource requests and limits in your pod specifications.  Start with small adjustments and monitor the impact.
 
@@ -79,7 +79,7 @@ HPA automatically scales the number of pods in a deployment based on observed CP
 *   **Set appropriate thresholds:** Carefully select the target utilization levels for scaling.  Too low a threshold can lead to excessive scaling, while too high a threshold can cause performance issues.
 *   **Example HPA manifest:**
 
-yaml
+```yaml
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -98,7 +98,7 @@ spec:
       target:
         type: Utilization
         averageUtilization: 70
-
+```
 
 This example scales a deployment named `my-app-deployment` between 2 and 10 replicas, targeting an average CPU utilization of 70%.
 
