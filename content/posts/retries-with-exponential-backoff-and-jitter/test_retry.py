@@ -7,7 +7,6 @@ import threading
 import unittest
 
 from retry import (
-    NonIdempotentError,
     PermanentError,
     RetryExhausted,
     ServiceError,
@@ -235,20 +234,34 @@ class RetryTests(unittest.TestCase):
         self.assertLessEqual(clock.now - 1000.0, 5.0)
     # [/block demo]
 
-    def test_non_idempotent_without_key_refused(self):
+    def test_non_idempotent_runs_exactly_once(self):
         clock = FakeClock()
-        fn = scripted([TransientError("x")], clock)
-        with self.assertRaises(NonIdempotentError):
-            with_retries(fn, idempotent=False, clock=clock, sleep=clock.sleep)
-        self.assertEqual(len(fn.calls), 0)
+        fn = scripted([TransientError("x"), TransientError("y")], clock)
+        with self.assertRaises(RetryExhausted) as ctx:
+            with_retries(fn, idempotent=False, clock=clock, sleep=clock.sleep,
+                         rng=random.Random(1))
+        self.assertEqual(ctx.exception.reason, "not_idempotent")
+        self.assertIsInstance(ctx.exception.last_exc, TransientError)
+        # Exactly one attempt ran: the failure was never retried.
+        self.assertEqual(len(fn.calls), 1)
 
-    def test_non_idempotent_empty_key_refused(self):
+    def test_non_idempotent_empty_key_runs_once(self):
         clock = FakeClock()
         fn = scripted([TransientError("x")], clock)
-        with self.assertRaises(NonIdempotentError):
+        with self.assertRaises(RetryExhausted) as ctx:
             with_retries(fn, idempotent=False, idempotency_key="",
-                         clock=clock, sleep=clock.sleep)
-        self.assertEqual(len(fn.calls), 0)
+                         clock=clock, sleep=clock.sleep,
+                         rng=random.Random(1))
+        self.assertEqual(ctx.exception.reason, "not_idempotent")
+        self.assertEqual(len(fn.calls), 1)
+
+    def test_non_idempotent_success_returns(self):
+        clock = FakeClock()
+        fn = scripted([], clock)
+        self.assertEqual(
+            with_retries(fn, idempotent=False, clock=clock,
+                         sleep=clock.sleep), "ok")
+        self.assertEqual(len(fn.calls), 1)
 
     def test_non_idempotent_with_key_allowed(self):
         clock = FakeClock()
@@ -258,6 +271,67 @@ class RetryTests(unittest.TestCase):
                          clock=clock, sleep=clock.sleep,
                          rng=random.Random(1)),
             "ok")
+
+    def test_server_directed_delay_overrides_backoff(self):
+        # The server knows when it will have capacity; honor it.
+        clock = FakeClock()
+        delays = []
+        fn = scripted(
+            [ServiceError("slow", status=429, retry_after=2.0),
+             ServiceError("slow", status=429, retry_after=2.0)], clock)
+        stub = random.Random()
+        stub.uniform = lambda a, b: b  # raw backoff, no jitter
+        self.assertEqual(
+            with_retries(fn, max_attempts=3, base_delay=0.5, max_delay=100.0,
+                         throttling_base_delay=0.5, clock=clock,
+                         sleep=delays.append, rng=stub), "ok")
+        # Raw backoffs would be 0.5 and 1.0; the server's 2 s wins each time.
+        self.assertEqual(delays, [2.0, 2.0])
+
+    def test_server_directed_delay_never_below_backoff(self):
+        clock = FakeClock()
+        delays = []
+        fn = scripted(
+            [ServiceError("slow", status=429, retry_after=0.01),
+             ServiceError("slow", status=429, retry_after=0.01)], clock)
+        stub = random.Random()
+        stub.uniform = lambda a, b: b
+        self.assertEqual(
+            with_retries(fn, max_attempts=3, base_delay=0.5, max_delay=100.0,
+                         throttling_base_delay=0.5, clock=clock,
+                         sleep=delays.append, rng=stub), "ok")
+        # The 10 ms server hint is below the computed backoff, so the
+        # backoff (0.5, 1.0) wins.
+        self.assertEqual(delays, [0.5, 1.0])
+
+    def test_server_directed_delay_capped_at_backoff_plus_five(self):
+        clock = FakeClock()
+        delays = []
+        fn = scripted([ServiceError("slow", status=429, retry_after=60.0)],
+                      clock)
+        stub = random.Random()
+        stub.uniform = lambda a, b: b
+        self.assertEqual(
+            with_retries(fn, max_attempts=2, base_delay=0.5, max_delay=100.0,
+                         throttling_base_delay=0.5, clock=clock,
+                         sleep=delays.append, rng=stub), "ok")
+        # The 60 s server hint is clamped at backoff + 5 s = 5.5 s.
+        self.assertEqual(delays, [5.5])
+
+    def test_server_directed_delay_respects_deadline(self):
+        clock = FakeClock()
+        fn = scripted([ServiceError("slow", status=429, retry_after=60.0)],
+                      clock)
+        stub = random.Random()
+        stub.uniform = lambda a, b: b
+        with self.assertRaises(RetryExhausted) as ctx:
+            with_retries(fn, max_attempts=2, total_timeout=1.0,
+                         base_delay=0.5, max_delay=100.0,
+                         throttling_base_delay=0.5, clock=clock,
+                         sleep=clock.sleep, rng=stub)
+        # The clamped 5.5 s wait does not fit in the 1 s deadline.
+        self.assertEqual(ctx.exception.reason, "deadline")
+        self.assertEqual(len(fn.calls), 1)
 
     def test_backoff_is_capped(self):
         clock = FakeClock()

@@ -8,8 +8,11 @@ What this module guarantees:
   jittered;
 - retries stop when the error is permanent, the attempt limit is hit, the
   retry budget is empty, or the total deadline no longer fits another wait;
-- a non-idempotent operation is never retried unless the caller supplies an
-  idempotency key.
+- a non-idempotent operation without an idempotency key runs exactly once
+  and is never retried;
+- a failure carrying a server-directed wait (``x-amz-retry-after`` or HTTP
+  ``Retry-After``) waits the server's delay, clamped to between the computed
+  backoff and the computed backoff plus five seconds.
 
 What it cannot do: interrupt a running attempt. Each attempt receives the
 seconds remaining until the deadline, and a cooperative operation should use
@@ -40,13 +43,19 @@ class ServiceError(Exception):
 
     The error code wins over the status: ``400`` with code ``RequestTimeout``
     is transient, while ``400`` with code ``ValidationException`` is permanent.
+
+    ``retry_after`` carries a server-directed wait in seconds: convert
+    ``x-amz-retry-after`` (milliseconds) or the HTTP ``Retry-After`` header
+    (seconds or an HTTP-date) to seconds before constructing the error.
     """
 
     def __init__(self, message: str = "", *, status: int | None = None,
-                 code: str | None = None) -> None:
+                 code: str | None = None,
+                 retry_after: float | None = None) -> None:
         super().__init__(message)
         self.status = status
         self.code = code
+        self.retry_after = retry_after
 
     def __str__(self) -> str:
         bits = []
@@ -54,6 +63,8 @@ class ServiceError(Exception):
             bits.append(f"status={self.status}")
         if self.code is not None:
             bits.append(f"code={self.code}")
+        if self.retry_after is not None:
+            bits.append(f"retry_after={self.retry_after}s")
         detail = " ".join(bits)
         base = super().__str__()
         if detail and base:
@@ -61,15 +72,12 @@ class ServiceError(Exception):
         return detail or base or "ServiceError"
 
 
-class NonIdempotentError(ValueError):
-    """Raised when asked to retry an operation that is not safe to repeat."""
-
-
 class RetryExhausted(Exception):
     """Raised when no further attempt will be made.
 
-    ``reason`` is one of ``"permanent"``, ``"max_attempts"``, ``"budget"`` or
-    ``"deadline"``; ``last_exc`` is the most recent failure, if any.
+    ``reason`` is one of ``"permanent"``, ``"max_attempts"``, ``"budget"``,
+    ``"deadline"`` or ``"not_idempotent"``; ``last_exc`` is the most recent
+    failure, if any.
     """
 
     def __init__(self, reason: str, last_exc: BaseException | None = None) -> None:
@@ -248,21 +256,43 @@ def with_retries(
     numbered from 1; retries happen only when ``fn`` raises a transient or
     throttling failure (see :func:`classify`).
 
+    When the operation is not idempotent and no idempotency key is
+    supplied, it is not safe to repeat: ``fn`` runs exactly once and is
+    never retried. A failure then raises :class:`RetryExhausted` with reason
+    ``"not_idempotent"``.
+
     The loop stops, raising :class:`RetryExhausted`, when the failure is
     permanent, ``max_attempts`` is reached, the budget has no token left, or
     the next wait would not fit inside ``total_timeout``. A budget token is
     consumed only when a wait is actually going to happen: a retry that never
     runs never spends budget.
+
+    A failure carrying ``retry_after``, a server-directed wait in seconds
+    (from ``x-amz-retry-after`` or the HTTP ``Retry-After`` header), takes
+    precedence over the jittered backoff: the wait becomes the server's
+    delay, clamped to between the computed backoff and the computed backoff
+    plus five seconds, matching the AWS SDK behavior. The service is expected
+    to jitter its own value, so no extra jitter is applied; the wait must
+    still fit inside ``total_timeout``.
     """
-    if not idempotent and not idempotency_key:
-        raise NonIdempotentError(
-            "refusing to retry a non-idempotent operation without an "
-            "idempotency key: a repeated side effect could execute twice")
     if max_attempts < 1:
         raise ValueError("max_attempts must be at least 1")
     if rng is None:
         rng = random.Random()
     deadline = clock() + total_timeout if total_timeout is not None else None
+
+    if not idempotent and not idempotency_key:
+        # Not safe to repeat, and no key for the receiver to deduplicate by:
+        # run exactly once, never retry. A failure raises RetryExhausted
+        # with reason "not_idempotent" rather than risking a second
+        # execution.
+        remaining = deadline - clock() if deadline is not None else None
+        if remaining is not None and remaining <= 0:
+            raise RetryExhausted("deadline") from None
+        try:
+            return fn(remaining)
+        except Exception as exc:  # noqa: BLE001 - policy applies to any failure
+            raise RetryExhausted("not_idempotent", exc) from exc
 
     last_exc: BaseException | None = None
     for attempt in range(1, max_attempts + 1):
@@ -280,6 +310,12 @@ def with_retries(
                 break
             base = throttling_base_delay if kind == "throttling" else base_delay
             delay = _full_jitter_delay(attempt - 1, base, max_delay, rng)
+            if isinstance(exc, ServiceError) and exc.retry_after is not None \
+                    and exc.retry_after > 0:
+                # Server-directed timing: use the server's wait, clamped to a
+                # minimum of the computed backoff and a maximum of the
+                # computed backoff plus five seconds, as the AWS SDK does.
+                delay = min(max(exc.retry_after, delay), delay + 5.0)
             if remaining is not None:
                 # Re-read the clock: the failed attempt consumed some of the
                 # deadline, so the wait must fit in what is left, not what

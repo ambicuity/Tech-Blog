@@ -83,8 +83,8 @@
 <circle cx="601.3" cy="65" r="2.8" class="f-a2-solid" data-step="3"/>
 <circle cx="601.3" cy="60" r="2.8" class="f-a2-solid" data-step="3"/>
 <circle cx="601.3" cy="55" r="2.8" class="f-a2-solid" data-step="3"/>
-<line x1="90" y1="115" x2="700" y2="115" class="f-dashed"/>
-<text x="700" y="109" class="f-small f-end">illustrative capacity</text>
+<line x1="90" y1="115" x2="700" y2="115" class="f-dashed f-a3-line"/>
+<text x="458" y="140" class="f-small f-middle">illustrative capacity</text>
 <text x="8" y="230" class="f-label">full jitter</text>
 <circle cx="99.0" cy="320" r="2.8" class="f-a1-solid" data-step="1"/>
 <circle cx="99.0" cy="315" r="2.8" class="f-a1-solid" data-step="1"/>
