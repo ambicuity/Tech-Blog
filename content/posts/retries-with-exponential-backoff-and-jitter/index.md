@@ -3,8 +3,9 @@ title: "Retries with Exponential Backoff and Jitter"
 description: >-
   Retries multiply across layers and synchronize recovery traffic, turning
   a blip into an outage. Tested Python code: error classification, capped
-  backoff, full jitter, retry budgets, and deadlines.
+  backoff, full jitter, server-directed delays, retry budgets, and deadlines.
 date: 2026-09-29 16:30:00 +0000
+updated: 2026-09-29 17:04:08 +0000
 author: ritesh
 categories: [Distributed Systems, Reliability]
 tags: [retries, exponential-backoff, jitter, resilience, python]
@@ -15,11 +16,11 @@ cover:
   alt: A client request fanning out into synchronized retry waves on the left, spreading into scattered jittered attempts on the right, over a timeline with exponential backoff markers.
 ---
 
-Your dependency hiccups for five seconds. Every instance of your service retries immediately, fails again, and retries again. The dependency recovers, and then a thousand synchronized clients slam it at the same instant. The five-second blip becomes a fifteen-minute outage, and the retry logic you added for resilience caused it.
+Your dependency hiccups for five seconds. Every instance of your service retries immediately, fails again, and retries again. The dependency recovers, and then a thousand synchronized clients slam it at the same instant. The five-second blip becomes a fifteen-minute outage, and the retry logic you added for resilience caused it. (This opening is an illustrative scenario; the numbers are chosen for effect, not measured.)
 
 The obvious fixes each fail in a different way. Retry immediately and the clients form a thundering herd. Wait a fixed one second and they still wake up together, in lockstep, because they all failed at the same moment. Retry at every layer of the call chain and one user action becomes dozens of backend attempts. Retry every error and you burn quota on requests that can never succeed, or worse, you execute a charge twice.
 
-This guide builds a retry helper that gets four decisions right: which failures deserve a retry, how long to wait between attempts, how much retrying the whole system can afford, and when to stop and report failure. The code is Python 3.12, standard library only, and ships next to this article with 24 tests. The design follows the AWS builders' library guidance on timeouts, retries, and backoff with jitter, the AWS Architecture Blog's comparison of jitter strategies, the retry behavior of the AWS SDKs, and the Google SRE book's chapter on cascading failures.
+This guide builds a retry helper that gets four decisions right: which failures deserve a retry, how long to wait between attempts, how much retrying the whole system can afford, and when to stop and report failure. The code is Python 3.12, standard library only, and ships next to this article with 29 tests. The design follows the AWS builders' library guidance on timeouts, retries, and backoff with jitter, the AWS Architecture Blog's comparison of jitter strategies, the retry behavior of the AWS SDKs, and the Google SRE book's chapter on cascading failures.
 
 > [!NOTE]
 > **In short**
@@ -27,13 +28,13 @@ This guide builds a retry helper that gets four decisions right: which failures 
 > - Wait with capped exponential backoff and full jitter: `uniform(0, min(cap, base * 2**retry))`. Unjittered backoff synchronizes recovery traffic; the AWS Architecture Blog reports over 50% fewer calls with jitter for 100 contending clients in its own simulation.
 > - Classify by error code first, status second. A `400` with code `RequestTimeout` is transient; a `400` with code `ValidationException` is permanent. Never retry what you do not understand.
 > - Bound total retrying with a shared token-bucket budget and a total deadline. Spend a budget token only on a retry that will actually run.
-> - Never retry a non-idempotent operation unless the caller supplies an idempotency key.
+> - A non-idempotent operation without an idempotency key runs exactly once and is never retried; a failure raises `RetryExhausted` with reason `not_idempotent`.
 
 ## Retry at one layer
 
-Every layer that retries multiplies the attempts of the layer above it. The Google SRE book works the example explicitly: the JavaScript client, the frontend, and the backend each retry three times. Three retries means four attempts per layer, and the database sees 4 x 4 x 4 = 64 attempts for a single user action. The AWS builders' library states the same rule directly: pick one layer to retry at, and make the other layers fail fast.
+Every layer that retries multiplies the attempts of the layer above it. The Google SRE book works the example explicitly: the JavaScript client, the frontend, and the backend each retry three times. Three retries means four attempts per layer, and the database sees 4 x 4 x 4 = 64 attempts for a single user action. The AWS builders' library states the same rule directly, qualified to cheap calls: "for low-cost control-plane and data-plane operations, our best practice is to retry at a single point in the stack." Retrying at the top layer can waste work from earlier calls, which is why the qualifier matters; for low-cost operations the single retrying layer wins. My own recommendation on top of that: make the other layers fail fast with tight timeouts, so the designated layer is the only one deciding whether to retry.
 
-![Four boxes for the JavaScript client, frontend, backend, and database, showing one call becoming 4 attempts, then 16, then 64.](retry-amplification.svg "Each retrying layer multiplies the attempts of the layer above: 4 x 4 x 4 = 64 database attempts for one user action (Google SRE book)."){: .figure}
+![Two rows of boxes for the JavaScript client, frontend, backend, and database. Top row: every layer retries, one call becomes 64 database attempts. Bottom row: only the top layer retries, the database sees 4 attempts.](retry-amplification.svg "Retry at one layer: every retrying layer multiplies the attempts above it, 4 x 4 x 4 = 64 (Google SRE book); with retries at the top layer only and inner layers failing fast, the database sees 4 attempts."){: .figure}
 
 The fix is organizational, not algorithmic. Designate exactly one layer as the retrying layer for each call chain, usually the outermost client, because it owns the user-facing deadline and has the most context for how long the whole operation may take. Every inner layer gets a tight timeout and no retries of its own: it fails fast and lets the designated layer decide. If you inherit a system where a sidecar, a service mesh, or an SDK already retries, count that as the one layer and turn yours off. Two layers that each retry "just twice" still multiply to nine attempts per call, and the multiplication hides inside latency percentiles until a blip exposes it.
 
@@ -75,13 +76,19 @@ class ServiceError(Exception):
 
     The error code wins over the status: ``400`` with code ``RequestTimeout``
     is transient, while ``400`` with code ``ValidationException`` is permanent.
+
+    ``retry_after`` carries a server-directed wait in seconds: convert
+    ``x-amz-retry-after`` (milliseconds) or the HTTP ``Retry-After`` header
+    (seconds or an HTTP-date) to seconds before constructing the error.
     """
 
     def __init__(self, message: str = "", *, status: int | None = None,
-                 code: str | None = None) -> None:
+                 code: str | None = None,
+                 retry_after: float | None = None) -> None:
         super().__init__(message)
         self.status = status
         self.code = code
+        self.retry_after = retry_after
 
     def __str__(self) -> str:
         bits = []
@@ -89,6 +96,8 @@ class ServiceError(Exception):
             bits.append(f"status={self.status}")
         if self.code is not None:
             bits.append(f"code={self.code}")
+        if self.retry_after is not None:
+            bits.append(f"retry_after={self.retry_after}s")
         detail = " ".join(bits)
         base = super().__str__()
         if detail and base:
@@ -96,15 +105,12 @@ class ServiceError(Exception):
         return detail or base or "ServiceError"
 
 
-class NonIdempotentError(ValueError):
-    """Raised when asked to retry an operation that is not safe to repeat."""
-
-
 class RetryExhausted(Exception):
     """Raised when no further attempt will be made.
 
-    ``reason`` is one of ``"permanent"``, ``"max_attempts"``, ``"budget"`` or
-    ``"deadline"``; ``last_exc`` is the most recent failure, if any.
+    ``reason`` is one of ``"permanent"``, ``"max_attempts"``, ``"budget"``,
+    ``"deadline"`` or ``"not_idempotent"``; ``last_exc`` is the most recent
+    failure, if any.
     """
 
     def __init__(self, reason: str, last_exc: BaseException | None = None) -> None:
@@ -197,7 +203,13 @@ def classify(exc: BaseException) -> str:
     return "permanent"
 ```
 
-The idempotency gate belongs with classification because it answers the same question: is repeating this call safe? A retried non-idempotent operation can execute its side effect twice. The helper refuses to retry one unless the caller supplies an idempotency key, which moves the deduplication responsibility to the receiver, the same contract idempotent webhook handlers rely on. If you cannot make the operation idempotent and you have no key, the only safe policy is one attempt.
+The idempotency gate belongs with classification because it answers the same question: is repeating this call safe? A retried non-idempotent operation can execute its side effect twice. The helper therefore never retries a non-idempotent operation unless the caller supplies an idempotency key, which moves the deduplication responsibility to the receiver, the same contract [idempotent webhook handlers](/posts/idempotent-operations-in-distributed-systems-a-practical-guide/) rely on. If you cannot make the operation idempotent and you have no key, the call runs exactly once and is never retried: a failure raises `RetryExhausted` with reason `"not_idempotent"` instead of risking a second execution.
+
+## Honor server-directed delays
+
+Sometimes the service tells you exactly when to come back. AWS services may send an `x-amz-retry-after` header with error responses, carrying a delay in milliseconds; the AWS SDK retry documentation says the SDK then "uses the server-specified delay, clamped to a minimum of the computed backoff delay and a maximum of the computed backoff delay plus 5,000 ms," adding that it "does not apply jitter to this value, because the service is expected to jitter it." HTTP has the same idea in the standard `Retry-After` header, whose value is either a delay in seconds or an HTTP-date (RFC 9110, section 10.2.3).
+
+The helper models this as `retry_after` on `ServiceError`, in seconds; convert milliseconds or an HTTP-date to seconds when constructing the error. When a failure carries one, the wait becomes the server's delay clamped to between the computed backoff and the computed backoff plus five seconds, matching the AWS SDK. The clamp matters in both directions: never shorter than your own backoff, so a buggy or hostile header cannot turn your client into a hot loop, and never more than five seconds longer, so a stale hint cannot park the operation. The wait must still fit inside the total deadline, so the server hint can never push the operation past its own budget of time.
 
 ## Bound the total cost
 
@@ -259,7 +271,7 @@ The deadline bounds the whole operation, not just one wait. Each attempt receive
 
 Gate order matters. The loop checks the deadline *before* taking a budget token, so a retry that never runs never spends budget. A token is consumed only when the wait is actually going to happen.
 
-![Flowchart: an attempt raises, then four diamond gates in sequence: transient or throttling, idempotent or keyed, wait fits in deadline, budget token available; failing any gate raises, passing all four sleeps the full-jitter backoff and retries.](retry-decision.svg "Four gates before any wait. A retry happens only when the error is transient, the operation is safe to repeat, the wait fits in the deadline, and the budget has a token."){: .figure}
+![Flowchart: a non-idempotent call without a key runs once and is never retried; otherwise each failed attempt passes five gates, idempotent or keyed, transient or throttling, attempts left, wait fits in deadline, budget token; failing any gate raises RetryExhausted, passing all five sleeps and retries.](retry-decision.svg "Five gates before any wait. A retry happens only when the operation is safe to repeat, the error is transient, attempts remain, the wait fits in the deadline, and the budget has a token."){: .figure}
 
 ```python
 def with_retries(
@@ -284,21 +296,43 @@ def with_retries(
     numbered from 1; retries happen only when ``fn`` raises a transient or
     throttling failure (see :func:`classify`).
 
+    When the operation is not idempotent and no idempotency key is
+    supplied, it is not safe to repeat: ``fn`` runs exactly once and is
+    never retried. A failure then raises :class:`RetryExhausted` with reason
+    ``"not_idempotent"``.
+
     The loop stops, raising :class:`RetryExhausted`, when the failure is
     permanent, ``max_attempts`` is reached, the budget has no token left, or
     the next wait would not fit inside ``total_timeout``. A budget token is
     consumed only when a wait is actually going to happen: a retry that never
     runs never spends budget.
+
+    A failure carrying ``retry_after``, a server-directed wait in seconds
+    (from ``x-amz-retry-after`` or the HTTP ``Retry-After`` header), takes
+    precedence over the jittered backoff: the wait becomes the server's
+    delay, clamped to between the computed backoff and the computed backoff
+    plus five seconds, matching the AWS SDK behavior. The service is expected
+    to jitter its own value, so no extra jitter is applied; the wait must
+    still fit inside ``total_timeout``.
     """
-    if not idempotent and not idempotency_key:
-        raise NonIdempotentError(
-            "refusing to retry a non-idempotent operation without an "
-            "idempotency key: a repeated side effect could execute twice")
     if max_attempts < 1:
         raise ValueError("max_attempts must be at least 1")
     if rng is None:
         rng = random.Random()
     deadline = clock() + total_timeout if total_timeout is not None else None
+
+    if not idempotent and not idempotency_key:
+        # Not safe to repeat, and no key for the receiver to deduplicate by:
+        # run exactly once, never retry. A failure raises RetryExhausted
+        # with reason "not_idempotent" rather than risking a second
+        # execution.
+        remaining = deadline - clock() if deadline is not None else None
+        if remaining is not None and remaining <= 0:
+            raise RetryExhausted("deadline") from None
+        try:
+            return fn(remaining)
+        except Exception as exc:  # noqa: BLE001 - policy applies to any failure
+            raise RetryExhausted("not_idempotent", exc) from exc
 
     last_exc: BaseException | None = None
     for attempt in range(1, max_attempts + 1):
@@ -316,6 +350,12 @@ def with_retries(
                 break
             base = throttling_base_delay if kind == "throttling" else base_delay
             delay = _full_jitter_delay(attempt - 1, base, max_delay, rng)
+            if isinstance(exc, ServiceError) and exc.retry_after is not None \
+                    and exc.retry_after > 0:
+                # Server-directed timing: use the server's wait, clamped to a
+                # minimum of the computed backoff and a maximum of the
+                # computed backoff plus five seconds, as the AWS SDK does.
+                delay = min(max(exc.retry_after, delay), delay + 5.0)
             if remaining is not None:
                 # Re-read the clock: the failed attempt consumed some of the
                 # deadline, so the wait must fit in what is left, not what
@@ -338,14 +378,15 @@ The delay defaults mirror the AWS SDK's: a 50 ms base for transient failures, a 
 | Retries at the client, the sidecar, and the backend | Load multiplies on every blip; dashboards show attempt counts far above request counts | Each layer adds its own attempts | Designate one retrying layer per call chain; inner layers fail fast |
 | Fixed or pure exponential backoff, no jitter | Recovery traffic arrives in synchronized waves; the dependency tips over again right after recovering | Identical sleep schedules from a common failure time | Full jitter: `uniform(0, min(cap, base * 2**n))` |
 | Retrying every 4xx | Quota burned on requests that can never succeed | Status-only classification | Code-first classification; unrecognized codes fall back to status, unrecognized failures are permanent |
-| Retrying a charge or a send without a key | Double charges, duplicate side effects | Non-idempotent operation repeated | Refuse unless `idempotent=True` or an idempotency key is supplied |
+| Retrying a charge or a send without a key | Double charges, duplicate side effects | Non-idempotent operation repeated | Run exactly once, never retry; failure raises with reason `not_idempotent` |
+| Ignoring the server's retry-after hint | Retries land while the service is still shedding load | Server-directed wait carried but never applied | Wait the server's delay, clamped to `[backoff, backoff + 5 s]`, inside the deadline |
 | No total deadline | A slow dependency holds caller threads for minutes; pools exhaust | Waits bounded individually but not in total | Pass the remaining time to each attempt; never start a wait that does not fit |
 | No retry budget | One client's retries become a DoS against a struggling dependency | Aggregate retries unbounded | Shared token bucket; fail fast when empty |
 | Budget consumed before the deadline check | Budget leaks on retries that never run | Wrong gate order | Check the deadline first; spend the token only on a retry that will run |
 
 ## Proving it works
 
-The test suite runs 24 tests in about 0.02 seconds on Python 3.12.3:
+The test suite runs 29 tests in about 0.02 seconds on Python 3.12.3:
 
 ```text
 python3 -W error::DeprecationWarning -m unittest test_retry -v
@@ -355,6 +396,8 @@ A fake clock stands in for `time.monotonic` and `time.sleep`, so every timing as
 
 - **Code wins over status.** `400` with code `RequestTimeout` is retried; `400` with code `ValidationException` is not; a `503` with a throttling code classifies as throttling, not transient. A listed non-retryable code wins even over a 5xx status, while an unrecognized code falls back to the status rules. `501` without a code is permanent.
 - **Budget is never spent on a phantom retry.** With a one-token bucket and a deadline the longest possible wait cannot fit, the loop raises `RetryExhausted("deadline")` and the token is still there afterward.
+- **Non-idempotent means one attempt, never a retry.** A non-idempotent operation without a key fails with reason `not_idempotent` after exactly one call, and the empty-string key behaves the same way.
+- **Server hints are honored, clamped, and deadline-bound.** A 2 s `retry_after` overrides the shorter backoff; a 10 ms hint stays below it; a 60 s hint is capped at backoff + 5 s; and a hint that does not fit the deadline raises `deadline`.
 - **The deadline bounds helper-controlled time.** Attempts receive non-increasing remaining times, and sleeps plus cooperative work stay inside the deadline:
 
 ```python
@@ -387,7 +430,7 @@ The simulation behind the jitter figure ships as `retry_sim.py` in the article f
 Retries are invisible load until they are measured. Export four metrics per operation:
 
 - `retry_attempts_total{operation, outcome}` where outcome is `success` or `giveup`.
-- `retry_giveups_total{operation, reason}` where reason is one of `permanent`, `max_attempts`, `budget`, or `deadline`, matching the `RetryExhausted` reasons.
+- `retry_giveups_total{operation, reason}` where reason is one of `permanent`, `max_attempts`, `budget`, `deadline`, or `not_idempotent`, matching the `RetryExhausted` reasons.
 - `retry_budget_available` as a gauge on the shared bucket.
 - `retry_backoff_seconds` as a histogram of actual waits.
 
@@ -396,6 +439,7 @@ Alert on the giveup ratio by reason, not on retries in the abstract. Retries hap
 - `reason="budget"` giveups sustained above zero mean the dependency is shedding your retries. Investigate the dependency before raising the budget; raising it during an outage just buys a bigger thundering herd.
 - `reason="deadline"` climbing means the total timeout is too tight for current latency, or the dependency's p99 grew. Check whether the timeout or the dependency moved.
 - `reason="permanent"` spiking after a deploy means a client bug is now failing fast on every call. Roll back the client, not the retry policy.
+- `reason="not_idempotent"` appearing at all means callers are sending non-idempotent operations without keys. Fix the callers; the helper is already refusing to retry them.
 - `retry_budget_available` near zero for minutes means a retry storm is in progress somewhere upstream.
 
 Example queries (Prometheus):
@@ -406,11 +450,11 @@ retry_budget_available < 1
 histogram_quantile(0.99, sum by (le) (rate(retry_backoff_seconds_bucket[5m])))
 ```
 
-Size the bucket from the dependency's documented rate limit, not from your client's wishes: capacity is the burst you can afford, and the refill rate is the sustained retry rate the dependency can absorb on top of normal traffic. A starting point is a refill rate of 5-10% of the dependency's per-client quota; adjust from the `budget` giveup rate in production. Two caveats: the bucket is process-local, so each instance of your service gets its own, and a restart refills it to capacity. Size capacity so that a simultaneous restart of the whole fleet, every bucket full at once, is still a burst the dependency survives. If it is not, share one bucket per fleet through Redis instead of one per process.
+Size the bucket from the dependency's documented rate limit, not from your client's wishes: capacity is the burst you can afford, and the refill rate is the sustained retry rate the dependency can absorb on top of normal traffic. A starting point, and this is my own heuristic rather than a sourced number, is a refill rate of 5-10% of the dependency's per-client quota; adjust from the `budget` giveup rate in production. Two caveats: the bucket is process-local, so each instance of your service gets its own, and a restart refills it to capacity. Size capacity so that a simultaneous restart of the whole fleet, every bucket full at once, is still a burst the dependency survives. If it is not, share one bucket per fleet through Redis instead of one per process.
 
 ## Trade-offs and alternatives
 
-Do not retry when the operation is not idempotent and you have no key; when the caller's latency budget is better spent failing fast, as with user-facing requests where a quick error beats a slow one; when the dependency is hard down rather than flapping, because retries add load to a system that needs quiet to recover; or when the work can wait, in which case enqueue it and process it asynchronously instead of holding a caller thread.
+Do not retry a non-idempotent operation when you have no key; run it once instead. Do not retry when the caller's latency budget is better spent failing fast, as with user-facing requests where a quick error beats a slow one; when the dependency is hard down rather than flapping, because retries add load to a system that needs quiet to recover; or when the work can wait, in which case enqueue it and process it asynchronously instead of holding a caller thread.
 
 Three alternatives, each winning under a different condition:
 
@@ -425,10 +469,10 @@ Recommendation: use this helper for transient faults at exactly one layer, with 
 1. Exactly one layer in the call chain retries; inner layers fail fast with tight timeouts.
 2. Backoff is exponential, capped, and fully jittered; the cap is below the caller's patience.
 3. Error classification is code-first with status fallback; ordinary 4xx and unrecognized failures are permanent.
-4. Non-idempotent operations require an idempotency key before any retry.
+4. A non-idempotent operation without a key runs exactly once and is never retried; with a key it follows the normal policy.
 5. A shared budget bounds aggregate retries, and tokens are spent only on retries that run.
 6. Every attempt receives the remaining deadline and applies it to its I/O timeout.
-7. Giveups are counted by reason (`permanent`, `max_attempts`, `budget`, `deadline`) and alerted on.
+7. Giveups are counted by reason (`permanent`, `max_attempts`, `budget`, `deadline`, `not_idempotent`) and alerted on.
 
 ## References
 
@@ -436,3 +480,4 @@ Recommendation: use this helper for transient faults at exactly one layer, with 
 - [Exponential Backoff And Jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter) (AWS Architecture Blog): why unjittered backoff loses, the full/equal/decorrelated jitter variants, and the 100-client simulation results.
 - [Addressing Cascading Failures](https://sre.google/sre-book/addressing-cascading-failures/) (Google SRE book): the 4 x 4 x 4 = 64 attempt amplification, one retry layer, retry budgets, and deadline propagation.
 - [Retry behavior](https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html) (AWS SDKs and Tools Reference): the full-jitter formula, error-code-first classification, and the throttling base delay. The described 2026 behavior requires `AWS_NEW_RETRIES_2026=true`.
+- [RFC 9110, section 10.2.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.3) (IETF): the `Retry-After` header field, an HTTP-date or a delay in seconds, telling the client how long to wait before a follow-up request.
