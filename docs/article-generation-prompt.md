@@ -32,6 +32,7 @@ If no topic is given, pick the highest-value unwritten topic from docs/editorial
 READ FIRST (these are binding)
 - docs/content-authoring.md: bundle layout, front matter, validation, references, accuracy.
 - docs/editorial-guide.md: topic mix, title rules, backlog and its starting sources.
+- docs/figures.md: how to draw figures (SVG classes, animation attributes, skeleton).
 - content/posts/transactional-outbox-reliable-events-without-dual-writes/: the reference
   example of the expected depth, structure and code quality.
 - Existing articles on the same subject (search content/posts and _posts), so you link
@@ -56,10 +57,12 @@ Structure (adapt headings to the topic; keep the order of ideas):
 1. Opening (no heading): the concrete problem in 2-3 short paragraphs. Who hits it,
    what breaks, why the obvious fix fails.
 2. "In short" callout (> [!NOTE]): 3-5 bullets a busy reader can act on.
-3. Mental model: the mechanism from first principles, with ONE Mermaid diagram
-   (sequence diagram for interactions and crash windows, stateDiagram-v2 for state
-   machines, flowchart for data paths). Diagram labels match the code's names. Give it
-   accTitle and accDescr lines.
+3. Mental model: the mechanism from first principles, with a FIGURE that shows the
+   system's state and how it changes. Follow docs/figures.md: a hand-authored SVG in
+   the article folder, drawn only with the site's figure classes, numbered steps with a
+   legend, and (when order matters) data-step animation. Use a Mermaid block only for
+   simple flowcharts or sequences where layout carries no meaning. Figure labels
+   match the code's names. Aim for one figure per 400-600 words of explanation.
 4. Implementation: complete, runnable code for the pinned versions. Build it up in
    steps; each step says what it guarantees and what it does not.
 5. Failure modes: for each thing the naive version gets wrong, what the reader sees,
