@@ -29,6 +29,8 @@ module TechBlog
     # A line that is only a language name: a code block whose ``` fences were
     # stripped, which then renders (and is Liquid-processed) as prose.
     LOST_FENCE_RE = /^[ \t]*(?:yaml|bash|python|json|go|sh|shell|javascript|typescript|dockerfile|sql|hcl|terraform|console|promql|java|rust|toml)[ \t]*$/
+    # Title formulas the blog is moving away from (docs/editorial-guide.md).
+    FORMULA_TITLE_RE = /\A(?:Boosting|Leveraging|Unlocking|Mastering)\b|\bAI[- ](?:generated|assisted|authored|powered)\b.*\bon Kubernetes\b/i
     KINDS = ["Guide", "Case Study", "Deep Dive", "Comparison", "Opinion", "Scenario"].freeze
     REFERENCES_HEADING_RE = /^##\s+(?:References|Sources|Further reading)\s*$/i
 
@@ -133,6 +135,10 @@ module TechBlog
 
       if data["author"].to_s.empty?
         errors << "author is required (one of: #{authors(root).join(', ')})"
+      end
+
+      if data["title"].to_s.match?(FORMULA_TITLE_RE)
+        warnings << "title follows a formula the blog is moving away from; say plainly what the article covers (docs/editorial-guide.md#titles)"
       end
 
       check_categories(root, data, result, strict: true)

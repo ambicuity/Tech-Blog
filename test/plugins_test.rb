@@ -183,6 +183,17 @@ class ContentContractTest < Minitest::Test
     assert_match(/leftover placeholder/, TechBlog::ContentContract.validate_legacy(@root, path).errors.join)
   end
 
+  def test_formulaic_titles_warn
+    %w[Boosting Leveraging Unlocking Mastering].each do |opener|
+      result = bundle("formula-#{opener.downcase}", GOOD.merge("title" => "#{opener} Kafka Consumers for Scale"))
+      assert result.ok?, "a title style is a warning, not an error"
+      assert_match(/editorial-guide/, result.warnings.join, opener)
+    end
+    ai = bundle("formula-ai", GOOD.merge("title" => "Fixing Memory Leaks in AI-Generated Python Services on Kubernetes"))
+    assert_match(/editorial-guide/, ai.warnings.join)
+    assert_empty bundle("plain-title", GOOD.merge("title" => "Idempotent Kafka Consumers")).warnings.grep(/editorial-guide/)
+  end
+
   def test_scenario_flag
     assert bundle("scenario-ok", GOOD.merge("scenario" => "illustrative")).ok?
     assert_match(/scenario must be/, bundle("scenario-bad", GOOD.merge("scenario" => "real")).errors.join)
