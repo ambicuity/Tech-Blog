@@ -164,8 +164,8 @@ Correlate spikes in `jvm_gc_pause_seconds_total` with corresponding increases in
 Assess your critical JVM-based services for their current GC configuration and health check resilience. Implement verbose GC logging and instrument Prometheus metrics to quantify actual GC pause durations and frequencies under production load. This empirical data will inform targeted tuning efforts and validate the effectiveness of revised health check strategies.
 
 ### Related
-- [Pillar](/posts/the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages/)
-- [Deep Dive](/posts/pod-topology-spread-constraints-explained/)
-- [Runbook](/posts/kubernetes-operators-101-writing-your-own/)
+- [The Silent Killer \u2013 How Feature Flag Misconfigurations Manifest as Partial Outages](/posts/the-silent-killer-how-feature-flag-misconfigurations-manifest-as-partial-outages/)
+- [Pod Topology Spread Constraints Explained](/posts/pod-topology-spread-constraints-explained/)
+- [Kubernetes Operators 101: Writing Your Own](/posts/kubernetes-operators-101-writing-your-own/)
 - [Primary Source](https://platform.openai.com/docs/guides/production-best-practices)
 - [Primary Source](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)

@@ -151,11 +151,17 @@ module TechBlog
       [/\bvs\.?\b|comparison/i, "Comparison"],
       [/contrarian|opinion|why .* (is|are) wrong/i, "Opinion"],
       [/deep dive|masterclass|explained|internals|\b101\b/i, "Deep Dive"],
-      [/incident|case study|^(fixing|debugging|mitigating|rejecting|refactoring)\b/i, "Case Study"],
-      [/practical guide|guide|how to|from zero|tips|setting up|implementing|automating/i, "Guide"]
+      # Only a title that says so makes a Case Study: a problem-solving verb
+      # ("Fixing ...") is not evidence that the event really happened.
+      [/incident|case study|postmortem|post-mortem/i, "Case Study"],
+      [/practical guide|guide|how to|from zero|tips|setting up|implementing|automating|^(fixing|debugging|mitigating|rejecting|refactoring)\b/i, "Guide"]
     ].freeze
 
-    def kind_for(title)
+    # `scenario: illustrative` articles narrate a composite, made-up situation;
+    # they are always labelled Scenario, whatever the title suggests.
+    def kind_for(title, scenario: nil)
+      return "Scenario" if scenario == "illustrative"
+
       KIND_RULES.each { |re, kind| return kind if title.to_s.match?(re) }
       nil
     end
@@ -221,6 +227,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
   titles = (site.data.dig("taxonomy", "categories") || []).to_h { |c| [c["name"], c["title"] || c["name"]] }
 
   posts.each do |post|
+    post.data["kind"] = "Scenario" if post.data["scenario"] == "illustrative"
     post.data["kind"] ||= TechBlog::Content.kind_for(post.data["title"])
     post.data["word_count"] = TechBlog::Content.word_count(post.content)
     post.data["summary"] = TechBlog::Content.summary(post.content)

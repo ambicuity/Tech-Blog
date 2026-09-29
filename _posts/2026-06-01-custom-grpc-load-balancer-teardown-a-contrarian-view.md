@@ -7,6 +7,7 @@ tags: [grpc, envoy, load-balancing]
 description: This post dissects the operational complexities and hidden costs of a custom gRPC L7 load balancer, arguing for a migration to managed service proxies despite initial performance gains.
 author: ritesh
 cluster: "ai_code_in_production"
+scenario: illustrative
 ---
 
 Our `grpc_request_duration_p99` metric initially dropped by 15% across several critical services after deploying our custom L7 gRPC load balancer, seemingly validating our significant investment. However, the `mean_time_to_restore_service` for gRPC-related incidents simultaneously surged by an alarming 200% over the subsequent quarter, revealing a deeper, systemic cost to our platform's reliability.
@@ -139,14 +140,18 @@ Before embarking on building a custom gRPC L7 load balancer, critically evaluate
 *   **Do you have dedicated platform engineering resources to maintain this specialized infrastructure long-term?** This is not a "set it and forget it" component.
 *   **What is your rollback strategy if the custom solution introduces more problems than it solves?**
 
-## Evidence & References
+## Signals to watch
 
-*   **Runtime Metrics/Logs**:
-    *   `grpc_request_duration_p99`: Initial drop by 15% (validation of performance hypothesis).
-    *   `mean_time_to_restore_service`: 200% increase for gRPC-related incidents (evidence of operational complexity).
-    *   `envoy_cluster_upstream_rq_timeout`: Spikes observed during custom LB draining events.
-    *   Client-side `UNAVAILABLE` errors: Correlated with custom LB restarts or backend scaling events.
-    *   Custom xDS server CPU/Memory utilization: Spikes during high-churn service discovery events.
+If you run (or are considering) a custom gRPC load balancer, these are the signals that show whether it is paying for itself:
+
+*   `grpc_request_duration_p99`: whether the custom layer actually improves tail latency.
+*   Mean time to restore service for gRPC-related incidents: the operational cost of owning the load balancer.
+*   `envoy_cluster_upstream_rq_timeout`: spikes during load-balancer draining events.
+*   Client-side `UNAVAILABLE` errors: correlation with load-balancer restarts or backend scaling events.
+*   Custom xDS server CPU and memory: spikes during high-churn service discovery.
+
+## References
+
 *   **Platform Vendor References**:
     *   Google Cloud Load Balancing, [gRPC support in the External Application Load Balancer](https://docs.cloud.google.com/load-balancing/docs/https#grpc-support) (Example of managed solution capabilities)
     *   AWS App Mesh for gRPC: [https://aws.amazon.com/app-mesh/](https://aws.amazon.com/app-mesh/) (Another managed option leveraging Envoy)
@@ -155,8 +160,8 @@ Before embarking on building a custom gRPC L7 load balancer, critically evaluate
     *   gRPC Health Checking Protocol: [https://github.com/grpc/grpc/blob/master/doc/health-checking.md](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) (Understanding standard health check mechanisms)
 
 ### Related
-- [Pillar](/posts/fixing-performance-bottlenecks-in-ai-assisted-code-reviews-due-to-excessive-api-call-volume/)
-- [Deep Dive](/posts/debugging-agentic-ai-code-generation-loops-in-kubernetes/)
-- [Runbook](/posts/fixing-abrupt-pod-terminations-implementing-graceful-shutdown-in-ai-assisted-python-services-on-kubernetes/)
+- [Fixing Performance Bottlenecks in AI-Assisted Code Reviews Due to Excessive API Call Volume](/posts/fixing-performance-bottlenecks-in-ai-assisted-code-reviews-due-to-excessive-api-call-volume/)
+- [Debugging Agentic AI Code Generation Loops in Kubernetes](/posts/debugging-agentic-ai-code-generation-loops-in-kubernetes/)
+- [Fixing Abrupt Pod Terminations: Implementing Graceful Shutdown in AI-Assisted Python Services on Kubernetes](/posts/fixing-abrupt-pod-terminations-implementing-graceful-shutdown-in-ai-assisted-python-services-on-kubernetes/)
 - [Primary Source](https://platform.openai.com/docs/guides/production-best-practices)
 - [Primary Source](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)

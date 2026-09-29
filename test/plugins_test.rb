@@ -183,6 +183,14 @@ class ContentContractTest < Minitest::Test
     assert_match(/leftover placeholder/, TechBlog::ContentContract.validate_legacy(@root, path).errors.join)
   end
 
+  def test_scenario_flag
+    assert bundle("scenario-ok", GOOD.merge("scenario" => "illustrative")).ok?
+    assert_match(/scenario must be/, bundle("scenario-bad", GOOD.merge("scenario" => "real")).errors.join)
+    contradiction = bundle("scenario-case-study", GOOD.merge("scenario" => "illustrative", "kind" => "Case Study"))
+    assert_match(/Case Study/, contradiction.errors.join)
+    assert_match(/kind must be one of/, bundle("kind-bad", GOOD.merge("kind" => "Tutorial")).errors.join)
+  end
+
   def test_code_block_that_lost_its_fences_fails
     result = bundle("lost-fence", body: "Apply it:\n\nyaml\napiVersion: v1\nkind: Service\n\n\nDone.")
     assert_match(/lost its ``` fences/, result.errors.join)
@@ -416,9 +424,16 @@ class ContentTest < Minitest::Test
 
   def test_kind_heuristics
     assert_equal "Comparison", TechBlog::Content.kind_for("Helm vs Kustomize: A Comprehensive Comparison")
-    assert_equal "Case Study", TechBlog::Content.kind_for("Fixing Event Loop Blocking in Python")
+    assert_equal "Guide", TechBlog::Content.kind_for("Fixing Event Loop Blocking in Python"),
+                 "a problem-solving title is not evidence of a real incident"
+    assert_equal "Case Study", TechBlog::Content.kind_for("Postmortem: The 2024 Queue Outage")
     assert_equal "Guide", TechBlog::Content.kind_for("Implementing Rate Limiting with Redis")
     assert_nil TechBlog::Content.kind_for("Python Metaclasses: What, Why, and How")
+  end
+
+  def test_illustrative_scenarios_are_labelled_scenario
+    assert_equal "Scenario", TechBlog::Content.kind_for("Debugging Memory Growth: A Kubernetes Incident", scenario: "illustrative")
+    assert_equal "Deep Dive", TechBlog::Content.kind_for("GC Pauses Explained", scenario: nil)
   end
 
   def test_toc_items_filter
@@ -454,6 +469,25 @@ class SiteBuildTest < Minitest::Test
     end
   end
 
+  def self.scenario_posts
+    (Dir[File.join(ROOT, "_posts", "*.md")] + Dir[File.join(ROOT, "content", "posts", "*", "index.md")]).filter_map do |path|
+      data, = TechBlog::ContentContract.parse_front_matter(File.read(path))
+      next unless data && data["scenario"] == "illustrative" && data["draft"] != true
+
+      path.end_with?("index.md") ? File.basename(File.dirname(path)) : File.basename(path, ".md").sub(/\A\d{4}-\d{2}-\d{2}-/, "")
+    end
+  end
+
+  def test_illustrative_scenarios_are_disclosed
+    slugs = self.class.scenario_posts
+    skip "no illustrative scenarios" if slugs.empty?
+    slugs.each do |slug|
+      html = read("posts/#{slug}/index.html")
+      assert_includes html, 'class="callout callout--scenario"', "#{slug} is missing the scenario notice"
+      assert_match(%r{<span class="kind">Scenario</span>}, html, slug)
+    end
+  end
+
   def test_drafts_never_reach_production_outputs
     drafts = self.class.draft_bundles
     skip "no draft bundles in the repository" if drafts.empty?
@@ -476,12 +510,23 @@ class SiteBuildTest < Minitest::Test
     assert_includes read("categories/tech/index.html"), "url=/tabs/categories/"
     assert_includes read("posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view/index.html"),
                     "url=/posts/custom-grpc-load-balancer-teardown-a-contrarian-view/"
+    # Retired duplicates point at the article that replaced them.
+    YAML.safe_load_file(File.join(ROOT, "_data", "legacy_redirects.yml"))["paths"].each do |from, to|
+      next unless from.start_with?("/posts/")
+
+      assert_includes read("#{from.delete_prefix('/')}index.html"), "url=#{to}", from
+      assert exist?("#{to.delete_prefix('/')}index.html"), "redirect target #{to} does not exist"
+    end
   end
 
   def test_search_index_is_valid_and_complete
     entries = JSON.parse(read("assets/js/data/search.json"))
     posts = entries.select { |e| e["k"] == "post" }
-    assert_operator posts.size, :>=, 60
+    published = TechBlog::ContentContract.discover(ROOT).count do |entry|
+      data, = TechBlog::ContentContract.parse_front_matter(File.read(entry[:path]))
+      data && data["draft"] != true
+    end
+    assert_equal published, posts.size, "every published article is searchable"
     assert(entries.all? { |e| e["t"].is_a?(String) && !e["t"].empty? && e["u"].is_a?(String) })
     assert_equal 3, entries.count { |e| e["k"] == "course" }
   end

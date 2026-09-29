@@ -43,6 +43,7 @@ layout: default
     <div class="article-body__main">
       {%- if _toc.size > 1 %}{% include toc.html html=content variant="inline" %}{% endif %}
       <div class="prose" data-prose>
+        {%- if page.scenario == "illustrative" %}{% include scenario-note.html %}{% endif %}
         {{ content }}
       </div>
 

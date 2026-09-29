@@ -58,7 +58,7 @@ end
 %w[categories tags].each do |key|
   problems << "#{key} must be a non-empty array" unless package[key].is_a?(Array) && !package[key].empty?
 end
-known = %w[title slug description date updated author categories tags kind featured draft cover canonical_url content images]
+known = %w[title slug description date updated author categories tags kind scenario featured draft cover canonical_url content images]
 unknown = package.keys - known
 problems << "unknown fields: #{unknown.join(', ')}" unless unknown.empty?
 finish(false, { errors: problems }, json_out) unless problems.empty?
@@ -76,6 +76,7 @@ front = {
   "categories" => package["categories"],
   "tags" => package["tags"],
   "kind" => package["kind"],
+  "scenario" => package["scenario"],
   "featured" => package["featured"],
   "draft" => package.key?("draft") ? package["draft"] : false,
   "cover" => package["cover"],

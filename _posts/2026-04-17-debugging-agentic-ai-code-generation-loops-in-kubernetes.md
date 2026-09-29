@@ -4,6 +4,7 @@ title: "Debugging Agentic AI Code Generation Loops in Kubernetes"
 date: 2026-04-17 16:37:44 +0000
 categories: [AI, Kubernetes]
 tags: [agentic-ai, kubernetes, debugging, ai-code-generation, infinite-loop, python, microservices]
+scenario: illustrative
 ---
 
 We started experimenting with agentic AI for automating code generation and deployment of simple Python microservices on our Kubernetes cluster. The goal was to rapidly iterate on internal tools and APIs, freeing up senior engineers from boilerplate tasks. The agent was tasked with taking a high-level specification (e.g., "Create a service that returns the current system time in UTC") and generating the Python code, Dockerfile, Kubernetes manifest, and deployment pipeline.

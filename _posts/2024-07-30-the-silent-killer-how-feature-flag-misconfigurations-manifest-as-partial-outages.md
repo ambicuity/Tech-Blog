@@ -7,6 +7,7 @@ tags: [feature-flags, incident-response, configuration-management, reliability, 
 description: Feature flags, while powerful, introduce new vectors for failure. This analysis dissects how subtle misconfigurations can lead to insidious partial outages, often masked by system noise, and provides guidance for robust operational practices.
 author: ritesh
 cluster: "ai_code_in_production"
+scenario: illustrative
 ---
 
 Many engineers champion feature flags as a panacea for agile releases and risk mitigation. This perspective often overlooks the subtle, yet catastrophic, failure modes introduced by their misapplication.
@@ -153,8 +154,8 @@ This checklist provides actionable steps for production and platform teams to ha
 Quantify the blast radius of your flag deployments. Establish SLOs around feature flag evaluation latency and consistency.
 
 ### Related
-- [Pillar](/posts/pod-topology-spread-constraints-explained/)
-- [Deep Dive](/posts/kubernetes-operators-101-writing-your-own/)
-- [Runbook](/posts/fixing-production-gaps-in-ai-generated-kubernetes-manifests/)
+- [Pod Topology Spread Constraints Explained](/posts/pod-topology-spread-constraints-explained/)
+- [Kubernetes Operators 101: Writing Your Own](/posts/kubernetes-operators-101-writing-your-own/)
+- [Fixing Production Gaps in AI-Generated Kubernetes Manifests](/posts/fixing-production-gaps-in-ai-generated-kubernetes-manifests/)
 - [Primary Source](https://platform.openai.com/docs/guides/production-best-practices)
 - [Primary Source](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)

@@ -4,6 +4,7 @@ title: "Fixing Performance Bottlenecks in AI-Assisted Code Reviews Due to Excess
 date: 2026-04-13 10:47:21 +0000
 categories: [AI, Performance]
 tags: [ai, code-review, performance, kubernetes, api-performance, rate-limiting]
+scenario: illustrative
 ---
 
 Our team recently integrated an AI-powered code review tool into our CI/CD pipeline. The idea was simple: use AI to automatically identify potential bugs, security vulnerabilities, and style inconsistencies before code reaches production. The tool, leveraging a third-party API (let's call it `CodeAnalyzerAPI`), scans each pull request, providing suggestions directly within our GitLab interface. Initially, the results were promising, catching several issues our human reviewers missed. However, as adoption increased, we started observing significant performance degradation during peak hours. Builds were taking much longer, and our API bill from `CodeAnalyzerAPI` skyrocketed.

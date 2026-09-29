@@ -29,6 +29,7 @@ module TechBlog
     # A line that is only a language name: a code block whose ``` fences were
     # stripped, which then renders (and is Liquid-processed) as prose.
     LOST_FENCE_RE = /^[ \t]*(?:yaml|bash|python|json|go|sh|shell|javascript|typescript|dockerfile|sql|hcl|terraform|console|promql|java|rust|toml)[ \t]*$/
+    KINDS = ["Guide", "Case Study", "Deep Dive", "Comparison", "Opinion", "Scenario"].freeze
     REFERENCES_HEADING_RE = /^##\s+(?:References|Sources|Further reading)\s*$/i
 
     Result = Struct.new(:path, :slug, :errors, :warnings) do
@@ -197,6 +198,17 @@ module TechBlog
 
       %w[draft featured pin].each do |flag|
         result.errors << "#{flag} must be true or false" if data.key?(flag) && ![true, false].include?(data[flag])
+      end
+
+      if data.key?("kind") && !KINDS.include?(data["kind"])
+        result.errors << "kind must be one of: #{KINDS.join(', ')}"
+      end
+      if data.key?("scenario")
+        if data["scenario"] != "illustrative"
+          result.errors << "scenario must be 'illustrative' (or omitted for articles about real, sourced events)"
+        elsif data["kind"] == "Case Study"
+          result.errors << "an illustrative scenario cannot be a Case Study (a Case Study describes a real, sourced event)"
+        end
       end
 
       if data.key?("canonical_url") && !data["canonical_url"].to_s.match?(%r{\Ahttps://\S+\z})

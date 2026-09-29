@@ -75,7 +75,8 @@ cover:
 | Field | Meaning |
 | :--- | :--- |
 | `updated` | Date of the last substantive revision (same format as `date`, not earlier than it). Shown as "Updated …". |
-| `kind` | One of `Guide`, `Case Study`, `Deep Dive`, `Comparison`, `Opinion`. If omitted it is inferred from the title. |
+| `kind` | One of `Guide`, `Case Study`, `Deep Dive`, `Comparison`, `Opinion`, `Scenario`. If omitted it is inferred from the title. `Case Study` is only for real, sourced events. |
+| `scenario` | `illustrative` when the article narrates a made-up or composite situation ("the alert fired at 03:17", "our service"). The page then shows an "Illustrative scenario" notice and the kind becomes `Scenario`. See *Accuracy*. |
 | `draft` | `true` keeps the article out of production. See section 7. Default `false`. |
 | `featured` | `true`/`false`. Stored for editorial use; no page uses it yet. To put an article in the home page's featured slot, use `pin`. |
 | `pin` | `true` puts the article in the home page's featured slot. Use sparingly. |
@@ -185,7 +186,14 @@ sites get an "external" indicator automatically.
 
 Do not invent measurements, incidents, quotations or sources. If a number is
 illustrative, say so. Every claim a reader could check should link to the
-source that supports it. Code and prose must agree: if the text says events
+source that supports it.
+
+Narratives are welcome as a teaching device, but never present an invented
+incident as something that happened. Either write it as a hypothetical
+("Consider a service that…") or keep the first-person story and set
+`scenario: illustrative`. Do not name real products, vendors or companies as
+the cause of an invented incident, and do not list a scenario's figures as
+"evidence". Code and prose must agree: if the text says events
 are keyed by order ID, the code must key them by order ID.
 
 Never leave placeholders for later in the text — `[CLAIM:...]`, `[TODO]`,
@@ -328,6 +336,7 @@ timeouts — often bot protection, so check them by hand).
 - [ ] Images in the folder, referenced relatively, with alt text
 - [ ] 2–4 internal links; a References section of `[Title](url)` links to primary sources
 - [ ] No invented numbers, incidents or quotes; code matches what the text says
+- [ ] A made-up incident narrative has `scenario: illustrative`
 - [ ] No `[CLAIM:...]` / `[TODO]` placeholders left in the text
 - [ ] `ruby scripts/validate_content.rb` passes
 - [ ] `ruby scripts/check_external_links.rb content/posts/<slug>` reports no broken links

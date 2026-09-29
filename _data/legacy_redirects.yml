@@ -80,3 +80,7 @@ tags:
 paths:
   /posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view/: /posts/custom-grpc-load-balancer-teardown-a-contrarian-view/
   /page6/: /tabs/archives/
+  # Duplicates retired 2026-09 in favour of the stronger article on the same topic.
+  /posts/serverless-event-driven-architectures-with-aws-lambda-and-sqs/: /posts/serverless-event-processing-with-aws-lambda-and-sqs-a-practical-guide/
+  /posts/automated-canary-deploys-with-argo-rollouts-a-practical-guide/: /posts/implementing-canary-deployments-with-argo-rollouts-and-kubernetes/
+  /posts/kubernetes-resource-management-taming-resource-hogs-with-limits-and-requests/: /posts/kubernetes-resource-requests-and-limits-masterclass/
