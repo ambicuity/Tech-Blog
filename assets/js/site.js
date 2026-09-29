@@ -304,6 +304,8 @@
           } else if (response.status === 400) {
             input.setAttribute("aria-invalid", "true");
             setStatus("error", "That email address was rejected. Please check it and try again.");
+          } else if (response.status === 429) {
+            setStatus("error", "Too many attempts from your connection. Please try again in an hour.");
           } else {
             throw new Error(`HTTP ${response.status}`);
           }
