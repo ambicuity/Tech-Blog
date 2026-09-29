@@ -2,8 +2,8 @@
 layout: post
 title: "Boosting Python Performance with Asynchronous Programming and asyncio"
 date: 2024-01-20 15:05:18 +0000
-categories: [Programming, Python]
-tags: [python, asyncio, asynchronous, concurrency, performance, i/o-bound]
+categories: [Python, Performance]
+tags: [python, asyncio, asynchronous, concurrency, performance, io-bound]
 ---
 
 ## Introduction

@@ -1,0 +1,168 @@
+# Canonical taxonomy for the publication.
+#
+# _plugins/taxonomy.rb applies these rules to every post at build time, so
+# posts produced by the content pipeline are normalized even when their front
+# matter is not. Rules, in order:
+#   1. Tags are lower-cased, trimmed and hyphenated ("Platform Engineering" ->
+#      "platform-engineering"); characters other than a-z, 0-9, "-" and "."
+#      are replaced with "-".
+#   2. `tag_aliases` merges semantic duplicates into one canonical tag.
+#   3. Tags in `tag_drop` carry no meaning for readers and are removed.
+#   4. Categories are mapped through `category_aliases`; unknown categories
+#      fall back to `default_category`. A post keeps at most two categories:
+#      the first is its primary subject.
+
+default_category: Software Engineering
+
+# Display order on /tabs/categories/ follows this list.
+categories:
+  - name: AI
+    title: AI Engineering
+    description: >-
+      What happens when AI-generated code meets production: incident reports,
+      review workflows, guardrails and the engineering needed to make it safe.
+  - name: Kubernetes
+    description: >-
+      Scheduling, networking, resource management, upgrades and day-2
+      operations for clusters that carry real traffic.
+  - name: Distributed Systems
+    description: >-
+      Idempotency, ordering, resilience patterns and service-to-service
+      communication across unreliable networks.
+  - name: Reliability
+    description: >-
+      Site reliability engineering: failure modes, observability, health
+      checks, safe rollouts and incident analysis.
+  - name: DevOps
+    description: >-
+      Delivery pipelines, progressive rollouts, GitOps, containers and
+      infrastructure as code.
+  - name: Platform Engineering
+    description: >-
+      Internal platforms, policy enforcement, cluster provisioning and the
+      paved roads that product teams build on.
+  - name: Cloud Computing
+    description: >-
+      AWS building blocks, serverless and event-driven architectures, and the
+      cost of running them.
+  - name: Performance
+    description: >-
+      Profiling, caching, concurrency and the measurements that separate a
+      real speed-up from a benchmark artifact.
+  - name: Python
+    description: >-
+      Production Python: asyncio, multiprocessing, interpreters, language
+      features and the tooling around them.
+  - name: Security
+    description: >-
+      Cluster hardening, secrets management, admission control and
+      supply-chain safety.
+  - name: Software Engineering
+    description: >-
+      Code quality, version control workflows, reviews, testing and the craft
+      of maintaining software over time.
+  - name: Database
+    title: Databases
+    description: >-
+      Schema migrations, backups and operating stateful data stores safely.
+
+# Legacy / pipeline-generated category names -> canonical category.
+# A value of ~ removes the category (it carried no subject information).
+category_aliases:
+  tech: ~
+  engineering: ~
+  programming: ~
+  troubleshooting: ~
+  debugging: ~
+  ai: AI
+  ai-assisted-development: AI
+  ai-engineering: AI
+  kubernetes: Kubernetes
+  k8s: Kubernetes
+  devops: DevOps
+  docker: DevOps
+  git: Software Engineering
+  version-control: Software Engineering
+  software-engineering: Software Engineering
+  python: Python
+  java: Software Engineering
+  performance: Performance
+  distributed-systems: Distributed Systems
+  system-design: Distributed Systems
+  microservices: Distributed Systems
+  grpc: Distributed Systems
+  infrastructure: Platform Engineering
+  load-balancing: Distributed Systems
+  reliability: Reliability
+  site-reliability: Reliability
+  production-engineering: Reliability
+  sre: Reliability
+  platform-engineering: Platform Engineering
+  cloud-computing: Cloud Computing
+  cloud: Cloud Computing
+  aws: Cloud Computing
+  serverless: Cloud Computing
+  security: Security
+  database: Database
+  databases: Database
+
+# Semantic duplicates (after rule 1) -> canonical tag.
+tag_aliases:
+  k8s: kubernetes
+  kubernetes-performance: performance
+  performance-optimization: performance
+  optimization: performance
+  api-optimization: api-performance
+  canary-deployment: canary-deployments
+  canary: canary-deployments
+  asynchronous-programming: asynchronous
+  i-o-bound: io-bound
+  postgres: postgresql
+  pg_dump: pg-dump
+  web-application: web-development
+  web-applications: web-development
+  ai-code: ai-assisted-development
+  ai-coding: ai-assisted-development
+  ai-code-quality: code-quality
+  code-generation: ai-code-generation
+  python-debugging: debugging
+  production-incident: incident-response
+  message-groups: message-ordering
+  message-queue: message-queues
+  orchestration: container-orchestration
+  containerization: containers
+  formatting: linting
+  pre-push: git-hooks
+  fault-tolerance: resilience
+  monitoring: observability
+  golang: go
+  operators: kubernetes-operators
+  controllers: kubernetes-operators
+  secrets: secrets-management
+  database-migration: database-migrations
+  deployment: deployment-strategies
+  limits: resource-management
+  requests: resource-management
+  topology: scheduling
+  pods: scheduling
+  branching: branching-strategies
+  load-balancer: load-balancing
+  jvm: jvm
+  python3.14: python
+
+# Tags that describe nothing a reader could browse by.
+tag_drop:
+  - tech
+  - software
+  - engineering
+  - "2026"
+  - production
+  - development
+  - strategy
+  - workflow
+  - collaboration
+  - cluster
+  - images
+  - custom-infrastructure
+  - teardown
+  - production-engineering

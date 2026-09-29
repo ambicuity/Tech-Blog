@@ -1,0 +1,82 @@
+# Taxonomy pages that existed before the 2026 taxonomy cleanup.
+# _plugins/taxonomy.rb emits a redirect page at each old URL so
+# external links and search results keep working. Generated once;
+# edit by hand if a canonical tag or category is renamed again.
+categories:
+  ai-assisted-development: /categories/ai/
+  aws: /categories/cloud-computing/
+  debugging: /tabs/categories/
+  docker: /categories/devops/
+  engineering: /tabs/categories/
+  git: /categories/software-engineering/
+  grpc: /categories/distributed-systems/
+  infrastructure: /categories/platform-engineering/
+  java: /categories/software-engineering/
+  load-balancing: /categories/distributed-systems/
+  microservices: /categories/distributed-systems/
+  production-engineering: /categories/reliability/
+  programming: /tabs/categories/
+  site-reliability: /categories/reliability/
+  system-design: /categories/distributed-systems/
+  tech: /tabs/categories/
+  troubleshooting: /tabs/categories/
+  version-control: /categories/software-engineering/
+tags:
+  '2026': /tabs/tags/
+  ai-code: /tags/ai-assisted-development/
+  ai-code-quality: /tags/code-quality/
+  ai-coding: /tags/ai-assisted-development/
+  api-optimization: /tags/api-performance/
+  asynchronous-programming: /tags/asynchronous/
+  branching: /tags/branching-strategies/
+  canary-deployment: /tags/canary-deployments/
+  cluster: /tabs/tags/
+  code-generation: /tags/ai-code-generation/
+  collaboration: /tabs/tags/
+  containerization: /tags/containers/
+  controllers: /tags/kubernetes-operators/
+  custom-infrastructure: /tabs/tags/
+  database-migration: /tags/database-migrations/
+  deployment: /tags/deployment-strategies/
+  development: /tabs/tags/
+  engineering: /tabs/tags/
+  fault-tolerance: /tags/resilience/
+  formatting: /tags/linting/
+  golang: /tags/go/
+  i-o-bound: /tags/io-bound/
+  images: /tabs/tags/
+  k8s: /tags/kubernetes/
+  kubernetes-performance: /tags/performance/
+  limits: /tags/resource-management/
+  load-balancer: /tags/load-balancing/
+  message-groups: /tags/message-ordering/
+  message-queue: /tags/message-queues/
+  monitoring: /tags/observability/
+  operators: /tags/kubernetes-operators/
+  optimization: /tags/performance/
+  orchestration: /tags/container-orchestration/
+  performance-optimization: /tags/performance/
+  pods: /tags/scheduling/
+  postgres: /tags/postgresql/
+  pre-push: /tags/git-hooks/
+  production: /tabs/tags/
+  production-engineering: /tabs/tags/
+  production-incident: /tags/incident-response/
+  python-debugging: /tags/debugging/
+  python3-14: /tags/python/
+  requests: /tags/resource-management/
+  secrets: /tags/secrets-management/
+  software: /tabs/tags/
+  strategy: /tabs/tags/
+  teardown: /tabs/tags/
+  tech: /tabs/tags/
+  topology: /tags/scheduling/
+  web-application: /tags/web-development/
+  web-applications: /tags/web-development/
+  workflow: /tabs/tags/
+# Individual URLs that changed. /page6/ existed when the old theme showed 10
+# posts per page; once there are enough posts for a real /page6/ the live page
+# wins automatically (redirects never shadow real pages).
+paths:
+  /posts/2023-10-27-custom-grpc-load-balancer-teardown-a-contrarian-view/: /posts/custom-grpc-load-balancer-teardown-a-contrarian-view/
+  /page6/: /tabs/archives/

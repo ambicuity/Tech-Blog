@@ -2,8 +2,8 @@
 layout: post
 title: "Upgrading Kubernetes Clusters with Zero Downtime"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, upgrade, zero downtime, orchestration]
+categories: [Kubernetes, Reliability]
+tags: [kubernetes, upgrade, zero-downtime, container-orchestration]
 author: ritesh
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 title: "Effective Docker Image Caching for Faster CI/CD Pipelines"
 date: 2024-10-11 12:11:36 +0000
-categories: [DevOps, Docker]
-tags: [docker, caching, ci-cd, optimization, images, buildkit]
+categories: [DevOps, Performance]
+tags: [docker, caching, ci-cd, performance, buildkit]
 ---
 
 ## Introduction

@@ -2,8 +2,8 @@
 layout: post
 title: "Fixing Performance Degradation in AI-Powered Python Microservices After Automated Code Generation"
 date: 2026-03-30 10:18:34 +0000
-categories: [Kubernetes, Python]
-tags: [ai-coding, python, performance, kubernetes, microservices, optimization]
+categories: [AI, Performance]
+tags: [ai-assisted-development, python, performance, kubernetes, microservices]
 ---
 
 We recently adopted an AI-powered code generation tool (based on the new Opus 4.5 model) to accelerate the development of several new microservices. Initially, things looked promising - rapid prototyping and feature iteration. However, after pushing the generated code to our staging Kubernetes cluster, we observed significant performance degradation in some services under load. Latency increased dramatically, and CPU utilization spiked unexpectedly. This was particularly pronounced in our `recommendation-engine` service, written in Python using Flask and responsible for serving personalized content recommendations.

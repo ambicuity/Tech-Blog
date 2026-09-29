@@ -2,8 +2,8 @@
 layout: post
 title: "Kubernetes Operators 101: Writing Your Own"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, operators, golang, controllers]
+categories: [Kubernetes, Platform Engineering]
+tags: [kubernetes, kubernetes-operators, go]
 author: ritesh
 ---
 

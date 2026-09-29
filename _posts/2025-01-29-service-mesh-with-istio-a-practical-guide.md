@@ -2,8 +2,8 @@
 layout: post
 title: "Service Mesh with Istio: A Practical Guide"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, service mesh, istio, kubernetes, microservices]
+categories: [Kubernetes, Distributed Systems]
+tags: [service-mesh, istio, kubernetes, microservices]
 author: ritesh
 ---
 

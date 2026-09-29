@@ -2,7 +2,7 @@
 layout: post
 title: "Implementing Rate Limiting with Redis and Python for API Protection"
 date: 2024-12-16 06:25:48 +0000
-categories: [DevOps, Programming]
+categories: [Distributed Systems, Python]
 tags: [rate-limiting, redis, python, api-security, web-development]
 ---
 

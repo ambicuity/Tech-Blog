@@ -2,8 +2,8 @@
 layout: post
 title: "Boosting Web App Performance with Redis Caching on AWS Elasticache"
 date: 2024-01-26 15:20:19 +0000
-categories: [DevOps, Cloud Computing]
-tags: [aws, redis, elasticache, caching, performance, web-application]
+categories: [Performance, Cloud Computing]
+tags: [aws, redis, elasticache, caching, performance, web-development]
 ---
 
 ## Introduction

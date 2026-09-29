@@ -2,8 +2,8 @@
 layout: post
 title: "Pod Topology Spread Constraints Explained"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, pods, topology]
+categories: [Kubernetes, Reliability]
+tags: [kubernetes, scheduling]
 author: ritesh
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 title: "Securing Secrets in Kubernetes with Vault"
 date: 2024-01-25
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, vault, secrets, security]
+categories: [Security, Kubernetes]
+tags: [kubernetes, vault, secrets-management, security]
 author: ritesh
 ---
 

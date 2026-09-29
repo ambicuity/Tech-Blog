@@ -2,8 +2,8 @@
 layout: post
 title: "Kubernetes Resource Management: Taming Resource Hogs with Limits and Requests"
 date: 2024-12-20 17:41:33 +0000
-categories: [DevOps, Kubernetes]
-tags: [kubernetes, resource-management, limits, requests, cpu, memory]
+categories: [Kubernetes, Performance]
+tags: [kubernetes, resource-management, cpu, memory]
 ---
 
 ## Introduction

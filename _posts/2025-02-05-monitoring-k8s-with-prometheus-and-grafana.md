@@ -2,8 +2,8 @@
 layout: post
 title: "Monitoring K8s with Prometheus and Grafana"
 date: 2024-01-25
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, prometheus, grafana, monitoring]
+categories: [Reliability, Kubernetes]
+tags: [kubernetes, prometheus, grafana, observability]
 author: ritesh
 ---
 

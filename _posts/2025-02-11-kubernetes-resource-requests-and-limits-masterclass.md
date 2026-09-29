@@ -2,8 +2,8 @@
 layout: post
 title: "Kubernetes Resource Requests and Limits Masterclass"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, resource management]
+categories: [Kubernetes, Performance]
+tags: [kubernetes, resource-management]
 author: ritesh
 ---
 

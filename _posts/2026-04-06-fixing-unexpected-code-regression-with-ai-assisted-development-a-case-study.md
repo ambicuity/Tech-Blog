@@ -2,7 +2,7 @@
 layout: post
 title: "Fixing Unexpected Code Regression with AI-Assisted Development: A Case Study"
 date: 2026-04-06 10:10:47 +0000
-categories: [AI, Software Engineering, Debugging]
+categories: [AI, Software Engineering]
 tags: [ai-assisted-development, code-regression, software-engineering, debugging, testing]
 ---
 

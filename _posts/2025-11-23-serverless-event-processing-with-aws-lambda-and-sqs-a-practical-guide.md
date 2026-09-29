@@ -2,8 +2,8 @@
 layout: post
 title: "Serverless Event Processing with AWS Lambda and SQS: A Practical Guide"
 date: 2025-11-23 22:29:19 +0000
-categories: [Cloud Computing, DevOps]
-tags: [aws, lambda, sqs, serverless, event-driven, message-queue, asynchronous]
+categories: [Cloud Computing, Distributed Systems]
+tags: [aws, lambda, sqs, serverless, event-driven, message-queues, asynchronous]
 ---
 
 ## Introduction

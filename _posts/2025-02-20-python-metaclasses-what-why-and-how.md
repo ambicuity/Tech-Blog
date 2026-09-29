@@ -2,8 +2,8 @@
 layout: post
 title: "Python Metaclasses: What, Why, and How"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, python, metaclasses]
+categories: [Python]
+tags: [python, metaclasses]
 author: ritesh
 ---
 

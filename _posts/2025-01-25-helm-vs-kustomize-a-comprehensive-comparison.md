@@ -2,8 +2,8 @@
 layout: post
 title: "Helm vs Kustomize: A Comprehensive Comparison"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering]
+categories: [Kubernetes, DevOps]
+tags: [kubernetes, helm, kustomize, configuration-management]
 author: ritesh
 ---
 

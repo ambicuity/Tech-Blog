@@ -2,8 +2,8 @@
 layout: post
 title: "Managing StatefulSets in Production"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering]
+categories: [Kubernetes, Reliability]
+tags: [kubernetes, statefulsets, persistent-volumes, databases]
 author: ritesh
 ---
 

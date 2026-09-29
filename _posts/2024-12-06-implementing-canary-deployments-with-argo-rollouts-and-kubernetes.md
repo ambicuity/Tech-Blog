@@ -3,7 +3,7 @@ layout: post
 title: "Implementing Canary Deployments with Argo Rollouts and Kubernetes"
 date: 2024-12-06 14:17:16 +0000
 categories: [DevOps, Kubernetes]
-tags: [argo-rollouts, canary-deployment, kubernetes, deployment-strategies, progressive-delivery]
+tags: [argo-rollouts, canary-deployments, kubernetes, deployment-strategies, progressive-delivery]
 ---
 
 ## Introduction

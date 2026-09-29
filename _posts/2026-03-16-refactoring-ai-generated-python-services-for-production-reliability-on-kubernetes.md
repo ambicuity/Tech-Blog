@@ -2,8 +2,8 @@
 layout: post
 title: "Refactoring AI-Generated Python Services for Production Reliability on Kubernetes"
 date: 2026-03-16 10:07:28 +0000
-categories: [Kubernetes, Python, AI-Assisted Development]
-tags: [python, kubernetes, refactoring, production-readiness, ai-code, distributed-systems]
+categories: [AI, Python]
+tags: [python, kubernetes, refactoring, production-readiness, ai-assisted-development, distributed-systems]
 ---
 
 We've been cautiously experimenting with AI-assisted code generation for a few months, specifically to accelerate development of non-critical internal tools and prototypes. The promise of quickly standing up services from high-level requirements is tempting. However, a recent incident highlighted a critical gap: while AI can generate functional code, it often lacks the architectural rigor and operational awareness required for robust distributed systems in production Kubernetes environments.

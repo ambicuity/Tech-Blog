@@ -2,8 +2,8 @@
 layout: post
 title: "Fixing Event Loop Blocking in AI-Assisted Python Services Causing Kubernetes CPU Throttling"
 date: 2026-02-09 09:00:00 +0000
-categories: [kubernetes, python, performance]
-tags: [ai-code-quality, event-loop, cpu-throttling, asyncio, python-debugging, kubernetes-performance, microservices]
+categories: [AI, Python]
+tags: [code-quality, event-loop, cpu-throttling, asyncio, debugging, performance, microservices]
 description: "How synchronous calls inside async handlers caused CPU throttling in Kubernetes pods and the fix using proper asyncio patterns and process pool executors."
 author: ritesh
 ---

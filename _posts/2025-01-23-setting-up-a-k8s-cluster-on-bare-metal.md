@@ -2,8 +2,8 @@
 layout: post
 title: "Setting up a K8s Cluster on Bare Metal"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, bare metal, k8s, cluster, deployment]
+categories: [Kubernetes, Platform Engineering]
+tags: [kubernetes, bare-metal, deployment-strategies]
 author: ritesh
 ---
 

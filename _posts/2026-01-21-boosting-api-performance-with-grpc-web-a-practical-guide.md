@@ -2,8 +2,8 @@
 layout: post
 title: "Boosting API Performance with gRPC-Web: A Practical Guide"
 date: 2026-01-21 09:27:45 +0000
-categories: [Microservices, gRPC]
-tags: [grpc, grpc-web, protobuf, api-performance, web-applications]
+categories: [Distributed Systems, Performance]
+tags: [grpc, grpc-web, protobuf, api-performance, web-development]
 description: "A practical guide to implementing gRPC-Web for faster API performance in browser-based applications, covering core concepts and implementation steps."
 author: ritesh
 ---

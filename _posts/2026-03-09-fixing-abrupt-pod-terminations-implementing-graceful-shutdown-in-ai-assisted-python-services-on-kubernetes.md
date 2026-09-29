@@ -2,7 +2,7 @@
 layout: post
 title: "Fixing Abrupt Pod Terminations: Implementing Graceful Shutdown in AI-Assisted Python Services on Kubernetes"
 date: 2026-03-09 09:54:01 +0000
-categories: [distributed-systems, kubernetes, python]
+categories: [AI, Kubernetes]
 tags: [graceful-shutdown, sigterm, kubernetes, python, microservices, reliability, platform-engineering, production-readiness]
 ---
 

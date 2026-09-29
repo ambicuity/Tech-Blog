@@ -2,8 +2,8 @@
 layout: post
 title: "Kubernetes Cost Optimization Strategies"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, cost optimization, cloud computing]
+categories: [Kubernetes, Cloud Computing]
+tags: [kubernetes, cost-optimization, cloud-computing]
 author: ritesh
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 title: "Debug Container Networking with Ephemeral Containers"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, containers, networking, debugging, ephemeral containers, kubectl]
+categories: [Kubernetes]
+tags: [kubernetes, containers, networking, debugging, ephemeral-containers, kubectl]
 author: ritesh
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Serverless Event-Driven Architectures with AWS Lambda and SQS"
 date: 2025-11-21 18:39:04 +0000
-categories: [Cloud Computing, DevOps]
+categories: [Cloud Computing, Distributed Systems]
 tags: [aws, lambda, sqs, serverless, event-driven, architecture, asynchronous]
 ---
 

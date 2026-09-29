@@ -2,7 +2,7 @@
 layout: post
 title: "Serverless Container Orchestration with AWS Fargate and ECS"
 date: 2025-11-20 13:34:49 +0000
-categories: [DevOps, Cloud Computing]
+categories: [Cloud Computing, DevOps]
 tags: [aws, fargate, ecs, container-orchestration, serverless, docker]
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 title: "Understanding Kubernetes Networking Deep Dive"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, networking, containers, docker, cni, service mesh]
+categories: [Kubernetes]
+tags: [kubernetes, networking, containers, docker, cni, service-mesh]
 author: ritesh
 ---
 

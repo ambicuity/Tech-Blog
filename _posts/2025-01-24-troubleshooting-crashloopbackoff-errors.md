@@ -2,8 +2,8 @@
 layout: post
 title: "Troubleshooting CrashLoopBackOff Errors"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering]
+categories: [Kubernetes, Reliability]
+tags: [kubernetes, crashloopbackoff, debugging, kubectl]
 author: ritesh
 ---
 

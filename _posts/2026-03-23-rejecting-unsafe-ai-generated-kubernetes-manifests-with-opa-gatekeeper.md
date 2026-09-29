@@ -2,7 +2,7 @@
 layout: post
 title: "Rejecting Unsafe AI-Generated Kubernetes Manifests with OPA Gatekeeper"
 date: 2026-03-23 10:04:27 +0000
-categories: [Kubernetes, Security, Platform Engineering]
+categories: [AI, Security]
 tags: [kubernetes, opa-gatekeeper, policy-enforcement, ai-assisted-development, devsecops, admission-controller]
 ---
 

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: The Silent Killer – How Feature Flag Misconfigurations Manifest as Partial Outages
+title: "The Silent Killer \u2013 How Feature Flag Misconfigurations Manifest as Partial Outages"
 date: 2024-07-30 10:00:00 -0700
-categories: [Production Engineering, Site Reliability]
-tags: [feature flags, incident response, configuration management, reliability, outages, platform engineering, AI Code in Production]
+categories: [Reliability, Platform Engineering]
+tags: [feature-flags, incident-response, configuration-management, reliability, outages, platform-engineering, ai-code-in-production]
 description: Feature flags, while powerful, introduce new vectors for failure. This analysis dissects how subtle misconfigurations can lead to insidious partial outages, often masked by system noise, and provides guidance for robust operational practices.
-author: Senior Platform Engineer
+author: ritesh
 cluster: "ai_code_in_production"
 ---
 

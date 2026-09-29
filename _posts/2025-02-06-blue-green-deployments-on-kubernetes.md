@@ -2,8 +2,8 @@
 layout: post
 title: "Blue-Green Deployments on Kubernetes"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, deployment, blue-green]
+categories: [DevOps, Kubernetes]
+tags: [kubernetes, deployment-strategies, blue-green]
 author: ritesh
 ---
 

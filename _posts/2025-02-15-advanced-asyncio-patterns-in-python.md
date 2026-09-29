@@ -2,8 +2,8 @@
 layout: post
 title: "Advanced AsyncIO Patterns in Python"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, asyncio, python, asynchronous programming, concurrency]
+categories: [Python]
+tags: [asyncio, python, asynchronous, concurrency]
 author: ritesh
 ---
 

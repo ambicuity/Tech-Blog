@@ -2,8 +2,8 @@
 layout: post
 title: "Fixing Idempotency Gaps in AI-Generated Kafka Consumers on Kubernetes"
 date: 2026-03-02 09:52:56 +0000
-categories: [kubernetes, distributed-systems, troubleshooting]
-tags: [kafka, python, idempotency, ai-code-review, production-incident, postgres, microservices]
+categories: [AI, Distributed Systems]
+tags: [kafka, python, idempotency, ai-code-review, incident-response, postgresql, microservices]
 ---
 
 The production alert came in at 03:17 UTC: `CRITICAL: Inventory Mismatch Alert for SKU XYZ`. Our `inventory-delta-processor` service, recently refactored (partially, we thought, and "optimized" by an AI assistant), was reporting diverging stock counts between our core inventory system and downstream caches. This was a classic data consistency nightmare, especially for a critical path service.

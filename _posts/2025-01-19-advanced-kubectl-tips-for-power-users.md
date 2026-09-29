@@ -2,8 +2,8 @@
 layout: post
 title: "Advanced Kubectl Tips for Power Users"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, kubectl]
+categories: [Kubernetes]
+tags: [kubernetes, kubectl]
 author: ritesh
 ---
 

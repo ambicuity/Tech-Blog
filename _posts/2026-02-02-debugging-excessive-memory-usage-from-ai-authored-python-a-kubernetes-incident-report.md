@@ -2,8 +2,8 @@
 layout: post
 title: "Debugging Excessive Memory Usage from AI-Authored Python: A Kubernetes Incident Report"
 date: 2026-02-02 09:00:00 +0000
-categories: [Kubernetes, Python]
-tags: [debugging, performance, ai-code, memory, oomkill, production, distributed-systems]
+categories: [AI, Kubernetes]
+tags: [debugging, performance, ai-assisted-development, memory, oomkill, distributed-systems]
 description: "An incident report tracing OOMKilled pods caused by AI-authored Python code to the root cause: missing generator-based processing in data pipelines."
 author: ritesh
 ---

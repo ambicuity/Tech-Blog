@@ -2,8 +2,8 @@
 layout: post
 title: "Canary Deployments with Flagger"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering]
+categories: [DevOps, Kubernetes]
+tags: [kubernetes, flagger, canary-deployments, progressive-delivery]
 author: ritesh
 ---
 

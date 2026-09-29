@@ -2,8 +2,8 @@
 layout: post
 title: "GitOps with ArgoCD and Kubernetes"
 date: 2024-02-29
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, kubernetes, gitops, argocd, deployment]
+categories: [DevOps, Kubernetes]
+tags: [kubernetes, gitops, argocd, deployment-strategies]
 author: ritesh
 ---
 

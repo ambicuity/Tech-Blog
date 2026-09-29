@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Mitigating Health Check Timeouts Triggered by JVM Garbage Collection Pauses
+title: "Mitigating Health Check Timeouts Triggered by JVM Garbage Collection Pauses"
 date: 2026-01-19 10:00:00 +0000
-categories: [Reliability, Production Engineering]
-tags: [JVM, Garbage Collection, Kubernetes, Health Checks, Latency, Observability]
+categories: [Reliability, Kubernetes]
+tags: [jvm, garbage-collection, kubernetes, health-checks, latency, observability]
 description: An analysis of how JVM garbage collection pauses can lead to cascading failures through health check timeouts, and practical strategies for prevention and detection.
-author: YourNameHere
+author: ritesh
 cluster: "ai_code_in_production"
 ---
 

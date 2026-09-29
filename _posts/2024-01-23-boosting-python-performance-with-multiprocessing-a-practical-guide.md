@@ -2,8 +2,8 @@
 layout: post
 title: "Boosting Python Performance with Multiprocessing: A Practical Guide"
 date: 2024-01-23 08:46:49 +0000
-categories: [Programming, Python]
-tags: [python, multiprocessing, concurrency, parallelism, performance, optimization]
+categories: [Python, Performance]
+tags: [python, multiprocessing, concurrency, parallelism, performance]
 ---
 
 ## Introduction

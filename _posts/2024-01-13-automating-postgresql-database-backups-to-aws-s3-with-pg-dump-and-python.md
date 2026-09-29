@@ -2,8 +2,8 @@
 layout: post
 title: "Automating PostgreSQL Database Backups to AWS S3 with pg_dump and Python"
 date: 2024-01-13 10:20:02 +0000
-categories: [DevOps, Database]
-tags: [postgresql, aws, s3, backup, python, automation, pg_dump]
+categories: [Database, Cloud Computing]
+tags: [postgresql, aws, s3, backup, python, automation, pg-dump]
 ---
 
 ## Introduction

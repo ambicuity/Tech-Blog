@@ -3,7 +3,7 @@ layout: post
 title: "Boosting Python Application Startup Time with Pyston"
 date: 2026-01-24 09:15:32 +0000
 categories: [Python, Performance]
-tags: [python, pyston, performance-optimization, startup-time, interpreter, jit]
+tags: [python, pyston, performance, startup-time, interpreter, jit]
 description: "How Pyston reduces Python application startup time with practical installation, configuration, and benchmarking guidance for CLI tools and serverless functions."
 author: ritesh
 ---

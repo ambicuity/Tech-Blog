@@ -2,7 +2,7 @@
 layout: post
 title: "Fixing Production Gaps in AI-Generated Kubernetes Manifests"
 date: 2026-02-16 09:00:00 +0000
-categories: [Kubernetes, Platform-Engineering]
+categories: [AI, Kubernetes]
 tags: [kubernetes, ai-code-generation, production-readiness, reliability, security]
 description: "Production gaps found in AI-generated Kubernetes manifests: missing resource limits, security contexts, and anti-affinity rules that caused a service outage."
 author: ritesh

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Custom gRPC Load Balancer Teardown: A Contrarian View
-date: 2023-10-27 10:30:00 -0700
-categories: [Engineering, Infrastructure, gRPC, Load Balancing]
-tags: [gRPC, Envoy, Load Balancer, Custom Infrastructure, Teardown, Production Engineering]
+title: "Custom gRPC Load Balancer Teardown: A Contrarian View"
+date: 2026-06-01 15:26:10 +0000
+categories: [Distributed Systems, Reliability]
+tags: [grpc, envoy, load-balancing]
 description: This post dissects the operational complexities and hidden costs of a custom gRPC L7 load balancer, arguing for a migration to managed service proxies despite initial performance gains.
-author: Senior Production Engineer
+author: ritesh
 cluster: "ai_code_in_production"
 ---
 

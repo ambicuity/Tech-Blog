@@ -2,8 +2,8 @@
 layout: post
 title: "Leveraging AWS SQS Message Groups for Ordered Processing"
 date: 2025-01-18 16:18:39 +0000
-categories: [Cloud Computing, AWS]
-tags: [aws, sqs, message-groups, fifo-queues, message-ordering, distributed-systems]
+categories: [Distributed Systems, Cloud Computing]
+tags: [aws, sqs, message-ordering, fifo-queues, distributed-systems]
 ---
 
 ## Introduction

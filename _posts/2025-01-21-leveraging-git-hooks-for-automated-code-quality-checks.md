@@ -2,8 +2,8 @@
 layout: post
 title: "Leveraging Git Hooks for Automated Code Quality Checks"
 date: 2025-01-21 23:14:09 +0000
-categories: [DevOps, Git]
-tags: [git, git-hooks, code-quality, pre-commit, pre-push, automation, linting, python, bash]
+categories: [Software Engineering, DevOps]
+tags: [git, git-hooks, code-quality, pre-commit, automation, linting, python, bash]
 ---
 
 ## Introduction

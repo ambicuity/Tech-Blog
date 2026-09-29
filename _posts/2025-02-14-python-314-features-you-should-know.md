@@ -2,8 +2,8 @@
 layout: post
 title: "Python 3.14 Features You Should Know"
 date: 2024-01-26
-categories: [Tech, Engineering]
-tags: [tech, software, engineering, python, python3.14]
+categories: [Python]
+tags: [python]
 author: ritesh
 ---
 
