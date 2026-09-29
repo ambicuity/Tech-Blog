@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510">
 <title>Full jitter spreads synchronized retry attempts over time</title>
 <defs>
 <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -83,7 +83,7 @@
 <circle cx="601.3" cy="65" r="2.8" class="f-a2-solid" data-step="3"/>
 <circle cx="601.3" cy="60" r="2.8" class="f-a2-solid" data-step="3"/>
 <circle cx="601.3" cy="55" r="2.8" class="f-a2-solid" data-step="3"/>
-<line x1="90" y1="115" x2="700" y2="115" class="f-dashed f-a3-line"/>
+<line x1="90" y1="115" x2="700" y2="115" class="f-line f-dashed"/>
 <text x="458" y="140" class="f-small f-middle">illustrative capacity</text>
 <text x="8" y="230" class="f-label">full jitter</text>
 <circle cx="99.0" cy="320" r="2.8" class="f-a1-solid" data-step="1"/>
@@ -180,6 +180,8 @@
 <text x="664.1" y="370" class="f-small f-middle">8s</text>
 <text x="395" y="388" class="f-small f-middle">seconds after the failure</text>
 <line x1="8" y1="404" x2="712" y2="404" class="f-rule"/>
-<text x="8" y="426" class="f-small">1 first retry waits up to 1 s   2 second retry waits up to 2 s   3 third retry waits up to 4 s (cap 8 s)</text>
-<text x="8" y="446" class="f-small">24 clients, 3 retries each, seed 7: peak 24 attempts per 250 ms without jitter, 11 with full jitter</text>
+<text x="8" y="426" class="f-small">1 first retry waits up to 1 s</text>
+<text x="8" y="446" class="f-small">2 second retry waits up to 2 s</text>
+<text x="8" y="466" class="f-small">3 third retry waits up to 4 s (cap 8 s)</text>
+<text x="8" y="494" class="f-small">24 clients, 3 retries each, seed 7: peak 24 attempts per 250 ms without jitter, 11 with full jitter</text>
 </svg>
