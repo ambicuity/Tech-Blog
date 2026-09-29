@@ -126,7 +126,10 @@
     vector-effect: non-scaling-stroke;
   }
 
+  // Alone it draws a structural (grey) dashed line; combined with f-line or an
+  // accent class (f-aN-line, f-aN), that class's color wins because it comes later.
   .f-dashed {
+    stroke: var(--fig-stroke);
     stroke-dasharray: 5 4;
   }
 

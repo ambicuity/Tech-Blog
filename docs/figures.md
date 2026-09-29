@@ -58,7 +58,8 @@ them with its tokens in both themes:
 | `f-frame` | A container (a database, a cluster); fill it with the hatch pattern |
 | `f-hatch` | The lines inside the hatch pattern |
 | `f-rule` | Dashed separators (table rows, legends) |
-| `f-line`, `f-dashed`, `f-arrowhead` | Connectors, dashed connectors (replies, acks), arrowheads |
+| `f-line`, `f-arrowhead` | Connectors and arrowheads |
+| `f-dashed` | Makes a line dashed: grey on its own (limits, thresholds, replies), or add `f-aN-line` for a dashed line in a data hue. On `<path>`, also add `f-line` so the shape is not filled |
 | `f-a1` … `f-a4` | Data that matters: soft fill + outline on shapes, colored text on `<text>` |
 | `f-a1-solid` … `f-a4-solid` | A solid chip in that hue (a message, a tenant) |
 | `f-a1-line` … `f-a4-line` | A connector or outline in that hue |
