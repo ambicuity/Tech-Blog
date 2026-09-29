@@ -9,7 +9,7 @@ scenario: illustrative
 
 Our team recently adopted an AI-assisted coding tool to accelerate feature development. Initial results were promising; velocity increased noticeably. However, we soon encountered a subtle but critical issue: seemingly unrelated code modifications, introduced by the AI tool, were causing regressions in existing functionality.
 
-Here's how it unfolded. We had a microservice responsible for user authentication, written in Python and deployed on Kubernetes. A new feature required modifying the user profile update endpoint to include phone number validation. We tasked Claude Code with generating the necessary validation logic and integrating it into the existing function.
+Here's how it unfolded. We had a microservice responsible for user authentication, written in Python and deployed on Kubernetes. A new feature required modifying the user profile update endpoint to include phone number validation. We tasked the AI coding tool with generating the necessary validation logic and integrating it into the existing function.
 
 The initial pull request looked good. Unit tests passed, and the new feature worked as expected in our staging environment. We deployed to production. A few hours later, reports started coming in: users were unable to log in. Authentication was failing intermittently.
 
