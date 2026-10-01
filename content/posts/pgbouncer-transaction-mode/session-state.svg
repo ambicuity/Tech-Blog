@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340">
+  <title>Session state in transaction mode: an untracked SET leaks to the next client, a tracked parameter is restored, and SET LOCAL never leaves the transaction</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Server s1, over time</text>
+  <rect x="8" y="30" width="704" height="86" class="f-box"/>
+  <text x="20" y="54" class="f-label">untracked SET (the leak)</text>
+  <text x="20" y="78" class="f-code">A: SET work_mem = '256MB'</text>
+  <text x="300" y="78" class="f-small">commit: value stays on s1</text>
+  <text x="540" y="78" class="f-code f-a1">B inherits 256MB</text>
+
+  <rect x="8" y="130" width="704" height="86" class="f-box"/>
+  <text x="20" y="154" class="f-label">tracked parameter (PgBouncer 1.26, PostgreSQL 18)</text>
+  <text x="20" y="178" class="f-code">A: SET search_path = tenant_a</text>
+  <text x="300" y="178" class="f-small">PgBouncer records A's value</text>
+  <text x="540" y="178" class="f-code f-a2">B sees its own path</text>
+
+  <rect x="8" y="230" width="704" height="62" class="f-box"/>
+  <text x="20" y="254" class="f-label">SET LOCAL (always safe)</text>
+  <text x="20" y="278" class="f-code">A: SET LOCAL work_mem = '256MB'</text>
+  <text x="360" y="278" class="f-small">ends at commit, on any server</text>
+
+  <line x1="8" y1="306" x2="712" y2="306" class="f-rule"/>
+  <text x="8" y="330" class="f-small">Rule: a setting that must not outlive the transaction belongs in SET LOCAL.</text>
+</svg>
