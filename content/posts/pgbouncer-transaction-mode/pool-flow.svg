@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330">
+  <title>Transaction pooling: a server connection is assigned per transaction, then returned to the pool</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Clients</text>
+  <rect x="8" y="30" width="140" height="120" class="f-box"/>
+  <text x="20" y="56" class="f-label">client A</text>
+  <text x="20" y="78" class="f-code">txn A1</text>
+  <text x="20" y="100" class="f-code">txn A2</text>
+  <rect x="8" y="166" width="140" height="60" class="f-box"/>
+  <text x="20" y="192" class="f-label">client B</text>
+  <text x="20" y="214" class="f-code">txn B1</text>
+
+  <text x="286" y="20" class="f-title">PgBouncer pool</text>
+  <rect x="286" y="30" width="160" height="196" fill="url(#hatch)" class="f-frame"/>
+  <rect x="300" y="48" width="132" height="44" class="f-box"/>
+  <text x="312" y="68" class="f-label">server s1</text>
+  <text x="312" y="86" class="f-small">idle / assigned</text>
+  <rect x="300" y="108" width="132" height="44" class="f-box"/>
+  <text x="312" y="128" class="f-label">server s2</text>
+  <text x="312" y="146" class="f-small">idle / assigned</text>
+
+  <text x="562" y="20" class="f-title">PostgreSQL</text>
+  <rect x="562" y="30" width="150" height="196" fill="url(#hatch)" class="f-frame"/>
+  <rect x="574" y="48" width="130" height="80" class="f-box"/>
+  <text x="586" y="72" class="f-small">few server</text>
+  <text x="586" y="94" class="f-small">connections serve</text>
+  <text x="586" y="116" class="f-small">many clients</text>
+
+  <g data-step="1">
+    <line x1="148" y1="70" x2="298" y2="64" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="170" cy="58" r="8" class="f-a1"/>
+    <text x="170" y="62" class="f-small f-middle f-a1">1</text>
+    <text x="184" y="62" class="f-small">assign</text>
+  </g>
+  <g data-step="2">
+    <line x1="298" y1="86" x2="150" y2="92" class="f-line f-dashed" marker-end="url(#arrow)"/>
+    <circle cx="170" cy="112" r="8" class="f-a1"/>
+    <text x="170" y="116" class="f-small f-middle f-a1">2</text>
+  </g>
+  <g data-step="3">
+    <line x1="148" y1="196" x2="298" y2="124" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="182" cy="176" r="8" class="f-a2"/>
+    <text x="182" y="180" class="f-small f-middle f-a2">3</text>
+    <text x="196" y="180" class="f-small">next client</text>
+  </g>
+  <g data-step="4">
+    <line x1="148" y1="102" x2="298" y2="130" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="216" cy="119" r="8" class="f-a3"/>
+    <text x="216" y="123" class="f-small f-middle f-a3">4</text>
+  </g>
+
+  <line x1="8" y1="252" x2="712" y2="252" class="f-rule"/>
+  <text x="8" y="276" class="f-small">1 a server is assigned for one transaction</text>
+  <text x="372" y="276" class="f-small">2 at commit it returns to the pool</text>
+  <text x="8" y="298" class="f-small">3 another client's transaction can take it</text>
+  <text x="372" y="298" class="f-small">4 your next transaction may land elsewhere</text>
+  <text x="8" y="320" class="f-small">Anything stored in the session must survive step 4, or it is a bug.</text>
+</svg>

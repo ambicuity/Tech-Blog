@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>PgBouncer prepared statement tracking: client names are rewritten to internal names and statements are re-prepared transparently</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Client</text>
+  <rect x="8" y="30" width="190" height="120" class="f-box"/>
+  <text x="20" y="56" class="f-code">Prepare "q1"</text>
+  <text x="20" y="78" class="f-small">SELECT ... WHERE id = $1</text>
+  <text x="20" y="108" class="f-code">Execute "q1"</text>
+
+  <text x="270" y="20" class="f-title">PgBouncer</text>
+  <rect x="270" y="30" width="190" height="196" fill="url(#hatch)" class="f-frame"/>
+  <rect x="284" y="48" width="162" height="70" class="f-box"/>
+  <text x="296" y="70" class="f-label">statement cache</text>
+  <text x="296" y="94" class="f-code f-small">"q1" -&gt; PGBOUNCER_1</text>
+  <text x="296" y="112" class="f-small">shared across clients</text>
+  <text x="284" y="196" class="f-small">max_prepared_statements</text>
+  <text x="284" y="214" class="f-small">LRU per server, default 200</text>
+
+  <text x="522" y="20" class="f-title">Servers</text>
+  <rect x="522" y="30" width="190" height="88" class="f-box"/>
+  <text x="534" y="56" class="f-label">server s1</text>
+  <text x="534" y="80" class="f-code">PGBOUNCER_1  prepared</text>
+  <rect x="522" y="138" width="190" height="88" class="f-box"/>
+  <text x="534" y="164" class="f-label">server s2</text>
+  <text x="534" y="188" class="f-code" data-step="3">PGBOUNCER_1  prepared</text>
+  <text x="534" y="208" class="f-small" data-step="3">prepared on first use</text>
+
+  <g data-step="1">
+    <line x1="198" y1="62" x2="282" y2="78" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="222" cy="46" r="8" class="f-a1"/>
+    <text x="222" y="50" class="f-small f-middle f-a1">1</text>
+    <text x="236" y="50" class="f-small">rewrite</text>
+  </g>
+  <g data-step="2">
+    <line x1="446" y1="66" x2="520" y2="66" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="484" cy="46" r="8" class="f-a1"/>
+    <text x="484" y="50" class="f-small f-middle f-a1">2</text>
+  </g>
+  <g data-step="3">
+    <line x1="446" y1="104" x2="520" y2="168" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="484" cy="128" r="8" class="f-a1"/>
+    <text x="484" y="132" class="f-small f-middle f-a1">3</text>
+  </g>
+  <g data-step="4">
+    <text x="8" y="252" class="f-small">With tracking off (max_prepared_statements = 0), step 3 fails instead:</text>
+    <text x="8" y="274" class="f-code">prepared statement "q1" does not exist</text>
+  </g>
+
+  <line x1="8" y1="292" x2="712" y2="292" class="f-rule"/>
+  <text x="8" y="316" class="f-small">1 one internal name per unique SQL string</text>
+  <text x="372" y="316" class="f-small">2 the statement runs where it is prepared</text>
+  <text x="8" y="338" class="f-small">3 on a server without it, PgBouncer prepares it first</text>
+  <text x="372" y="338" class="f-small">4 SQL PREPARE is forwarded untracked</text>
+</svg>
