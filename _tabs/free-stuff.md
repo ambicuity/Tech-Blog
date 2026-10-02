@@ -271,8 +271,8 @@ Notable updates to this page since the last bulk re-check.
 
 ## The full directory
 
-{%- for g in _groups -%}
-{%- assign _group_items = _items | where: "group", g.id -%}
+{% for g in _groups %}
+{%- assign _group_items = _items | where: "group", g.id %}
 <section class="resource-group" aria-labelledby="res-{{ g.id }}" data-filter-group>
   <h2 class="resource-group__title" id="res-{{ g.id }}">{% include icon.html name=g.icon %}{{ g.title }} <span class="muted">{{ _group_items.size }}</span></h2>
   <ul class="resource-grid">
