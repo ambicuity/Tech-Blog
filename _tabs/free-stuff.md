@@ -25,19 +25,19 @@ Free tiers change without notice. Every entry below is labelled so you can tell 
 <div class="resource-toolbar" hidden data-resource-controls>
   <label class="visually-hidden" for="resource-filter">Filter resources</label>
   <input class="input input--sm" id="resource-filter" type="search" placeholder="Filter by name or use case…" autocomplete="off" data-resource-filter>
-  <fieldset class="resource-pillset" aria-label="Filter by tier">
-    <legend class="visually-hidden">Tier</legend>
-    <label class="pill"><input type="checkbox" data-tier-filter="free_forever"><span>Free forever</span></label>
-    <label class="pill"><input type="checkbox" data-tier-filter="free_tier"><span>Free tier</span></label>
-    <label class="pill"><input type="checkbox" data-tier-filter="open_source"><span>Open source</span></label>
-    <label class="pill"><input type="checkbox" data-tier-filter="free_trial"><span>Free trial</span></label>
-  </fieldset>
-  <fieldset class="resource-pillset" aria-label="Filter by requirements">
-    <legend class="visually-hidden">Requirements</legend>
-    <label class="pill"><input type="checkbox" data-card-filter="no"><span>No credit card</span></label>
-    <label class="pill"><input type="checkbox" data-commercial-filter="yes"><span>Commercial OK</span></label>
-    <label class="pill"><input type="checkbox" data-selfhost-filter="yes"><span>Self-hostable</span></label>
-  </fieldset>
+  <div class="resource-pillset" role="group" aria-label="Filter by tier">
+    <span class="visually-hidden">Tier</span>
+    <span class="pill"><input type="checkbox" id="filter-free-forever" data-tier-filter="free_forever"><label for="filter-free-forever">Free forever</label></span>
+    <span class="pill"><input type="checkbox" id="filter-free-tier" data-tier-filter="free_tier"><label for="filter-free-tier">Free tier</label></span>
+    <span class="pill"><input type="checkbox" id="filter-open-source" data-tier-filter="open_source"><label for="filter-open-source">Open source</label></span>
+    <span class="pill"><input type="checkbox" id="filter-free-trial" data-tier-filter="free_trial"><label for="filter-free-trial">Free trial</label></span>
+  </div>
+  <div class="resource-pillset" role="group" aria-label="Filter by requirements">
+    <span class="visually-hidden">Requirements</span>
+    <span class="pill"><input type="checkbox" id="filter-no-card" data-card-filter="no"><label for="filter-no-card">No credit card</label></span>
+    <span class="pill"><input type="checkbox" id="filter-commercial-ok" data-commercial-filter="yes"><label for="filter-commercial-ok">Commercial OK</label></span>
+    <span class="pill"><input type="checkbox" id="filter-self-host" data-selfhost-filter="yes"><label for="filter-self-host">Self-hostable</label></span>
+  </div>
   <p class="visually-hidden" role="status" aria-live="polite" data-resource-status></p>
 </div>
 

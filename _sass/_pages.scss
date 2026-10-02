@@ -1204,14 +1204,15 @@ $bp-toc: 1180px;
 // ---- Resource toolbar (filter pills) ----------------------------------------
 
 .resource-pillset {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--sp-2);
   margin-top: var(--sp-3);
   padding: 0;
   border: 0;
   min-inline-size: 0;
+
+  > * {
+    display: inline-flex;
+    margin: 0 var(--sp-2) var(--sp-2) 0;
+  }
 
   legend {
     padding: 0;
@@ -1219,10 +1220,8 @@ $bp-toc: 1180px;
 }
 
 .pill {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
-  justify-content: flex-start;
-  flex: 0 0 auto;
   gap: var(--sp-1);
   white-space: nowrap;
   padding: 0.2rem 0.7rem;
@@ -1233,12 +1232,23 @@ $bp-toc: 1180px;
   font-size: var(--fs-xs);
   cursor: pointer;
   user-select: none;
+  width: auto !important;
+  max-width: 100%;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 
   input {
     margin: 0;
     accent-color: var(--accent);
-    flex: none;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+  }
+
+  label {
+    margin: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    display: inline;
   }
 
   &:has(input:checked) {
