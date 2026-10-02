@@ -378,13 +378,26 @@
     const input = $("[data-resource-filter]", controls);
     const status = $("[data-resource-status]", controls);
     const empty = $("[data-resource-empty]");
-    input.addEventListener("input", () => {
+    const tierChecks = $$("[data-tier-filter]", controls);
+    const cardChecks = $$("[data-card-filter]", controls);
+    const commercialChecks = $$("[data-commercial-filter]", controls);
+    const selfHostChecks = $$("[data-selfhost-filter]", controls);
+    const apply = () => {
       const q = normalize(input.value);
+      const tiers = tierChecks.filter((c) => c.checked).map((c) => c.dataset.tierFilter);
+      const cards = cardChecks.filter((c) => c.checked).map((c) => c.dataset.cardFilter);
+      const commercials = commercialChecks.filter((c) => c.checked).map((c) => c.dataset.commercialFilter);
+      const selfHosts = selfHostChecks.filter((c) => c.checked).map((c) => c.dataset.selfhostFilter);
       let shown = 0;
       $$("[data-filter-group]").forEach((group) => {
         let n = 0;
         $$("[data-filter-item]", group).forEach((item) => {
-          const match = !q || item.dataset.filterText.includes(q);
+          const text = item.dataset.filterText.includes(q);
+          const tier = !tiers.length || tiers.includes(item.dataset.tier);
+          const card = !cards.length || cards.includes(item.dataset.card);
+          const commercial = !commercials.length || commercials.includes(item.dataset.commercial);
+          const selfHost = !selfHosts.length || (selfHosts.includes("yes") && (item.dataset.selfHost === "yes" || item.dataset.selfHost === "partial"));
+          const match = (!q || text) && tier && card && commercial && selfHost;
           item.parentElement.hidden = !match;
           if (match) n += 1;
         });
@@ -393,7 +406,10 @@
       });
       if (empty) empty.hidden = shown !== 0;
       status.textContent = `${shown} ${shown === 1 ? "resource" : "resources"} shown`;
-    });
+    };
+    input.addEventListener("input", apply);
+    [...tierChecks, ...cardChecks, ...commercialChecks, ...selfHostChecks].forEach((c) => c.addEventListener("change", apply));
+    apply();
   }
 
   // ---- Comments (giscus), loaded on approach -----------------------------------------------

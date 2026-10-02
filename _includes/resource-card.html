@@ -1,16 +1,69 @@
 {%- comment -%} Free Dev Stuff entry. include.item (from _data/resources.yml) {%- endcomment -%}
 {%- assign r = include.item -%}
-<article class="resource-card" data-filter-item data-filter-text="{{ r.name | downcase }} {{ r.best_for | downcase }} {{ r.free_tier | downcase }}">
-  <h3 class="resource-card__name"><a href="{{ r.url }}" rel="noopener">{{ r.name }}<span class="visually-hidden"> (official pricing)</span> {% include icon.html name="external" %}</a></h3>
+{%- assign tier_label = "" -%}
+{%- assign tier_class = "" -%}
+{%- case r.tier_type -%}
+{%- when "free_forever" %}{%- assign tier_label = "Free forever" -%}{%- assign tier_class = "forever" -%}
+{%- when "free_tier" %}{%- assign tier_label = "Free tier" -%}{%- assign tier_class = "tier" -%}
+{%- when "free_trial" %}{%- assign tier_label = "Free trial" -%}{%- assign tier_class = "trial" -%}
+{%- when "open_source" %}{%- assign tier_label = "Open source" -%}{%- assign tier_class = "oss" -%}
+{%- endcase -%}
+{%- assign card_label = "" -%}
+{%- case r.card_required -%}
+{%- when "no" %}{%- assign card_label = "No card" -%}
+{%- when "yes" %}{%- assign card_label = "Card required" -%}
+{%- endcase -%}
+{%- assign commercial_label = "" -%}
+{%- case r.commercial_use -%}
+{%- when "yes" %}{%- assign commercial_label = "Commercial OK" -%}
+{%- when "review" %}{%- assign commercial_label = "Commercial: review" -%}
+{%- when "no" %}{%- assign commercial_label = "Personal use" -%}
+{%- endcase -%}
+<article class="resource-card" data-filter-item
+  data-filter-text="{{ r.name | downcase }} {{ r.best_for | downcase }} {{ r.free_tier | downcase }}"
+  data-tier="{{ r.tier_type | default: '' }}"
+  data-card="{{ r.card_required | default: '' }}"
+  data-commercial="{{ r.commercial_use | default: '' }}"
+  data-self-host="{{ r.self_host | default: '' }}">
+  <h3 class="resource-card__name">
+    <a href="{{ r.url }}" rel="noopener">{{ r.name }}<span class="visually-hidden"> (official pricing)</span> {% include icon.html name="external" %}</a>
+  </h3>
+  {%- if tier_label != "" or card_label != "" or commercial_label != "" %}
+  <ul class="resource-card__badges" aria-label="Free-tier facts">
+    {%- if tier_label != "" %}<li class="badge badge--{{ tier_class }}">{{ tier_label }}</li>{% endif -%}
+    {%- comment -%} `badge--{{ tier_class }}` resolves to one of: forever, tier, trial, oss (see _sass/_pages.scss .badge). {%- endcomment -%}
+    {%- if card_label != "" %}<li class="badge badge--neutral">{{ card_label }}</li>{% endif %}
+    {%- if commercial_label != "" %}<li class="badge badge--neutral">{{ commercial_label }}</li>{% endif %}
+  </ul>
+  {%- endif %}
   <p class="resource-card__best"><span class="eyebrow">Best for</span> {{ r.best_for }}</p>
   <p class="resource-card__tier">{{ r.free_tier }}</p>
+  {%- if r.not_ideal_for %}
+  <p class="resource-card__not-ideal"><span class="eyebrow">Not ideal for</span> {{ r.not_ideal_for }}</p>
+  {%- endif %}
   <dl class="resource-card__facts">
+    {%- if r.over_limit %}
+    <div>
+      <dt>Over limit</dt>
+      <dd>{{ r.over_limit }}</dd>
+    </div>
+    {%- endif %}
     <div>
       <dt>Self-host</dt>
       <dd>{% case r.self_host %}{% when "yes" %}Yes{% when "partial" %}Partial{% else %}No{% endcase %}{% if r.self_host_note %}<span class="muted"> — {{ r.self_host_note }}</span>{% endif %}</dd>
     </div>
+    {%- if r.url_pricing or r.url_github %}
     <div>
-      <dt>Details as of</dt>
+      <dt>Links</dt>
+      <dd>
+        {%- if r.url_pricing %}<a href="{{ r.url_pricing }}" rel="noopener">Pricing</a>{%- endif -%}
+        {%- if r.url_pricing and r.url_github %} · {%- endif -%}
+        {%- if r.url_github %}<a href="{{ r.url_github }}" rel="noopener">GitHub</a>{%- endif %}
+      </dd>
+    </div>
+    {%- endif %}
+    <div>
+      <dt>Verified</dt>
       <dd><time datetime="{{ r.as_of | date: '%Y-%m-%d' }}">{{ r.as_of | date: "%b %Y" }}</time></dd>
     </div>
   </dl>
