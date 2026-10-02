@@ -1,8 +1,25 @@
-# Free Dev Stuff (/free-stuff/). Free tiers change without notice: `as_of`
-# records when an entry's details were last written, not a guarantee.
-# Update `as_of` whenever you re-check an entry against the official pricing.
+# Free Developer Tools & Services (/free-stuff/).
 #
-# self_host: yes | no | partial   (can you run it on your own infrastructure?)
+# Free tiers change without notice: `as_of` records when an entry's details were
+# last written, not a guarantee. Update `as_of` whenever you re-check an entry
+# against the official pricing page.
+#
+# Schema:
+#   name               Display name (required).
+#   group              Group id from `groups:` below (required).
+#   best_for           One-line use case (required).
+#   free_tier          What you get on the free plan (required).
+#   self_host          yes | no | partial — can you run it yourself?
+#   self_host_note     Optional nuance on self-hosting.
+#   url                Link to the tool's website (required).
+#   url_pricing        Optional direct link to the pricing page.
+#   url_github         Optional GitHub repo.
+#   tier_type          free_forever | free_tier | free_trial | open_source (required).
+#   card_required      yes | no — does signup need a payment method?
+#   commercial_use     yes | no | review — allowed in commercial products?
+#   over_limit         What happens when the free ceiling is hit.
+#   not_ideal_for      Optional. When you should look elsewhere.
+#   as_of              YYYY-MM-DD of the last manual re-check (required).
 
 groups:
   - id: compute
@@ -11,105 +28,1397 @@ groups:
   - id: data
     title: Databases & state
     icon: database
+  - id: storage
+    title: Storage & CDN
+    icon: folder
   - id: auth
-    title: Authentication
+    title: Authentication & identity
     icon: key
+  - id: ai
+    title: AI & LLMs
+    icon: sparkles
+  - id: email
+    title: Email & communication
+    icon: mail
   - id: cicd
     title: CI/CD & builds
     icon: workflow
   - id: observability
     title: Observability
     icon: activity
+  - id: analytics
+    title: Analytics
+    icon: chart-line
+  - id: search
+    title: Search
+    icon: search
+  - id: jobs
+    title: Background jobs & scheduling
+    icon: clock
+  - id: security
+    title: Security
+    icon: shield
+  - id: testing
+    title: Testing
+    icon: beaker
+  - id: devtools
+    title: Developer tools
+    icon: code
+  - id: maps
+    title: Maps & location
+    icon: compass
+  - id: apis
+    title: Free APIs
+    icon: plug
+  - id: students
+    title: Student benefits
+    icon: graduation
+  - id: oss
+    title: Open-source alternatives
+    icon: git-fork
 
 items:
-  - name: Fly.io
-    group: compute
-    best_for: Containerized app servers and edge compute
-    free_tier: Up to 3 shared-cpu-1x VMs (2,340 hours/month). Deploy Docker containers globally from the CLI.
-    self_host: no
-    url: https://fly.io/docs/about/pricing/
-    as_of: 2026-02-22
-  - name: Vercel
-    group: compute
-    best_for: Next.js / React frontends and edge functions
-    free_tier: Unlimited deployments and 100 GB bandwidth on the Hobby plan.
-    self_host: no
-    url: https://vercel.com/pricing
-    as_of: 2026-02-22
+  # ---- Compute & hosting --------------------------------------------------------------
   - name: Cloudflare Workers
     group: compute
-    best_for: Edge compute and serverless APIs
+    best_for: Edge compute and serverless APIs at the edge
     free_tier: 100k requests/day for globally distributed, stateless execution.
     self_host: partial
     self_host_note: The workerd runtime is open source.
-    url: https://developers.cloudflare.com/workers/platform/pricing/
-    as_of: 2026-02-22
+    url: https://workers.cloudflare.com/
+    url_pricing: https://developers.cloudflare.com/workers/platform/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Excess requests return errors; Workers Paid removes the daily cap.
+    as_of: 2026-09-25
+  - name: Vercel
+    group: compute
+    best_for: Next.js / React frontends and edge functions
+    free_tier: 100 GB bandwidth/month and 100 GB-hours of Functions on the Hobby plan.
+    self_host: no
+    url: https://vercel.com/
+    url_pricing: https://vercel.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Deploys and Functions pause until the next cycle or you upgrade.
+    not_ideal_for: Long-running or always-on background workers.
+    as_of: 2026-09-25
+  - name: Netlify
+    group: compute
+    best_for: Static sites and JAMstack frontends with edge functions
+    free_tier: 100 GB bandwidth and 300k Functions invocations/month on the Free plan.
+    self_host: no
+    url: https://www.netlify.com/
+    url_pricing: https://www.netlify.com/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Sites stay online but builds / functions may be throttled.
+    as_of: 2026-09-25
+  - name: Render
+    group: compute
+    best_for: Web services, cron jobs and managed Postgres
+    free_tier: 750 hours/month of free instance time for web services and cron jobs (services spin down after 15 min idle).
+    self_host: no
+    url: https://render.com/
+    url_pricing: https://render.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cold starts; no SLA on cold-start latency.
+    not_ideal_for: Production workloads that must respond under 1 s every time.
+    as_of: 2026-09-25
+  - name: Fly.io
+    group: compute
+    best_for: Containerized app servers close to users
+    free_tier: "Limited free trial: small Machines for up to 2 hours of runtime per app and up to 7 days per organization."
+    self_host: no
+    url: https://fly.io/
+    url_pricing: https://fly.io/docs/about/free-trial/
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Trial apps stop running. No always-free VM allowance.
+    not_ideal_for: Always-on production workloads on a free plan.
+    as_of: 2026-09-25
+  - name: Railway
+    group: compute
+    best_for: Quick deploys from a Git repo with usage-based billing
+    free_tier: Trial plan starts with $5 of credit; the Hobby plan is $5/month plus $5 of included usage.
+    self_host: no
+    url: https://railway.com/
+    url_pricing: https://railway.com/pricing
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Spend-based billing; you set a hard cap.
+    not_ideal_for: Workloads where usage spikes must never trigger billing.
+    as_of: 2026-09-25
+  - name: GitHub Pages
+    group: compute
+    best_for: Static sites served from a repo
+    free_tier: Unlimited static site hosting on GitHub Pages for public repos.
+    self_host: no
+    url: https://pages.github.com/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Soft limit of 1 GB / 100 GB bandwidth per site; builds timeout after 10 min.
+    as_of: 2026-09-25
 
+  # ---- Databases & state --------------------------------------------------------------
   - name: Supabase
     group: data
-    best_for: All-in-one Postgres backend with authentication
+    best_for: All-in-one Postgres backend with auth, storage and realtime
     free_tier: 500 MB database, 1 GB file storage, 50k monthly active users for auth.
     self_host: yes
-    url: https://supabase.com/pricing
-    as_of: 2026-02-22
+    url: https://supabase.com/
+    url_pricing: https://supabase.com/pricing
+    url_github: https://github.com/supabase/supabase
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Free projects pause after 1 week of inactivity and 2 active projects per org.
+    not_ideal_for: High-traffic production with strict uptime SLAs.
+    as_of: 2026-09-25
   - name: Neon
     group: data
     best_for: Serverless Postgres with branching
-    free_tier: 1 project and 3 GiB storage, with database branching included.
+    free_tier: 1 project, 0.5 GiB storage and up to 190 compute-hours; cold-starts after 5 min idle.
     self_host: yes
-    url: https://neon.tech/pricing
-    as_of: 2026-02-22
+    url: https://neon.tech/
+    url_pricing: https://neon.tech/pricing
+    url_github: https://github.com/neondatabase/neon
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Compute suspends; storage above limit fails writes.
+    as_of: 2026-09-25
   - name: Upstash
     group: data
     best_for: Serverless Redis and Kafka
-    free_tier: 10k commands/day — enough for rate limiting, caching and simple pub/sub.
+    free_tier: 10k Redis commands/day and 1 GB Kafka storage — enough for rate limiting, caching and simple pub/sub.
     self_host: no
-    url: https://upstash.com/pricing
-    as_of: 2026-02-22
+    url: https://upstash.com/
+    url_pricing: https://upstash.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Commands are rate-limited or return errors.
+    as_of: 2026-09-25
+  - name: Turso
+    group: data
+    best_for: SQLite at the edge with replication
+    free_tier: 9 GB of total storage, 500 databases and 1 billion rows read/month.
+    self_host: yes
+    url: https://turso.tech/
+    url_pricing: https://turso.tech/pricing
+    url_github: https://github.com/tursodatabase/libsql
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Writes are throttled; overages billed.
+    as_of: 2026-09-25
+  - name: MongoDB Atlas
+    group: data
+    best_for: Managed MongoDB with a generous free M0 tier
+    free_tier: M0 cluster with 512 MB storage shared across all M0 clusters in the project.
+    self_host: no
+    url: https://www.mongodb.com/atlas
+    url_pricing: https://www.mongodb.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Writes are throttled; you must upgrade to scale up.
+    not_ideal_for: Production workloads with > 512 MB working data.
+    as_of: 2026-09-25
+  - name: PocketBase
+    group: data
+    best_for: Single-binary SQLite backend with auth, files and realtime
+    free_tier: Self-hosted, fully open source; no cloud tier exists.
+    self_host: yes
+    url: https://pocketbase.io/
+    url_github: https://github.com/pocketbase/pocketbase
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+  - name: Convex
+    group: data
+    best_for: Reactive backend-as-a-product with TypeScript functions and a built-in DB
+    free_tier: 1 GB storage, 1 M function calls/month and 0.5 GB bandwidth/month.
+    self_host: no
+    url: https://www.convex.dev/
+    url_pricing: https://www.convex.dev/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Functions and storage throttled until next month or upgrade.
+    as_of: 2026-09-25
+  - name: Redis Cloud
+    group: data
+    best_for: Hosted Redis with a small free Essential tier
+    free_tier: 30 MB Redis with up to 30 databases and 30 connections.
+    self_host: no
+    url: https://redis.io/cloud/
+    url_pricing: https://redis.io/cloud/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited to 30 MB; beyond that, you must upgrade.
+    as_of: 2026-09-25
 
+  # ---- Storage & CDN ------------------------------------------------------------------
+  - name: Cloudflare R2
+    group: storage
+    best_for: S3-compatible object storage with zero egress fees
+    free_tier: 10 GB of storage, 1 M Class A and 10 M Class B requests/month; no egress.
+    self_host: no
+    url: https://developers.cloudflare.com/r2/
+    url_pricing: https://developers.cloudflare.com/r2/pricing/
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Standard R2 storage and request rates apply above the free allowance.
+    not_ideal_for: Bucket-only data; pair with a CDN for hot reads.
+    as_of: 2026-09-25
+  - name: Backblaze B2
+    group: storage
+    best_for: Cheap S3-compatible object storage
+    free_tier: 10 GB of storage; first 1 G X egress/day is free.
+    self_host: no
+    url: https://www.backblaze.com/b2/
+    url_pricing: https://www.backblaze.com/b2/cloud-storage-pricing.html
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Standard B2 rates apply; small overage.
+    as_of: 2026-09-25
+  - name: UploadThing
+    group: storage
+    best_for: Drop-in file uploads for Next.js / React apps
+    free_tier: 2 GB of storage and 2 GB of bandwidth/month.
+    self_host: no
+    url: https://uploadthing.com/
+    url_pricing: https://uploadthing.com/pricing
+    url_github: https://github.com/pingdotgg/uploadthing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Uploads above 2 GB rejected.
+    as_of: 2026-09-25
+  - name: Cloudinary
+    group: storage
+    best_for: Image / video uploads, transformations and CDN delivery
+    free_tier: 25k transformation credits, 25 GB storage and 25 GB bandwidth on the Free plan.
+    self_host: no
+    url: https://cloudinary.com/
+    url_pricing: https://cloudinary.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Transformations and delivery throttled; overages billed.
+    as_of: 2026-09-25
+  - name: Bunny.net Storage
+    group: storage
+    best_for: Low-latency storage tied to Bunny CDN
+    free_tier: Pay-as-you-go with no monthly fee; tiny workloads can stay near $0.
+    self_host: no
+    url: https://bunny.net/storage/
+    url_pricing: https://bunny.net/pricing/
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Storage and bandwidth billed by GB-month.
+    as_of: 2026-09-25
+  - name: ImgBB
+    group: storage
+    best_for: Quick image hosting with a simple API
+    free_tier: Free for personal uploads; API keys on request.
+    self_host: no
+    url: https://imgbb.com/
+    url_pricing: https://api.imgbb.com/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Per-image size and total-volume caps.
+    not_ideal_for: Production pipelines needing SLAs and unlimited storage.
+    as_of: 2026-09-25
+
+  # ---- Authentication & identity ------------------------------------------------------
   - name: Clerk
     group: auth
-    best_for: Drop-in Next.js / React authentication
+    best_for: Drop-in Next.js / React authentication with prebuilt UI
     free_tier: 10,000 monthly active users with prebuilt UI components.
     self_host: no
-    url: https://clerk.com/pricing
-    as_of: 2026-02-22
+    url: https://clerk.com/
+    url_pricing: https://clerk.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Authentication requests blocked once you cross the MAU cap.
+    as_of: 2026-09-25
   - name: Logto
     group: auth
-    best_for: Custom identity infrastructure
-    free_tier: 50,000 monthly active users on Logto Cloud; open-source core.
+    best_for: Custom identity infrastructure with an OSS core
+    free_tier: 50,000 monthly active users on Logto Cloud; the core is open source.
     self_host: yes
-    url: https://logto.io/pricing
-    as_of: 2026-02-22
+    url: https://logto.io/
+    url_pricing: https://logto.io/pricing
+    url_github: https://github.com/logto-io/logto
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud MAU limit enforced; OSS has no limit.
+    as_of: 2026-09-25
+  - name: WorkOS
+    group: auth
+    best_for: Enterprise SSO, SCIM and audit logs for B2B apps
+    free_tier: Free for up to 1 M users of AuthKit with limited enterprise features; SSO/SAML up to 10 active connections.
+    self_host: no
+    url: https://workos.com/
+    url_pricing: https://workos.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Above 10 SAML connections a paid tier applies.
+    not_ideal_for: Hobby apps — Clerk/Logto have friendlier free tiers.
+    as_of: 2026-09-25
+  - name: Zitadel
+    group: auth
+    best_for: Multi-tenant identity platform with strong compliance
+    free_tier: Free Cloud tier up to 25k MAU; fully self-hostable OSS.
+    self_host: yes
+    url: https://zitadel.com/
+    url_pricing: https://zitadel.com/pricing
+    url_github: https://github.com/zitadel/zitadel
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud MAU limit enforced; OSS has no limit.
+    as_of: 2026-09-25
+  - name: Keycloak
+    group: auth
+    best_for: Self-hosted SSO / OIDC / SAML under your own control
+    free_tier: Fully open source; no cloud free tier required.
+    self_host: yes
+    url: https://www.keycloak.org/
+    url_github: https://github.com/keycloak/keycloak
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    not_ideal_for: When you need a managed cloud control plane and you cannot operate a JVM service.
+    as_of: 2026-09-25
 
+  # ---- AI & LLMs ----------------------------------------------------------------------
+  - name: Google Gemini API
+    group: ai
+    best_for: Multimodal LLM with a generous free tier
+    free_tier: "Free tier on Gemini 2.5 Flash / Flash-Lite: rate-limited requests/min and per day for text, image and audio inputs."
+    self_host: no
+    url: https://ai.google.dev/
+    url_pricing: https://ai.google.dev/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: review
+    over_limit: Requests return 429 / RESOURCE_EXHAUSTED; paid tier removes the cap.
+    as_of: 2026-09-25
+  - name: Groq
+    group: ai
+    best_for: Very fast open-source LLM inference
+    free_tier: Generous free tier with rate-limited tokens/day for Llama, Mixtral and Whisper models.
+    self_host: no
+    url: https://groq.com/
+    url_pricing: https://groq.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Requests rate-limited or refused; upgrade to Dev tier for higher limits.
+    as_of: 2026-09-25
+  - name: Mistral
+    group: ai
+    best_for: Open- and closed-weight models with paid free credits
+    free_tier: $5 of free API credit to start; usage-based pricing afterwards.
+    self_host: no
+    url: https://mistral.ai/
+    url_pricing: https://mistral.ai/pricing
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Pay-as-you-go once the trial credit is consumed.
+    not_ideal_for: Pure OSS workloads — many callers use Groq / Together instead.
+    as_of: 2026-09-25
+  - name: OpenRouter
+    group: ai
+    best_for: Single API for many model providers
+    free_tier: "Pay-as-you-go; some free models (e.g. :free variants) available with rate limits."
+    self_host: no
+    url: https://openrouter.ai/
+    url_pricing: https://openrouter.ai/docs/api-reference/limits
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Free-model requests rate-limited; paid models billed per token.
+    as_of: 2026-09-25
+  - name: Hugging Face Inference
+    group: ai
+    best_for: Hosted inference for thousands of OSS models
+    free_tier: Free inference tier for many OSS models on the Serverless Inference API; rate-limited per model.
+    self_host: no
+    url: https://huggingface.co/docs/api-inference/
+    url_pricing: https://huggingface.co/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cold-starts and per-model rate limits; PRO removes throttling.
+    not_ideal_for: Strict low-latency SLAs.
+    as_of: 2026-09-25
+  - name: Together.ai
+    group: ai
+    best_for: Serverless OSS-model inference with a free credit grant
+    free_tier: $5 credit to start; then usage-based.
+    self_host: no
+    url: https://www.together.ai/
+    url_pricing: https://www.together.ai/pricing
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Pay-as-you-go once the credit is exhausted.
+    as_of: 2026-09-25
+  - name: Cohere
+    group: ai
+    best_for: Production LLM APIs with a Trial key
+    free_tier: Trial API key with limited rate limits; production usage is pay-as-you-go.
+    self_host: no
+    url: https://cohere.com/
+    url_pricing: https://cohere.com/pricing
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Pay-as-you-go on the production tier.
+    as_of: 2026-09-25
+  - name: Ollama
+    group: ai
+    best_for: Local LLM runtime for laptops and homelabs
+    free_tier: Fully free, open-source runtime. Bring your own model weights.
+    self_host: yes
+    url: https://ollama.com/
+    url_github: https://github.com/ollama/ollama
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own hardware.
+    not_ideal_for: A hosted API with no GPUs on hand.
+    as_of: 2026-09-25
+  - name: LM Studio
+    group: ai
+    best_for: Desktop GUI for running local LLMs
+    free_tier: Fully free desktop app; uses local model weights.
+    self_host: yes
+    url: https://lmstudio.ai/
+    url_github: https://github.com/lmstudio-ai/lms
+    tier_type: open_source
+    card_required: no
+    commercial_use: review
+    over_limit: Limited only by your own hardware.
+    not_ideal_for: Server / multi-user deployments — use Ollama or vLLM.
+    as_of: 2026-09-25
+  - name: Qdrant
+    group: ai
+    best_for: Managed vector database for embeddings
+    free_tier: 1 GB free cluster on Qdrant Cloud with 0.5 vCPU.
+    self_host: yes
+    url: https://qdrant.tech/
+    url_pricing: https://qdrant.tech/pricing/
+    url_github: https://github.com/qdrant/qdrant
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cluster auto-scales down or refuses writes; upgrade to scale.
+    as_of: 2026-09-25
+  - name: Pinecone
+    group: ai
+    best_for: Managed vector database with a Starter index
+    free_tier: 1 serverless Starter index, enough for prototypes.
+    self_host: no
+    url: https://www.pinecone.io/
+    url_pricing: https://www.pinecone.io/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Writes / queries blocked above the free tier; upgrade required.
+    not_ideal_for: Self-hosting — Pinecone is managed only.
+    as_of: 2026-09-25
+  - name: Chroma
+    group: ai
+    best_for: Embedded vector store for RAG and prototypes
+    free_tier: Fully open source, runs in-process or as a server. Bring your own storage.
+    self_host: yes
+    url: https://www.trychroma.com/
+    url_github: https://github.com/chroma-core/chroma
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own storage and RAM.
+    not_ideal_for: Multi-tenant managed vector search at scale.
+    as_of: 2026-09-25
+
+  # ---- Email & communication ----------------------------------------------------------
+  - name: Resend
+    group: email
+    best_for: Developer-first transactional email with React Email templates
+    free_tier: 3,000 emails/month and 100/day on the Free plan; 1 verified domain.
+    self_host: no
+    url: https://resend.com/
+    url_pricing: https://resend.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Sends fail until the next cycle or upgrade.
+    as_of: 2026-09-25
+  - name: Postmark
+    group: email
+    best_for: Reliable transactional email with detailed bounce handling
+    free_tier: 100 emails free every month for the developer tier.
+    self_host: no
+    url: https://postmarkapp.com/
+    url_pricing: https://postmarkapp.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Sends refused until next month or upgrade.
+    not_ideal_for: Bulk / marketing — Postmark is transactional only.
+    as_of: 2026-09-25
+  - name: Mailgun
+    group: email
+    best_for: Transactional and bulk email API
+    free_tier: 100 emails/day on the Free tier (first 6 months), then Flex.
+    self_host: no
+    url: https://www.mailgun.com/
+    url_pricing: https://www.mailgun.com/pricing
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Sends over 100/day fail; you must upgrade.
+    as_of: 2026-09-25
+  - name: Brevo (Sendinblue)
+    group: email
+    best_for: Transactional + light marketing email
+    free_tier: 300 emails/day on the Free plan with 1 sender.
+    self_host: no
+    url: https://www.brevo.com/
+    url_pricing: https://www.brevo.com/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Daily quota enforced; monthly quota applies separately.
+    as_of: 2026-09-25
+  - name: Mailjet
+    group: email
+    best_for: Transactional + marketing email API with EU/US data residency
+    free_tier: 6,000 emails/month on the Free plan (200/day cap).
+    self_host: no
+    url: https://www.mailjet.com/
+    url_pricing: https://www.mailjet.com/pricing/
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Sends over 200/day are refused until the next day.
+    as_of: 2026-09-25
+  - name: Loops
+    group: email
+    best_for: Product + marketing email for SaaS startups
+    free_tier: 1,000 contacts free on the Starter plan.
+    self_host: no
+    url: https://loops.so/
+    url_pricing: https://loops.so/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Campaigns above 1k contacts require upgrade.
+    not_ideal_for: High-volume senders — Loops is positioned for SaaS.
+    as_of: 2026-09-25
+  - name: Cloudflare Email Routing
+    group: email
+    best_for: Free email forwarding on your own domain
+    free_tier: Unlimited forwarders on any domain using Cloudflare DNS.
+    self_host: no
+    url: https://developers.cloudflare.com/email-routing/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Quotas effectively unbounded for normal use.
+    not_ideal_for: Sending — Email Routing only forwards, not silences.
+    as_of: 2026-09-25
+  - name: ntfy
+    group: email
+    best_for: Simple push notifications over HTTP / MQTT
+    free_tier: Public topic with anonymous publish on ntfy.sh; self-hostable for private topics.
+    self_host: yes
+    url: https://ntfy.sh/
+    url_github: https://github.com/binwiederhier/ntfy
+    tier_type: open_source
+    card_required: no
+    commercial_use: review
+    over_limit: ntfy.sh has a per-day and per-message cap; upgrade or self-host.
+    not_ideal_for: Critical user-facing notifications — pair with a hosted backup.
+    as_of: 2026-09-25
+
+  # ---- CI/CD & builds -----------------------------------------------------------------
   - name: GitHub Actions
     group: cicd
-    best_for: General-purpose CI/CD pipelines
-    free_tier: 2,000 minutes/month for private repositories on the Free plan.
+    best_for: General-purpose CI/CD pipelines integrated with GitHub
+    free_tier: 2,000 minutes/month for private repos on the Free plan; unlimited minutes for public repos.
     self_host: partial
     self_host_note: Self-hosted runners are supported.
     url: https://github.com/features/actions
-    as_of: 2026-02-22
+    url_pricing: https://github.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Workflows queued or refused once the monthly minute quota is hit.
+    as_of: 2026-09-25
   - name: Earthly
     group: cicd
-    best_for: Containerized, reproducible builds
-    free_tier: 6,000 build minutes/month; builds run the same locally and in CI.
+    best_for: Containerized, reproducible builds that run the same locally and in CI
+    free_tier: 6,000 build minutes/month on the Free plan.
     self_host: partial
     self_host_note: The Earthly CLI is open source.
     url: https://earthly.dev/
-    as_of: 2026-02-22
+    url_pricing: https://earthly.dev/pricing
+    url_github: https://github.com/earthly/earthly
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Builds above the free minute cap are throttled.
+    as_of: 2026-09-25
+  - name: CircleCI
+    group: cicd
+    best_for: General-purpose CI/CD with first-class parallelism
+    free_tier: 6,000 build minutes/month, 30,000 credits and 4 concurrent jobs on the Free plan.
+    self_host: yes
+    url: https://circleci.com/
+    url_pricing: https://circleci.com/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Builds queued until credits / minutes reset.
+    as_of: 2026-09-25
+  - name: Drone
+    group: cicd
+    best_for: Container-native CI/CD, fully self-hostable
+    free_tier: Open source; no required paid tier.
+    self_host: yes
+    url: https://www.drone.io/
+    url_github: https://github.com/harness/drone
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
 
+  # ---- Observability ------------------------------------------------------------------
   - name: Sentry
     group: observability
-    best_for: Error tracking and stack-trace capture
-    free_tier: 5k errors/month — enough to catch unhandled exceptions in an MVP.
+    best_for: Error tracking and stack-trace capture for many languages
+    free_tier: 5k errors/month and 10 GB of session replays — enough to catch unhandled exceptions in an MVP.
     self_host: yes
-    url: https://sentry.io/pricing/
-    as_of: 2026-02-22
+    url: https://sentry.io/
+    url_pricing: https://sentry.io/pricing/
+    url_github: https://github.com/getsentry/sentry
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Events dropped or rate-limited once the monthly quota is hit.
+    as_of: 2026-09-25
   - name: Grafana Cloud
     group: observability
-    best_for: Metrics, logs, traces and dashboards
-    free_tier: 10k Prometheus metrics, 50 GB logs and 50 GB traces.
+    best_for: Metrics, logs, traces and dashboards backed by Grafana OSS
+    free_tier: 10k Prometheus series, 50 GB logs and 50 GB traces with 14-day retention.
     self_host: yes
-    url: https://grafana.com/pricing/
-    as_of: 2026-02-22
+    url: https://grafana.com/products/cloud/
+    url_pricing: https://grafana.com/pricing/
+    tier_type: free_forever
+    card_required: yes
+    commercial_use: yes
+    over_limit: Active series dropped; logs / traces rate-limited above the cap.
+    as_of: 2026-09-25
+  - name: Highlight.io
+    group: observability
+    best_for: Session replay, error monitoring and logs in a single SDK
+    free_tier: 1,000 sessions and 15-day retention on the Free plan.
+    self_host: yes
+    url: https://www.highlight.io/
+    url_pricing: https://www.highlight.io/pricing
+    url_github: https://github.com/highlight/highlight
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Recording quota enforced; overages paused until next cycle.
+    as_of: 2026-09-25
+  - name: New Relic
+    group: observability
+    best_for: APM, infrastructure, logs and browser monitoring
+    free_tier: 100 GB/month of ingest on the Free tier with 8-day retention.
+    self_host: no
+    url: https://newrelic.com/
+    url_pricing: https://newrelic.com/pricing
+    tier_type: free_forever
+    card_required: yes
+    commercial_use: yes
+    over_limit: Above 100 GB / month, data is sampled or refused.
+    as_of: 2026-09-25
+
+  # ---- Analytics ----------------------------------------------------------------------
+  - name: PostHog
+    group: analytics
+    best_for: Product analytics, session replay and feature flags
+    free_tier: 1 M events/month, 5k recordings and 1 M feature-flag requests.
+    self_host: yes
+    url: https://posthog.com/
+    url_pricing: https://posthog.com/pricing
+    url_github: https://github.com/PostHog/posthog
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Events above 1M dropped or sampled; upgrade for the rest.
+    as_of: 2026-09-25
+  - name: Umami
+    group: analytics
+    best_for: Privacy-friendly, self-hostable web analytics
+    free_tier: Fully open source; cloud free tier with a small monthly site cap.
+    self_host: yes
+    url: https://umami.is/
+    url_pricing: https://umami.is/pricing
+    url_github: https://github.com/umami-software/umami
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud sites cap; OSS has no limit.
+    not_ideal_for: Funnels / cohorts at scale — PostHog is stronger.
+    as_of: 2026-09-25
+  - name: Matomo
+    group: analytics
+    best_for: Privacy-friendly web analytics with heatmaps and funnels
+    free_tier: Fully open source self-hostable; cloud free tier with 100k hits.
+    self_host: yes
+    url: https://matomo.org/
+    url_pricing: https://matomo.org/pricing/
+    url_github: https://github.com/matomo-org/matomo
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud hits above the cap are throttled.
+    as_of: 2026-09-25
+  - name: GoatCounter
+    group: analytics
+    best_for: Lightweight, privacy-friendly analytics for personal sites
+    free_tier: Free for personal / non-commercial sites; self-hostable OSS.
+    self_host: yes
+    url: https://www.goatcounter.com/
+    url_github: https://github.com/arp242/goatcounter
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Hits above the per-site quota are tracked but capped on the dashboard.
+    not_ideal_for: Product analytics / funnels.
+    as_of: 2026-09-25
+  - name: Microsoft Clarity
+    group: analytics
+    best_for: Free session replay and heatmaps
+    free_tier: 100k sessions/month with 30-day retention, fully free.
+    self_host: no
+    url: https://clarity.microsoft.com/
+    url_pricing: https://clarity.microsoft.com/pricing
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Sessions above 100k/month are dropped.
+    not_ideal_for: Funnels / cohorts — pair with PostHog.
+    as_of: 2026-09-25
+
+  # ---- Search -------------------------------------------------------------------------
+  - name: Meilisearch
+    group: search
+    best_for: Fast, typo-tolerant full-text search with a great DX
+    free_tier: Open source, self-hostable for free; Cloud has a Free plan with up to 100k documents.
+    self_host: yes
+    url: https://www.meilisearch.com/
+    url_pricing: https://www.meilisearch.com/pricing
+    url_github: https://github.com/meilisearch/meilisearch
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud quota enforced; OSS has no limit.
+    as_of: 2026-09-25
+  - name: Typesense
+    group: search
+    best_for: Typo-tolerant search with vector search built in
+    free_tier: Open source, self-hostable; Cloud has a Free plan with 5k searches/month and 250 MB.
+    self_host: yes
+    url: https://typesense.org/
+    url_pricing: https://typesense.org/pricing/
+    url_github: https://github.com/typesense/typesense
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud quota enforced; OSS has no limit.
+    as_of: 2026-09-25
+  - name: Algolia
+    group: search
+    best_for: Hosted search with a 14-day trial
+    free_tier: 14-day free trial of any paid plan; no permanent free plan.
+    self_host: no
+    url: https://www.algolia.com/
+    url_pricing: https://www.algolia.com/pricing/
+    tier_type: free_trial
+    card_required: yes
+    commercial_use: yes
+    over_limit: Trial ends, you must upgrade or move to Meilisearch / Typesense.
+    not_ideal_for: Long-running free projects.
+    as_of: 2026-09-25
+
+  # ---- Background jobs & scheduling --------------------------------------------------
+  - name: Inngest
+    group: jobs
+    best_for: Durable functions, scheduled jobs and event-driven pipelines
+    free_tier: 1k function steps / 100k events / 100 scheduled per month on the Free plan.
+    self_host: yes
+    url: https://www.inngest.com/
+    url_pricing: https://www.inngest.com/pricing
+    url_github: https://github.com/inngest/inngest
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Runs throttled until next month or upgrade.
+    as_of: 2026-09-25
+  - name: Upstash QStash
+    group: jobs
+    best_for: HTTP-based serverless cron and queueing
+    free_tier: 500 messages/day on the Free plan.
+    self_host: no
+    url: https://upstash.com/qstash
+    url_pricing: https://upstash.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Publishes refused or retried with backoff.
+    as_of: 2026-09-25
+  - name: Trigger.dev
+    group: jobs
+    best_for: Long-running, observable background jobs from your existing codebase
+    free_tier: 250 runs/month on the Free plan.
+    self_host: yes
+    url: https://trigger.dev/
+    url_pricing: https://trigger.dev/pricing
+    url_github: https://github.com/triggerdotdev/trigger.dev
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Runs paused until next cycle or upgrade.
+    as_of: 2026-09-25
+
+  # ---- Security -----------------------------------------------------------------------
+  - name: Cloudflare Turnstile
+    group: security
+    best_for: Free, privacy-friendly CAPTCHA replacement
+    free_tier: Always free, unlimited widget verifications.
+    self_host: no
+    url: https://www.cloudflare.com/products/turnstile/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Effectively unbounded.
+    as_of: 2026-09-25
+  - name: Let's Encrypt
+    group: security
+    best_for: Free, automated TLS certificates
+    free_tier: Free DV certificates with 90-day lifetime, auto-renewable.
+    self_host: yes
+    url: https://letsencrypt.org/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Rate-limited per-domain / per-IPv6 to prevent abuse.
+    not_ideal_for: EV / wildcard at very high volume — use a paid CA.
+    as_of: 2026-09-25
+  - name: Bitwarden
+    group: security
+    best_for: Open-source password manager with optional self-hosting
+    free_tier: Free for individuals on Bitwarden Cloud; self-hostable OSS server.
+    self_host: yes
+    url: https://bitwarden.com/
+    url_pricing: https://bitwarden.com/pricing/
+    url_github: https://github.com/bitwarden/server
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure (self-host) or seat-based pricing (Teams).
+    as_of: 2026-09-25
+  - name: Infisical
+    group: security
+    best_for: Open-source secret management with sync to many providers
+    free_tier: Free tier for up to 5 members; fully open-source self-hostable.
+    self_host: yes
+    url: https://infisical.com/
+    url_pricing: https://infisical.com/pricing
+    url_github: https://github.com/Infisical/infisical
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud member limit enforced; OSS has no limit.
+    as_of: 2026-09-25
+  - name: Semgrep
+    group: security
+    best_for: Static analysis with rules-as-code
+    free_tier: Free for OSS projects; limited community tier for private repos.
+    self_host: yes
+    url: https://semgrep.com/
+    url_pricing: https://semgrep.com/pricing/
+    url_github: https://github.com/semgrep/semgrep
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: Private-repo scanning above the community cap needs Team.
+    as_of: 2026-09-25
+  - name: OWASP ZAP
+    group: security
+    best_for: Open-source web app and API security scanner
+    free_tier: Fully open source, no commercial restrictions.
+    self_host: yes
+    url: https://www.zaproxy.org/
+    url_github: https://github.com/zaproxy/zaproxy
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+
+  # ---- Testing -------------------------------------------------------------------------
+  - name: Playwright
+    group: testing
+    best_for: Cross-browser end-to-end testing
+    free_tier: Open-source framework; cloud has a limited free trial.
+    self_host: yes
+    url: https://playwright.dev/
+    url_github: https://github.com/microsoft/playwright
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+  - name: Grafana k6
+    group: testing
+    best_for: Load and performance testing, scripted in JavaScript
+    free_tier: Open-source CLI plus 500 virtual user hours/month on the Grafana Cloud k6 Free plan.
+    self_host: yes
+    url: https://k6.io/
+    url_pricing: https://grafana.com/products/cloud/k6/
+    url_github: https://github.com/grafana/k6
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud test runs above 500 VUh pause until next month.
+    as_of: 2026-09-25
+  - name: Cypress
+    group: testing
+    best_for: Frontend end-to-end testing
+    free_tier: Open-source test runner; Cypress Cloud has a paid-only free trial.
+    self_host: yes
+    url: https://www.cypress.io/
+    url_pricing: https://www.cypress.io/pricing
+    url_github: https://github.com/cypress-io/cypress
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud dashboard above free trial needs paid plan.
+    as_of: 2026-09-25
+  - name: Mailtrap Email Testing
+    group: testing
+    best_for: Sandbox SMTP / IMAP for end-to-end email tests
+    free_tier: 100 emails / month and 1 inbox on the Free plan.
+    self_host: no
+    url: https://mailtrap.io/
+    url_pricing: https://mailtrap.io/pricing/
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Captured emails above 100 are dropped until next cycle.
+    not_ideal_for: Production email — Mailtrap is a sandbox only.
+    as_of: 2026-09-25
+
+  # ---- Developer tools ----------------------------------------------------------------
+  - name: GitHub Codespaces
+    group: devtools
+    best_for: Hosted VS Code dev environments per repo
+    free_tier: 120 core-hours and 15 GB-month storage for personal accounts.
+    self_host: no
+    url: https://github.com/features/codespaces
+    url_pricing: https://github.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Codespaces paused when the core-hour or storage quota is exhausted.
+    as_of: 2026-09-25
+  - name: Gitpod
+    group: devtools
+    best_for: Hosted dev environments that open from a Git URL
+    free_tier: 50 hours/month on the Free plan.
+    self_host: yes
+    url: https://www.gitpod.io/
+    url_pricing: https://www.gitpod.io/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Workspaces paused until next month.
+    as_of: 2026-09-25
+  - name: Hoppscotch
+    group: devtools
+    best_for: Open-source API client (REST, GraphQL, gRPC, WebSocket)
+    free_tier: Fully open source; web app and desktop app are free.
+    self_host: yes
+    url: https://hoppscotch.io/
+    url_github: https://github.com/hoppscotch/hoppscotch
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+  - name: Bruno
+    group: devtools
+    best_for: Open-source offline-first API client
+    free_tier: Fully open source; collections live on disk under your control.
+    self_host: yes
+    url: https://www.usebruno.com/
+    url_github: https://github.com/usebruno/bruno
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own disk.
+    not_ideal_for: Team collaboration beyond Git — paid Postman is stronger.
+    as_of: 2026-09-25
+  - name: Tailscale
+    group: devtools
+    best_for: Zero-trust mesh VPN for personal and team use
+    free_tier: Personal plan covers up to 100 devices for non-commercial use; teams pay per seat.
+    self_host: yes
+    url: https://tailscale.com/
+    url_pricing: https://tailscale.com/pricing
+    url_github: https://github.com/tailscale/tailscale
+    tier_type: free_tier
+    card_required: no
+    commercial_use: review
+    over_limit: Personal plan caps at 100 devices and forbids commercial use; teams require paid.
+    as_of: 2026-09-25
+  - name: ngrok
+    group: devtools
+    best_for: Public HTTPS tunnels for local dev
+    free_tier: 1 static domain, 5 GB/month and 1 M events on the Free plan.
+    self_host: no
+    url: https://ngrok.com/
+    url_pricing: https://ngrok.com/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Tunnels close once the bandwidth / event cap is hit.
+    as_of: 2026-09-25
+  - name: JetBrains Community
+    group: devtools
+    best_for: Free JetBrains IDEs (IntelliJ, PyCharm, WebStorm, GoLand…)
+    free_tier: Free Community editions for individual use; student/OSS licenses cover the rest.
+    self_host: no
+    url: https://www.jetbrains.com/community/education/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: N/A — paid editions unlock the rest of the feature set.
+    as_of: 2026-09-25
+
+  # ---- Maps & location ----------------------------------------------------------------
+  - name: Mapbox
+    group: maps
+    best_for: Maps, geocoding and turn-by-turn navigation
+    free_tier: 50k map loads/month on the Free tier.
+    self_host: no
+    url: https://www.mapbox.com/
+    url_pricing: https://www.mapbox.com/pricing
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Map loads above 50k require upgrade.
+    as_of: 2026-09-25
+  - name: OpenStreetMap + Nominatim
+    group: maps
+    best_for: Free maps and geocoding from the OpenStreetMap project
+    free_tier: Free, but the public Nominatim instance is rate-limited to ~1 req/s and is for OGC / Geo use only.
+    self_host: yes
+    url: https://www.openstreetmap.org/
+    url_pricing: https://operations.osmfoundation.org/policies/nominatim/
+    url_github: https://github.com/openstreetmap/Nominatim
+    tier_type: open_source
+    card_required: no
+    commercial_use: review
+    over_limit: Heavy usage must self-host or use a third-party provider.
+    not_ideal_for: Production at scale — providers like Mapbox have SLAs.
+    as_of: 2026-09-25
+  - name: OpenRouteService
+    group: maps
+    best_for: Routing, isochrones and POI search powered by OSM
+    free_tier: 2,000 requests/day on the Free tier after signup.
+    self_host: yes
+    url: https://openrouteservice.org/
+    url_pricing: https://openrouteservice.org/plans/
+    url_github: https://github.com/GIScience/openrouteservice
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Requests above 2,000/day refused until next day.
+    as_of: 2026-09-25
+  - name: ipinfo
+    group: maps
+    best_for: IP-to-location intelligence for free-tier apps
+    free_tier: 50k requests/month on the Free tier.
+    self_host: no
+    url: https://ipinfo.io/
+    url_pricing: https://ipinfo.io/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Requests above 50k refused until next cycle.
+    as_of: 2026-09-25
+  - name: ipapi
+    group: maps
+    best_for: IP geolocation with a generous free tier
+    free_tier: 1,000 requests/day on the Free tier.
+    self_host: no
+    url: https://ipapi.co/
+    url_pricing: https://ipapi.co/pricing/
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Requests above 1k/day refused until next day.
+    as_of: 2026-09-25
+
+  # ---- Free APIs ----------------------------------------------------------------------
+  - name: OpenWeatherMap
+    group: apis
+    best_for: Current, historical weather and forecasts
+    free_tier: 1,000,000 API calls/month on the Free tier with rate limits per minute.
+    self_host: no
+    url: https://openweathermap.org/api
+    url_pricing: https://openweathermap.org/price
+    tier_type: free_tier
+    card_required: yes
+    commercial_use: yes
+    over_limit: Requests above the rate limit return 429; over the monthly cap, you must upgrade.
+    as_of: 2026-09-25
+  - name: CoinGecko
+    group: apis
+    best_for: Free public crypto market data without an API key
+    free_tier: Public REST endpoints without a key; Demo API key raises the rate limit to 30 calls/min.
+    self_host: no
+    url: https://www.coingecko.com/en/api
+    url_pricing: https://www.coingecko.com/en/api/pricing
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Rate-limited; production usage should use the paid tier or self-hosted alternative.
+    not_ideal_for: High-frequency trading — too coarse.
+    as_of: 2026-09-25
+  - name: REST Countries
+    group: apis
+    best_for: Free country / region reference data
+    free_tier: Fully free, no signup required.
+    self_host: no
+    url: https://restcountries.com/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: yes
+    over_limit: N/A.
+    as_of: 2026-09-25
+  - name: JSONPlaceholder
+    group: apis
+    best_for: Fake REST endpoints for prototypes and tutorials
+    free_tier: Free for any use, including demos and tests.
+    self_host: yes
+    url: https://jsonplaceholder.typicode.com/
+    url_github: https://github.com/typicode/jsonplaceholder
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: N/A — not intended for production data.
+    not_ideal_for: Production workloads.
+    as_of: 2026-09-25
+
+  # ---- Student benefits ----------------------------------------------------------------
+  - name: GitHub Student Developer Pack
+    group: students
+    best_for: Bundle of dev tools free for verified students
+    free_tier: Free for students with a verified .edu email — includes GitHub Pro, Codespaces, Copilot, Namecheap domains and more.
+    self_host: no
+    url: https://education.github.com/pack
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Student-only; benefits expire after you graduate.
+    not_ideal_for: Commercial products — most offers are for learning.
+    as_of: 2026-09-25
+  - name: Azure for Students
+    group: students
+    best_for: Free Azure cloud credit with no credit card needed
+    free_tier: $100 of Azure credit for 12 months, plus free services (Linux VMs, Static Web Apps, Functions).
+    self_host: no
+    url: https://azure.microsoft.com/en-us/free/students/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Credit and free-tier limits apply per service.
+    as_of: 2026-09-25
+  - name: AWS Educate
+    group: students
+    best_for: Free AWS labs, credits and learning paths for students
+    free_tier: Free labs and credits to students who sign up with a verified education email.
+    self_host: no
+    url: https://aws.amazon.com/education/awseducate/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: N/A — labs are time-limited; production workloads should use AWS Free Tier separately.
+    as_of: 2026-09-25
+  - name: JetBrains for Students
+    group: students
+    best_for: Free JetBrains IDEs (IntelliJ Ultimate, PyCharm Pro…) for students
+    free_tier: Free for students with a verified education email; renewable yearly.
+    self_host: no
+    url: https://www.jetbrains.com/community/education/#students
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Expires after graduation; renew yearly.
+    as_of: 2026-09-25
+  - name: Figma Education
+    group: students
+    best_for: Free Figma Professional for students and educators
+    free_tier: Free for verified students with a .edu email.
+    self_host: no
+    url: https://www.figma.com/education/
+    tier_type: free_forever
+    card_required: no
+    commercial_use: review
+    over_limit: Renew yearly.
+    as_of: 2026-09-25
+
+  # ---- Open-source alternatives -------------------------------------------------------
+  - name: Supabase (Firebase alternative)
+    group: oss
+    best_for: Open-source Firebase alternative built on Postgres
+    free_tier: Same as the Supabase entry in Databases & state.
+    self_host: yes
+    url: https://supabase.com/
+    url_github: https://github.com/supabase/supabase
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Free plan quotas apply.
+    as_of: 2026-09-25
+  - name: Logto (Auth0 alternative)
+    group: oss
+    best_for: Open-source Auth0 alternative with an OSS core
+    free_tier: Same as the Logto entry in Authentication.
+    self_host: yes
+    url: https://logto.io/
+    url_github: https://github.com/logto-io/logto
+    tier_type: free_tier
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud MAU limit; OSS has no limit.
+    as_of: 2026-09-25
+  - name: Grafana OSS (Datadog alternative)
+    group: oss
+    best_for: Open-source metrics, logs and traces alternative to Datadog
+    free_tier: Fully open source; pair with Grafana Cloud or your own storage.
+    self_host: yes
+    url: https://grafana.com/oss/
+    url_github: https://github.com/grafana/grafana
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+  - name: GlitchTip (Sentry alternative)
+    group: oss
+    best_for: Open-source Sentry alternative
+    free_tier: Fully open source; no cloud free tier.
+    self_host: yes
+    url: https://glitchtip.com/
+    url_github: https://gitlab.com/glitchtip/glitchtip-backend
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    not_ideal_for: Source-map debugging at scale.
+    as_of: 2026-09-25
+  - name: Meilisearch (Algolia alternative)
+    group: oss
+    best_for: Open-source Algolia alternative for typo-tolerant search
+    free_tier: Fully open source; cloud Free plan up to 100k documents.
+    self_host: yes
+    url: https://www.meilisearch.com/
+    url_github: https://github.com/meilisearch/meilisearch
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Cloud quotas apply; OSS has no limit.
+    as_of: 2026-09-25
+  - name: AppFlowy (Notion alternative)
+    group: oss
+    best_for: Open-source Notion alternative for notes and docs
+    free_tier: Fully open source; no cloud free tier.
+    self_host: yes
+    url: https://appflowy.io/
+    url_github: https://github.com/AppFlowy-IO/AppFlowy
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    not_ideal_for: Real-time multiplayer with full Notion parity.
+    as_of: 2026-09-25
+  - name: Nextcloud (Dropbox alternative)
+    group: oss
+    best_for: Open-source Dropbox / Google Drive alternative with collab apps
+    free_tier: Fully open source; many shared-hosting providers offer free Nextcloud instances.
+    self_host: yes
+    url: https://nextcloud.com/
+    url_github: https://github.com/nextcloud/server
+    tier_type: open_source
+    card_required: no
+    commercial_use: yes
+    over_limit: Limited only by your own infrastructure.
+    as_of: 2026-09-25
+
+# ---- Removed or downstream of the free tier ---------------------------------------------
+# We don't just silently delete services — this block is the historical record of
+# services whose free offering has materially changed or been retired. Entries
+# here are rendered in the "Removed free tiers" section of the page so readers
+# can see what was once on the list.
+removed:
+  - name: Heroku free dynos
+    previous_offer: One free Eco dyno sleeping after 30 min idle.
+    why_removed: Heroku retired free dynos in November 2022; the current Eco plan is paid.
+    date: 2022-11-28
+  - name: Now.sh free tier
+    previous_offer: Unlimited personal deployments under the v1 alias.
+    why_removed: Vercel deprecated the Now.sh brand and tightened the Hobby plan.
+    date: 2022-08-12
+  - name: GitHub Packages free storage
+    previous_offer: 500 MB of free Packages storage on the Free plan.
+    why_removed: GitHub moved Packages to a metered model with no free allowance.
+    date: 2023-02-01
+  - name: CloudFlare Workers KV "free forever"
+    previous_offer: Unlimited free Workers KV operations.
+    why_removed: Operations are now metered and counted against the Workers Paid / Free plan quota.
+    date: 2023-08-01

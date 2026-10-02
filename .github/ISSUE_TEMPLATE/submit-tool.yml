@@ -21,12 +21,68 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: description
+  - type: input
+    id: pricing-url
     attributes:
-      label: Description
-      description: Brief description of what this tool does (1-2 sentences)
-      placeholder: Open source Firebase alternative with a Postgres database
+      label: Pricing Page URL
+      description: Direct link to the pricing page so reviewers can verify the free tier
+      placeholder: https://supabase.com/pricing
+    validations:
+      required: false
+
+  - type: input
+    id: github-url
+    attributes:
+      label: GitHub URL (optional)
+      description: Link to the open-source repo, if any
+      placeholder: https://github.com/supabase/supabase
+    validations:
+      required: false
+
+  - type: dropdown
+    id: tier-type
+    attributes:
+      label: Tier type
+      description: Which best describes the free offering?
+      options:
+        - Free forever (stays free indefinitely)
+        - Free tier (monthly allowance that resets)
+        - Free trial (time-boxed or credit-based)
+        - Open source (free + self-hostable; no required paid tier)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: card-required
+    attributes:
+      label: Credit card required to sign up?
+      description: Some free tiers require a payment method even on the free plan.
+      options:
+        - No
+        - Yes
+    validations:
+      required: true
+
+  - type: dropdown
+    id: self-host
+    attributes:
+      label: Self-hostable?
+      options:
+        - Yes — fully self-hostable
+        - Partial — OSS runtime / partial support
+        - No — managed only
+    validations:
+      required: true
+
+  - type: dropdown
+    id: commercial-use
+    attributes:
+      label: Commercial use allowed?
+      description: Whether the free tier / OSS license permits paid commercial products.
+      options:
+        - Yes
+        - Review — depends on the license or plan
+        - No — personal use only
     validations:
       required: true
 
@@ -36,52 +92,68 @@ body:
       label: Category
       description: Select the most appropriate category
       options:
-        - Hosting
-        - Database
-        - API
-        - Authentication
-        - Storage
-        - Serverless
-        - CI/CD
-        - Design
-        - Productivity
-        - Learning
-        - Dev Tools
-        - Monitoring
+        - Compute & hosting
+        - Databases & state
+        - Storage & CDN
+        - Authentication & identity
+        - AI & LLMs
+        - Email & communication
+        - CI/CD & builds
+        - Observability
+        - Analytics
+        - Search
+        - Background jobs & scheduling
         - Security
-        - Jobs
-        - CMS
-        - Version Control
-        - Note Taking
-        - Project Management
         - Testing
-        - Documentation
+        - Developer tools
+        - Maps & location
+        - Free APIs
+        - Student benefits
+        - Open-source alternatives
         - Other
     validations:
       required: true
 
-  - type: input
-    id: tags
-    attributes:
-      label: Tags
-      description: Add relevant tags (comma-separated)
-      placeholder: database, baas, authentication
-    validations:
-      required: false
-
   - type: textarea
-    id: free-tier
+    id: description
     attributes:
-      label: Free Tier Details
-      description: What's included for free?
-      placeholder: "e.g., 500MB database, 1GB storage, 2GB bandwidth"
+      label: Description (Best for)
+      description: One-line use case ("Best for: …")
+      placeholder: Open source Firebase alternative with a Postgres database
     validations:
       required: true
 
   - type: textarea
+    id: free-tier
+    attributes:
+      label: Free tier details
+      description: What you actually get on the free plan, with numbers.
+      placeholder: "e.g., 500 MB database, 1 GB storage, 50k MAU"
+    validations:
+      required: true
+
+  - type: textarea
+    id: over-limit
+    attributes:
+      label: What happens when the limit is hit?
+      description: Service pauses, requests return errors, pay-as-you-go, etc.
+      placeholder: "Free projects pause after 1 week of inactivity."
+    validations:
+      required: false
+
+  - type: textarea
+    id: not-ideal-for
+    attributes:
+      label: Not ideal for
+      description: When a reader should look elsewhere (optional but very useful).
+      placeholder: High-traffic production with strict uptime SLAs.
+    validations:
+      required: false
+
+  - type: textarea
     id: additional-context
     attributes:
-      label: Additional Context
-      description: Any other information about this tool that would be helpful
+      label: Additional context
+      description: Anything else that would help reviewers confirm the entry.
     validations:
       required: false
