@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430">
+  <title>Legacy MCP pinned clients to one server with a session id; the 2026-07-28 revision lets any request land on any instance</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">2025-11-25 and earlier</text>
+  <rect x="8" y="30" width="344" height="270" class="f-box"/>
+  <text x="20" y="56" class="f-label">client holds</text>
+  <text x="20" y="78" class="f-code">Mcp-Session-Id: s-9f2</text>
+  <g data-step="1">
+    <line x1="150" y1="150" x2="300" y2="150" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="170" cy="150" r="9" class="f-a1"/>
+    <text x="170" y="154" class="f-small f-middle f-a1">1</text>
+    <text x="20" y="112" class="f-small">sticky to instance 2</text>
+  </g>
+  <rect x="220" y="120" width="116" height="60" class="f-box"/>
+  <text x="232" y="144" class="f-label">instance 2</text>
+  <text x="232" y="164" class="f-code">session s-9f2</text>
+  <g data-step="2">
+    <line x1="228" y1="126" x2="328" y2="174" class="f-line"/>
+    <line x1="328" y1="126" x2="228" y2="174" class="f-line"/>
+    <text x="20" y="216" class="f-code f-a1">instance 2 is gone:</text>
+    <text x="20" y="238" class="f-small">session state dies with it;</text>
+    <text x="20" y="260" class="f-small">the client must re-handshake</text>
+  </g>
+
+  <text x="368" y="20" class="f-title">2026-07-28</text>
+  <rect x="368" y="30" width="344" height="270" class="f-frame" fill="url(#hatch)"/>
+  <text x="380" y="56" class="f-label">load balancer</text>
+  <g data-step="3">
+    <circle cx="405" cy="200" r="9" class="f-a3"/>
+    <text x="405" y="204" class="f-small f-middle f-a3">3</text>
+    <line x1="430" y1="90" x2="560" y2="90" class="f-line" marker-end="url(#arrow)"/>
+    <line x1="430" y1="130" x2="560" y2="150" class="f-line" marker-end="url(#arrow)"/>
+    <line x1="430" y1="170" x2="560" y2="210" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="380" y="76" width="150" height="24" rx="2" class="f-a1"/>
+    <text x="388" y="93" class="f-code">self-contained</text>
+    <rect x="380" y="116" width="150" height="24" rx="2" class="f-a2"/>
+    <text x="388" y="133" class="f-code">self-contained</text>
+    <rect x="380" y="156" width="150" height="24" rx="2" class="f-a3"/>
+    <text x="388" y="173" class="f-code">self-contained</text>
+  </g>
+  <rect x="580" y="76" width="116" height="44" class="f-box"/>
+  <text x="592" y="96" class="f-label">instance 1</text>
+  <text x="592" y="112" class="f-small">no session</text>
+  <rect x="580" y="136" width="116" height="44" class="f-box"/>
+  <text x="592" y="156" class="f-label">instance 2</text>
+  <text x="592" y="172" class="f-small">no session</text>
+  <rect x="580" y="196" width="116" height="44" class="f-box"/>
+  <text x="592" y="216" class="f-label">instance 3</text>
+  <text x="592" y="232" class="f-small">no session</text>
+  <g data-step="4">
+    <line x1="586" y1="140" x2="690" y2="176" class="f-line"/>
+    <line x1="690" y1="140" x2="586" y2="176" class="f-line"/>
+    <text x="380" y="270" class="f-small">instance 2 dies: requests land on 1 or 3</text>
+  </g>
+
+  <line x1="8" y1="326" x2="712" y2="326" class="f-rule"/>
+  <text x="8" y="350" class="f-small">1 the legacy client was pinned to one instance by its session id</text>
+  <text x="8" y="372" class="f-small">2 when that instance died, the session died with it</text>
+  <text x="8" y="394" class="f-small">3 stateless requests carry everything, so 4 any instance can serve any request</text>
+  <text x="8" y="416" class="f-small">Horizontal scaling stops being a session-affinity problem.</text>
+</svg>
