@@ -254,7 +254,7 @@ uses.
 | 12 | **Cache stampedes, stale reads and TTL jitter** | Performance · Guide | Redis 8.10 (AGPLv3 available again since Redis 8) and Valkey 9.1 (BSD fork). Per-field expiry (`HEXPIRE`, since 7.4); client-side caching with its documented stale-read race | Redis caching, rate limiting | [Client-side caching](https://redis.io/docs/latest/develop/reference/client-side-caching/), [HEXPIRE](https://redis.io/docs/latest/commands/hexpire/), [AWS caching best practices](https://aws.amazon.com/caching/best-practices/) |
 | 13 | **Argo Rollouts vs Flagger** | DevOps · Comparison | Argo Rollouts 1.10.0: Gateway API through a plugin (plugin system alpha). Flagger 1.45.0: Gateway API built in | both canary articles, blue-green deployments | [Argo Rollouts plugins](https://argoproj.github.io/argo-rollouts/features/traffic-management/plugins/), [Flagger Gateway API](https://docs.flagger.app/tutorials/gatewayapi-progressive-delivery) |
 
-Published from this list: Retries with exponential backoff and jitter (2026-09-29).
+Published from this list: Retries with exponential backoff and jitter (2026-09-29). Validate the Issuer: Securing OAuth Discovery Metadata (2026-10-08; found via web search, not from this list).
 When a topic is published, move it to that line. When fewer than five topics remain,
 propose new ones from the target mix above, each with a 2026 angle and verified sources.
 
