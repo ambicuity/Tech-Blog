@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540">
+  <title>Safe OAuth discovery: the client validates the authorization server metadata issuer before trusting any endpoint</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Safe discovery</text>
+
+  <!-- 1. client -->
+  <rect x="170" y="36" width="380" height="44" rx="3" class="f-box"/>
+  <text x="360" y="63" class="f-code f-middle">MCP client</text>
+
+  <!-- 1 -> 2 -->
+  <g data-step="1" style="--from-y: 6px">
+    <line x1="360" y1="80" x2="360" y2="112" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="96" r="9" class="f-a1"/>
+    <text x="330" y="100" class="f-small f-middle f-a1">1</text>
+  </g>
+
+  <!-- 2. server -->
+  <rect x="170" y="112" width="380" height="44" rx="3" class="f-box" data-step="1"/>
+  <text x="360" y="139" class="f-code f-middle">MCP server (protected resource)</text>
+
+  <!-- 2 -> 3 -->
+  <g data-step="2" style="--from-y: 6px">
+    <line x1="360" y1="156" x2="360" y2="188" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="172" r="9" class="f-a1"/>
+    <text x="330" y="176" class="f-small f-middle f-a1">2</text>
+  </g>
+
+  <!-- 3. authorization server metadata -->
+  <g data-step="2">
+    <rect x="170" y="188" width="380" height="68" rx="3" class="f-box"/>
+    <text x="186" y="212" class="f-label">metadata document</text>
+    <text x="186" y="234" class="f-code">issuer: https://auth.example.com</text>
+    <text x="186" y="250" class="f-small">token_endpoint: https://auth.example.com/token</text>
+  </g>
+
+  <!-- 3 -> 4 -->
+  <g data-step="3" style="--from-y: 6px">
+    <line x1="360" y1="256" x2="360" y2="288" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="272" r="9" class="f-a1"/>
+    <text x="330" y="276" class="f-small f-middle f-a1">3</text>
+  </g>
+
+  <!-- 4. the issuer check -->
+  <g data-step="3">
+    <rect x="170" y="288" width="380" height="44" rx="3" class="f-box"/>
+    <text x="360" y="315" class="f-code f-middle">document.issuer == discovered URL?</text>
+  </g>
+
+  <!-- 4 -> 5 -->
+  <g data-step="4" style="--from-y: 6px">
+    <line x1="360" y1="332" x2="360" y2="364" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="348" r="9" class="f-a1"/>
+    <text x="330" y="352" class="f-small f-middle f-a1">4</text>
+  </g>
+
+  <!-- 5. validated -->
+  <g data-step="4">
+    <rect x="170" y="364" width="380" height="44" rx="3" class="f-a1"/>
+    <text x="360" y="391" class="f-code f-middle">validated: credentials may use token_endpoint</text>
+  </g>
+
+  <line x1="8" y1="436" x2="712" y2="436" class="f-rule"/>
+  <text x="8" y="460" class="f-small">1 client requests the protected resource</text>
+  <text x="8" y="478" class="f-small">2 server answers 401 with protected resource metadata (RFC 9728) naming the authorization server</text>
+  <text x="8" y="496" class="f-small">3 client fetches the authorization server metadata (RFC 8414) from the well-known URL</text>
+  <text x="8" y="514" class="f-small">4 the document's issuer must exactly match the discovered URL, or the document is discarded</text>
+</svg>

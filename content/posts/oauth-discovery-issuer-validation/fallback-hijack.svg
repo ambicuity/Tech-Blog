@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 640">
+  <title>The fallback hijack: a rogue server forces the unchecked path and steals OAuth credentials</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">The fallback hijack</text>
+
+  <!-- client -->
+  <rect x="170" y="36" width="380" height="44" rx="3" class="f-box"/>
+  <text x="360" y="63" class="f-code f-middle">MCP client</text>
+
+  <!-- 1 -->
+  <g data-step="1" style="--from-y: 6px">
+    <line x1="360" y1="80" x2="360" y2="108" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="94" r="9" class="f-a2"/>
+    <text x="330" y="98" class="f-small f-middle f-a2">1</text>
+  </g>
+
+  <!-- rogue server -->
+  <g data-step="1">
+    <rect x="170" y="108" width="380" height="44" rx="3" class="f-box f-a2-line"/>
+    <text x="360" y="135" class="f-code f-middle">rogue MCP server</text>
+  </g>
+
+  <!-- 2 -->
+  <g data-step="2" style="--from-y: 6px">
+    <line x1="360" y1="152" x2="360" y2="180" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="166" r="9" class="f-a2"/>
+    <text x="330" y="170" class="f-small f-middle f-a2">2</text>
+  </g>
+
+  <!-- rogue metadata -->
+  <g data-step="2">
+    <rect x="170" y="180" width="380" height="68" rx="3" class="f-box"/>
+    <text x="186" y="204" class="f-label f-a2">rogue metadata document</text>
+    <text x="186" y="226" class="f-code">issuer: https://accounts.real-idp.example</text>
+    <text x="186" y="242" class="f-small f-a2">token_endpoint: https://evil.example/token</text>
+  </g>
+
+  <!-- 3 -->
+  <g data-step="3" style="--from-y: 6px">
+    <line x1="360" y1="248" x2="360" y2="276" class="f-line f-dashed" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="262" r="9" class="f-a2"/>
+    <text x="330" y="266" class="f-small f-middle f-a2">3</text>
+  </g>
+
+  <!-- skipped check -->
+  <g data-step="3">
+    <rect x="170" y="276" width="380" height="44" rx="3" class="f-box f-dashed"/>
+    <text x="360" y="303" class="f-code f-middle">issuer check skipped: no anchor to check</text>
+  </g>
+
+  <!-- 4 -->
+  <g data-step="4" style="--from-y: 6px">
+    <line x1="360" y1="320" x2="360" y2="348" class="f-line f-a2-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="334" r="9" class="f-a2"/>
+    <text x="330" y="338" class="f-small f-middle f-a2">4</text>
+  </g>
+
+  <!-- credentials to attacker -->
+  <g data-step="4">
+    <rect x="170" y="348" width="380" height="68" rx="3" class="f-a2"/>
+    <text x="186" y="372" class="f-label">stolen in one exchange</text>
+    <text x="186" y="394" class="f-code">code + client_secret + code_verifier</text>
+    <text x="186" y="410" class="f-small">sent to https://evil.example/token</text>
+  </g>
+
+  <!-- 5 -->
+  <g data-step="5" style="--from-y: 6px">
+    <line x1="360" y1="416" x2="360" y2="444" class="f-line f-a2-line" marker-end="url(#arrow)"/>
+    <circle cx="330" cy="430" r="9" class="f-a2"/>
+    <text x="330" y="434" class="f-small f-middle f-a2">5</text>
+  </g>
+
+  <!-- attacker redeems -->
+  <g data-step="5">
+    <rect x="170" y="444" width="380" height="44" rx="3" class="f-a2"/>
+    <text x="360" y="471" class="f-code f-middle">attacker redeems at the real IdP: valid token</text>
+  </g>
+
+  <line x1="8" y1="516" x2="712" y2="516" class="f-rule"/>
+  <text x="8" y="540" class="f-small">1 client requests the resource; the rogue server answers 404 on discovery</text>
+  <text x="8" y="558" class="f-small">2 the client asks the server directly; it hands back a crafted document</text>
+  <text x="8" y="576" class="f-small">3 the document names the real identity provider, so the login page looks genuine</text>
+  <text x="8" y="594" class="f-small">4 with no anchor the check never runs; code, secret and verifier go to the attacker</text>
+  <text x="8" y="612" class="f-small">5 the attacker redeems all three at the real IdP and gets a valid token</text>
+</svg>

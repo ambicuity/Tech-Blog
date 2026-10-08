@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+  <title>The issuer check: the metadata issuer must be byte-identical to the independently discovered URL</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">The issuer check</text>
+
+  <text x="8" y="52" class="f-label">discovered independently</text>
+  <text x="8" y="74" class="f-code">https://auth.example.com</text>
+  <line x1="8" y1="88" x2="712" y2="88" class="f-rule"/>
+
+  <text x="8" y="112" class="f-label">metadata says</text>
+  <text x="330" y="112" class="f-label">verdict</text>
+
+  <g data-step="1">
+    <text x="8" y="140" class="f-code f-a1">pass  https://auth.example.com</text>
+    <text x="470" y="140" class="f-small f-a1">exact match: use it</text>
+  </g>
+  <g data-step="2">
+    <text x="8" y="172" class="f-code f-a2">fail  https://auth.example.com/</text>
+    <text x="470" y="172" class="f-small f-a2">trailing slash: reject</text>
+  </g>
+  <g data-step="3">
+    <text x="8" y="204" class="f-code f-a2">fail  https://AUTH.example.com</text>
+    <text x="470" y="204" class="f-small f-a2">case differs: reject</text>
+  </g>
+  <g data-step="4">
+    <text x="8" y="236" class="f-code f-a2">fail  https://auth.example.com:443</text>
+    <text x="470" y="236" class="f-small f-a2">default port shown: reject</text>
+  </g>
+  <g data-step="5">
+    <text x="8" y="268" class="f-code f-a2">fail  http://auth.example.com</text>
+    <text x="470" y="268" class="f-small f-a2">scheme differs: reject</text>
+  </g>
+
+  <line x1="8" y1="290" x2="712" y2="290" class="f-rule"/>
+  <text x="8" y="314" class="f-small">RFC 8414 section 3.3: the issuer value MUST be identical to the identifier the well-known</text>
+  <text x="8" y="332" class="f-small">URL was built from. If not, the data MUST NOT be used. No normalization before comparing.</text>
+</svg>
