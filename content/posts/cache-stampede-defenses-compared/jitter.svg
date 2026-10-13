@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300">
+  <title>TTL jitter spreads expiry times so keys do not all die together</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Eight keys, TTL 3600 s</text>
+
+  <!-- Time axis: t=3000..4200 maps to x=40..680 -->
+  <line x1="40" y1="220" x2="680" y2="220" class="f-line"/>
+  <text x="40" y="238" class="f-small">t = 3000</text>
+  <text x="330" y="238" class="f-small">t = 3600</text>
+  <text x="560" y="238" class="f-small">t = 4200</text>
+
+  <!-- Row 1: no jitter, all expire at 3600 -> x 360 -->
+  <text x="8" y="60" class="f-label">no jitter</text>
+  <g>
+    <circle cx="360" cy="80" r="7" class="f-a1-solid"/><circle cx="360" cy="100" r="7" class="f-a1-solid"/><circle cx="360" cy="120" r="7" class="f-a1-solid"/><circle cx="360" cy="140" r="7" class="f-a1-solid"/>
+  </g>
+  <text x="390" y="116" class="f-small">8 keys expire at once:</text>
+  <text x="390" y="134" class="f-small">one synchronized miss</text>
+
+  <!-- Row 2: jitter +-10%, expiry 3240..3960 -> x 168..552 -->
+  <text x="8" y="180" class="f-label">jitter +-10 %</text>
+  <g data-step="1">
+    <circle cx="168" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="210" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="262" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="308" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="360" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="412" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="468" cy="180" r="7" class="f-a1-solid"/>
+    <circle cx="552" cy="180" r="7" class="f-a1-solid"/>
+  </g>
+  <text x="580" y="176" class="f-small">expiry spreads</text>
+  <text x="580" y="194" class="f-small">over 720 s</text>
+
+  <!-- Legend -->
+  <line x1="8" y1="256" x2="712" y2="256" class="f-rule"/>
+  <text x="8" y="280" class="f-small">1 identical TTLs synchronize expiry: every key dies at t = 3600, and every miss lands together</text>
+  <text x="8" y="298" class="f-small">2 TTL 3600 x (1 +/- 0.1) spreads expiry across 3240..3960; the origin sees a trickle, not a spike</text>
+</svg>
