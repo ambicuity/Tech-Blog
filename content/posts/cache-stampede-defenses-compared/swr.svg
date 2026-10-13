@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 344">
+  <title>Stale-while-revalidate: callers get the stale value while one background refresh runs</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Entry state over time</text>
+
+  <!-- Time axis: t=0..420 maps to x=40..680 -->
+  <line x1="40" y1="240" x2="680" y2="240" class="f-line"/>
+  <text x="40" y="258" class="f-small">t = 0</text>
+  <text x="120" y="258" class="f-small">fresh_until 60</text>
+  <text x="520" y="258" class="f-small">stale_until 360</text>
+
+  <!-- Fresh v1: t 0..60 -> x 40..131 -->
+  <rect x="40" y="60" width="91" height="40" rx="2" class="f-box"/>
+  <text x="48" y="84" class="f-code">fresh v1</text>
+
+  <!-- Stale v1 while refresh runs: t 60..~120 -> x 131..211 -->
+  <g data-step="1">
+    <rect x="131" y="60" width="80" height="40" rx="2" class="f-a1"/>
+    <text x="139" y="84" class="f-code">stale v1</text>
+  </g>
+
+  <!-- Fresh v2 after refresh: t ~120..420 -> x 211..680 -->
+  <g data-step="2">
+    <rect x="211" y="60" width="469" height="40" rx="2" class="f-box"/>
+    <text x="219" y="84" class="f-code">fresh v2 (after refresh)</text>
+  </g>
+
+  <!-- Callers -->
+  <text x="8" y="130" class="f-label">callers</text>
+  <g data-step="1">
+    <line x1="140" y1="140" x2="140" y2="100" class="f-line" marker-end="url(#arrow)"/>
+    <text x="120" y="160" class="f-small">t = 61: 32 callers</text>
+    <text x="120" y="178" class="f-small">all get stale v1, none wait</text>
+  </g>
+  <g data-step="2">
+    <line x1="360" y1="140" x2="360" y2="100" class="f-line" marker-end="url(#arrow)"/>
+    <text x="320" y="160" class="f-small">t = 200: fresh v2</text>
+  </g>
+
+  <!-- Background refresh -->
+  <text x="8" y="210" class="f-label">background</text>
+  <g data-step="1">
+    <rect x="131" y="196" width="80" height="26" rx="2" class="f-a1-solid"/>
+    <text x="219" y="213" class="f-small">one refresh</text>
+  </g>
+
+  <!-- stale_until marker -->
+  <line x1="587" y1="54" x2="587" y2="240" class="f-dashed f-line"/>
+  <text x="520" y="46" class="f-small">past 360: callers block</text>
+
+  <!-- Legend -->
+  <line x1="8" y1="276" x2="712" y2="276" class="f-rule"/>
+  <text x="8" y="300" class="f-small">1 entry goes stale at t = 60; callers keep getting v1 while exactly one refresh runs</text>
+  <text x="8" y="318" class="f-small">2 refresh stores v2; later callers get fresh data</text>
+  <text x="8" y="336" class="f-small">3 if refreshes keep failing, stale v1 serves until t = 360, then callers block</text>
+</svg>
