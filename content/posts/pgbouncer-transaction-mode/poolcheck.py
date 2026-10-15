@@ -1,6 +1,6 @@
 """Check a PgBouncer setup for transaction-pooling mistakes.
 
-Targets PgBouncer 1.26 and PostgreSQL 18. The module does two jobs:
+Targets PgBouncer 1.26.1 and PostgreSQL 18. The module does two jobs:
 
 1. classify_feature() / audit() apply the documented pooling rules to the
    features an application uses and to a parsed pgbouncer.ini, and report
@@ -27,7 +27,9 @@ from dataclasses import dataclass, field
 PREPARED_TRACKING_SINCE = (1, 21)   # feature added, opt-in
 PREPARED_DEFAULT_ON_SINCE = (1, 24)  # max_prepared_statements defaults to 200
 SEARCH_PATH_TRACKED_SINCE = (1, 26)  # search_path tracked on PostgreSQL 18+
-SECURITY_FIX_VERSION = (1, 26, 0)   # CVE-2026-19888, CVE-2026-6668, CVE-2026-6669
+IGNORE_BEATS_TRACKING_SINCE = (1, 26, 1)  # ignore_startup_parameters beats tracked parameters
+PREVIOUS_SECURITY_FIX_VERSION = (1, 26, 0)  # CVE-2026-19888, CVE-2026-6668, CVE-2026-6669
+SECURITY_FIX_VERSION = (1, 26, 1)   # ... plus CVE-2026-107350, CVE-2026-107349, CVE-2026-107348
 
 
 def parse_version(text: str) -> tuple[int, ...]:
@@ -48,10 +50,11 @@ class Config:
     max_client_conn: int = 100
     server_reset_query_always: int = 0
     track_extra_parameters: tuple[str, ...] = ()
-    version: tuple[int, ...] = (1, 26, 0)
+    ignore_startup_parameters: tuple[str, ...] = ()
+    version: tuple[int, ...] = (1, 26, 1)
 
 
-def load_config(text: str, version: str = "1.26.0") -> Config:
+def load_config(text: str, version: str = "1.26.1") -> Config:
     """Parse the [pgbouncer] section of an ini file (the subset we check).
 
     Only simple ``key = value`` lines are read; per-database and per-user
@@ -79,6 +82,9 @@ def load_config(text: str, version: str = "1.26.0") -> Config:
     tracked = tuple(
         p.strip() for p in values.get("track_extra_parameters", "").split(",") if p.strip()
     )
+    ignored = tuple(
+        p.strip() for p in values.get("ignore_startup_parameters", "").split(",") if p.strip()
+    )
     return Config(
         pool_mode=values.get("pool_mode", "session").lower(),
         max_prepared_statements=as_int("max_prepared_statements", 200),
@@ -86,6 +92,7 @@ def load_config(text: str, version: str = "1.26.0") -> Config:
         max_client_conn=as_int("max_client_conn", 100),
         server_reset_query_always=as_int("server_reset_query_always", 0),
         track_extra_parameters=tracked,
+        ignore_startup_parameters=ignored,
         version=parse_version(version),
     )
 
@@ -144,6 +151,12 @@ def classify_feature(feature: str, config: Config, pg_version: int = 18) -> Verd
         "load": Verdict(SESSION_ONLY, "LOAD is listed as never working in transaction pooling"),
     }
     if feature == "search_path_set":
+        if ("search_path" in config.ignore_startup_parameters
+                and config.version >= IGNORE_BEATS_TRACKING_SINCE):
+            return Verdict(VERSION_DEPENDENT, "on PgBouncer 1.26.1+, "
+                                              "ignore_startup_parameters = search_path restores "
+                                              "the 1.25 behaviour of ignoring search_path; a "
+                                              "later SET can leak. Prefer SET LOCAL")
         if pg_version >= 18 and config.version >= SEARCH_PATH_TRACKED_SINCE:
             return Verdict(WORKS, "PgBouncer 1.26 tracks search_path by default on "
                                   "PostgreSQL 18+, restoring it per client")
@@ -165,12 +178,19 @@ class Finding:
 def audit(config: Config, features_used: list[str], pg_version: int = 18) -> list[Finding]:
     """Audit a config plus the features the application actually uses."""
     findings: list[Finding] = []
-    if config.version < SECURITY_FIX_VERSION:
+    if config.version < PREVIOUS_SECURITY_FIX_VERSION:
         findings.append(Finding(
             "error", "upgrade-pgbouncer",
             "PgBouncer before 1.26.0 is exposed to CVE-2026-19888 (unauthenticated "
             "SCRAM crash), CVE-2026-6668 (packet-buffer hang) and CVE-2026-6669 "
-            "(unbounded SCRAM iterations). Upgrade to 1.26.0 or later."))
+            "(unbounded SCRAM iterations). Upgrade to 1.26.1 or later: 1.26.0 itself "
+            "is exposed to the CVE-2026-107350 authentication bypass."))
+    elif config.version < SECURITY_FIX_VERSION:
+        findings.append(Finding(
+            "error", "upgrade-pgbouncer",
+            "PgBouncer 1.26.0 is exposed to CVE-2026-107350 (authentication bypass, "
+            "1.17.0-1.26.0), CVE-2026-107349 (unauthenticated infinite loop) and "
+            "CVE-2026-107348 (packet-buffer infinite loop). Upgrade to 1.26.1 or later."))
     if config.pool_mode == "transaction":
         if config.max_prepared_statements == 0 and "protocol_prepared_statement" in features_used:
             findings.append(Finding(

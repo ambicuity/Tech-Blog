@@ -4,9 +4,11 @@ import pytest
 import poolcheck as pc
 
 TXN = pc.Config(pool_mode="transaction", max_prepared_statements=200,
-                version=(1, 26, 0))
+                version=(1, 26, 1))
 TXN_NO_TRACKING = pc.Config(pool_mode="transaction", max_prepared_statements=0,
-                            version=(1, 26, 0))
+                            version=(1, 26, 1))
+V1260 = pc.Config(pool_mode="transaction", max_prepared_statements=200,
+                  version=(1, 26, 0))
 OLD = pc.Config(pool_mode="transaction", max_prepared_statements=200,
                 version=(1, 25, 2))
 INI = """
@@ -81,6 +83,29 @@ def test_search_path_version_dependent_before_126():
     assert v.verdict == pc.VERSION_DEPENDENT
 
 
+def test_load_config_reads_ignore_startup_parameters():
+    cfg = pc.load_config(INI + "ignore_startup_parameters = search_path, options\n",
+                         version="1.26.1")
+    assert cfg.ignore_startup_parameters == ("search_path", "options")
+    assert cfg.version == (1, 26, 1)
+
+
+def test_search_path_ignored_when_in_ignore_startup_parameters_on_1261():
+    cfg = pc.Config(pool_mode="transaction", version=(1, 26, 1),
+                    ignore_startup_parameters=("search_path",))
+    v = pc.classify_feature("search_path_set", cfg, pg_version=18)
+    assert v.verdict == pc.VERSION_DEPENDENT
+
+
+def test_search_path_tracked_despite_ignore_on_1260():
+    # On 1.26.0 tracking silently won over ignore_startup_parameters; the
+    # precedence flipped in 1.26.1.
+    cfg = pc.Config(pool_mode="transaction", version=(1, 26, 0),
+                    ignore_startup_parameters=("search_path",))
+    v = pc.classify_feature("search_path_set", cfg, pg_version=18)
+    assert v.verdict == pc.WORKS
+
+
 def test_search_path_version_dependent_on_pg17():
     v = pc.classify_feature("search_path_set", TXN, pg_version=17)
     assert v.verdict == pc.VERSION_DEPENDENT
@@ -100,6 +125,13 @@ def test_audit_flags_old_version_for_cves():
     findings = pc.audit(OLD, [])
     assert any(f.rule == "upgrade-pgbouncer" and f.severity == "error" for f in findings)
     assert "CVE-2026-19888" in findings[0].message
+    assert "1.26.1" in findings[0].message
+
+
+def test_audit_flags_1260_for_auth_bypass():
+    findings = pc.audit(V1260, [])
+    assert any(f.rule == "upgrade-pgbouncer" and f.severity == "error" for f in findings)
+    assert "CVE-2026-107350" in findings[0].message
 
 
 def test_audit_clean_for_current_config():
@@ -116,7 +148,7 @@ def test_audit_flags_tracking_off_and_session_only_use():
 
 def test_audit_warns_on_plain_set_and_reset_always():
     cfg = pc.Config(pool_mode="transaction", server_reset_query_always=1,
-                    version=(1, 26, 0))
+                    version=(1, 26, 1))
     rules = {f.rule for f in pc.audit(cfg, ["set"])}
     assert "reset-query-always" in rules
     assert "use-local:set" in rules
@@ -124,7 +156,7 @@ def test_audit_warns_on_plain_set_and_reset_always():
 
 def test_audit_warns_when_pool_exceeds_client_cap():
     cfg = pc.Config(pool_mode="transaction", default_pool_size=50,
-                    max_client_conn=20, version=(1, 26, 0))
+                    max_client_conn=20, version=(1, 26, 1))
     assert any(f.rule == "pool-larger-than-clients" for f in pc.audit(cfg, []))
 
 
