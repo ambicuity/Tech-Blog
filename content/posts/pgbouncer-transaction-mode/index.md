@@ -4,6 +4,7 @@ description: >-
   Prepared statements now work in PgBouncer transaction mode, and 1.26
   tracks search_path on PostgreSQL 18. What still needs a session, checked.
 date: 2026-10-01 15:00:00 +0000
+updated: 2026-10-15 14:15:00 +0000
 author: ritesh
 categories: [Database, Reliability]
 tags: [pgbouncer, postgresql, connection-pooling, prepared-statements, transactions]
@@ -16,23 +17,31 @@ cover:
 
 Most teams adopt PgBouncer in transaction mode for one reason: a few dozen PostgreSQL connections should serve hundreds of application clients, because each client only needs a server for the duration of one transaction. Then the old advice arrives. Turn off prepared statements. Never use `SET`. Expect strange, occasional failures that nobody can reproduce. Some of that advice was correct in 2020. Some of it is still correct today, and mixing the two up is how teams either give up pooling benefits they could keep, or ship session-state bugs that only appear under the wrong connection assignment.
 
-This guide separates the two against current versions: PostgreSQL 18.6 and PgBouncer 1.26.0, released 2026-09-23. Protocol-level prepared statements have worked in transaction mode since PgBouncer 1.21 and have been on by default since 1.24. PgBouncer 1.26 now tracks `search_path` on PostgreSQL 18, so another long-standing leak is closed. What remains genuinely session-only is a short, specific list, and for most of it there is a transaction-scoped replacement. The code is Python 3.12, standard library only, and ships next to this article with its tests: a checker that classifies features and audits a `pgbouncer.ini`, plus a small model of PgBouncer's prepared-statement tracking that reproduces both the old failure and the current behaviour.
+This guide separates the two against current versions: PostgreSQL 18.6 and PgBouncer 1.26.1, released 2026-10-14. Protocol-level prepared statements have worked in transaction mode since PgBouncer 1.21 and have been on by default since 1.24. PgBouncer 1.26 now tracks `search_path` on PostgreSQL 18, so another long-standing leak is closed. This article was updated on 2026-10-15: the original version recommended 1.26.0, but 1.26.0 carries an authentication bypass fixed in 1.26.1, so the recommendation is now 1.26.1. The pooling rules are unchanged. What remains genuinely session-only is a short, specific list, and for most of it there is a transaction-scoped replacement. The code is Python 3.12, standard library only, and ships next to this article with its tests: a checker that classifies features and audits a `pgbouncer.ini`, plus a small model of PgBouncer's prepared-statement tracking that reproduces both the old failure and the current behaviour.
 
 > [!NOTE]
 > **In short**
-> - Upgrade to PgBouncer 1.26.0 first. Versions before it carry three remotely triggerable security fixes, two of them reachable without authenticating.
+> - Upgrade to PgBouncer 1.26.1 first. Versions before 1.26.0 carry three remotely triggerable security fixes, two of them reachable without authenticating, and 1.26.0 itself carries an authentication bypass fixed in 1.26.1.
 > - Keep protocol-level prepared statements on: `max_prepared_statements` defaults to 200, and PgBouncer re-prepares a statement transparently when a transaction lands on a server that does not have it yet. SQL `PREPARE` is a different feature and is still not tracked.
 > - Plain `SET` is still the wrong tool in transaction mode. Use `SET LOCAL`, which ends with the transaction. On PostgreSQL 18 with PgBouncer 1.26, `search_path` is now tracked per client, but that covers one parameter, not the pattern.
 > - `LISTEN`, session advisory locks, `WITH HOLD` cursors and temp tables that keep rows across transactions still need a session. Route that work to a session-mode pool or a direct connection instead of abandoning transaction mode for everything.
 > - Every rule in this article is encoded in [poolcheck.py](poolcheck.py) and proved by [test_poolcheck.py](test_poolcheck.py), so a code review can run the argument instead of trusting it.
 
-## First, run PgBouncer 1.26
+## First, run PgBouncer 1.26.1
 
 The pooling rules below only matter on a version that is safe to expose. PgBouncer 1.26.0 (2026-09-23) fixes three security issues in the changelog:
 
 - CVE-2026-19888: before 1.26.0, PgBouncer did not check that the SCRAM client-final-message contained a nonce. An unauthenticated remote attacker could crash PgBouncer by sending one without a nonce, including for users that do not exist. The bug dates back to SCRAM support in 1.11.0.
 - CVE-2026-6668: an integer overflow in packet buffer growth could hang PgBouncer in an infinite loop, again reachable without authenticating when `max_packet_size` is at its default. Because PgBouncer is single-threaded, the hang stops it serving any client until the process is killed.
 - CVE-2026-6669: the SCRAM iteration count accepted from a server was unbounded, so a malicious or compromised PostgreSQL server could make PgBouncer do unbounded work during one login. The count is now capped at 1000000.
+
+PgBouncer 1.26.1 (2026-10-14) fixes three more, and one of them is why 1.26.0 is no longer a safe version to run:
+
+- CVE-2026-107350: PgBouncer 1.17.0 through 1.26.0 processed a second StartupMessage sent during SCRAM authentication when the client connected to a non-existent database. An attacker who knows the password of one user listed in `auth_file` could use it to log in as any other SCRAM-authenticated user, including admins and backend superusers. Both users must authenticate with SCRAM; the impersonated user can come from `auth_file` or `auth_query`.
+- CVE-2026-107349: an unauthenticated client could make PgBouncer 1.20.0 through 1.26.0 spin forever on one CPU core, and thus stop serving all clients, by sending a startup `options` parameter containing an empty option name such as `-c=`. This is only exploitable when `ignore_startup_parameters` is non-empty but does not contain `options`.
+- CVE-2026-107348: an integer overflow in the packet buffer growth logic of PgBouncer 1.21.0 through 1.26.0 could cause PgBouncer to hang in an infinite loop when a client sent a packet header declaring a length above 2^31. This is only exploitable when `max_packet_size` is set to 2147483649 or higher; the default of 2147483647 is not affected. It is the same class of bug as CVE-2026-6668, in a different buffer implementation.
+
+1.26.1 also makes `ignore_startup_parameters` take precedence over tracked parameters. Since 1.26.0, `search_path` is tracked by default, which silently made `ignore_startup_parameters = search_path` have no effect; 1.26.1 restores the 1.25 behaviour of ignoring it. The `search_path` section below covers what that means for the tracking safety net.
 
 1.26 also removes the deprecated online restart (`-R`) takeover functionality, together with the `SHOW FDS` and `SUSPEND` admin commands that existed only to support it; the changelog points to rolling restarts with `so_reuseport` instead. If your upgrade scripts or systemd units still rely on `-R`, the upgrade is the moment they break, so check before you roll it out, not after.
 
@@ -78,6 +87,8 @@ There is a real, narrower exception, and 1.26 widened it. PgBouncer tracks the p
 
 Read the limits before relying on it. On PostgreSQL before 18, the server does not report `search_path`, so PgBouncer only knows the value from the client's startup packet; a `SET` issued later is not tracked and can still leak. Additional parameters can be tracked with `track_extra_parameters`, but only parameters PostgreSQL reports. The pattern to teach is therefore unchanged: tracked parameters are a safety net for a defined list, and `SET LOCAL` is the rule for anything you set deliberately inside a transaction.
 
+One 1.26.1 change narrows the safety net. `ignore_startup_parameters` now takes precedence over tracked parameters, so `ignore_startup_parameters = search_path` on 1.26.1 restores the 1.25 behaviour of ignoring `search_path`: a later `SET search_path` is not tracked and can leak again. On 1.26.0 the same setting silently had no effect, because tracking won. If your configuration lists `search_path` there, 1.26.1 honours it, so check the setting when you upgrade rather than assuming tracking still covers it. The checker models this: `search_path_set` with `search_path` in `ignore_startup_parameters` on 1.26.1 is version-dependent, not tracked.
+
 One related setting deserves a warning label. `server_reset_query` is not used in transaction mode, by design: pooled clients must not depend on session state for a reset query to clean up. Setting `server_reset_query_always = 1` forces it anyway, and the documentation describes the result precisely: it changes non-deterministic breakage into deterministic breakage, because clients then always lose state after each transaction. If a team reaches for it, the application is using session features it should stop using; the checker flags it as a warning rather than letting it look like a fix.
 
 ## What still needs a session, and what to use instead
@@ -103,17 +114,18 @@ Notice the shape of the right-hand column: almost every "never" has a transactio
 
 | Failure | What the reader sees | Cause | Fix |
 | :--- | :--- | :--- | :--- |
-| Prepared statement missing | `prepared statement "q1" does not exist`, intermittently | Tracking disabled (`max_prepared_statements = 0`), an old PgBouncer, or SQL-level `PREPARE` | Run 1.26 with the default 200; use protocol-level preparation |
-| Leaked session setting | Wrong schema, locale or resource limits for unrelated requests | Plain `SET` survived on a pooled server; on older PostgreSQL, an untracked `search_path` change | `SET LOCAL`; upgrade for tracked `search_path` on PostgreSQL 18 |
+| Prepared statement missing | `prepared statement "q1" does not exist`, intermittently | Tracking disabled (`max_prepared_statements = 0`), an old PgBouncer, or SQL-level `PREPARE` | Run 1.26.1 with the default 200; use protocol-level preparation |
+| Leaked session setting | Wrong schema, locale or resource limits for unrelated requests | Plain `SET` survived on a pooled server; on older PostgreSQL, an untracked `search_path` change | `SET LOCAL`; upgrade for tracked `search_path` on PostgreSQL 18, unless `ignore_startup_parameters` lists it on 1.26.1 |
 | Listener goes silent | `NOTIFY` events never arrive, no error | `LISTEN` registered on a session the client no longer holds | Give the listener its own session-mode or direct connection |
 | Lock that does not lock | Two workers enter a critical section | A session advisory lock was released or moved when the assignment changed | `pg_advisory_xact_lock` inside the transaction that does the work |
 | Cursor or temp data vanishes | `cursor does not exist`, or an empty temp table in the next transaction | State was stored past the transaction boundary | Keep the cursor's life inside one transaction; use `ON COMMIT DROP` or a real table |
-| Pooler down or stalled for everyone | All clients fail to connect or hang at once | Pre-1.26 PgBouncer exposed to the SCRAM crash or packet-buffer hang | Upgrade to 1.26.0; the fixes are listed in the changelog |
+| Pooler down or stalled for everyone | All clients fail to connect or hang at once | Pre-1.26.1 PgBouncer exposed to the SCRAM crash, packet-buffer hangs, or the 1.26.0 auth bypass | Upgrade to 1.26.1; the fixes are listed in the changelog |
+| Client authenticated as the wrong user | Audit logs show actions under an admin or superuser account the client should not hold; logins to a non-existent database | CVE-2026-107350: a second StartupMessage during SCRAM authentication on PgBouncer 1.17.0 through 1.26.0 | Upgrade to 1.26.1; review logs for logins to non-existent databases |
 | Stale prepared plan after a migration | `cached plan must not change result type` | A prepared statement kept its old result type across a DDL change | `RECONNECT` on the admin console after the migration |
 
 ## Proving it: the checker and the pool model
 
-Two programs ship with this article. [poolcheck.py](poolcheck.py) holds the rules: `classify_feature()` maps each feature above to `works`, `use_local`, `session_only` or `version_dependent` for a given configuration and PostgreSQL version, and `audit()` turns a parsed `pgbouncer.ini` plus the list of features an application uses into findings, including the pre-1.26 upgrade error. [test_poolcheck.py](test_poolcheck.py) runs 32 tests against it; all pass on Python 3.12.
+Two programs ship with this article. [poolcheck.py](poolcheck.py) holds the rules: `classify_feature()` maps each feature above to `works`, `use_local`, `session_only` or `version_dependent` for a given configuration and PostgreSQL version, and `audit()` turns a parsed `pgbouncer.ini` plus the list of features an application uses into findings, including the pre-1.26.1 upgrade error. [test_poolcheck.py](test_poolcheck.py) runs 36 tests against it; all pass on Python 3.12.
 
 The second half of the file is the part worth reading closely: a `Pool` model of statement tracking. Each `execute()` call is one transaction on the least-recently-used server. With tracking on, identical SQL from two different clients resolves to one internal name, a statement is parsed once per server and then reused, and evicting it from a server's LRU cache forces exactly one re-prepare on next use:
 
@@ -132,7 +144,7 @@ With tracking disabled, the same model reproduces the production failure determi
 python3 -m pytest test_poolcheck.py -q
 ```
 
-The model is a model: it reproduces assignment, naming, placement and eviction as documented, and deliberately does not implement the wire protocol. The version-dependent claims (default 200, the 1.26 tracking list, the three CVEs) are not modelled; they are cited from the changelog and configuration documentation in the references.
+The model is a model: it reproduces assignment, naming, placement and eviction as documented, and deliberately does not implement the wire protocol. The version-dependent claims (default 200, the 1.26 tracking list, the six CVEs fixed in 1.26.0 and 1.26.1) are not modelled; they are cited from the changelog and configuration documentation in the references.
 
 ## Operating it
 
@@ -143,7 +155,7 @@ SHOW POOLS;    -- per pool: clients active and waiting, servers active and idle
 SHOW STATS;    -- per database: queries, transactions, wait time, prepared-statement counters
 SHOW SERVERS;  -- the actual PostgreSQL connections behind the pool
 SHOW CONFIG;   -- confirm pool_mode and max_prepared_statements are what you deployed
-SHOW VERSION;  -- confirm the binary is 1.26.0 or later
+SHOW VERSION;  -- confirm the binary is 1.26.1 or later
 ```
 
 The numbers to alert on are `cl_waiting` in `SHOW POOLS` (clients queued because every server is busy: either the pool is too small for the transaction rate, or transactions are being held open too long) and the average wait time in `SHOW STATS` (the same queue, seen as latency). Treat a rising wait queue as a transaction-duration problem first and a pool-size problem second: doubling `default_pool_size` in front of a PostgreSQL that is already saturated moves the queue from PgBouncer to the database, where it is more expensive. Size the pool from server capacity, in the same spirit as sizing [Kubernetes resource requests and limits](/posts/kubernetes-resource-requests-and-limits-masterclass/) from measured use rather than from the number of callers. After any DDL migration that changes a prepared query's result type, run `RECONNECT` and watch for the cached-plan error disappearing from the log.
@@ -155,11 +167,12 @@ The numbers to alert on are `cl_waiting` in `SHOW POOLS` (clients queued because
 - **Driver or application-side pooling only.** Keeps every feature and avoids a hop, but pools do not compose across processes or languages: ten services with a pool of twenty each are two hundred server connections, and no single place can enforce a global limit. A central PgBouncer in transaction mode is the usual answer once more than one process talks to the same database.
 - **No pooler.** Defensible for one small service against one database. It stops being defensible at the first connection storm, deploy overlap or second service, which is when teams adopt PgBouncer in a hurry and inherit the folklore this article is trying to retire.
 
-My recommendation: transaction mode as the default pool for request traffic on PgBouncer 1.26, prepared statements left on, `SET LOCAL` as a lintable rule, and a deliberately small session-mode path for listeners, locks that must outlive a transaction, and migrations.
+My recommendation: transaction mode as the default pool for request traffic on PgBouncer 1.26.1, prepared statements left on, `SET LOCAL` as a lintable rule, and a deliberately small session-mode path for listeners, locks that must outlive a transaction, and migrations.
 
 ## Checklist
 
-- [ ] PgBouncer is 1.26.0 or later (`SHOW VERSION`), and nothing in the deployment still relies on the removed `-R` online restart.
+- [ ] PgBouncer is 1.26.1 or later (`SHOW VERSION`), and nothing in the deployment still relies on the removed `-R` online restart.
+- [ ] `ignore_startup_parameters` does not list `search_path` unless the 1.25 behaviour is intended: on 1.26.1 the ignore wins over tracking.
 - [ ] `pool_mode = transaction` for request traffic, with a separate session-mode or direct path for listeners and migrations.
 - [ ] `max_prepared_statements` is at or above the number of distinct prepared queries (default 200), and drivers keep protocol-level prepared statements enabled.
 - [ ] No SQL-level `PREPARE` in pooled code paths.
@@ -169,7 +182,8 @@ My recommendation: transaction mode as the default pool for request traffic on P
 
 ## References
 
-- PgBouncer, [Changelog (1.26.0 security fixes and search_path tracking; 1.24 default prepared statements; 1.21 feature introduction)](https://www.pgbouncer.org/changelog.html)
+- PgBouncer, [PgBouncer 1.26.1 released: fixes three CVEs](https://www.pgbouncer.org/2026/10/pgbouncer-1-26-1)
+- PgBouncer, [Changelog (1.26.1 security fixes and ignore_startup_parameters precedence; 1.26.0 security fixes and search_path tracking; 1.24 default prepared statements; 1.21 feature introduction)](https://www.pgbouncer.org/changelog.html)
 - PgBouncer, [Configuration (pool_mode, max_prepared_statements, tracked parameters, server_reset_query_always)](https://www.pgbouncer.org/config.html)
 - PgBouncer, [Features and SQL feature map for pooling modes](https://www.pgbouncer.org/features.html)
 - PgBouncer, [Usage and the admin console](https://www.pgbouncer.org/usage.html)
