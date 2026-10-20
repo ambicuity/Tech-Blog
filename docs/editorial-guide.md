@@ -255,6 +255,7 @@ uses.
 | 13 | **Argo Rollouts vs Flagger** | DevOps · Comparison | Argo Rollouts 1.10.0: Gateway API through a plugin (plugin system alpha). Flagger 1.45.0: Gateway API built in | both canary articles, blue-green deployments | [Argo Rollouts plugins](https://argoproj.github.io/argo-rollouts/features/traffic-management/plugins/), [Flagger Gateway API](https://docs.flagger.app/tutorials/gatewayapi-progressive-delivery) |
 
 Published from this list: Retries with exponential backoff and jitter (2026-09-29).
+Published outside the list (found via search, per Choosing topics): Tracing LLM Calls with the OpenTelemetry GenAI Conventions (2026-10-20).
 When a topic is published, move it to that line. When fewer than five topics remain,
 propose new ones from the target mix above, each with a 2026 angle and verified sources.
 
