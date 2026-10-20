@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+  <title>The OTel GenAI contract moved from the main repo to a dedicated repo in June 2026; attribute names moved with it, and everything is still Development.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="26" class="f-title">The contract moved; the names moved with it</text>
+
+  <!-- era 1 -->
+  <g data-step="1">
+    <rect x="8" y="36" width="208" height="168" fill="url(#hatch)" class="f-frame"/>
+    <text x="20" y="58" class="f-label">main repo, v1.36.0</text>
+    <text x="20" y="88" class="f-code">gen_ai.system</text>
+    <text x="20" y="108" class="f-small">Required · Development</text>
+    <text x="20" y="138" class="f-small">span: gen_ai.operation</text>
+    <text x="20" y="158" class="f-small">metric: client.operation.*</text>
+    <text x="20" y="188" class="f-small">old names everywhere</text>
+  </g>
+
+  <!-- era 2 -->
+  <g data-step="2" style="--from-x: 12px">
+    <rect x="256" y="36" width="208" height="168" fill="url(#hatch)" class="f-frame"/>
+    <text x="268" y="58" class="f-label">v1.42.0 · 2026-06-12</text>
+    <text x="268" y="88" class="f-code">gen_ai.* deprecated</text>
+    <text x="268" y="108" class="f-small">moved to the dedicated</text>
+    <text x="268" y="124" class="f-small">GenAI conventions repo</text>
+    <text x="268" y="158" class="f-small">no stable version to</text>
+    <text x="268" y="174" class="f-small">migrate toward</text>
+  </g>
+
+  <!-- era 3 -->
+  <g data-step="3" style="--from-x: 12px">
+    <rect x="504" y="36" width="208" height="168" fill="url(#hatch)" class="f-frame"/>
+    <text x="516" y="58" class="f-label">dedicated repo 2026-10-20</text>
+    <text x="516" y="88" class="f-code">gen_ai.provider.name</text>
+    <text x="516" y="108" class="f-small">Required · Development</text>
+    <text x="516" y="138" class="f-code">gen_ai.client.inference</text>
+    <text x="516" y="158" class="f-small">0 releases · 668 commits</text>
+    <text x="516" y="188" class="f-small">current names, still moving</text>
+  </g>
+
+  <line x1="216" y1="120" x2="252" y2="120" class="f-line" marker-end="url(#arrow)"/>
+  <line x1="464" y1="120" x2="500" y2="120" class="f-line" marker-end="url(#arrow)"/>
+
+  <!-- renames -->
+  <g data-step="4">
+    <text x="8" y="232" class="f-label">renames to apply</text>
+    <text x="336" y="256" class="f-small" text-anchor="end">gen_ai.system</text>
+    <text x="380" y="256" class="f-small">gen_ai.provider.name</text>
+    <text x="336" y="280" class="f-small" text-anchor="end">gen_ai.client.operation.time_to_first_chunk</text>
+    <text x="380" y="280" class="f-small">gen_ai.client.inference.time_to_first_chunk</text>
+    <text x="336" y="304" class="f-small" text-anchor="end">gen_ai.usage.cache_creation.input_tokens</text>
+    <text x="380" y="304" class="f-small">gen_ai.usage.cache_write.input_tokens</text>
+    <line x1="344" y1="252" x2="372" y2="252" class="f-a1-line" marker-end="url(#arrow)"/>
+    <line x1="344" y1="276" x2="372" y2="276" class="f-a1-line" marker-end="url(#arrow)"/>
+    <line x1="344" y1="300" x2="372" y2="300" class="f-a1-line" marker-end="url(#arrow)"/>
+  </g>
+
+  <line x1="8" y1="322" x2="712" y2="322" class="f-rule"/>
+  <text x="8" y="344" class="f-small">1 Pin the snapshot: emit only names the pinned commit defines.</text>
+  <text x="8" y="364" class="f-small">2 Emit new names; never let a legacy name reach a dashboard.</text>
+  <text x="8" y="384" class="f-small">3 Map legacy to current at the collector until old instrumentations retire.</text>
+</svg>
