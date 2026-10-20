@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430">
+  <title>One agent run as nested spans: the chat span carries required attributes and token counts; cost and quality live downstream, not in the trace.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="26" class="f-title">One agent run: what the spans carry</text>
+
+  <!-- trace tree -->
+  <g data-step="1">
+    <rect x="8" y="40" width="440" height="300" fill="url(#hatch)" class="f-frame"/>
+    <text x="20" y="62" class="f-label">trace · invoke_agent support-agent</text>
+    <rect x="20" y="72" width="416" height="30" class="f-box"/>
+    <text x="30" y="92" class="f-code">invoke_agent support-agent</text>
+  </g>
+
+  <g data-step="2">
+    <line x1="36" y1="102" x2="36" y2="282" class="f-line"/>
+    <line x1="36" y1="128" x2="48" y2="128" class="f-line"/>
+    <rect x="48" y="112" width="180" height="32" class="f-a1"/>
+    <text x="58" y="133" class="f-code">chat stub-model-1</text>
+  </g>
+
+  <g data-step="3">
+    <text x="58" y="162" class="f-small">gen_ai.operation.name = chat</text>
+    <text x="58" y="180" class="f-small">gen_ai.provider.name = stub</text>
+    <text x="58" y="198" class="f-small">gen_ai.request.model = stub-model-1</text>
+    <text x="58" y="216" class="f-small">gen_ai.usage.input_tokens = 1200</text>
+    <text x="58" y="234" class="f-small">gen_ai.usage.output_tokens = 300</text>
+    <text x="58" y="252" class="f-small">gen_ai.usage.cache_read.input_tokens = 400</text>
+  </g>
+
+  <g data-step="4">
+    <line x1="36" y1="282" x2="48" y2="282" class="f-line"/>
+    <rect x="48" y="266" width="300" height="32" class="f-a2"/>
+    <text x="58" y="287" class="f-code">execute_tool get_ticket_status</text>
+  </g>
+
+  <!-- what rides along / what does not -->
+  <g data-step="5">
+    <rect x="468" y="40" width="244" height="138" class="f-a1"/>
+    <text x="480" y="62" class="f-label">the trace records</text>
+    <text x="480" y="88" class="f-small">token counts per call</text>
+    <text x="480" y="106" class="f-small">durations, time to first chunk</text>
+    <text x="480" y="124" class="f-small">model and provider names</text>
+    <text x="480" y="142" class="f-small">finish reasons</text>
+    <text x="480" y="162" class="f-small">errors and retries</text>
+
+    <rect x="468" y="192" width="244" height="148" class="f-box"/>
+    <text x="480" y="214" class="f-label">the trace does not record</text>
+    <text x="480" y="240" class="f-small">cost in dollars</text>
+    <text x="480" y="258" class="f-small">quality scores</text>
+    <text x="480" y="276" class="f-small">prompt text (opt-in only)</text>
+    <text x="480" y="294" class="f-small">which price table applied</text>
+    <text x="480" y="322" class="f-small">derive those downstream</text>
+  </g>
+
+  <line x1="8" y1="358" x2="712" y2="358" class="f-rule"/>
+  <text x="8" y="380" class="f-small">1 The trace nests one chat span per model call under the agent span.</text>
+  <text x="8" y="400" class="f-small">2 Required attributes ride every span; usage counts are recommended when known.</text>
+  <text x="8" y="420" class="f-small">3 Tokens, not money, leave the service: cost is tokens times a dated price table.</text>
+</svg>
