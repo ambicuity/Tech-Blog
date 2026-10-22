@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390">
+  <title>Two ways to fetch remote config. The naive fetch trusts the server: a flag with a nil name causes a fatal error and a crash on launch. The fail-safe fetch validates every flag; valid flags apply, corrupt or missing ones are ignored and the cached default is kept.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="24" class="f-title">Naive fetch: trust the server</text>
+  <rect x="8" y="44" width="130" height="46" class="f-box"/>
+  <text x="73" y="72" class="f-code f-middle">payload</text>
+  <line x1="138" y1="67" x2="170" y2="67" class="f-line" marker-end="url(#arrow)"/>
+  <rect x="170" y="44" width="190" height="46" class="f-box"/>
+  <text x="265" y="72" class="f-code f-middle">lookup flag name</text>
+  <line x1="360" y1="67" x2="392" y2="67" class="f-line" marker-end="url(#arrow)"/>
+  <rect x="392" y="44" width="150" height="46" class="f-a2"/>
+  <text x="467" y="72" class="f-a2 f-middle">name is nil</text>
+  <line x1="542" y1="67" x2="574" y2="67" class="f-line" marker-end="url(#arrow)"/>
+  <text x="582" y="72" class="f-a2">crash on launch</text>
+
+  <line x1="467" y1="116" x2="467" y2="90" class="f-dashed"/>
+  <text x="480" y="120" class="f-small">the 2026-09-28 bug lived here</text>
+
+  <text x="8" y="168" class="f-title">Fail-safe fetch: validate, then trust</text>
+  <rect x="8" y="196" width="130" height="46" class="f-box"/>
+  <text x="73" y="224" class="f-code f-middle">payload</text>
+  <line x1="138" y1="219" x2="170" y2="219" class="f-line" marker-end="url(#arrow)"/>
+  <rect x="170" y="196" width="200" height="46" class="f-box"/>
+  <text x="270" y="224" class="f-code f-middle">validate every flag</text>
+
+  <line x1="370" y1="210" x2="410" y2="210" class="f-line" marker-end="url(#arrow)"/>
+  <path d="M370 232 L390 232 L390 281 L410 281" class="f-line" marker-end="url(#arrow)"/>
+
+  <rect x="410" y="188" width="130" height="46" class="f-a1"/>
+  <text x="475" y="216" class="f-code f-middle">apply value</text>
+  <rect x="410" y="258" width="130" height="46" class="f-a3"/>
+  <text x="475" y="286" class="f-code f-middle">ignore flag</text>
+
+  <line x1="540" y1="211" x2="572" y2="211" class="f-line" marker-end="url(#arrow)"/>
+  <text x="578" y="215" class="f-code">flag updated</text>
+  <line x1="540" y1="281" x2="572" y2="281" class="f-line" marker-end="url(#arrow)"/>
+  <text x="578" y="285" class="f-code">cached value kept</text>
+
+  <line x1="8" y1="330" x2="712" y2="330" class="f-rule"/>
+  <text x="8" y="352" class="f-small">1 validate every key: empty or non-string names rejected; unknown flags ignored</text>
+  <text x="8" y="370" class="f-small">2 validate every value: wrong type, missing flag, or out-of-cohort keeps the cached value</text>
+</svg>
