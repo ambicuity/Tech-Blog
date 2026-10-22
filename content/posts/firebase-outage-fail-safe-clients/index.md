@@ -103,7 +103,7 @@ Type checking is exact on purpose. `isinstance(True, int)` is `True` in Python, 
 
 **Step 5: the cache is written atomically, and the client degrades explicitly.** After a successful fetch, the config is written to a temp file and renamed into place; readers never see half a cache. A corrupt cache file at startup is ignored and the client starts from defaults. And if consecutive payloads are unusable, the client says so: after `degraded_after` (default 3) bad payloads it sets `degraded`, keeps serving the cache, and stops flapping between "trusting" and "rejecting" the server. A good payload clears the flag.
 
-Fetching is idempotent: applying the same good payload twice changes nothing, which is the property [idempotent webhook handlers](/posts/idempotent-webhook-handlers/) are built on. The dangerous moment is not the retry; it is the first time a bad payload arrives.
+Fetching is idempotent: applying the same good payload twice changes nothing, the same property the [transactional outbox](/posts/transactional-outbox-reliable-events-without-dual-writes/) relies on to avoid dual writes. The dangerous moment is not the retry; it is the first time a bad payload arrives.
 
 ## Failure modes
 
