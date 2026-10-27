@@ -25,7 +25,7 @@ moves into Redis (``SET key token NX PX`` plus a Lua compare-and-delete
 release).
 
 Versions pinned by the article: Python 3.12 standard library only for this
-file; Redis 8.10.2 / Valkey 9.1.2 for the Redis mapping.
+file; Redis 8.10.3 / Valkey 9.1.3 for the Redis mapping.
 """
 
 from __future__ import annotations

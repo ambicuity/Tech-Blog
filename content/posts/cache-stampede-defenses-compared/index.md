@@ -5,6 +5,7 @@ description: >-
   single-flight coalescing, and stale-while-revalidate compared on one
   harness, with measured loader counts.
 date: 2026-10-13 14:00:00 +0000
+updated: 2026-10-27 14:08:00 +0000
 author: ritesh
 categories: [Performance, Reliability]
 tags: [caching, cache-stampede, redis, valkey, python, single-flight, stale-while-revalidate]
@@ -19,7 +20,10 @@ Consider a product page cached with a one-hour TTL. The entry is written at 11:0
 
 This is a cache stampede, also called a thundering herd or a dogpile. It needs three ingredients: a popular key, a shared expiry, and a load expensive enough to matter. All three are normal. The fix is not to remove the TTL. The fix is to break one of the three ingredients, and there are exactly three standard ways to do it: spread the expiry, coalesce the loads, or keep serving the old value while one refresh runs.
 
-This article compares those three defenses on one harness, with measured numbers, and ends with a recommendation. It targets Python 3.12 (standard library only for the cache itself), Redis 8.10.2, and Valkey 9.1.2. Both cache releases are current security releases: run them. Neither changed stampede technique; the comparison below is durable, and the pins are there so the Redis mapping matches what you install today.
+This article compares those three defenses on one harness, with measured numbers, and ends with a recommendation. It targets Python 3.12 (standard library only for the cache itself), Redis 8.10.3, and Valkey 9.1.3. Both cache releases are current security releases: run them. Neither changed stampede technique; the comparison below is durable, and the pins are there so the Redis mapping matches what you install today.
+
+> [!NOTE]
+> **Updated 2026-10-27:** the version pins moved from Redis 8.10.2 and Valkey 9.1.2 to 8.10.3 and 9.1.3. Both 8.10.3 and 9.1.3 shipped on 2026-10-26 with SECURITY urgency for the same flaw: a heap buffer overflow in cluster pub/sub message construction. Redis describes it as a heap buffer overflow when propagating a `PUBLISH`/`SPUBLISH` message larger than 4GB over the cluster bus in cluster mode; Valkey's advisory (GHSA-f4q9-j22m-xqq9) says an authenticated client could potentially execute arbitrary code by publishing an oversized message. If you followed this article's original pins, upgrade: 8.10.2 and 9.1.2 are no longer the current security releases. Nothing else in the article changes, because the vulnerability is in cluster pub/sub, not in TTL jitter, single-flight coalescing, or stale-while-revalidate, and the Redis lock in this article uses `SET NX PX` plus a Lua release, not cluster pub/sub.
 
 > [!NOTE]
 > In short:
@@ -380,8 +384,8 @@ The recommendation: jitter on every key, single-flight on every load, SWR wherev
 ## References
 
 - M. Nottingham, [HTTP Cache-Control Extensions for Stale Content (RFC 5861)](https://www.rfc-editor.org/rfc/rfc5861.html), IETF, 2010. Defines `stale-while-revalidate` and `stale-if-error`.
-- Redis, [Redis 8.10.2 release notes](https://github.com/redis/redis/releases/tag/8.10.2), 2026. Current Redis release, a security release.
-- Valkey, [Valkey 9.1.2 release notes](https://github.com/valkey-io/valkey/releases/tag/9.1.2), 2026. Current Valkey release, a security release.
+- Redis, [Redis 8.10.3 release notes](https://github.com/redis/redis/releases/tag/8.10.3), 2026. Current Redis release, a security release: heap buffer overflow when propagating a `PUBLISH`/`SPUBLISH` message larger than 4GB over the cluster bus in cluster mode.
+- Valkey, [Valkey 9.1.3 release notes](https://github.com/valkey-io/valkey/releases/tag/9.1.3), 2026. Current Valkey release, a security release: GHSA-f4q9-j22m-xqq9, heap buffer overflow in cluster pub/sub message construction, authenticated client potentially executing arbitrary code via an oversized message.
 - Redis, [Client-side caching reference](https://redis.io/docs/latest/develop/reference/client-side-caching/), 2026. Server-assisted invalidation via tracking.
 - Go, [`singleflight` package documentation](https://pkg.go.dev/golang.org/x/sync/singleflight), 2026. Duplicate function call suppression: one in-flight execution per key.
 - AWS, [Caching Best Practices](https://aws.amazon.com/caching/best-practices/), 2026. Cache-aside, the thundering herd, prewarming, and TTL randomness.
