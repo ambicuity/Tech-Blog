@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>One checkout as three spans sharing a single trace id: the checkout server span, its reserve_inventory client span, and the inventory service server span that receives the traceparent header.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="26" class="f-title">One checkout, one trace</text>
+
+  <g data-step="1">
+    <rect x="8" y="40" width="300" height="210" fill="url(#hatch)" class="f-frame"/>
+    <text x="20" y="62" class="f-label">checkout-service</text>
+    <rect x="20" y="72" width="276" height="30" class="f-a1"/>
+    <text x="30" y="92" class="f-code">checkout SERVER</text>
+    <line x1="36" y1="102" x2="36" y2="150" class="f-line"/>
+    <line x1="36" y1="126" x2="48" y2="126" class="f-line"/>
+    <rect x="48" y="110" width="248" height="32" class="f-a2"/>
+    <text x="58" y="131" class="f-code">reserve_inventory CLIENT</text>
+    <text x="30" y="162" class="f-small">server.address = inventory.internal</text>
+    <text x="30" y="180" class="f-small">event: inventory reserved</text>
+    <text x="30" y="198" class="f-small">order.item_count = 3, currency = USD</text>
+    <text x="20" y="228" class="f-small">the business span names the operation</text>
+  </g>
+
+  <g data-step="2">
+    <line x1="308" y1="126" x2="420" y2="126" class="f-line" marker-end="url(#arrow)"/>
+    <text x="322" y="112" class="f-small">traceparent</text>
+    <rect x="420" y="40" width="292" height="210" fill="url(#hatch)" class="f-frame"/>
+    <text x="432" y="62" class="f-label">inventory service</text>
+    <rect x="432" y="72" width="268" height="30" class="f-a2"/>
+    <text x="442" y="92" class="f-code">POST /reserve SERVER</text>
+    <text x="442" y="126" class="f-small">http.request.method = POST</text>
+    <text x="442" y="144" class="f-small">url.path = /reserve</text>
+    <text x="442" y="162" class="f-small">http.response.status_code = 200</text>
+    <text x="442" y="198" class="f-small">child of reserve_inventory:</text>
+    <text x="442" y="216" class="f-small">same trace id, new span id</text>
+  </g>
+
+  <line x1="8" y1="280" x2="712" y2="280" class="f-rule"/>
+  <text x="8" y="304" class="f-small">1 the checkout span is the span on-call searches for   2 the client span carries the trace across HTTP</text>
+  <text x="8" y="322" class="f-small">3 the server span is extracted from the traceparent header, not started fresh</text>
+</svg>
