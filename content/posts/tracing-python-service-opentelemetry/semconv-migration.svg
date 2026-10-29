@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+  <title>HTTP attribute names under the three semconv settings: the default emits old names, http/dup emits both sets, and http emits only the stable names.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+  </defs>
+
+  <text x="8" y="26" class="f-title">The same request, three attribute sets</text>
+
+  <text x="8" y="56" class="f-label">default: old names</text>
+  <text x="252" y="56" class="f-label">http/dup: both</text>
+  <text x="496" y="56" class="f-label">http: stable names</text>
+
+  <g data-step="1">
+    <rect x="8" y="66" width="228" height="30" class="f-box"/>
+    <text x="18" y="86" class="f-code">http.method</text>
+    <rect x="252" y="66" width="228" height="52" class="f-box"/>
+    <text x="262" y="86" class="f-code">http.method</text>
+    <text x="262" y="106" class="f-code">http.request.method</text>
+    <rect x="496" y="66" width="216" height="30" class="f-a1"/>
+    <text x="506" y="86" class="f-code">http.request.method</text>
+  </g>
+
+  <g data-step="2">
+    <rect x="8" y="132" width="228" height="30" class="f-box"/>
+    <text x="18" y="152" class="f-code">http.status_code</text>
+    <rect x="252" y="132" width="228" height="52" class="f-box"/>
+    <text x="262" y="152" class="f-code">http.status_code</text>
+    <text x="262" y="172" class="f-code">http.response.status_code</text>
+    <rect x="496" y="132" width="216" height="30" class="f-a1"/>
+    <text x="506" y="152" class="f-code">http.response.status_code</text>
+  </g>
+
+  <g data-step="3">
+    <rect x="8" y="198" width="228" height="30" class="f-box"/>
+    <text x="18" y="218" class="f-code">http.url</text>
+    <rect x="252" y="198" width="228" height="52" class="f-box"/>
+    <text x="262" y="218" class="f-code">http.url</text>
+    <text x="262" y="238" class="f-code">url.full</text>
+    <rect x="496" y="198" width="216" height="30" class="f-a1"/>
+    <text x="506" y="218" class="f-code">url.full</text>
+  </g>
+
+  <g data-step="4">
+    <rect x="8" y="264" width="228" height="30" class="f-box"/>
+    <text x="18" y="284" class="f-code">net.peer.name</text>
+    <rect x="252" y="264" width="228" height="52" class="f-box"/>
+    <text x="262" y="284" class="f-code">net.peer.name</text>
+    <text x="262" y="304" class="f-code">server.address</text>
+    <rect x="496" y="264" width="216" height="30" class="f-a1"/>
+    <text x="506" y="284" class="f-code">server.address</text>
+  </g>
+
+  <line x1="8" y1="336" x2="712" y2="336" class="f-rule"/>
+  <text x="8" y="360" class="f-small">1 dashboards built on old names go dark when the fleet opts into stable names</text>
+  <text x="8" y="378" class="f-small">2 run http/dup while dashboards move, then switch to http and drop the old names</text>
+</svg>
