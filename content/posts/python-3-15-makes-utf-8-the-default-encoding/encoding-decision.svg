@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>What a bare open() decodes with: before Python 3.15 it follows the locale encoding, on Python 3.15 it always uses UTF-8, and an explicit encoding argument wins on every version.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="26" class="f-title">What a bare open() decodes with</text>
+
+  <rect x="8" y="36" width="704" height="36" class="f-box"/>
+  <text x="20" y="59" class="f-code">open(path)  # no encoding argument</text>
+
+  <line x1="180" y1="72" x2="180" y2="100" class="f-line" marker-end="url(#arrow)"/>
+  <line x1="540" y1="72" x2="540" y2="100" class="f-line" marker-end="url(#arrow)"/>
+
+  <g data-step="1">
+    <text x="8" y="122" class="f-label">before Python 3.15</text>
+    <rect x="8" y="132" width="340" height="96" class="f-box"/>
+    <text x="20" y="158" class="f-code">locale encoding</text>
+    <text x="20" y="182" class="f-code">C locale: ASCII</text>
+    <text x="20" y="206" class="f-code">Windows: ANSI code page</text>
+  </g>
+
+  <g data-step="2">
+    <text x="372" y="122" class="f-label">Python 3.15 (PEP 686)</text>
+    <rect x="372" y="132" width="340" height="96" class="f-a1"/>
+    <text x="384" y="158" class="f-code">UTF-8, every platform</text>
+    <text x="384" y="182" class="f-code">locale is ignored</text>
+    <text x="384" y="206" class="f-code">disable: PYTHONUTF8=0</text>
+  </g>
+
+  <g data-step="3">
+    <text x="8" y="258" class="f-label">explicit encoding wins on every version</text>
+    <rect x="8" y="268" width="704" height="36" class="f-a2"/>
+    <text x="20" y="291" class="f-code">encoding="utf-8"  or  encoding="locale"</text>
+  </g>
+
+  <line x1="8" y1="322" x2="712" y2="322" class="f-rule"/>
+  <text x="8" y="346" class="f-small">1 the default belongs to the interpreter, not to the file</text>
+</svg>

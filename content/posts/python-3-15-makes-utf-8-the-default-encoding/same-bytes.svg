@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>The same bytes decoded three ways: as UTF-8 they read as cafe with an accent, as ASCII they raise UnicodeDecodeError, and as cp1252 they read as mojibake with no error.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="26" class="f-title">The same bytes, three decodings</text>
+
+  <rect x="8" y="36" width="704" height="36" class="f-box"/>
+  <text x="20" y="59" class="f-code">bytes: 63 61 66 C3 A9 0A</text>
+  <text x="300" y="59" class="f-small">the file for the word cafe, accented, plus newline</text>
+
+  <g data-step="1">
+    <text x="8" y="102" class="f-label">decoded as UTF-8</text>
+    <rect x="8" y="112" width="704" height="36" class="f-a1"/>
+    <text x="20" y="135" class="f-code">UTF-8 -&gt; cafe, accented</text>
+    <text x="420" y="135" class="f-small">correct</text>
+  </g>
+
+  <g data-step="2">
+    <text x="8" y="178" class="f-label">decoded as ASCII (C locale)</text>
+    <rect x="8" y="188" width="704" height="36" class="f-a2"/>
+    <text x="20" y="211" class="f-code">ASCII -&gt; UnicodeDecodeError</text>
+    <text x="420" y="211" class="f-small">byte 0xC3 out of range</text>
+  </g>
+
+  <g data-step="3">
+    <text x="8" y="254" class="f-label">decoded as cp1252</text>
+    <rect x="8" y="264" width="704" height="36" class="f-box"/>
+    <text x="20" y="287" class="f-code">cp1252 -&gt; mojibake, no error</text>
+    <text x="420" y="287" class="f-small">wrong text, silent</text>
+  </g>
+
+  <line x1="8" y1="322" x2="712" y2="322" class="f-rule"/>
+  <text x="8" y="346" class="f-small">1 the bytes do not change; only the decoder does</text>
+</svg>
