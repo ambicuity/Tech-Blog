@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>Error budget balance for checkout over 30 days: the 0.05 percent baseline alone ends at 50 percent, and three incidents take the rest.</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+  <text x="8" y="26" class="f-title">Error budget balance over 30 days</text>
+
+  <line x1="70" y1="48.3" x2="700" y2="48.3" class="f-rule"/>
+  <text x="62" y="52.3" class="f-small f-end">100%</text>
+  <line x1="70" y1="131.0" x2="700" y2="131.0" class="f-rule"/>
+  <text x="62" y="135.0" class="f-small f-end">50%</text>
+  <line x1="70" y1="213.8" x2="700" y2="213.8" class="f-rule"/>
+  <text x="62" y="217.8" class="f-small f-end">0%</text>
+  <line x1="70" y1="280.0" x2="700" y2="280.0" class="f-rule"/>
+  <text x="62" y="284.0" class="f-small f-end">-40%</text>
+  <text x="78" y="205.8" class="f-small">budget exhausted</text>
+  <text x="70.0" y="300" class="f-small f-middle">day 0</text>
+  <text x="280.0" y="300" class="f-small f-middle">day 10</text>
+  <text x="490.0" y="300" class="f-small f-middle">day 20</text>
+  <text x="700.0" y="300" class="f-small f-middle">day 30</text>
+  <g data-step="1"><polyline points="70.0,48.3 112.0,53.8 154.0,59.3 196.0,64.8 238.0,70.3 280.0,75.9 322.0,81.4 364.0,86.9 406.0,92.4 448.0,97.9 490.0,103.4 532.0,109.0 574.0,114.5 616.0,120.0 658.0,125.5 700.0,131.0" class="f-a1-line"/></g>
+  <g data-step="2"><polyline points="70.0,48.3 112.0,53.8 154.0,59.3 196.0,64.8 238.0,70.3 269.5,74.5 269.5,151.1 280.0,152.5 322.0,158.0 364.0,163.5 406.0,169.0 448.0,174.5 490.0,184.2 532.0,189.7 574.0,195.2 603.8,256.6 603.8,256.6 616.0,258.2 658.0,263.7 700.0,269.2" class="f-a2-line"/></g>
+  <g data-step="3">
+    <circle cx="269.5" cy="74.5" r="4" class="f-a2-solid"/>
+    <text x="279.5" y="66.5" class="f-small">20-min outage, day 10: -46%</text>
+    <circle cx="603.8" cy="256.6" r="4" class="f-a2-solid"/>
+    <text x="700" y="262" class="f-small f-end">flapping, day 25: -35%</text>
+  </g>
+  <line x1="8" y1="312" x2="712" y2="312" class="f-rule"/>
+  <line x1="8" y1="318" x2="36" y2="318" class="f-a1-line"/>
+  <text x="44" y="322" class="f-small">baseline only, 0.05% errors</text>
+  <line x1="260" y1="318" x2="288" y2="318" class="f-a2-line"/>
+  <text x="296" y="322" class="f-small">with the three incidents</text>
+  <text x="8" y="346" class="f-small">1 budget = 43,200 bad requests at 10,000/min; the month ends 33.5% overdrawn.</text>
+</svg>
