@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+  <title>One metric stream holds 2000 combinations, then folds the rest into a single overflow data point</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">http.server.request.count: one metric stream</text>
+
+  <!-- 1. The first 2000 combinations each get a data point -->
+  <g data-step="1">
+    <rect x="8" y="34" width="336" height="176" fill="url(#hatch)" class="f-frame"/>
+    <text x="22" y="58" class="f-label">2000 combinations held</text>
+    <rect x="22" y="68" width="308" height="26" rx="2" class="f-a1"/>
+    <text x="30" y="86" class="f-code">{route=/item/0, success=true} 1</text>
+    <rect x="22" y="100" width="308" height="26" rx="2" class="f-a1"/>
+    <text x="30" y="118" class="f-code">{route=/item/1, success=true} 1</text>
+    <text x="22" y="148" class="f-small">... 1998 more combinations ...</text>
+    <rect x="22" y="158" width="308" height="26" rx="2" class="f-a1"/>
+    <text x="30" y="176" class="f-code">{route=/item/1999, success=true} 1</text>
+    <circle cx="322" cy="52" r="8" class="f-a1"/>
+    <text x="322" y="56" class="f-small f-middle f-a1">1</text>
+  </g>
+
+  <!-- 2. The 2001st combination folds into the overflow point -->
+  <g data-step="2">
+    <rect x="376" y="34" width="336" height="176" fill="url(#hatch)" class="f-frame"/>
+    <text x="390" y="58" class="f-label">past the limit</text>
+    <rect x="390" y="68" width="308" height="26" rx="2" class="f-a2"/>
+    <text x="398" y="86" class="f-code">{route=/item/2000, success=true} 1</text>
+    <rect x="390" y="100" width="308" height="26" rx="2" class="f-a2"/>
+    <text x="398" y="118" class="f-code">{route=/item/0, success=false} 1</text>
+    <line x1="544" y1="126" x2="544" y2="140" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="390" y="142" width="308" height="26" rx="2" class="f-a2"/>
+    <text x="398" y="160" class="f-code">{otel.metric.overflow=true} 2</text>
+    <text x="398" y="190" class="f-small">both folded together, attributes gone</text>
+    <circle cx="690" cy="52" r="8" class="f-a2"/>
+    <text x="690" y="56" class="f-small f-middle f-a2">2</text>
+  </g>
+
+  <!-- 3. The total stays right, the filtered query undercounts -->
+  <g data-step="3">
+    <rect x="8" y="226" width="336" height="84" class="f-box"/>
+    <text x="22" y="250" class="f-label">total query</text>
+    <text x="22" y="272" class="f-code">sum(http.server.request.count)</text>
+    <text x="22" y="294" class="f-a1">= 2002, correct: 2002 recorded</text>
+    <rect x="376" y="226" width="336" height="84" class="f-box"/>
+    <text x="390" y="250" class="f-label">filtered query</text>
+    <text x="390" y="272" class="f-code">sum(...{success="false"})</text>
+    <text x="390" y="294" class="f-a2">= 0, wrong: 1 failure recorded</text>
+    <circle cx="322" cy="244" r="8" class="f-a1"/>
+    <text x="322" y="248" class="f-small f-middle f-a1">3</text>
+  </g>
+
+  <line x1="8" y1="330" x2="712" y2="330" class="f-rule"/>
+  <text x="8" y="352" class="f-small">1  each combination gets its own data point</text>
+  <text x="8" y="370" class="f-small">2  past 2000, whole combinations fold into overflow</text>
+  <text x="8" y="388" class="f-small">3  totals stay right, filtered queries undercount</text>
+</svg>

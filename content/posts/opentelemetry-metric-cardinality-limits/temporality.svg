@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300">
+  <title>The same tenant dimension under cumulative and delta temporality, with a limit of 5</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+  </defs>
+
+  <text x="8" y="20" class="f-title">same tenants, same limit of 5</text>
+
+  <!-- Cumulative: state accumulates across cycles -->
+  <rect x="8" y="34" width="336" height="196" fill="url(#hatch)" class="f-frame"/>
+  <text x="22" y="58" class="f-label">cumulative</text>
+  <text x="22" y="80" class="f-small">cycle 1</text>
+  <g>
+    <rect x="22" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="35" y="106" class="f-code f-middle">t0</text>
+    <rect x="56" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="69" y="106" class="f-code f-middle">t1</text>
+    <rect x="90" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="103" y="106" class="f-code f-middle">t2</text>
+    <rect x="124" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="137" y="106" class="f-code f-middle">t3</text>
+  </g>
+  <text x="22" y="134" class="f-small">4 points, no overflow</text>
+  <text x="22" y="158" class="f-small">cycle 2: four new tenants</text>
+  <g data-step="1">
+    <rect x="22" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="35" y="184" class="f-code f-middle">t0</text>
+    <rect x="56" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="69" y="184" class="f-code f-middle">t1</text>
+    <rect x="90" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="103" y="184" class="f-code f-middle">t2</text>
+    <rect x="124" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="137" y="184" class="f-code f-middle">t3</text>
+    <rect x="158" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="171" y="184" class="f-code f-middle">t4</text>
+    <rect x="192" y="166" width="26" height="26" rx="2" class="f-a2"/>
+    <text x="205" y="184" class="f-code f-middle">t5</text>
+    <rect x="226" y="166" width="26" height="26" rx="2" class="f-a2"/>
+    <text x="239" y="184" class="f-code f-middle">t6</text>
+    <rect x="260" y="166" width="26" height="26" rx="2" class="f-a2"/>
+    <text x="273" y="184" class="f-code f-middle">t7</text>
+  </g>
+  <text x="22" y="212" class="f-small f-a2">6 points: 5 regular + overflow 3, total 8</text>
+
+  <!-- Delta: state resets each cycle -->
+  <rect x="376" y="34" width="336" height="196" fill="url(#hatch)" class="f-frame"/>
+  <text x="390" y="58" class="f-label">delta</text>
+  <text x="390" y="80" class="f-small">cycle 1</text>
+  <g>
+    <rect x="390" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="403" y="106" class="f-code f-middle">t0</text>
+    <rect x="424" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="437" y="106" class="f-code f-middle">t1</text>
+    <rect x="458" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="471" y="106" class="f-code f-middle">t2</text>
+    <rect x="492" y="88" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="505" y="106" class="f-code f-middle">t3</text>
+  </g>
+  <text x="390" y="134" class="f-small">4 points, no overflow</text>
+  <text x="390" y="158" class="f-small">cycle 2: four new tenants</text>
+  <g data-step="1">
+    <rect x="390" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="403" y="184" class="f-code f-middle">t4</text>
+    <rect x="424" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="437" y="184" class="f-code f-middle">t5</text>
+    <rect x="458" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="471" y="184" class="f-code f-middle">t6</text>
+    <rect x="492" y="166" width="26" height="26" rx="2" class="f-a1"/>
+    <text x="505" y="184" class="f-code f-middle">t7</text>
+  </g>
+  <text x="390" y="212" class="f-small f-a1">4 points, no overflow, total 4</text>
+
+  <line x1="8" y1="248" x2="712" y2="248" class="f-rule"/>
+  <text x="8" y="270" class="f-small">cumulative counts every combination ever seen, so the limit is a lifetime budget</text>
+  <text x="8" y="288" class="f-small">delta counts only the active set per cycle, so the same dimension stays under the limit</text>
+</svg>
