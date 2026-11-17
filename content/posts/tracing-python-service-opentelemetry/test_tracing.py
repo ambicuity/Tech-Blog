@@ -1,6 +1,6 @@
 """Tests for the tracing helpers, the propagation demo, and the
 semantic-convention claim. Run: ``python3 -m unittest discover -v``
-from this folder, with opentelemetry-api/sdk 1.45.1 installed.
+from this folder, with opentelemetry-api/sdk 1.45.2 installed.
 Tests that need requests instrumentation skip without it.
 """
 
@@ -193,6 +193,51 @@ class TestSemconv(unittest.TestCase):
         self.assertIn("server.address", attrs)
         self.assertNotIn("http.method", attrs)
         self.assertNotIn("http.url", attrs)
+
+
+@unittest.skipUnless(OTEL, "opentelemetry-api/sdk not installed")
+class TestTraceparent(unittest.TestCase):
+    """CVE-2026-126360: 1.45.2 rejects overlong traceparent values.
+
+    The 1.45.1 propagator regex backtracked quadratically on a
+    traceparent with a long whitespace run and an embedded newline
+    (4 ms at 1,000 spaces, 930 ms at 16,000 on this VM). Version
+    1.45.2 rejects values longer than 512 characters before matching,
+    so the same extraction is flat and fast. The timing table lives
+    in redos_probe.py; these tests assert the two behaviours that
+    matter and bound the slow path. The 0.5 s bound has a wide
+    margin on the pinned version (extraction is a length check) and
+    fails on 1.45.1, where the same input takes about a second.
+    """
+
+    _BASE = "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+
+    def _extract(self, value):
+        from opentelemetry.trace.propagation.tracecontext import (
+            TraceContextTextMapPropagator,
+        )
+
+        propagator = TraceContextTextMapPropagator()
+        return propagator.extract({"traceparent": value})
+
+    def test_overlong_traceparent_is_rejected(self):
+        import time
+
+        nasty = self._BASE + "-" + " " * 16000 + "\n" + "x"
+        start = time.perf_counter()
+        ctx = self._extract(nasty)
+        elapsed = time.perf_counter() - start
+        span_context = trace.get_current_span(ctx).get_span_context()
+        self.assertFalse(span_context.is_valid)
+        self.assertLess(elapsed, 0.5)
+
+    def test_well_formed_traceparent_still_extracts(self):
+        ctx = self._extract(self._BASE)
+        span_context = trace.get_current_span(ctx).get_span_context()
+        self.assertTrue(span_context.is_valid)
+        self.assertEqual(
+            span_context.trace_id, 0x4BF92F3577B34DA6A3CE929D0E0E4736
+        )
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ description: >-
   afternoon. This guide names the business operation, opts into the stable
   semantic conventions, and keeps sensitive values out of attributes.
 date: 2026-10-29 14:00:00 +0000
+updated: 2026-11-17 15:25:00 +0000
 author: ritesh
 categories: [Reliability, Python]
 tags: [opentelemetry, tracing, python, observability, sampling]
@@ -16,10 +17,14 @@ cover:
 ---
 
 Versions this article targets: Python 3.12, opentelemetry-api and
-opentelemetry-sdk 1.45.1, opentelemetry-instrumentation-requests 0.66b1.
+opentelemetry-sdk 1.45.2, opentelemetry-instrumentation-requests 0.66b2.
 Traces and metrics are stable in this release; logs are still in
 development. If you run an older release, the semconv section below is
-where your setup differs.
+where your setup differs. This article was updated on 2026-11-17: the
+original version recommended 1.45.1, but 1.45.1 carries a
+regular-expression denial-of-service flaw in traceparent parsing
+(CVE-2026-126360, fixed in 1.45.2). Run 1.45.2 or later; the details
+are in the version note below.
 
 A checkout service gets its first traces the easy way: install the
 distro, run the app under `opentelemetry-instrument`, and watch spans
@@ -55,6 +60,8 @@ you chose deliberately, and carries values you would show a stranger.
 >   (stable names only). Never let it flip by accident.
 > - Propagate context across every service boundary with the W3C
 >   traceparent header, and verify the child span shares the trace id.
+>   Run opentelemetry-api 1.45.2 or later: 1.45.1's traceparent parser
+>   is vulnerable to a denial-of-service attack (CVE-2026-126360).
 > - Record route templates, not raw paths; strip query strings before
 >   they become attributes.
 > - Set the sampler explicitly. The SDK default samples every root
@@ -75,8 +82,8 @@ OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=0.0.0.0:4317 \
 opentelemetry-instrument python myapp.py
 ```
 
-I ran this against a small requests-based script on 2026-10-29 with
-SDK 1.45.1. It produced a `GET` client span with no application code
+I ran this against a small requests-based script on 2026-11-17 with
+SDK 1.45.2. It produced a `GET` client span with no application code
 for tracing at all. That is the value and the limit of zero-code: it
 records what libraries did, not what the business did.
 
@@ -187,7 +194,7 @@ sequenceDiagram
     I-->>C: 200
 ```
 
-Running `python3 demo.py` on 2026-10-29 printed matching trace ids and
+Running `python3 demo.py` on 2026-11-17 printed matching trace ids and
 confirmed the server span's parent is the client span (the hex ids vary
 per run; the relationships do not):
 
@@ -229,8 +236,8 @@ its database dashboards catch up.
 
 ![HTTP attribute names under the three semconv settings: the default emits old names, http/dup emits both sets, and http emits only the stable names.](semconv-migration.svg "The same request under default, dup, and stable settings."){: .figure}
 
-I measured this on 2026-10-29 with the requests instrumentation
-0.66b1 rather than trusting the docs. The probe ([probe_semconv.py](probe_semconv.py))
+I measured this on 2026-11-17 with the requests instrumentation
+0.66b2 rather than trusting the docs. The probe ([probe_semconv.py](probe_semconv.py))
 makes one request to a local server and prints the span attributes:
 
 - Default: `http.method`, `http.status_code`, `http.url`,
@@ -248,14 +255,34 @@ stable names, verify the stable queries return data, then switch to
 stable names first and discovering that the alert that pages on
 `http.status_code` has been querying a series that no longer exists.
 
-One more version note for teams upgrading to 1.45.1: it is a patch
-release on 1.45.0. The fixes are a tracestate header quadratic-time
-parsing bug (headers longer than 8192 characters are now discarded),
-a thread leak in resource detector initialization for long-running
-processes, and restoring `requests` as the default OTLP HTTP transport
-so proxy environment variables such as `HTTPS_PROXY` are honored
-again. If your exporter runs behind a proxy, 1.45.1 is the version to
-run, not 1.45.0.
+One more version note: 1.45.2 is a patch release on 1.45.1, and it is
+the version to run. It fixes a regular-expression denial-of-service
+flaw in traceparent parsing (CVE-2026-126360, published 2026-11-13):
+a traceparent value with a long whitespace run and an embedded
+newline made the propagator's regex backtrack quadratically, so one
+malicious message could stall an asynchronous server's event loop.
+Version 1.45.2 rejects traceparent values longer than 512 characters
+before matching. The exposure needs a carrier that preserves embedded
+newlines, so a plain HTTP header is not the path in; JSON carriers
+are, and the advisory names MCP request metadata (`params._meta`) as
+one. I measured the difference directly: extracting a traceparent
+with a 1,000-space run took 4 ms on 1.45.1 and under 0.1 ms on
+1.45.2, and the 1.45.1 time roughly quadrupled with each doubling of
+the whitespace (15 ms at 2,000 spaces, 59 ms at 4,000, 240 ms at
+8,000, 930 ms at 16,000). The probe that reproduces those numbers
+ships as [redos_probe.py](redos_probe.py), and the suite now asserts
+the two behaviours that matter: an overlong traceparent is rejected,
+and a well-formed one still extracts. The same release enforces
+metric cardinality limits (default 2000 combinations per stream,
+overflow marked `otel.metric.overflow`); see [OpenTelemetry
+Cardinality Limits: Why Filtered Queries Undercount](/posts/opentelemetry-metric-cardinality-limits/)
+for the full story. The 1.45.1 fixes still apply: a tracestate
+header quadratic-time parsing bug (headers longer than 8192
+characters are now discarded), a thread leak in resource detector
+initialization for long-running processes, and restoring `requests`
+as the default OTLP HTTP transport so proxy environment variables
+such as `HTTPS_PROXY` are honored again. If your exporter runs
+behind a proxy, 1.45.2 is the version to run, not 1.45.1 or 1.45.0.
 
 ## Cardinality and sensitive values: what not to record
 
@@ -353,8 +380,8 @@ a specific failed request was never sampled.
 
 ## Proving it works
 
-The test suite ([test_tracing.py](test_tracing.py)) runs 10 tests
-against SDK 1.45.1, all passing on 2026-10-29 with deprecation
+The test suite ([test_tracing.py](test_tracing.py)) runs 12 tests
+against SDK 1.45.2, all passing on 2026-11-17 with deprecation
 warnings treated as errors:
 
 - Sanitizing strips query strings and fragments; path normalization
@@ -371,10 +398,13 @@ warnings treated as errors:
 - The semconv probe in a subprocess: default emits old names and
   carries `token=secret` in `http.url`; the `http` opt-in emits
   stable names and no old ones.
+- The traceparent fix: a traceparent longer than 512 characters is
+  rejected (its context is invalid) on 1.45.2, and a well-formed
+  traceparent still extracts to the same trace id.
 
 Tests that need the requests instrumentation skip when it is not
 installed, following the pattern of the blog's earlier cache article.
-Ran 10 tests, 10 passing.
+Ran 12 tests, 12 passing.
 
 ## Operating it
 
@@ -454,7 +484,8 @@ mistakes above.
 - [Manual instrumentation for OpenTelemetry Python](https://opentelemetry.io/docs/languages/python/instrumentation/)
 - [HTTP semantic convention stability migration](https://opentelemetry.io/docs/specs/semconv/non-normative/http-migration/)
 - [Semantic conventions for database client spans](https://opentelemetry.io/docs/specs/semconv/database/database-spans/)
-- [Release Version 1.45.1/0.66b1](https://github.com/open-telemetry/opentelemetry-python/releases/tag/v1.45.1)
+- [Release Version 1.45.2/0.66b2](https://github.com/open-telemetry/opentelemetry-python/releases/tag/v1.45.2)
+- [OpenTelemetry Python API: Denial of service through quadratic-time traceparent parsing (CVE-2026-126360)](https://github.com/advisories/GHSA-mf5v-w3w3-f6cg)
 - [Environment Variable Specification](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/)
 
 The blog's earlier article on [Tracing LLM Calls with the OpenTelemetry GenAI Conventions](/posts/tracing-llm-calls-otel-genai/) covers the
