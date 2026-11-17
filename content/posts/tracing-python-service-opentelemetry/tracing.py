@@ -1,8 +1,8 @@
 """Tracing helpers for "Tracing a Python Service with OpenTelemetry".
 
-Pinned versions: Python 3.12, opentelemetry-api 1.45.1,
-opentelemetry-sdk 1.45.1. The requests instrumentation used by the
-semconv probe is opentelemetry-instrumentation-requests 0.66b1.
+Pinned versions: Python 3.12, opentelemetry-api 1.45.2,
+opentelemetry-sdk 1.45.2. The requests instrumentation used by the
+semconv probe is opentelemetry-instrumentation-requests 0.66b2.
 
 Run the demo: ``python3 demo.py`` (stdlib only apart from the SDK).
 Run the tests: ``python3 -m unittest discover -v`` from this folder.
