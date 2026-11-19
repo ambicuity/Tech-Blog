@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+  <title>Silent changes: same query, different answer</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Silent changes: same query, different answer</text>
+
+  <text x="16" y="48" class="f-label">Expression</text>
+  <text x="262" y="48" class="f-label">DuckDB 1.5.6</text>
+  <text x="492" y="48" class="f-label">DuckDB 2.0.0</text>
+  <line x1="8" y1="58" x2="712" y2="58" class="f-rule"/>
+
+  <text x="16" y="82" class="f-code">'abc' ~ 'b'</text>
+  <text x="262" y="82" class="f-code">false</text>
+  <text x="492" y="82" class="f-a1">true</text>
+  <line x1="8" y1="96" x2="712" y2="96" class="f-rule"/>
+
+  <text x="16" y="120" class="f-code">2 * 3!</text>
+  <text x="262" y="120" class="f-code">720</text>
+  <text x="492" y="120" class="f-a1">12</text>
+  <line x1="8" y1="134" x2="712" y2="134" class="f-rule"/>
+
+  <text x="16" y="158" class="f-code">typeof(X'6162')</text>
+  <text x="262" y="158" class="f-code">VARCHAR</text>
+  <text x="492" y="158" class="f-a1">BLOB</text>
+  <line x1="8" y1="172" x2="712" y2="172" class="f-rule"/>
+
+  <text x="16" y="196" class="f-code">typeof(B'1010')</text>
+  <text x="262" y="196" class="f-code">VARCHAR</text>
+  <text x="492" y="196" class="f-a1">BIT</text>
+  <line x1="8" y1="210" x2="712" y2="210" class="f-rule"/>
+
+  <text x="16" y="234" class="f-code">NULL column type</text>
+  <text x="262" y="234" class="f-code">INTEGER</text>
+  <text x="492" y="234" class="f-a1">"NULL"</text>
+  <line x1="8" y1="248" x2="712" y2="248" class="f-rule"/>
+
+  <text x="16" y="272" class="f-code">1 // 0 and 1 % 0</text>
+  <text x="262" y="272" class="f-code">NULL</text>
+  <text x="492" y="272" class="f-a2">error</text>
+  <line x1="8" y1="286" x2="712" y2="286" class="f-rule"/>
+
+  <text x="8" y="316" class="f-small">Measured on duckdb 1.5.6 vs 2.0.0, Python 3.12.3, this run.</text>
+  <text x="8" y="336" class="f-small">The first five rows return a different answer with no error;</text>
+  <text x="8" y="356" class="f-small">the last row now raises instead of returning NULL.</text>
+</svg>

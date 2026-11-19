@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 310">
+  <title>The safe upgrade, in order</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">The safe upgrade, in order</text>
+
+  <g data-step="1">
+    <rect x="8" y="56" width="216" height="76" class="f-box"/>
+    <circle cx="28" cy="78" r="10" class="f-a1"/>
+    <text x="28" y="82" class="f-middle f-small">1</text>
+    <text x="46" y="82" class="f-code">Inventory</text>
+    <text x="20" y="110" class="f-small">every process, every file</text>
+  </g>
+  <g data-step="2">
+    <line x1="228" y1="94" x2="252" y2="94" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="256" y="56" width="216" height="76" class="f-box"/>
+    <circle cx="276" cy="78" r="10" class="f-a1"/>
+    <text x="276" y="82" class="f-middle f-small">2</text>
+    <text x="294" y="82" class="f-code">Shadow system</text>
+    <text x="268" y="110" class="f-small">replay the workload on 2.0.0</text>
+  </g>
+  <g data-step="3">
+    <line x1="476" y1="94" x2="492" y2="94" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="496" y="56" width="216" height="76" class="f-box"/>
+    <circle cx="516" cy="78" r="10" class="f-a1"/>
+    <text x="516" y="82" class="f-middle f-small">3</text>
+    <text x="534" y="82" class="f-code">Verify results</text>
+    <text x="508" y="110" class="f-small">diff rows and checksums</text>
+  </g>
+
+  <g data-step="4">
+    <line x1="604" y1="136" x2="604" y2="164" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="496" y="168" width="216" height="76" class="f-box"/>
+    <circle cx="516" cy="190" r="10" class="f-a1"/>
+    <text x="516" y="194" class="f-middle f-small">4</text>
+    <text x="534" y="194" class="f-code">Pin storage version</text>
+    <text x="508" y="222" class="f-small">write v1.5.6 while mixed</text>
+  </g>
+  <g data-step="5">
+    <line x1="492" y1="206" x2="476" y2="206" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="256" y="168" width="216" height="76" class="f-box"/>
+    <circle cx="276" cy="190" r="10" class="f-a1"/>
+    <text x="276" y="194" class="f-middle f-small">5</text>
+    <text x="294" y="194" class="f-code">Migrate the file</text>
+    <text x="268" y="222" class="f-small">EXPORT, then IMPORT</text>
+  </g>
+  <g data-step="6">
+    <line x1="252" y1="206" x2="228" y2="206" class="f-line" marker-end="url(#arrow)"/>
+    <rect x="8" y="168" width="216" height="76" class="f-a1"/>
+    <circle cx="28" cy="190" r="10" class="f-a1"/>
+    <text x="28" y="194" class="f-middle f-small">6</text>
+    <text x="46" y="194" class="f-code">Keep the copy</text>
+    <text x="20" y="222" class="f-small">the rollback lives here</text>
+  </g>
+
+  <line x1="8" y1="268" x2="712" y2="268" class="f-rule"/>
+  <text x="8" y="292" class="f-small">Each step protects the next: the copy from step 6 is the rollback for every earlier step.</text>
+</svg>
