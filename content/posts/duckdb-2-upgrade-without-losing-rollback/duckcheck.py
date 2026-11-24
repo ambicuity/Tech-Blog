@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """duckcheck: pre-upgrade checks for the DuckDB 1.x to 2.0 move.
 
-Runs the semantics probes that distinguish DuckDB 1.x from 2.0.0, verifies
+Runs the semantics probes that distinguish DuckDB 1.x from 2.0, verifies
 the compatibility bridges, and checks whether a database file written by
 one version can be opened by the other.
 
@@ -39,8 +39,12 @@ EXPECTED = {
     "ctas_null_type": {"1.x": "INTEGER", "2.0": '"NULL"'},
     "tx_after_failed_select": {"1.x": "insert committed",
                                "2.0": "TransactionException"},
+    # 2.0.1 restored the 1.x behavior: a double-matched MERGE completes
+    # silently. 2.0.0 is the odd version out (it raises
+    # InvalidInputException); test_duckcheck.py covers that split by exact
+    # version, since this map only distinguishes the 1.x and 2.0 lines.
     "merge_double_match": {"1.x": "merged silently",
-                           "2.0": "InvalidInputException"},
+                           "2.0": "merged silently"},
 }
 
 PROBE_SQL = {
@@ -277,7 +281,7 @@ def print_report(result):
             if any_blocked else
             "this file is still readable by the old version: it has not "
             "crossed the storage-format door yet."))
-    print("\nrecommendation: run a shadow system on 2.0.0, diff the results "
+    print("\nrecommendation: run a shadow system on 2.0.1, diff the results "
           "of your real queries, and only then roll the fleet forward.")
 
 

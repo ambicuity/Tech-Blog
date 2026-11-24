@@ -10,7 +10,7 @@
 
   <text x="16" y="48" class="f-label">Expression</text>
   <text x="262" y="48" class="f-label">DuckDB 1.5.6</text>
-  <text x="492" y="48" class="f-label">DuckDB 2.0.0</text>
+  <text x="492" y="48" class="f-label">DuckDB 2.0.1</text>
   <line x1="8" y1="58" x2="712" y2="58" class="f-rule"/>
 
   <text x="16" y="82" class="f-code">'abc' ~ 'b'</text>
@@ -43,7 +43,7 @@
   <text x="492" y="272" class="f-a2">error</text>
   <line x1="8" y1="286" x2="712" y2="286" class="f-rule"/>
 
-  <text x="8" y="316" class="f-small">Measured on duckdb 1.5.6 vs 2.0.0, Python 3.12.3, this run.</text>
+  <text x="8" y="316" class="f-small">Measured on duckdb 1.5.6 vs 2.0.1, Python 3.12.3, this run.</text>
   <text x="8" y="336" class="f-small">The first five rows return a different answer with no error;</text>
   <text x="8" y="356" class="f-small">the last row now raises instead of returning NULL.</text>
 </svg>
