@@ -35,11 +35,62 @@ def new_con():
 
 
 def test_probes_match_installed_version():
-    """Every semantics probe returns the value of the installed line."""
+    """Every semantics probe returns the value of the installed line.
+
+    merge_double_match is excluded: it differs between 2.0.0 (raises) and
+    2.0.1 (silent), so it is covered by test_merge_double_match_reversal
+    against the exact installed version instead.
+    """
     con = new_con()
     observed = duckcheck.semantics_probes(con)
     for name, expected in duckcheck.EXPECTED.items():
+        if name == "merge_double_match":
+            continue
         assert observed[name] == expected[LINE], name
+    con.close()
+
+
+def test_merge_double_match_reversal():
+    """MERGE double-match: silent on 1.x, raises on 2.0.0, silent on 2.0.1.
+
+    2.0.1 restores the 1.x per-match behavior (#28701). The final value is
+    one of the matching source rows, so either is accepted here.
+    """
+    con = new_con()
+    con.execute("CREATE TABLE m_t (id INTEGER PRIMARY KEY, v INTEGER)")
+    con.execute("INSERT INTO m_t VALUES (1, 10)")
+    con.execute("CREATE TABLE m_s (id INTEGER, v INTEGER)")
+    con.execute("INSERT INTO m_s VALUES (1, 20), (1, 30)")
+    if VERSION == "2.0.0":
+        with pytest.raises(duckdb.InvalidInputException):
+            con.execute("MERGE INTO m_t USING m_s ON m_t.id = m_s.id "
+                        "WHEN MATCHED THEN UPDATE SET v = m_s.v")
+    else:
+        con.execute("MERGE INTO m_t USING m_s ON m_t.id = m_s.id "
+                    "WHEN MATCHED THEN UPDATE SET v = m_s.v")
+        assert con.execute(
+            "SELECT v FROM m_t WHERE id = 1").fetchone()[0] in (20, 30)
+    con.close()
+
+
+def test_extension_repository_default():
+    """allow_extension_repositories: absent on 1.x, 'undecided' on 2.0.0,
+    'hosts' on 2.0.1, where 'undecided' is also rejected outright."""
+    con = new_con()
+    if LINE == "1.x":
+        with pytest.raises(duckdb.CatalogException):
+            con.execute(
+                "SELECT current_setting('allow_extension_repositories')")
+    elif VERSION == "2.0.0":
+        assert con.execute(
+            "SELECT current_setting('allow_extension_repositories')"
+        ).fetchone()[0] == "undecided"
+    else:
+        assert con.execute(
+            "SELECT current_setting('allow_extension_repositories')"
+        ).fetchone()[0] == "hosts"
+        with pytest.raises(duckdb.InvalidInputException):
+            con.execute("SET allow_extension_repositories = 'undecided'")
     con.close()
 
 

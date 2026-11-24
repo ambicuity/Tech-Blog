@@ -24,7 +24,7 @@
     <circle cx="276" cy="78" r="10" class="f-a1"/>
     <text x="276" y="82" class="f-middle f-small">2</text>
     <text x="294" y="82" class="f-code">Shadow system</text>
-    <text x="268" y="110" class="f-small">replay the workload on 2.0.0</text>
+    <text x="268" y="110" class="f-small">replay the workload on 2.0.1</text>
   </g>
   <g data-step="3">
     <line x1="476" y1="94" x2="492" y2="94" class="f-line" marker-end="url(#arrow)"/>
