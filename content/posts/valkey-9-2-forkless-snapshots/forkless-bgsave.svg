@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320">
+  <title>Forkless BGSAVE: a background thread serializes while the main thread serves</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Valkey server (one process, two threads)</text>
+  <rect x="8" y="30" width="704" height="224" fill="url(#hatch)" class="f-frame"/>
+
+  <!-- Main thread -->
+  <rect x="22" y="56" width="676" height="96" class="f-box"/>
+  <text x="34" y="76" class="f-label">main thread: serves reads and writes</text>
+  <text x="34" y="100" class="f-code f-a1" data-step="2">SET k:7 (100 B) → cloned, proceeds at once</text>
+  <text x="34" y="120" class="f-code f-a2" data-step="3">SET big:9 (256 KiB) → waits for the iterator</text>
+  <text x="34" y="142" class="f-small">iterator at k:41,002 / 100,000   clone pool 0.4 / 1.0 MB   RSS 140 MB, flat</text>
+
+  <!-- 1. BGSAVE starts the iterator -->
+  <g data-step="1" style="--from-y: -8px">
+    <line x1="360" y1="152" x2="360" y2="166" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="360" cy="159" r="8" class="f-a1"/>
+    <text x="360" y="163" class="f-small f-middle f-a1">1</text>
+    <text x="376" y="163" class="f-label f-a1">BGSAVE starts the iterator</text>
+  </g>
+
+  <!-- Background thread -->
+  <rect x="22" y="168" width="676" height="80" class="f-box"/>
+  <text x="34" y="188" class="f-label">background thread: serializes keys in order</text>
+  <rect x="34" y="200" width="400" height="16" class="f-box"/>
+  <rect x="34" y="200" width="164" height="16" class="f-a1" data-step="1"/>
+  <text x="446" y="213" class="f-code">41,002 / 100,000 keys</text>
+  <text x="34" y="238" class="f-small" data-step="4">writes dump.rdb directly   rdb_last_bgsave_type: forkless</text>
+
+  <line x1="8" y1="272" x2="712" y2="272" class="f-rule"/>
+  <text x="8" y="294" class="f-small">1 BGSAVE starts the iterator (point-in-time view)   2 small strings, 512 B or less, are cloned</text>
+  <text x="8" y="312" class="f-small">3 larger values wait: the key is expedited, the client blocks   4 the thread writes dump.rdb directly</text>
+</svg>
