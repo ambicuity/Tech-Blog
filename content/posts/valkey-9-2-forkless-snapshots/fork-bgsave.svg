@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>Classic fork BGSAVE: the child shares pages until a write forces a copy</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Valkey server (one process, then two)</text>
+  <rect x="8" y="30" width="704" height="190" fill="url(#hatch)" class="f-frame"/>
+
+  <!-- Parent process -->
+  <rect x="22" y="56" width="300" height="150" class="f-box"/>
+  <text x="34" y="76" class="f-label">parent</text>
+  <rect x="34" y="84" width="240" height="24" class="f-box"/>
+  <text x="42" y="101" class="f-code">page A   k:1..k:33k</text>
+  <rect x="34" y="114" width="240" height="24" class="f-box"/>
+  <text x="42" y="131" class="f-code">page B   k:33k..k:66k</text>
+  <rect x="34" y="144" width="240" height="24" class="f-box"/>
+  <text x="42" y="161" class="f-code">page C   k:66k..k:100k</text>
+  <text x="34" y="196" class="f-small" data-until="4">RSS 140 MB, pages shared</text>
+  <text x="34" y="196" class="f-small f-a2" data-step="4">RSS 193 MB (+52.7 MB copies)</text>
+
+  <!-- Child process -->
+  <rect x="398" y="56" width="300" height="150" class="f-box"/>
+  <text x="410" y="76" class="f-label">child: writes dump.rdb</text>
+  <rect x="410" y="84" width="240" height="24" class="f-box"/>
+  <text x="418" y="101" class="f-code">page A   k:1..k:33k</text>
+  <rect x="410" y="114" width="240" height="24" class="f-box"/>
+  <text x="418" y="131" class="f-code">page B   k:33k..k:66k</text>
+  <rect x="410" y="144" width="240" height="24" class="f-box"/>
+  <text x="418" y="161" class="f-code">page C   k:66k..k:100k</text>
+  <text x="410" y="196" class="f-small">RSS 0 MB new pages (shared)</text>
+
+  <!-- 1. fork() -->
+  <g data-step="1" style="--from-x: -10px">
+    <line x1="322" y1="131" x2="398" y2="131" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="360" cy="131" r="8" class="f-a1"/>
+    <text x="360" y="135" class="f-small f-middle f-a1">1</text>
+    <text x="360" y="118" class="f-label f-middle f-a1">fork()</text>
+  </g>
+
+  <!-- 2. Child writes the RDB -->
+  <g data-step="2" style="--from-y: -8px">
+    <line x1="548" y1="206" x2="548" y2="232" class="f-line" marker-end="url(#arrow)"/>
+    <circle cx="548" cy="220" r="8" class="f-a1"/>
+    <text x="548" y="224" class="f-small f-middle f-a1">2</text>
+  </g>
+  <rect x="458" y="236" width="180" height="28" class="f-box" data-step="2"/>
+  <text x="548" y="255" class="f-code f-middle" data-step="2">dump.rdb</text>
+
+  <!-- 3. A write dirties a shared page -->
+  <g data-step="3" style="--from-y: -8px">
+    <text x="290" y="48" class="f-code f-middle f-a1">SET k:50000 v</text>
+    <line x1="290" y1="52" x2="290" y2="120" class="f-a1-line" marker-end="url(#arrow)"/>
+    <circle cx="290" cy="132" r="8" class="f-a1"/>
+    <text x="290" y="136" class="f-small f-middle f-a1">3</text>
+  </g>
+  <rect x="34" y="114" width="240" height="24" class="f-a1" data-step="3"/>
+  <text x="42" y="131" class="f-code" data-step="3">page B   k:33k..k:66k</text>
+  <text x="266" y="131" class="f-small f-end f-a1" data-step="3">copied</text>
+
+  <!-- 4. Parent RSS grows -->
+  <g data-step="4" style="--from-y: 8px">
+    <circle cx="60" cy="278" r="8" class="f-a1"/>
+    <text x="60" y="282" class="f-small f-middle f-a1">4</text>
+    <text x="76" y="282" class="f-small">parent RSS grows 140 to 193 MB while the save runs</text>
+  </g>
+
+  <line x1="8" y1="312" x2="712" y2="312" class="f-rule"/>
+  <text x="8" y="334" class="f-small">1 fork() copies the page table; parent and child share every page   2 child writes dump.rdb</text>
+  <text x="8" y="352" class="f-small">3 a write to a shared page forces the kernel to copy it (CoW)   4 parent RSS grows 140 to 193 MB</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250">
+  <title>Peak extra memory during BGSAVE: fork adds 52.7 MB, forkless adds 1.1 MB</title>
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" class="f-hatch"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" class="f-arrowhead"/>
+    </marker>
+  </defs>
+
+  <text x="8" y="20" class="f-title">Peak memory during BGSAVE (mean of 3 runs)</text>
+  <text x="8" y="40" class="f-small">100,000 keys x 1 KiB values; baseline group Pss 140.4 MB; writer hammering SETs during the save</text>
+
+  <!-- Baseline -->
+  <text x="8" y="88" class="f-label">baseline</text>
+  <rect x="150" y="70" width="351" height="28" class="f-box"/>
+  <text x="510" y="89" class="f-code">140.4 MB</text>
+
+  <!-- Fork peak -->
+  <text x="8" y="128" class="f-label">fork peak</text>
+  <rect x="150" y="110" width="483" height="28" class="f-a2"/>
+  <text x="642" y="129" class="f-code f-a2">193.2 MB</text>
+
+  <!-- Forkless peak -->
+  <text x="8" y="168" class="f-label">forkless peak</text>
+  <rect x="150" y="150" width="354" height="28" class="f-a1"/>
+  <text x="513" y="169" class="f-code f-a1">141.5 MB</text>
+
+  <!-- Baseline marker -->
+  <line x1="501" y1="62" x2="501" y2="186" class="f-dashed"/>
+  <text x="501" y="56" class="f-small f-middle">baseline</text>
+
+  <line x1="8" y1="206" x2="712" y2="206" class="f-rule"/>
+  <text x="8" y="228" class="f-small">Fork: the child shares pages until writes force copies; peak extra 52.7 MB (49.4, 51.6, 57.2)</text>
+  <text x="8" y="246" class="f-small">Forkless: the background thread adds no pages; peak extra 1.1 MB (1.1, 1.0, 1.2)</text>
+</svg>
